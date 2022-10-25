@@ -3,12 +3,30 @@ import * as topojson from "topojson";
 
 import { useEffect, useRef } from "react";
 
-import SeoulTopoJson from "assets/json/seoul.json";
-import KoreaGeoJson from "assets/json/korea_geojson.json";
-import KoreaTopoJson from "assets/json/korea_topojson.json";
+import KoreaSGG from "assets/json/0_korea_sgg.json";
+import KoreaUMD from "assets/json/0_korea_umd.json";
+import SeoulSGG from "assets/json/1_seoul_sgg.json";
+import BusanSGG from "assets/json/2_busan_sgg.json";
+import DaeguSGG from "assets/json/3_daegu_sgg.json";
+import IncheonSGG from "assets/json/4_incheon_sgg.json";
+import GwangjuSGG from "assets/json/5_gwangju_sgg.json";
+import DaejeonSGG from "assets/json/6_daejeon_sgg.json";
+import UlsanUMD from "assets/json/7_ulsan_umd.json";
+import SejongSGG from "assets/json/8_sejong_sgg.json";
+import SejongUMD from "assets/json/8_sejong_umd.json";
+import GyeonggiSGG from "assets/json/9_gyeongi_sgg.json";
+import GangwonSGG from "assets/json/10_gangwon_sgg.json";
+import ChungbukSGG from "assets/json/11_chungbuk_sgg.json";
+import ChungnamSGG from "assets/json/12_chungnam_sgg.json";
+import JeonbukSGG from "assets/json/13_jeonbuk_sgg.json";
+import JeonnamSGG from "assets/json/14_jeonnam_sgg.json";
+import JejuSGG from "assets/json/17_jeju_sgg.json";
+import JejuUMD from "assets/json/17_jeju_umd.json";
 
 import "./KoreaMap.scss";
 function KoreaMap(props) {
+  var TopoJsonData = JejuUMD;
+
   var svgRef = useRef(null);
 
   var width = 700;
@@ -19,13 +37,9 @@ function KoreaMap(props) {
 
     var projection = d3.geoMercator().scale(1).translate([0, 0]);
 
-    // const geojson = topojson.feature(
-    //   KoreaTopoJson,
-    //   KoreaTopoJson.objects.ctp_rvn
-    // );
     const geojson = topojson.feature(
-      SeoulTopoJson,
-      SeoulTopoJson.objects.regions
+      TopoJsonData,
+      TopoJsonData.objects.regions
     );
 
     const center = d3.geoCentroid(geojson);
