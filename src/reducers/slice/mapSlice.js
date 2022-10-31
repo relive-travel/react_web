@@ -3,20 +3,22 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchTopoJson = createAsyncThunk(
   `map/fetchTopoJson`,
   async ({ region }) => {
-    const res = await fetch(
-      `https://relivetravle.s3.ap-northeast-2.amazonaws.com/${region}.json`
-    );
-    return res.json();
+    if (region) {
+      const res = await fetch(
+        `https://relivetravle.s3.ap-northeast-2.amazonaws.com/topojson/${region}.json`
+      );
+      return res.json();
+    }
   }
 );
 
 const initialState = {
   status: "",
   topojson: null,
+  region: null,
   option: {
-    width: 960,
-    height: 640,
-    region: "seoul",
+    width: null,
+    height: null,
   },
 };
 
@@ -28,7 +30,9 @@ const mapSlice = createSlice({
       console.log(action.payload);
       state.option.width = action.payload.width;
       state.option.height = action.payload.height;
-      state.option.region = action.payload.region;
+    },
+    setMapRegion: (state, action) => {
+      state.region = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -42,6 +46,6 @@ const mapSlice = createSlice({
   },
 });
 
-export const { setMapOption } = mapSlice.actions;
+export const { setMapOption, setMapRegion } = mapSlice.actions;
 
 export default mapSlice.reducer;
