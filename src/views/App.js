@@ -16,6 +16,9 @@ function App() {
       );
     };
     dispatch(setMapRegion("korea"));
+    dispatch(
+      setMapOption({ width: window.innerWidth, height: window.innerHeight })
+    );
   }, []);
 
   return (
