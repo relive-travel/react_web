@@ -6,45 +6,33 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { fetchTopoJson, setMapOption } from "reducers/slice/mapSlice.js";
 import { setProjection } from "lib/setProjection.js";
+import { setSvgElement } from "lib/setSvgElement.js";
 
 import PathElements from "./components/PathElements.jsx";
 
 import "./WorldMap.scss";
 function WorldMap(props) {
-  // var svgRef = useRef(null);
+  var svgRef = useRef(null);
 
   const dispatch = useDispatch();
 
-  // const mapData = useSelector((state) => state.map.topojson);
-  const [mapData, setMapData] = useState();
+  // const [mapData, setMapData] = useState();
+  const mapData = useSelector((state) => state.map.topojson);
+  const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
 
   const [drawPath, setDrawPath] = useState(null);
 
   useEffect(() => {
-    function fetchTopoJson() {
-      fetch(
-        `https://relivetravle.s3.ap-northeast-2.amazonaws.com/${mapOption.region}.json`
-      )
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          setMapData(data);
-        });
-    }
-    fetchTopoJson();
-  }, []);
-
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchTopoJson({ region: mapOption.region, type: mapOption.type })
-  //   );
-  // }, [mapOption.region, mapOption.type, dispatch]);
+    setSvgElement({ currentElement: svgRef.current, mapOption });
+  }, [mapOption]);
 
   useEffect(() => {
-    if (mapData != null) {
+    dispatch(fetchTopoJson({ region: mapRegion }));
+  }, [mapRegion, dispatch]);
+
+  useEffect(() => {
+    if (mapData != null && mapRegion != null) {
       // const currentElement = svgRef.current;
 
       console.log(mapData);
@@ -74,11 +62,11 @@ function WorldMap(props) {
       });
       setDrawPath(regions);
     }
-  }, [mapData]);
+  }, [mapData, mapOption]);
 
   return (
     <>
-      <svg className="word-map-canvas">
+      <svg ref={svgRef} className="word-map-canvas">
         <g>{drawPath}</g>
       </svg>
     </>
