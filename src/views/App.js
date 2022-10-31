@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setMapOption, setMapRegion } from "reducers/slice/mapSlice";
 
 import WorldMap from "views/components/map/WorldMap.jsx";
+import ZoomSample from "views/components/sample/ZoomSample.jsx";
 import Sample from "views/components/sample/MapSample.jsx";
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ function App() {
       <header></header>
       <section>
         {/* <Sample className="sample-map-component"></Sample> */}
-        <WorldMap className="map-component"></WorldMap>
+        <ZoomSample className="map-component"></ZoomSample>
+        {/* <WorldMap className="map-component"></WorldMap> */}
       </section>
       <footer></footer>
     </div>
