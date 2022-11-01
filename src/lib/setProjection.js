@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+
 export const setProjection = (props) => {
   const { width, height } = props.mapOption;
 
@@ -12,18 +13,23 @@ export const setProjection = (props) => {
     1차원 배열 = ymax, ymin (최소, 최대 경도) - longitude (세로-경도) 
     2차원 배열 = xmax, xmin (최소, 최대 위도) - latitude  (가로-위도)
    */
-  const bounds = path.bounds(props.geojson);
+  // const bounds = path.bounds(props.geojson);
+  // const widthScale = (bounds[1][0] - bounds[0][0]) / width;
+  // const heightScale = (bounds[1][1] - bounds[0][1]) / height;
+
   // latitude: xmax(bounds[1][0]) - xmin(bounds[0][0])
-  const widthScale = (bounds[1][0] - bounds[0][0]) / width;
-  // console.log("latitude:", widthScale, bounds[1][0], bounds[0][0])
   // longitude : ymax(bounds[1][1]) - ymin(bounds[0][1])
-  const heightScale = (bounds[1][1] - bounds[0][1]) / height;
+  // console.log("latitude:", widthScale, bounds[1][0], bounds[0][0])
   // console.log("longitude:", heightScale, bounds[1][1], bounds[0][1])
+
+  const [[x0, y0], [x1, y1]] = path.bounds(props.geojson);
+  const widthScale = (x1 - x0) / width;
+  const heightScale = (y1 - y0) / height;
 
   const scale = 1 / Math.max(widthScale, heightScale);
 
-  const xoffset = width / 2 - (scale * (bounds[1][0] + bounds[0][0])) / 2;
-  const yoffset = height / 2 - (scale * (bounds[1][1] + bounds[0][1])) / 2;
+  const xoffset = width / 2 - (scale * (x1 + x0)) / 2;
+  const yoffset = height / 2 - (scale * (y1 + y0)) / 2;
   const offset = [xoffset, yoffset];
 
   return projection.scale(scale).translate(offset);
