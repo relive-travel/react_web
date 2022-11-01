@@ -3,11 +3,9 @@ import * as topojson from "topojson";
 
 import { useEffect, useRef } from "react";
 
-import SeoulMin from "assets/json/seoul_min.json";
-
 import "./MapSample.scss";
 function MapSample(props) {
-  var TopoJsonData = SeoulMin;
+  var TopoJsonData = null;
 
   var svgRef = useRef(null);
 
