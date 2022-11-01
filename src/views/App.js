@@ -24,11 +24,19 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
+      <header>
+        <button
+          onClick={() => {
+            dispatch(setMapRegion("korea"));
+          }}
+        >
+          홈으로
+        </button>
+      </header>
       <section>
         {/* <Sample className="sample-map-component"></Sample> */}
-        <ZoomSample className="map-component"></ZoomSample>
-        {/* <WorldMap className="map-component"></WorldMap> */}
+        {/* <ZoomSample className="map-component"></ZoomSample> */}
+        <WorldMap className="map-component"></WorldMap>
       </section>
       <footer></footer>
     </div>

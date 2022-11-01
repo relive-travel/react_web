@@ -4,19 +4,24 @@ import * as topojson from "topojson";
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchTopoJson, setMapOption } from "reducers/slice/mapSlice.js";
+import { fetchTopoJson, setMapRegion } from "reducers/slice/mapSlice.js";
 import { setProjection } from "lib/setProjection.js";
-import { setSvgElement } from "lib/setSvgElement.js";
+import {
+  setSvg,
+  setZoomEvent,
+  setSvgResetEvent,
+  setPathZoomEvent,
+} from "lib/setMapElements.js";
 
 import PathElements from "./components/PathElements.jsx";
 
 import "./WorldMap.scss";
 function WorldMap(props) {
   var svgRef = useRef(null);
+  var gRef = useRef(null);
 
   const dispatch = useDispatch();
 
-  // const [mapData, setMapData] = useState();
   const mapData = useSelector((state) => state.map.topojson);
   const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
@@ -24,50 +29,84 @@ function WorldMap(props) {
   const [drawPath, setDrawPath] = useState(null);
 
   useEffect(() => {
-    setSvgElement({ currentElement: svgRef.current, mapOption });
-  }, [mapOption]);
-
-  useEffect(() => {
     dispatch(fetchTopoJson({ region: mapRegion }));
   }, [mapRegion, dispatch]);
 
   useEffect(() => {
-    if (mapData != null && mapRegion != null) {
-      // const currentElement = svgRef.current;
-
-      console.log(mapData);
-
-      const geojson = topojson.feature(mapData, mapData.objects.regions);
-
-      console.log(geojson);
-      const path = d3
-        .geoPath()
-        .projection(setProjection({ geojson, mapOption }));
-      const regions = geojson.features.map((geo) => {
-        return (
-          // <PathElements
-          //   key={geo.properties.GID}
-          //   path={path}
-          //   data={geojson}
-          //   className={geo.properties.SGG_NM}
-          //   title={geo.properties.SGG_NM}
-          // ></PathElements>
-          <PathElements
-            key={geo.properties.CTPRVN_CD}
-            className={geo.properties.CTP_ENG_NM}
-            path={path(geo)}
-            title={geo.properties.CTP_KOR_NM}
-          ></PathElements>
-        );
+    if (mapOption.width && mapOption.height) {
+      setSvg({
+        svgCurElement: svgRef.current,
+        mapOption,
       });
-      setDrawPath(regions);
     }
-  }, [mapData, mapOption]);
+  }, [mapOption]);
+
+  const setMapViewCountry = () => {
+    const geojson = topojson.feature(mapData, mapData.objects.regions);
+    const path = d3.geoPath().projection(setProjection({ geojson, mapOption }));
+
+    const regions = geojson.features.map((geo) => {
+      return (
+        <PathElements
+          type={"country"}
+          key={geo.properties.CTPRVN_CD}
+          name={geo.properties.CTP_ENG_NM}
+          pathData={path(geo)}
+          onClick={() => {
+            dispatch(setMapRegion(geo.properties.CTP_ENG_NM));
+          }}
+        ></PathElements>
+      );
+    });
+    setDrawPath(regions);
+  };
+
+  const setMapViewRegion = () => {
+    const zoom = setZoomEvent({ gCurElement: gRef.current });
+
+    const geojson = topojson.feature(mapData, mapData.objects.regions);
+    const path = d3.geoPath().projection(setProjection({ geojson, mapOption }));
+    const regions = geojson.features.map((geo) => {
+      return (
+        <PathElements
+          type={"region"}
+          key={geo.properties.GID}
+          name={geo.properties.SGG_NM}
+          pathData={path(geo)}
+          onClick={setPathZoomEvent({
+            curElements: {
+              svgCurElement: svgRef.current,
+              gCurElement: gRef.current,
+            },
+            mapOption,
+            zoom,
+            path,
+            geo,
+          })}
+        ></PathElements>
+      );
+    });
+    setSvgResetEvent({
+      curElements: {
+        svgCurElement: svgRef.current,
+        gCurElement: gRef.current,
+      },
+      mapOption,
+      zoom,
+    });
+    setDrawPath(regions);
+  };
+
+  useEffect(() => {
+    if (mapData != null) {
+      mapRegion == "korea" ? setMapViewCountry() : setMapViewRegion();
+    }
+  }, [mapData, mapRegion, mapOption]);
 
   return (
     <>
       <svg ref={svgRef} className="word-map-canvas">
-        <g>{drawPath}</g>
+        <g ref={gRef}>{drawPath}</g>
       </svg>
     </>
   );
