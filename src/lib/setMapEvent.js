@@ -47,7 +47,6 @@ export const setPathZoomEvent = (props) => (e) => {
   const { svgCurElement, gCurElement } = props.curElements;
   const { width, height } = props.mapOption;
   const { zoom, path, geo } = props;
-
   const [[x0, y0], [x1, y1]] = path.bounds(geo);
 
   e.stopPropagation();

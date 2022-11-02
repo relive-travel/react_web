@@ -1,39 +1,33 @@
 import * as d3 from "d3";
-import * as topojson from "topojson";
 
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchTopoJson, setMapRegion } from "reducers/slice/mapSlice.js";
-import { setProjection } from "lib/setProjection.js";
-import {
-  setSvg,
-  setZoomEvent,
-  setSvgResetEvent,
-  setPathZoomEvent,
-} from "lib/setMapEvent.js";
+import { fetchTopoJson } from "reducers/slice/mapSlice.js";
+
+import { setSvg, setZoomEvent, setSvgResetEvent } from "lib/setMapEvent.js";
 
 import PathElements from "./components/PathElements.jsx";
+import MarkerElements from "./components/MarkerElements.jsx";
 
 import "./D3Map.scss";
 function D3Map(props) {
   var svgRef = useRef(null);
-  var gRef = useRef(null);
+  var gPathRef = useRef(null);
 
   const dispatch = useDispatch();
 
-  const mapData = useSelector((state) => state.map.topojson);
   const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
 
-  const [drawPath, setDrawPath] = useState(null);
-
+  // svg 세팅할때, 그리고 Path를 설정하기전에 지역데이터 받아와야함
   useEffect(() => {
     dispatch(fetchTopoJson({ region: mapRegion }));
   }, [mapRegion, dispatch]);
 
+  // svg 세팅
   useEffect(() => {
-    if (mapOption.width && mapOption.height) {
+    if (mapOption) {
       setSvg({
         svgCurElement: svgRef.current,
         mapOption,
@@ -41,77 +35,33 @@ function D3Map(props) {
     }
   }, [mapOption]);
 
-  const setMapViewCountry = (geojson, path) => {
-    return geojson.features.map((geo) => {
-      return (
-        <PathElements
-          type={"country"}
-          key={geo.properties.CTPRVN_CD}
-          name={geo.properties.CTP_ENG_NM}
-          pathData={path(geo)}
-          onClick={() => {
-            dispatch(setMapRegion(geo.properties.CTP_ENG_NM));
-          }}
-        ></PathElements>
-      );
-    });
-  };
-
-  const setMapViewRegion = (geojson, zoom, path) => {
-    setSvgResetEvent({
-      curElements: {
-        svgCurElement: svgRef.current,
-        gCurElement: gRef.current,
-      },
-      mapOption,
-      zoom,
-    });
-    return geojson.features.map((geo) => {
-      return (
-        <PathElements
-          type={"region"}
-          key={geo.properties.GID}
-          name={geo.properties.SGG_NM}
-          pathData={path(geo)}
-          onClick={setPathZoomEvent({
-            curElements: {
-              svgCurElement: svgRef.current,
-              gCurElement: gRef.current,
-            },
-            mapOption,
-            zoom,
-            path,
-            geo,
-          })}
-        ></PathElements>
-      );
-    });
-  };
-
+  // svg zoom 세팅
   useEffect(() => {
-    if (mapData != null) {
-      const zoom = setZoomEvent({ gCurElement: gRef.current });
-
-      const geojson = topojson.feature(mapData, mapData.objects.regions);
-      const path = d3
-        .geoPath()
-        .projection(setProjection({ geojson, mapOption }));
-
-      setDrawPath(
-        mapRegion == "korea"
-          ? setMapViewCountry(geojson, path)
-          : setMapViewRegion(geojson, zoom, path)
-      );
+    if (mapOption) {
+      const zoom = setZoomEvent({ gCurElement: gPathRef.current });
 
       // d3 svg 내부 사용자 마우스 zoom 이벤트 할당
       d3.select(svgRef.current).call(zoom);
+
+      // svg 배경 클릭 시 zoom reset
+      setSvgResetEvent({
+        curElements: {
+          svgCurElement: svgRef.current,
+          gCurElement: gPathRef.current,
+        },
+        mapOption,
+        zoom,
+      });
     }
-  }, [mapData, mapRegion, mapOption]);
+  }, [mapRegion, mapOption]);
 
   return (
     <>
       <svg ref={svgRef} className="word-map-canvas">
-        <g ref={gRef}>{drawPath}</g>
+        <g ref={gPathRef}>
+          <PathElements svgRef={svgRef} gPathRef={gPathRef}></PathElements>
+        </g>
+        {/* <g ref={gMarkerRef}></g> */}
       </svg>
     </>
   );

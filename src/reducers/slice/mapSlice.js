@@ -16,10 +16,7 @@ const initialState = {
   status: "",
   topojson: null,
   region: null,
-  option: {
-    width: null,
-    height: null,
-  },
+  option: null,
 };
 
 const mapSlice = createSlice({
@@ -28,8 +25,7 @@ const mapSlice = createSlice({
   reducers: {
     setMapOption: (state, action) => {
       console.log(action.payload);
-      state.option.width = action.payload.width;
-      state.option.height = action.payload.height;
+      state.option = action.payload;
     },
     setMapRegion: (state, action) => {
       state.region = action.payload;
