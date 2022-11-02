@@ -1,11 +1,12 @@
-// .path {
-//   fill: #585858;
-//   stroke: #000000;
-//   stroke-width: 1px;
-// }
+.path {
+  fill: #009300;
+  fill-opacity: 0.5;
+  stroke: #000000;
+  stroke-width: 1px;
+}
 
-// .path:hover {
-//   cursor: pointer;
-//   fill: #009300;
-//   fill-opacity: 0.5;
-// }
+.path:hover {
+  cursor: pointer;
+  fill: #009300;
+  fill-opacity: 1;
+}
