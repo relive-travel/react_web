@@ -11,12 +11,12 @@ import {
   setZoomEvent,
   setSvgResetEvent,
   setPathZoomEvent,
-} from "lib/setMapElements.js";
+} from "lib/setMapEvent.js";
 
 import PathElements from "./components/PathElements.jsx";
 
-import "./WorldMap.scss";
-function WorldMap(props) {
+import "./D3Map.scss";
+function D3Map(props) {
   var svgRef = useRef(null);
   var gRef = useRef(null);
 
@@ -41,11 +41,8 @@ function WorldMap(props) {
     }
   }, [mapOption]);
 
-  const setMapViewCountry = () => {
-    const geojson = topojson.feature(mapData, mapData.objects.regions);
-    const path = d3.geoPath().projection(setProjection({ geojson, mapOption }));
-
-    const regions = geojson.features.map((geo) => {
+  const setMapViewCountry = (geojson, path) => {
+    return geojson.features.map((geo) => {
       return (
         <PathElements
           type={"country"}
@@ -58,15 +55,18 @@ function WorldMap(props) {
         ></PathElements>
       );
     });
-    setDrawPath(regions);
   };
 
-  const setMapViewRegion = () => {
-    const zoom = setZoomEvent({ gCurElement: gRef.current });
-
-    const geojson = topojson.feature(mapData, mapData.objects.regions);
-    const path = d3.geoPath().projection(setProjection({ geojson, mapOption }));
-    const regions = geojson.features.map((geo) => {
+  const setMapViewRegion = (geojson, zoom, path) => {
+    setSvgResetEvent({
+      curElements: {
+        svgCurElement: svgRef.current,
+        gCurElement: gRef.current,
+      },
+      mapOption,
+      zoom,
+    });
+    return geojson.features.map((geo) => {
       return (
         <PathElements
           type={"region"}
@@ -86,20 +86,25 @@ function WorldMap(props) {
         ></PathElements>
       );
     });
-    setSvgResetEvent({
-      curElements: {
-        svgCurElement: svgRef.current,
-        gCurElement: gRef.current,
-      },
-      mapOption,
-      zoom,
-    });
-    setDrawPath(regions);
   };
 
   useEffect(() => {
     if (mapData != null) {
-      mapRegion == "korea" ? setMapViewCountry() : setMapViewRegion();
+      const zoom = setZoomEvent({ gCurElement: gRef.current });
+
+      const geojson = topojson.feature(mapData, mapData.objects.regions);
+      const path = d3
+        .geoPath()
+        .projection(setProjection({ geojson, mapOption }));
+
+      setDrawPath(
+        mapRegion == "korea"
+          ? setMapViewCountry(geojson, path)
+          : setMapViewRegion(geojson, zoom, path)
+      );
+
+      // d3 svg 내부 사용자 마우스 zoom 이벤트 할당
+      d3.select(svgRef.current).call(zoom);
     }
   }, [mapData, mapRegion, mapOption]);
 
@@ -112,4 +117,4 @@ function WorldMap(props) {
   );
 }
 
-export default WorldMap;
+export default D3Map;
