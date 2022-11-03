@@ -60,8 +60,13 @@ function D3Map(props) {
       <svg ref={svgRef} className="word-map-canvas">
         <g ref={gPathRef}>
           <PathElements svgRef={svgRef} gPathRef={gPathRef}></PathElements>
+          {mapRegion !== "korea" ? (
+            <MarkerElements
+              svgRef={svgRef}
+              gPathRef={gPathRef}
+            ></MarkerElements>
+          ) : null}
         </g>
-        {/* <g ref={gMarkerRef}></g> */}
       </svg>
     </>
   );

@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  option: {},
+  option: {
+    url: "https://relivetravle.s3.ap-northeast-2.amazonaws.com/image/left_rabbit.png",
+    width: 45,
+    height: 20,
+  },
   point: [
     {
       lat: 37.50879971854291,
