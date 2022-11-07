@@ -4,7 +4,7 @@ import * as topojson from "topojson";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setMapRegion } from "reducers/slice/mapSlice";
+import { setMapRegion } from "redux/slice/mapSlice";
 
 import { setZoomEvent, setPathZoomEvent } from "lib/setMapEvent";
 import { setProjection } from "lib/setProjection";

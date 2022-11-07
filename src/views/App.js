@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { getCoordinates } from "lib/setFilrebase";
-import { setMapOption, setMapRegion } from "reducers/slice/mapSlice";
+import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
 import D3Map from "views/components/map/D3Map.jsx";
 function App() {
@@ -19,7 +19,7 @@ function App() {
     dispatch(
       setMapOption({ width: window.innerWidth, height: window.innerHeight })
     );
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     getCoordinates().then((response) => {

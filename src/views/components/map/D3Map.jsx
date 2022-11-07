@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchTopoJson } from "reducers/slice/mapSlice.js";
+import { fetchTopoJson } from "redux/thunk/mapThunk.js";
 
 import { setSvg, setZoomEvent, setSvgResetEvent } from "lib/setMapEvent.js";
 
