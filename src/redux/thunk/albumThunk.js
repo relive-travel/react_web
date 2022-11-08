@@ -24,11 +24,8 @@ export const getAlbumOne = createAsyncThunk(
     const albumCol = collection(db, "albums", id);
     const albumSnapshot = await getDocs(albumCol);
 
-    if (albumSnapshot.exists()) {
-      const album = albumSnapshot.docs.map((doc) => doc.data());
-      return album;
-    }
-    return null;
+    const album = albumSnapshot.docs.map((doc) => doc.data());
+    return album;
   }
 );
 
@@ -36,9 +33,6 @@ export const getAlbumAll = createAsyncThunk(`album/getAlbumAll`, async () => {
   const albumCol = collection(db, "albums");
   const albumSnapshot = await getDocs(albumCol);
 
-  if (albumSnapshot.exists()) {
-    const albumList = albumSnapshot.docs.map((doc) => doc.data());
-    return albumList;
-  }
-  return null;
+  const albumList = albumSnapshot.docs.map((doc) => doc.data());
+  return albumList;
 });

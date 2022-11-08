@@ -26,11 +26,8 @@ export const getMarkerOne = createAsyncThunk(
     const markerCol = collection(db, "markers", id);
     const markerSnapshot = await getDocs(markerCol);
 
-    if (markerSnapshot.exists()) {
-      const marker = markerSnapshot.docs.map((doc) => doc.data());
-      return marker;
-    }
-    return null;
+    const marker = markerSnapshot.docs.map((doc) => doc.data());
+    return marker;
   }
 );
 
@@ -39,11 +36,8 @@ export const getMarkerAll = createAsyncThunk(
   async () => {
     const markerCol = collection(db, "markers");
     const markerSnapshot = await getDocs(markerCol);
-
-    if (markerSnapshot.exists()) {
-      const markerList = markerSnapshot.docs.map((doc) => doc.data());
-      return markerList;
-    }
-    return null;
+    const markerList = markerSnapshot.docs.map((doc) => doc.data());
+    console.log(markerList);
+    return markerList;
   }
 );
