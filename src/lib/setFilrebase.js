@@ -21,13 +21,3 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const db = getFirestore(app);
-
-export async function getCoordinates() {
-  const coordinateCol = collection(db, "coordinates");
-  console.log(coordinateCol);
-  const coordinateSnapshot = await getDocs(coordinateCol);
-  console.log(coordinateSnapshot);
-  const coordinateList = coordinateSnapshot.docs.map((doc) => doc.data());
-  console.log(coordinateList);
-  return coordinateList;
-}
