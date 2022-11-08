@@ -13,15 +13,17 @@ export const setSvg = (props) => {
 export const setZoomEvent = (props) => {
   const { gCurElement } = props;
   //scaleExtend : k0~k1 허용 배율 인수
-  return d3
-    .zoom()
-    .scaleExtent([1, 8])
-    .on("zoom", (e) => {
-      const { transform } = e;
-      d3.select(gCurElement)
-        .attr("transform", transform)
-        .attr("stroke-width", 1 / transform.k);
-    });
+  return (
+    d3
+      .zoom()
+      // .scaleExtent([1, 8])
+      .on("zoom", (e) => {
+        const { transform } = e;
+        d3.select(gCurElement)
+          .attr("transform", transform)
+          .attr("stroke-width", 1 / transform.k);
+      })
+  );
 };
 
 export const setSvgResetEvent = (props) => {
