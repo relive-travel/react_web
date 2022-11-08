@@ -1,10 +1,10 @@
-export const separateAddress = (address) => {
+export const separateAddress = ({ address, semiAddress }) => {
   const addressArray = address.split(" ");
   const addressAry = addressArray.slice(1, addressArray.length);
 
   const region = {};
   // const region = new Map();
-  region.address = address;
+  region.address = address + " " + semiAddress;
 
   const district = addressArray[0];
   // region.set("district", district);
