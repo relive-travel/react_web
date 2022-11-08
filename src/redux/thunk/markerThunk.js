@@ -1,6 +1,13 @@
 import { async } from "@firebase/util";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GeoPoint, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  GeoPoint,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 import { db } from "lib/setFilrebase";
 
@@ -31,13 +38,26 @@ export const getMarkerOne = createAsyncThunk(
   }
 );
 
+export const getMarkerMatchRegion = createAsyncThunk(
+  `marker/getMarkerMatchRegion`,
+  async ({ region }) => {
+    const markerCol = collection(db, "markers");
+    const regionQuery = query(
+      markerCol,
+      where("region.district", "==", region)
+    );
+    const querySnapshot = await getDocs(regionQuery);
+    const queryList = querySnapshot.docs.map((doc) => doc.data());
+    return queryList;
+  }
+);
+
 export const getMarkerAll = createAsyncThunk(
   `marker/getMarkerAll`,
   async () => {
     const markerCol = collection(db, "markers");
     const markerSnapshot = await getDocs(markerCol);
     const markerList = markerSnapshot.docs.map((doc) => doc.data());
-    console.log(markerList);
     return markerList;
   }
 );
