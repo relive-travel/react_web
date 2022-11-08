@@ -47,3 +47,42 @@ export const separateAddress = ({ address, semiAddress }) => {
 
   return region;
 };
+
+export const koreanAddress = (region) => {
+  switch (region) {
+    case "Seoul":
+      return "서울";
+    case "Busan":
+      return "부산";
+    case "Daegu":
+      return "대구";
+    case "Incheon":
+      return "인천";
+    case "Gwangju":
+      return "광주";
+    case "Daejeon":
+      return "대전";
+    case "Ulsan":
+      return "울산";
+    case "Sejong-si":
+      return "세종특별자치시"; // 세종
+    case "Gyeonggi-do":
+      return "경기";
+    case "Gangwon-do":
+      return "강원";
+    case "Chungcheongbuk-do":
+      return "충북";
+    case "Chungcheongnam-do":
+      return "충남";
+    case "Jeollabuk-do":
+      return "전북";
+    case "Jellanam-do":
+      return "전남";
+    case "Gyeongsangbuk-do":
+      return "경북";
+    case "Gyeongsangnam-do":
+      return "경남";
+    case "Jeju-do":
+      return "제주특별자치도"; // 제주
+  }
+};
