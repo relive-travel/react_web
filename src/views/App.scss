@@ -1,0 +1,38 @@
+.app-component {
+  position: relative;
+  .app-home-buttom {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .open {
+    transform: translate(0%, 0%);
+  }
+}
+
+// aside
+.slider-component {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  position: absolute;
+
+  width: 25%;
+  height: 100%;
+  min-width: 300px;
+
+  transform: translate(-90%, 0%);
+  transition: 1s ease-in-out;
+
+  .slider-button {
+    width: 10%;
+    height: fit-content;
+  }
+  .slider-main {
+    width: 90%;
+    height: 100%;
+    background: white;
+    opacity: 33%;
+  }
+}
