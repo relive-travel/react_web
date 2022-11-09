@@ -64,7 +64,7 @@ function PathElements(props) {
       });
       setDrawPath(pathElements);
     }
-  }, [mapData]);
+  }, [mapData, mapOption]);
 
   return <>{drawPath}</>;
 }
