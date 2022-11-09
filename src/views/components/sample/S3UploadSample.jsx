@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 function S3UploadSample(props) {
   const [selectFile, setSelectFile] = useState(null);
 
   const handleFileInput = (e) => {
-    console.log(e);
-    console.log(e.target);
-    console.log(e.target.files);
     setSelectFile(e.target.files);
   };
 
@@ -53,7 +50,13 @@ function S3UploadSample(props) {
 
   return (
     <div>
-      <input type="file" onChange={handleFileInput} multiple></input>
+      {/* <input type="file" onChange={handleFileInput} multiple></input> */}
+      <input
+        type="file"
+        onChange={handleFileInput}
+        accept="file_extension|audio/*|video/*|Image/*|media_type"
+        multiple
+      ></input>
       <button onClick={() => handleUpload(selectFile)}>Upload To S3</button>
     </div>
   );
