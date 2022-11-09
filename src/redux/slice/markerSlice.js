@@ -3,7 +3,7 @@ import { getMarkerMatchRegion } from "redux/thunk/markerThunk";
 
 const initialState = {
   option: {
-    url: "https://relivetravle.s3.ap-northeast-2.amazonaws.com/image/left_rabbit.png",
+    url: `${process.env.REACT_APP_API_S3_ADDRESS}/image/left_rabbit.png`,
     width: 15,
     height: 10,
   },
