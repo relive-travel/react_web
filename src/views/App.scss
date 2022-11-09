@@ -14,15 +14,16 @@
 .slider-component {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 
   position: absolute;
 
-  width: 25%;
+  width: 30%;
   height: 100%;
   min-width: 300px;
 
-  transform: translate(-90%, 0%);
+  transform: translate(-85%, 0%);
   transition: 1s ease-in-out;
 
   .slider-button {
@@ -30,7 +31,7 @@
     height: fit-content;
   }
   .slider-main {
-    width: 90%;
+    width: 85%;
     height: 100%;
     background: white;
     opacity: 33%;

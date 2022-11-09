@@ -6,6 +6,9 @@ import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/slider/Slider.jsx";
 
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+
 import "./App.scss";
 function App() {
   const dispatch = useDispatch();
@@ -14,9 +17,13 @@ function App() {
 
   const handleOpen = (type) => (e) => {
     const slider = document.querySelector(".slider-component");
-    console.log(slider);
-    type ? slider.classList.add("open") : slider.classList.remove("open");
-    console.log(slider);
+    slider.classList.add("open");
+    setSliderOpen(type);
+  };
+
+  const handleClose = (type) => (e) => {
+    const slider = document.querySelector(".slider-component");
+    slider.classList.remove("open");
     setSliderOpen(type);
   };
 
@@ -47,12 +54,17 @@ function App() {
       <main>
         <aside className="slider-component">
           <Slider></Slider>
-          <button
-            className="slider-button"
-            onClick={handleOpen(sliderOpen ? false : true)}
-          >
-            {sliderOpen ? "모달닫기" : "모달열기"}
-          </button>
+          {sliderOpen ? (
+            <KeyboardDoubleArrowLeftIcon
+              className="slider-button"
+              onClick={handleClose(false)}
+            />
+          ) : (
+            <KeyboardDoubleArrowRightIcon
+              className="slider-button"
+              onClick={handleOpen(true)}
+            />
+          )}
         </aside>
         <section>
           <article className="map-component">
