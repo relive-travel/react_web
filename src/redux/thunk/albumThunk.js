@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 import { db } from "lib/setFilrebase";
 
@@ -26,6 +26,22 @@ export const getAlbumOne = createAsyncThunk(
 
     const album = albumSnapshot.docs.map((doc) => doc.data());
     return album;
+  }
+);
+
+export const getAlbumWithMarkerId = createAsyncThunk(
+  `album/getAlbumWithMarkerId`,
+  async ({ id }) => {
+    const albumCol = collection(db, "albums");
+    const MarkerIdQuery = query(albumCol, where("marker_id", "==", id));
+    const querySnapshot = await getDocs(MarkerIdQuery);
+    const queryItem = querySnapshot.docs.map((doc) => {
+      return {
+        ...doc.data(),
+        id: doc.id,
+      };
+    });
+    return queryItem;
   }
 );
 
