@@ -4,7 +4,8 @@ export const separateAddress = ({ address, semiAddress }) => {
 
   const region = {};
   // const region = new Map();
-  region.address = address + " " + semiAddress;
+  region.address = address;
+  region.semiAddress = semiAddress;
 
   const district = addressArray[0];
   // region.set("district", district);
