@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getMarkerMatchRegion } from "redux/thunk/markerThunk";
+import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 
 const initialState = {
   option: {
@@ -8,6 +8,7 @@ const initialState = {
     height: 10,
   },
   list: null,
+  status: null,
 };
 
 const markerSlice = createSlice({
@@ -15,9 +16,15 @@ const markerSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getMarkerMatchRegion.fulfilled, (state, action) => {
-      state.list = action.payload;
-    });
+    builder
+      .addCase(getMarkerMatchRegion.fulfilled, (state, action) => {
+        state.status = "getMatchRegion";
+        state.list = action.payload;
+      })
+      .addCase(getMarkerAll.fulfilled, (state, action) => {
+        state.status = "getAll";
+        state.list = action.payload;
+      });
   },
 });
 
