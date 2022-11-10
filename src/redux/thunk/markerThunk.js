@@ -57,7 +57,12 @@ export const getMarkerAll = createAsyncThunk(
   async () => {
     const markerCol = collection(db, "markers");
     const markerSnapshot = await getDocs(markerCol);
-    const markerList = markerSnapshot.docs.map((doc) => doc.data());
+    const markerList = markerSnapshot.docs.map((doc) => {
+      return {
+        ...doc.data(),
+        id: doc.id,
+      };
+    });
     return markerList;
   }
 );
