@@ -13,7 +13,6 @@ const mapSlice = createSlice({
   initialState,
   reducers: {
     setMapOption: (state, action) => {
-      console.log(action.payload);
       state.option = action.payload;
     },
     setMapRegion: (state, action) => {
