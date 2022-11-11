@@ -18,19 +18,16 @@ export const setAlbum = createAsyncThunk(
   }
 );
 
-export const getAlbumOne = createAsyncThunk(
-  `album/getAlbumOne`,
-  async ({ id }) => {
-    const albumCol = collection(db, "albums", id);
-    const albumSnapshot = await getDocs(albumCol);
+export const getAlbum = createAsyncThunk(`album/getAlbum`, async ({ id }) => {
+  const albumCol = collection(db, "albums", id);
+  const albumSnapshot = await getDocs(albumCol);
 
-    const album = albumSnapshot.docs.map((doc) => doc.data());
-    return album;
-  }
-);
+  const album = albumSnapshot.docs.map((doc) => doc.data());
+  return album;
+});
 
-export const getAlbumWithMarkerId = createAsyncThunk(
-  `album/getAlbumWithMarkerId`,
+export const getAlbumMatchMarkerId = createAsyncThunk(
+  `album/getAlbumMatchMarkerId`,
   async ({ id }) => {
     const albumCol = collection(db, "albums");
     const MarkerIdQuery = query(albumCol, where("marker_id", "==", id));
@@ -44,11 +41,3 @@ export const getAlbumWithMarkerId = createAsyncThunk(
     return queryItem;
   }
 );
-
-export const getAlbumAll = createAsyncThunk(`album/getAlbumAll`, async () => {
-  const albumCol = collection(db, "albums");
-  const albumSnapshot = await getDocs(albumCol);
-
-  const albumList = albumSnapshot.docs.map((doc) => doc.data());
-  return albumList;
-});
