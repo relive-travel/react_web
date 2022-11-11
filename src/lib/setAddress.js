@@ -49,6 +49,14 @@ export const separateAddress = ({ address, semiAddress }) => {
   return region;
 };
 
+export const getAddress = (address) => {
+  const adres = separateAddress({ address });
+  delete adres.address;
+  return Object.values(adres)
+    .filter((value) => value && value != "")
+    .join(" ");
+};
+
 export const koreanAddress = (region) => {
   switch (region) {
     case "Seoul":
