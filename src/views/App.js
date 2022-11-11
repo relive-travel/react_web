@@ -53,18 +53,16 @@ function App() {
       </header>
       <main>
         <aside className="slider-component">
-          <Slider></Slider>
-          {sliderOpen ? (
-            <KeyboardDoubleArrowLeftIcon
-              className="slider-button"
-              onClick={handleClose(false)}
-            />
-          ) : (
-            <KeyboardDoubleArrowRightIcon
-              className="slider-button"
-              onClick={handleOpen(true)}
-            />
-          )}
+          <section className="slider-main">
+            <Slider></Slider>
+          </section>
+          <section className="slider-button">
+            {sliderOpen ? (
+              <KeyboardDoubleArrowLeftIcon onClick={handleClose(false)} />
+            ) : (
+              <KeyboardDoubleArrowRightIcon onClick={handleOpen(true)} />
+            )}
+          </section>
         </aside>
         <section>
           <article className="map-component">
