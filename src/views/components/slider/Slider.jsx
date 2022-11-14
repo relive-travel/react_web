@@ -35,17 +35,18 @@ function Slider(props) {
             return response.payload;
           });
 
-          return [
-            ...albumAcc,
-            ...albumData.map((album) => {
-              return {
-                ...album,
-                marker,
-              };
-            }),
-          ];
+          return albumData
+            ? [
+                ...albumAcc,
+                ...albumData.map((album) => {
+                  return {
+                    ...album,
+                    marker,
+                  };
+                }),
+              ]
+            : [];
         }, []);
-        console.log(await info);
         setAlbumInfo(await info);
       };
       getAlbumInfo();
