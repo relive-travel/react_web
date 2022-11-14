@@ -1,16 +1,25 @@
 .app-component {
   position: relative;
-  .app-home-buttom {
+  header {
     position: absolute;
     top: 0;
     right: 0;
+    .app-home-buttom {
+    }
+    .app-album-button {
+    }
   }
-  .open {
+  .slider-open {
     transform: translate(0%, 0%);
+  }
+  .album-open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
-// aside
+// nav
 .slider-component {
   display: flex;
   flex-direction: row;
@@ -47,5 +56,25 @@
     background-color: rgba($color: #ffffff, $alpha: 0.33);
 
     overflow: scroll;
+  }
+}
+
+// dialog
+aside {
+  display: none;
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba($color: black, $alpha: 0.5);
+  .album-component {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
   }
 }

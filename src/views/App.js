@@ -5,6 +5,7 @@ import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
 import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/slider/Slider.jsx";
+import AlbumDialog from "./components/album/AlbumDialog";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
@@ -14,21 +15,33 @@ function App() {
   const dispatch = useDispatch();
 
   const [sliderOpen, setSliderOpen] = useState(false);
+  const [albumDialogOpen, setAlbumDialogOpen] = useState(false);
 
-  const handleOpen = (type) => (e) => {
+  const handleSliderOpen = (type) => (e) => {
     const slider = document.querySelector(".slider-component");
-    slider.classList.add("open");
+    slider.classList.add("slider-open");
     setSliderOpen(type);
   };
 
-  const handleClose = (type) => (e) => {
+  const handleSliderClose = (type) => (e) => {
     const slider = document.querySelector(".slider-component");
-    slider.classList.remove("open");
+    slider.classList.remove("slider-open");
     setSliderOpen(type);
+  };
+
+  const handleAlbumDialog = (type) => {
+    // const albumDialog = document.querySelector(".album-component");
+    const albumDialog = document.querySelector(".album-component");
+    console.log(albumDialog);
+    !type
+      ? albumDialog.classList.add("album-open")
+      : albumDialog.classList.remove("album-open");
+    setAlbumDialogOpen(!type);
   };
 
   useEffect(() => {
     window.onresize = function () {
+      console.log(window.innerWidth, window.innerHeight);
       dispatch(
         setMapOption({ width: window.innerWidth, height: window.innerHeight })
       );
@@ -50,26 +63,33 @@ function App() {
         >
           홈으로
         </button>
+        <button
+          className="app-album-buttom"
+          onClick={() => handleAlbumDialog(albumDialogOpen)}
+        >
+          앨범
+        </button>
       </header>
       <main>
-        <aside className="slider-component">
+        <nav className="slider-component">
           <section className="slider-main">
             <Slider></Slider>
           </section>
           <section className="slider-button">
             {sliderOpen ? (
-              <KeyboardDoubleArrowLeftIcon onClick={handleClose(false)} />
+              <KeyboardDoubleArrowLeftIcon onClick={handleSliderClose(false)} />
             ) : (
-              <KeyboardDoubleArrowRightIcon onClick={handleOpen(true)} />
+              <KeyboardDoubleArrowRightIcon onClick={handleSliderOpen(true)} />
             )}
           </section>
-        </aside>
-        <section>
-          <article className="map-component">
-            <D3Map></D3Map>
-          </article>
+        </nav>
+        <section className="map-component">
+          <D3Map></D3Map>
         </section>
       </main>
+      <aside className="album-component">
+        <AlbumDialog></AlbumDialog>
+      </aside>
       <footer></footer>
     </div>
   );
