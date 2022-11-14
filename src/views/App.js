@@ -31,7 +31,7 @@ function App() {
 
   const handleAlbumDialog = (type) => {
     // const albumDialog = document.querySelector(".album-component");
-    const albumDialog = document.querySelector(".album-component");
+    const albumDialog = document.querySelector("aside");
     console.log(albumDialog);
     !type
       ? albumDialog.classList.add("album-open")
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="app-component">
-      <header>
+      <header className="app-buttons">
         <button
           className="app-home-buttom"
           onClick={() => {
@@ -87,7 +87,7 @@ function App() {
           <D3Map></D3Map>
         </section>
       </main>
-      <aside className="album-component">
+      <aside>
         <AlbumDialog></AlbumDialog>
       </aside>
       <footer></footer>

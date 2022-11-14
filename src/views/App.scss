@@ -1,6 +1,6 @@
 .app-component {
   position: relative;
-  header {
+  .app-buttons {
     position: absolute;
     top: 0;
     right: 0;
@@ -71,10 +71,4 @@ aside {
   height: 100%;
 
   background-color: rgba($color: black, $alpha: 0.5);
-  .album-component {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-  }
 }
