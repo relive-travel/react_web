@@ -10,6 +10,7 @@
 
   box-sizing: border-box;
 
+  color: white;
   background-color: rgba($color: #ff8822, $alpha: 1);
   .album-main {
     display: flex;
@@ -24,22 +25,60 @@
     box-sizing: border-box;
 
     background-color: rgba($color: #008000, $alpha: 1);
-    header {
+    > header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       height: 10%;
-      background-color: red;
+
+      font-weight: bold;
+      font-size: 2.125em;
     }
-    main {
+    > main {
       height: 80%;
-      background-color: black;
+      padding: 0 2.5em;
+
+      overflow: scroll;
     }
-    footer {
+    > footer {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
 
       height: 5%;
-      background-color: blue;
+
+      > button {
+        padding: 0.25em 0.875em;
+
+        font-weight: bold;
+
+        border: 2px solid;
+        border-radius: 0.625em;
+        background-color: transparent;
+
+        transition: 0.25s ease-in-out;
+      }
+      > button:hover {
+        cursor: pointer;
+      }
+      .album-preview-button {
+        color: #ffcc88;
+        border-color: #ffcc88;
+      }
+      .album-preview-button:hover {
+        color: white;
+        background-color: rgba($color: #ffcc88, $alpha: 1);
+      }
+      .album-add-button {
+        color: #ff8822;
+        border-color: #ff8822;
+      }
+      .album-add-button:hover {
+        color: white;
+        background-color: rgba($color: #ff8822, $alpha: 1);
+      }
     }
   }
 }

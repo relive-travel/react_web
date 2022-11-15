@@ -1,0 +1,64 @@
+.album-auto-info {
+  label {
+    font-size: 0.75em;
+    > span {
+      color: red;
+      text-shadow: 1px 1px 1px 1px white;
+    }
+  }
+  > * {
+    margin: 0.625em 0;
+  }
+  > header {
+    display: flex;
+    flex-direction: column;
+  }
+  > main {
+    display: flex;
+    flex-direction: column;
+  }
+  > footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .info-header,
+  .info-photo,
+  .info-location,
+  .info-address,
+  .info-semi-address,
+  .info-date,
+  .info-footer {
+    display: flex;
+    flex-direction: column;
+    margin: 0.125em 0;
+  }
+  .info-main {
+    .info-main-top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      > div {
+        width: 42.5%;
+        > div {
+          width: 100%;
+          aspect-ratio: 1;
+        }
+      }
+      .info-photo {
+        > #photo {
+        }
+        .info-photo-preview {
+          display: none;
+        }
+      }
+      .info-location {
+        > #location {
+        }
+      }
+    }
+    .info-main-bottom {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

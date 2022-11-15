@@ -22,14 +22,14 @@ function HandAdd(props) {
   };
 
   return (
-    <section className="album-info">
+    <section className="album-hand-info">
       <header className="info-title">
-        <label for="title">당근 제목</label>
+        <label htmlFor="title">당근 제목</label>
         <input type="text" id="title"></input>
       </header>
       <main className="info-main">
         <div className="info-photo">
-          <label for="photo">
+          <label htmlFor="photo">
             <span>*사진</span>
           </label>
           <input
@@ -44,13 +44,13 @@ function HandAdd(props) {
           <div className="info-photo-preview"></div>
         </div>
         <div className="info-date">
-          <label for="date">
+          <label htmlFor="date">
             <span>*날짜</span>
           </label>
           <input id="date" type="date"></input>
         </div>
         <div className="info-date">
-          <label for="date">
+          <label htmlFor="date">
             <span>*주소 추가</span>
           </label>
         </div>
@@ -72,7 +72,8 @@ function HandAdd(props) {
         ) : null}
       </main>
       <footer className="info-content">
-        <input type="textarea"></input>
+        <label htmlFor="content">당근 이야기</label>
+        <input id="content" type="textarea"></input>
       </footer>
     </section>
   );
