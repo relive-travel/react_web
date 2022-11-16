@@ -13,6 +13,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "d3": "^7.6.1",
+    "exif-js": "^2.3.0",
     "firebase": "^9.13.0",
     "firebase-tools": "^11.16.0",
     "node-sass": "^7.0.3",
