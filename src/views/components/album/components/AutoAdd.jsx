@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import DragAndDrop from "views/common/DragAndDrop";
+
 import "./AutoAdd.scss";
 function AutoAdd(props) {
   const [inputFile, setInputFile] = useState(null);
@@ -23,18 +25,7 @@ function AutoAdd(props) {
             <label htmlFor="photo">
               <span>*사진</span>
             </label>
-            <input
-              id="photo"
-              type="file"
-              onChange={handleInputFile}
-              capture="user" // 사용자 방향
-              // capture="environment"  // 외부 방향
-              accept="image/*"
-            ></input>
-            <div className="info-photo-preview">
-              {console.log(inputFile)}
-              {console.log(JSON.stringify(inputFile))}
-            </div>
+            <DragAndDrop></DragAndDrop>
           </div>
           <div className="info-location">
             <label htmlFor="location">위치</label>
