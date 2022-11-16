@@ -1,5 +1,5 @@
 .album-auto-info {
-  label {
+  > label {
     font-size: 0.75em;
     > span {
       color: red;
@@ -33,26 +33,20 @@
     margin: 0.125em 0;
   }
   .info-main {
+    height: 100%;
     .info-main-top {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      > div {
-        width: 42.5%;
-        > div {
-          width: 100%;
-          aspect-ratio: 1;
-        }
-      }
+      height: 100%;
+
       .info-photo {
-        > #photo {
-        }
-        .info-photo-preview {
-          display: none;
-        }
+        width: 42.5%;
       }
       .info-location {
+        width: 42.5%;
         > #location {
+          aspect-ratio: 1;
         }
       }
     }
