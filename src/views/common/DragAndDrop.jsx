@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRef, useState, useCallback } from "react";
 
-import { preivewImage } from "lib/setPreview";
+import { exifImage, preivewImage } from "lib/setPreview";
 
 import "./DragAndDrop.scss";
 function DragAndDrop() {
@@ -10,8 +10,18 @@ function DragAndDrop() {
   const [isDrag, setIsDrag] = useState(false);
   const [selectFiles, setselectFiles] = useState([]);
 
-  const handleChangeFiles = useCallback((e) => {
-    preivewImage(e.type === "drop" ? e.dataTransfer.files : e.target.files);
+  const handleChangeFiles = useCallback(async (e) => {
+    const fileObjects =
+      e.type === "drop" ? e.dataTransfer.files : e.target.files;
+    preivewImage(fileObjects);
+    const filesInfo = await exifImage(fileObjects);
+    filesInfo.forEach((fileInfo) => {
+      console.log(fileInfo);
+      console.log(fileInfo.exifData);
+      console.log(fileInfo.exifdata);
+      console.log(fileInfo.exifData.ImageWidth);
+      console.log(fileInfo.exifdata.ImageWidth);
+    });
   }, []);
 
   const handleFileFilter = useCallback((id) => {
