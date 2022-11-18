@@ -1,22 +1,38 @@
-// 사진만 보고싶은 경우에 해당함
-// 사진은 시간순/지역순으로 설정됨
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const fetchPhotoList = createAsyncThunk(
-  `photo/fetchPhotoList`,
-  async ({}) => {
-    return;
-  }
-);
-
-const initialState = {};
+const initialState = {
+  file: null,
+  fileList: null,
+  data: null, // {}
+  dataList: null, // []
+};
 
 const photoSlice = createSlice({
   name: "photo",
   initialState,
-  reducers: {},
+  reducers: {
+    setPhotoFile: (state, action) => {
+      console.log(action);
+      console.log(action.payload);
+      state.file = action.payload;
+    },
+    setPhotoFileList: (state, action) => {
+      state.fileList = action.payload;
+    },
+    setPhotoData: (state, action) => {
+      state.data = action.payload;
+    },
+    setPhotoDataList: (state, action) => {
+      state.dataList = action.payload;
+    },
+  },
 });
 
-export const {} = photoSlice.actions;
+export const {
+  setPhotoFile,
+  setPhotoFileList,
+  setPhotoData,
+  setPhotoDataList,
+} = photoSlice.actions;
 
 export default photoSlice.reducer;
