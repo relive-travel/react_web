@@ -1,17 +1,28 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import DragAndDrop from "views/common/DragAndDrop";
 
 import "./AutoAdd.scss";
 function AutoAdd(props) {
-  const [inputFile, setInputFile] = useState(null);
+  const photoFile = useSelector((state) => state.photo.file);
+  const photoData = useSelector((state) => state.photo.data);
 
-  const handleInputFile = (e) => {
-    const $preview = document.querySelector(".info-photo-preview");
-    $preview.style.display = "block";
-    console.log(e.target.files);
-    setInputFile(e.target.files);
-  };
+  useEffect(() => {
+    if (photoFile) {
+      console.log(photoFile);
+    }
+  }, [photoFile]);
+
+  useEffect(() => {
+    if (photoData) {
+      const $inputDate = document.querySelector(
+        `.info-date > input[type="datetime-local"]`
+      );
+      $inputDate.value = photoData.exifdata.date.split(" ").join("T");
+    }
+  }, [photoData]);
 
   return (
     <section className="album-auto-info">
@@ -32,13 +43,13 @@ function AutoAdd(props) {
             <div id="location"></div>
           </div>
         </section>
-        {inputFile ? (
+        {photoData ? (
           <section className="info-main-bottom">
             <div className="info-date">
               <label htmlFor="date">
                 <span>*날짜</span>
               </label>
-              <input id="date" type="date"></input>
+              <input id="date" type="datetime-local" readOnly></input>
             </div>
             <div className="info-address">
               <label htmlFor="address">주소 확인</label>
