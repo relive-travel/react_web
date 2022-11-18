@@ -20,7 +20,10 @@ function AutoAdd(props) {
       const $inputDate = document.querySelector(
         `.info-date > input[type="datetime-local"]`
       );
-      $inputDate.value = photoData.exifdata.date.split(" ").join("T");
+      // $inputDate.value = photoData.exifdata.date.split(" ").join("T");
+      var [date, time] = photoData.exifdata.date.split(" ");
+      time = time.slice(0, time.length - 3);
+      $inputDate.value = [date, time].join("T");
     }
   }, [photoData]);
 
