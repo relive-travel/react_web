@@ -3,9 +3,16 @@ import { configureStore } from "@reduxjs/toolkit";
 // import logger from "redux-logger";
 import mapReducer from "./slice/mapSlice";
 import markerReducer from "./slice/markerSlice";
+import albumReducer from "./slice/albumSlice";
+import photoReducer from "./slice/photoSlice";
 
 export const store = configureStore({
-  reducer: { map: mapReducer, marker: markerReducer },
+  reducer: {
+    map: mapReducer,
+    marker: markerReducer,
+    album: albumReducer,
+    photo: photoReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -15,7 +22,13 @@ export const store = configureStore({
         // // Ignore these field paths in all actions
         // ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
         // // Ignore these paths in the state
-        ignoredPaths: ["marker.list"],
+        ignoredPaths: [
+          "marker.list", // has [geoPoint]
+          "photo.file", // has [file]
+          "photo.fileList", // has [file]
+          "photo.data", // has [exif]
+          "photo.dataList", // has [exif]
+        ],
       },
     }),
 });
