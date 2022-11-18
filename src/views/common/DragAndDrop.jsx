@@ -1,32 +1,28 @@
-import { useEffect } from "react";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
-import { exifImage, preivewImage } from "lib/setPreview";
+import { preivewImage } from "lib/setPreview";
+import { getExifData } from "lib/getExifData";
 
 import "./DragAndDrop.scss";
+import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 function DragAndDrop() {
   const dragRef = useRef(null);
 
+  const dispatch = useDispatch();
+
   const [isDrag, setIsDrag] = useState(false);
-  const [selectFiles, setselectFiles] = useState([]);
 
   const handleChangeFiles = useCallback(async (e) => {
-    const fileObjects =
+    const fileObject =
       e.type === "drop" ? e.dataTransfer.files : e.target.files;
-    preivewImage(fileObjects);
-    const filesInfo = await exifImage(fileObjects);
-    filesInfo.forEach((fileInfo) => {
-      console.log(fileInfo);
-      console.log(fileInfo.exifData);
-      console.log(fileInfo.exifdata);
-      console.log(fileInfo.exifData.ImageWidth);
-      console.log(fileInfo.exifdata.ImageWidth);
-    });
+    console.log(fileObject);
+    preivewImage(fileObject);
+    dispatch(setPhotoFile(fileObject));
+    dispatch(setPhotoData(await getExifData(fileObject)));
   }, []);
 
-  const handleFileFilter = useCallback((id) => {
-    setselectFiles(selectFiles.filter((file) => id !== file.id));
-  });
+  const handleFileFilter = useCallback((id) => {});
 
   const handleDragEnter = useCallback((e) => {
     e.preventDefault();
@@ -59,7 +55,6 @@ function DragAndDrop() {
 
   const initDragEvents = useCallback(() => {
     if (dragRef.current) {
-      console.log(dragRef.current);
       dragRef.current.addEventListener("dragnenter", handleDragEnter);
       dragRef.current.addEventListener("dragleave", handleDragLeave);
       dragRef.current.addEventListener("dragover", handleDragOver);
@@ -69,7 +64,6 @@ function DragAndDrop() {
 
   const resetDragEvents = useCallback(() => {
     if (dragRef.current) {
-      console.log(dragRef.current);
       dragRef.current.removeEventListener("dragnenter", handleDragEnter);
       dragRef.current.removeEventListener("dragleave", handleDragLeave);
       dragRef.current.removeEventListener("dragover", handleDragOver);
@@ -91,7 +85,6 @@ function DragAndDrop() {
         onChange={handleChangeFiles}
         accept="image/*"
         capture="user"
-        multiple
       ></input>
       <label
         className={isDrag ? "dragging" : "drop"}
