@@ -16,7 +16,6 @@ import EXIF from "exif-js";
 
 export const getExifData = async (fileObject) => {
   const [file] = Object.values(fileObject);
-  console.log(file);
   let exifdata = await new Promise((resolve) => {
     EXIF.getData(file, () => {
       var width = EXIF.getTag(file, "ImageWidth");

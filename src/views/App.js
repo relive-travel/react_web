@@ -32,7 +32,6 @@ function App() {
   const handleAlbumDialog = (type) => {
     // const albumDialog = document.querySelector(".album-component");
     const albumDialog = document.querySelector("aside");
-    console.log(albumDialog);
     !type
       ? albumDialog.classList.add("album-open")
       : albumDialog.classList.remove("album-open");
@@ -41,7 +40,6 @@ function App() {
 
   useEffect(() => {
     window.onresize = function () {
-      console.log(window.innerWidth, window.innerHeight);
       dispatch(
         setMapOption({ width: window.innerWidth, height: window.innerHeight })
       );

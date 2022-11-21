@@ -12,8 +12,6 @@ const photoSlice = createSlice({
   initialState,
   reducers: {
     setPhotoFile: (state, action) => {
-      console.log(action);
-      console.log(action.payload);
       state.file = action.payload;
     },
     setPhotoFileList: (state, action) => {

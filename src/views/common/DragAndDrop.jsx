@@ -16,7 +16,6 @@ function DragAndDrop() {
   const handleChangeFiles = useCallback(async (e) => {
     const fileObject =
       e.type === "drop" ? e.dataTransfer.files : e.target.files;
-    console.log(fileObject);
     preivewImage(fileObject);
     dispatch(setPhotoFile(fileObject));
     dispatch(setPhotoData(await getExifData(fileObject)));
