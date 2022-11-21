@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+import { setKakaoMap } from "lib/setKakaoMap";
+
 import DragAndDrop from "views/common/DragAndDrop";
 
 import "./AutoAdd.scss";
@@ -24,6 +26,7 @@ function AutoAdd(props) {
       var [date, time] = photoData.exifdata.date.split(" ");
       time = time.slice(0, time.length - 3);
       $inputDate.value = [date, time].join("T");
+      setKakaoMap();
     }
   }, [photoData]);
 
@@ -43,7 +46,7 @@ function AutoAdd(props) {
           </div>
           <div className="info-location">
             <label htmlFor="location">위치</label>
-            <div id="location"></div>
+            <div className="kakao-map-auto" id="location"></div>
           </div>
         </section>
         {photoData ? (
