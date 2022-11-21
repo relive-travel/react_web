@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { setKakaoMap } from "lib/setKakaoMap";
@@ -17,16 +16,24 @@ function AutoAdd(props) {
     }
   }, [photoFile]);
 
+  const setInputDate = (exifdate) => {
+    // $inputDate.value = exifdate.split(" ").join("T");
+    const $inputDate = document.querySelector(
+      `.info-date > input[type="datetime-local"]`
+    );
+    var [date, time] = exifdate.split(" ");
+    time = time.slice(0, time.length - 3);
+    $inputDate.value = [date, time].join("T");
+  };
+
   useEffect(() => {
     if (photoData) {
-      const $inputDate = document.querySelector(
-        `.info-date > input[type="datetime-local"]`
-      );
-      // $inputDate.value = photoData.exifdata.date.split(" ").join("T");
-      var [date, time] = photoData.exifdata.date.split(" ");
-      time = time.slice(0, time.length - 3);
-      $inputDate.value = [date, time].join("T");
-      setKakaoMap();
+      setInputDate(photoData.exifdata.date);
+      setKakaoMap({
+        type: "geoPoint",
+        latitude: photoData.exifdata.latitude,
+        longitude: photoData.exifdata.longitude,
+      });
     }
   }, [photoData]);
 
