@@ -1,14 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import { setKakaoMap } from "lib/setKakaoMap";
+import { setKakaoMapWithGeoPoint } from "lib/setKakaoMap";
 
 import DragAndDrop from "views/common/DragAndDrop";
 
 import "./AutoAdd.scss";
 function AutoAdd(props) {
+  var dateRef = useRef(null);
+  var addrRef = useRef(null);
+  var semiAddrRef = useRef(null);
+
+  const [photoAddr, setPhotoAddr] = useState(null);
+
   const photoFile = useSelector((state) => state.photo.file);
   const photoData = useSelector((state) => state.photo.data);
+
+  const setInputDate = (exifdate) => {
+    var [date, time] = exifdate.split(" ");
+    time = time.slice(0, time.length - 3);
+    dateRef.current.value = [date, time].join("T");
+  };
+
+  const handleSetKakaoMap = useCallback(async () => {
+    const res = setKakaoMapWithGeoPoint({
+      latitude: photoData.exifdata.latitude,
+      longitude: photoData.exifdata.longitude,
+    });
+    setPhotoAddr(await res);
+  });
 
   useEffect(() => {
     if (photoFile) {
@@ -16,26 +36,19 @@ function AutoAdd(props) {
     }
   }, [photoFile]);
 
-  const setInputDate = (exifdate) => {
-    // $inputDate.value = exifdate.split(" ").join("T");
-    const $inputDate = document.querySelector(
-      `.info-date > input[type="datetime-local"]`
-    );
-    var [date, time] = exifdate.split(" ");
-    time = time.slice(0, time.length - 3);
-    $inputDate.value = [date, time].join("T");
-  };
-
   useEffect(() => {
     if (photoData) {
       setInputDate(photoData.exifdata.date);
-      setKakaoMap({
-        type: "geoPoint",
-        latitude: photoData.exifdata.latitude,
-        longitude: photoData.exifdata.longitude,
-      });
+      handleSetKakaoMap();
     }
   }, [photoData]);
+
+  useEffect(() => {
+    if (photoAddr) {
+      addrRef.current.value = photoAddr.road_address.address_name;
+      semiAddrRef.current.value = photoAddr.road_address.building_name;
+    }
+  }, [photoAddr]);
 
   return (
     <section className="album-auto-info">
@@ -51,10 +64,12 @@ function AutoAdd(props) {
             </label>
             <DragAndDrop></DragAndDrop>
           </div>
-          <div className="info-location">
-            <label htmlFor="location">위치</label>
-            <div className="kakao-map-auto" id="location"></div>
-          </div>
+          {photoData ? (
+            <div className="info-location">
+              <label htmlFor="location">위치</label>
+              <div className="kakao-map-auto" id="location"></div>
+            </div>
+          ) : null}
         </section>
         {photoData ? (
           <section className="info-main-bottom">
@@ -62,15 +77,20 @@ function AutoAdd(props) {
               <label htmlFor="date">
                 <span>*날짜</span>
               </label>
-              <input id="date" type="datetime-local" readOnly></input>
+              <input
+                id="date"
+                type="datetime-local"
+                ref={dateRef}
+                readOnly
+              ></input>
             </div>
             <div className="info-address">
               <label htmlFor="address">주소 확인</label>
-              <input id="address" type="text"></input>
+              <input id="address" type="text" ref={addrRef}></input>
             </div>
             <div className="info-semi-address">
               <label htmlFor="semi-address">추가 주소 정보</label>
-              <input id="semi-address" type="text"></input>
+              <input id="semi-address" type="text" ref={semiAddrRef}></input>
             </div>
           </section>
         ) : null}
