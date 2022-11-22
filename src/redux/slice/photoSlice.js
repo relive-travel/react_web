@@ -2,9 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   file: null,
-  fileList: null,
-  data: null, // {}
-  dataList: null, // []
+  data: null,
 };
 
 const photoSlice = createSlice({
@@ -14,23 +12,12 @@ const photoSlice = createSlice({
     setPhotoFile: (state, action) => {
       state.file = action.payload;
     },
-    setPhotoFileList: (state, action) => {
-      state.fileList = action.payload;
-    },
     setPhotoData: (state, action) => {
       state.data = action.payload;
-    },
-    setPhotoDataList: (state, action) => {
-      state.dataList = action.payload;
     },
   },
 });
 
-export const {
-  setPhotoFile,
-  setPhotoFileList,
-  setPhotoData,
-  setPhotoDataList,
-} = photoSlice.actions;
+export const { setPhotoFile, setPhotoData } = photoSlice.actions;
 
 export default photoSlice.reducer;

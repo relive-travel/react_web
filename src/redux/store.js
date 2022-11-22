@@ -25,9 +25,7 @@ export const store = configureStore({
         ignoredPaths: [
           "marker.list", // has [geoPoint]
           "photo.file", // has [file]
-          "photo.fileList", // has [file]
           "photo.data", // has [exif]
-          "photo.dataList", // has [exif]
         ],
       },
     }),
