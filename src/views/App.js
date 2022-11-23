@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
@@ -14,23 +14,30 @@ import "./App.scss";
 function App() {
   const dispatch = useDispatch();
 
+  const sliderRef = useRef(null);
+
   const [sliderOpen, setSliderOpen] = useState(false);
   const [albumSelectOpen, setAlbumSelectOpen] = useState(false);
 
-  const handleSliderOpen = (type) => (e) => {
-    const $slider = document.querySelector(".slider-component");
-    $slider.classList.add("slider-open");
-    setSliderOpen(type);
+  const handleSliderOpen = () => {
+    sliderRef.current.classList.add("slider-open");
+    setSliderOpen(true);
   };
 
-  const handleSliderClose = (type) => (e) => {
-    const $slider = document.querySelector(".slider-component");
-    $slider.classList.remove("slider-open");
-    setSliderOpen(type);
+  const handleSliderClose = () => {
+    sliderRef.current.classList.remove("slider-open");
+    setSliderOpen(false);
   };
 
   const handleSelectOpen = () => {
     setAlbumSelectOpen(true);
+  };
+
+  const handleSliderClick = (e) => {
+    if (sliderRef.current && !sliderRef.current.contains(e.target)) {
+      sliderRef.current.classList.remove("slider-open");
+      setSliderOpen(false);
+    }
   };
 
   const handleSelectClose = (e) => {
@@ -53,7 +60,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="app-component">
+    <div className="app-component" onClick={handleSliderClick}>
       <header className="app-buttons">
         <button
           className="app-home-buttom"
@@ -68,15 +75,15 @@ function App() {
         </button>
       </header>
       <main>
-        <nav className="slider-component">
+        <nav className="slider-component" ref={sliderRef}>
           <section className="slider-main">
             <Slider></Slider>
           </section>
           <section className="slider-button">
             {sliderOpen ? (
-              <KeyboardDoubleArrowLeftIcon onClick={handleSliderClose(false)} />
+              <KeyboardDoubleArrowLeftIcon onClick={handleSliderClose} />
             ) : (
-              <KeyboardDoubleArrowRightIcon onClick={handleSliderOpen(true)} />
+              <KeyboardDoubleArrowRightIcon onClick={handleSliderOpen} />
             )}
           </section>
         </nav>
