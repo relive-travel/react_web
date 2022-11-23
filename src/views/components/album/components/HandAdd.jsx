@@ -55,11 +55,13 @@ function HandAdd(props) {
           </label>
         </div>
         <div className="info-add-address-buttons">
-          <button onClick={handleChangeSelectType("keyword")}>
+          <button onClick={() => handleChangeSelectType("keyword")}>
             키워드 검색
           </button>
-          <button onClick={handleChangeSelectType("road")}>도로명 검색</button>
-          <button onClick={handleChangeSelectType("location")}>
+          <button onClick={() => handleChangeSelectType("road")}>
+            도로명 검색
+          </button>
+          <button onClick={() => handleChangeSelectType("location")}>
             위치 선택
           </button>
         </div>

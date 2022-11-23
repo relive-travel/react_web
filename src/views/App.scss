@@ -12,11 +12,6 @@
   .slider-open {
     transform: translate(0%, 0%);
   }
-  .album-open {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 // nav
@@ -60,8 +55,10 @@
 }
 
 // dialog
-aside {
-  display: none;
+.select-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
 
   top: 0;

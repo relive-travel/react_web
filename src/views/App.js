@@ -5,7 +5,7 @@ import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
 import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/slider/Slider.jsx";
-import AlbumDialog from "./components/album/AlbumDialog";
+import AlbumSelect from "./components/album/AlbumSelect";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
@@ -15,27 +15,29 @@ function App() {
   const dispatch = useDispatch();
 
   const [sliderOpen, setSliderOpen] = useState(false);
-  const [albumDialogOpen, setAlbumDialogOpen] = useState(false);
+  const [albumSelectOpen, setAlbumSelectOpen] = useState(false);
 
   const handleSliderOpen = (type) => (e) => {
-    const slider = document.querySelector(".slider-component");
-    slider.classList.add("slider-open");
+    const $slider = document.querySelector(".slider-component");
+    $slider.classList.add("slider-open");
     setSliderOpen(type);
   };
 
   const handleSliderClose = (type) => (e) => {
-    const slider = document.querySelector(".slider-component");
-    slider.classList.remove("slider-open");
+    const $slider = document.querySelector(".slider-component");
+    $slider.classList.remove("slider-open");
     setSliderOpen(type);
   };
 
-  const handleAlbumDialog = (type) => {
-    // const albumDialog = document.querySelector(".album-component");
-    const albumDialog = document.querySelector("aside");
-    !type
-      ? albumDialog.classList.add("album-open")
-      : albumDialog.classList.remove("album-open");
-    setAlbumDialogOpen(!type);
+  const handleSelectOpen = () => {
+    setAlbumSelectOpen(true);
+  };
+
+  const handleSelectClose = (e) => {
+    const $classList = e.target.classList;
+    if ($classList.contains("select-component")) {
+      setAlbumSelectOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -61,10 +63,7 @@ function App() {
         >
           홈으로
         </button>
-        <button
-          className="app-album-buttom"
-          onClick={() => handleAlbumDialog(albumDialogOpen)}
-        >
+        <button className="app-album-buttom" onClick={handleSelectOpen}>
           앨범
         </button>
       </header>
@@ -85,9 +84,11 @@ function App() {
           <D3Map></D3Map>
         </section>
       </main>
-      <aside>
-        <AlbumDialog></AlbumDialog>
-      </aside>
+      {albumSelectOpen ? (
+        <aside className="select-component" onClick={handleSelectClose}>
+          <AlbumSelect />
+        </aside>
+      ) : null}
       <footer></footer>
     </div>
   );
