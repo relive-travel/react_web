@@ -1,79 +1,74 @@
-import { useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { useSelector } from "react-redux";
 
+import DragAndDrop from "views/common/DragAndDrop";
 import SearchKeyword from "./components/SearchKeyword";
 import SearchRoadAddress from "./components/SearchRoadAddress";
-import SelectLocation from "./components/SelectLocation";
+import SearchLocation from "./components/SearchLocation";
 
 import "./HandAdd.scss";
 function HandAdd(props) {
-  const [inputFile, setInputFile] = useState(null);
-  const [selectType, setSelectType] = useState(null);
+  var dateRef = useRef(null);
+  var addrRef = useRef(null);
+  var semiAddrRef = useRef(null);
 
-  const handleInputFile = (e) => {
-    setInputFile(e.target.files);
-  };
+  const [searchType, setSearchType] = useState(null);
 
-  const handleChangeSelectType = (type) => (e) => {
-    const $prevButton = document.querySelector("button-clicked");
-    $prevButton.classList.remove("button-clicked");
-    const $button = e.target;
-    $button.classList.add("button-clicked");
-    setSelectType(type);
-  };
+  const photoFile = useSelector((state) => state.photo.file);
+  const photoData = useSelector((state) => state.photo.data);
+
+  useEffect(() => {
+    console.log(photoData);
+  }, [photoData]);
 
   return (
-    <section className="album-hand-info">
-      <header className="info-title">
+    <section className="album-auto-info">
+      <header className="info-header">
         <label htmlFor="title">당근 제목</label>
         <input type="text" id="title"></input>
       </header>
       <main className="info-main">
-        <div className="info-photo">
-          <label htmlFor="photo">
-            <span>*사진</span>
-          </label>
-          <input
-            id="photo"
-            type="file"
-            onChange={handleInputFile}
-            capture="user" // 사용자 방향
-            // capture="environment"  // 외부 방향
-            accept="image/*"
-            multiple
-          ></input>
-          <div className="info-photo-preview"></div>
-        </div>
-        <div className="info-date">
-          <label htmlFor="date">
-            <span>*날짜</span>
-          </label>
-          <input id="date" type="date"></input>
-        </div>
-        <div className="info-date">
-          <label htmlFor="date">
-            <span>*주소 추가</span>
-          </label>
-        </div>
-        <div className="info-add-address-buttons">
-          <button onClick={() => handleChangeSelectType("keyword")}>
-            키워드 검색
-          </button>
-          <button onClick={() => handleChangeSelectType("road")}>
-            도로명 검색
-          </button>
-          <button onClick={() => handleChangeSelectType("location")}>
-            위치 선택
-          </button>
-        </div>
-        {selectType === "keyword" ? (
-          <SearchKeyword />
-        ) : selectType === "road" ? (
-          <SearchRoadAddress />
-        ) : selectType === "location" ? (
-          <SelectLocation />
-        ) : null}
+        <section className="info-main-top">
+          <div className="info-photo">
+            <label htmlFor="photo">
+              <span>*사진</span>
+            </label>
+            <DragAndDrop></DragAndDrop>
+          </div>
+          <div className="info-location">
+            <label htmlFor="location">위치</label>
+            <div className="kakao-map-auto" id="location"></div>
+          </div>
+        </section>
+        <section className="info-main-bottom">
+          <div className="info-date">
+            <label htmlFor="date">
+              <span>*날짜</span>
+            </label>
+            <input
+              id="date"
+              type="datetime-local"
+              ref={dateRef}
+              readOnly
+            ></input>
+          </div>
+          <div className="info-add-address-buttons">
+            <button onClick={() => setSearchType("keyword")}>
+              키워드 검색
+            </button>
+            <button onClick={() => setSearchType("road")}>도로명 검색</button>
+            <button onClick={() => setSearchType("location")}>위치 선택</button>
+          </div>
+          {searchType === "keyword" ? (
+            <SearchKeyword />
+          ) : searchType === "road" ? (
+            <SearchRoadAddress />
+          ) : searchType === "location" ? (
+            <SearchLocation />
+          ) : null}
+        </section>
       </main>
-      <footer className="info-content">
+      <footer className="info-footer">
         <label htmlFor="content">당근 이야기</label>
         <input id="content" type="textarea"></input>
       </footer>
