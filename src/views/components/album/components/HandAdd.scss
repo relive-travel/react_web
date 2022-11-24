@@ -1,4 +1,4 @@
-.album-auto-info {
+.album-hand-info {
   > label {
     font-size: 0.75em;
     > span {
@@ -23,7 +23,6 @@
   }
   .info-header,
   .info-photo,
-  .info-location,
   .info-address,
   .info-semi-address,
   .info-date,
@@ -34,36 +33,30 @@
   }
   .info-main {
     height: 100%;
-    .info-main-top {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      height: 100%;
 
+    margin: 0.25em 0;
+    > section {
+      margin: 0.25em 0;
+    }
+    .info-main-top {
+    }
+    .info-main-middle {
       .info-photo {
-        width: 42.5%;
-      }
-      .info-location {
-        width: 42.5%;
-        > #location {
-          aspect-ratio: 1;
-          color: black;
-          border: 2px solid black;
-          border-radius: 10px;
-          .marker-infowindow {
-            .title {
-              text-align: center;
-            }
-            .addr {
-              text-align: center;
-            }
-          }
-        }
+        width: 100%;
       }
     }
     .info-main-bottom {
       display: flex;
       flex-direction: column;
+      .info-address-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        > button {
+          width: 17.5%;
+        }
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { setKakaoMapWithGeoPoint } from "lib/setKakaoMap";
 
-import DragAndDrop from "views/common/DragAndDrop";
+import DragAndDrop from "views/components/album/components/components/DragAndDrop";
 
 import "./AutoAdd.scss";
 function AutoAdd(props) {
@@ -58,22 +58,22 @@ function AutoAdd(props) {
       </header>
       <main className="info-main">
         <section className="info-main-top">
-          <div className="info-photo">
+          <article className="info-photo">
             <label htmlFor="photo">
               <span>*사진</span>
             </label>
-            <DragAndDrop></DragAndDrop>
-          </div>
+            <DragAndDrop dragType="auto"></DragAndDrop>
+          </article>
           {photoData ? (
-            <div className="info-location">
+            <article className="info-location">
               <label htmlFor="location">위치</label>
               <div className="kakao-map-auto" id="location"></div>
-            </div>
+            </article>
           ) : null}
         </section>
         {photoData ? (
           <section className="info-main-bottom">
-            <div className="info-date">
+            <article className="info-date">
               <label htmlFor="date">
                 <span>*날짜</span>
               </label>
@@ -83,15 +83,15 @@ function AutoAdd(props) {
                 ref={dateRef}
                 readOnly
               ></input>
-            </div>
-            <div className="info-address">
+            </article>
+            <article className="info-address">
               <label htmlFor="address">주소 확인</label>
               <input id="address" type="text" ref={addrRef}></input>
-            </div>
-            <div className="info-semi-address">
+            </article>
+            <article className="info-semi-address">
               <label htmlFor="semi-address">추가 주소 정보</label>
               <input id="semi-address" type="text" ref={semiAddrRef}></input>
-            </div>
+            </article>
           </section>
         ) : null}
       </main>
