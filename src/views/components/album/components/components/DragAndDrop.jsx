@@ -6,7 +6,7 @@ import { getExifData } from "lib/getExifData";
 
 import "./DragAndDrop.scss";
 import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
-function DragAndDrop() {
+function DragAndDrop(props) {
   const dragRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function DragAndDrop() {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!e.dataTransfer.files) {
+    if (e.dataTransfer.files) {
       setIsDrag(true);
     }
   }, []);
@@ -77,22 +77,44 @@ function DragAndDrop() {
   }, [initDragEvents, resetDragEvents]);
 
   return (
-    <section className="drag-component">
-      <input
-        id="photo"
-        type="file"
-        onChange={handleChangeFiles}
-        accept="image/*"
-        capture="user"
-      ></input>
-      <label
-        className={isDrag ? "dragging" : "drop"}
-        ref={dragRef}
-        htmlFor="photo"
-      >
-        <section className="photo-preview"></section>
-      </label>
-    </section>
+    <>
+      {props.dragType === "auto" ? (
+        <section className="drag-auto-component">
+          <input
+            id="photo"
+            type="file"
+            onChange={handleChangeFiles}
+            accept="image/*"
+            capture="user"
+          ></input>
+          <label
+            className={isDrag ? "dragging" : "drop"}
+            ref={dragRef}
+            htmlFor="photo"
+          >
+            <section className="photo-preview"></section>
+          </label>
+        </section>
+      ) : (
+        <section className="drag-hand-component">
+          <main className="photo-preview">
+            <input
+              id="photo"
+              type="file"
+              onChange={handleChangeFiles}
+              accept="image/*"
+              capture="user"
+              multiple
+            ></input>
+            <label
+              className={isDrag ? "dragging" : "drop"}
+              ref={dragRef}
+              htmlFor="photo"
+            ></label>
+          </main>
+        </section>
+      )}
+    </>
   );
 }
 export default DragAndDrop;
