@@ -1,10 +1,15 @@
 import loadImage from "blueimp-load-image";
 
 export const preivewImage = (fileObjects) => {
-  const $preview = document.querySelector(".photo-preview");
-  while ($preview.firstChild) {
-    $preview.removeChild($preview.firstChild);
+  var $preview = document.querySelector(".photo-preview");
+  while ($preview.lastChild) {
+    if ($preview.lastChild.tagName === "ARTICLE") {
+      $preview.removeChild($preview.lastChild);
+    } else {
+      break;
+    }
   }
+  console.log($preview);
 
   const files = Object.values(fileObjects);
   files.forEach(async (file, index) => {
@@ -12,10 +17,12 @@ export const preivewImage = (fileObjects) => {
     const width = fileExifData.originalWidth;
     const height = fileExifData.originalHeight;
 
+    const $article = document.createElement("article");
     const $img = document.createElement("img");
     $img.classList = `preview-${index}`;
     width > height ? ($img.style.height = "100%") : ($img.style.width = "100%");
-    $preview.appendChild($img);
+    $article.appendChild($img);
+    $preview.appendChild($article);
 
     const reader = new FileReader();
 
