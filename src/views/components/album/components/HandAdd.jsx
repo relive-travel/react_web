@@ -21,9 +21,19 @@ function HandAdd(props) {
 
   const searchData = useSelector((state) => state.album.search);
 
-  useEffect(() => {
-    console.log(photoData);
-  }, [photoData]);
+  const handleSearchClose = (type) => {
+    switch (type) {
+      case "keyword":
+        setSearchKeyword(false);
+        break;
+      case "roadaddress":
+        setSearchRoadAddress(false);
+        break;
+      case "location":
+        setSearchLocation(false);
+        break;
+    }
+  };
 
   return (
     <section className="album-hand-info">
@@ -64,22 +74,20 @@ function HandAdd(props) {
           </aside>
           {searchData ? (
             <section className="search-component">
-              <input
-                type="text"
-                className="search-select"
-                value="선택된정보임"
-              ></input>
-              <input
-                type="text"
-                className="search-optional"
-                value="추가정보입력"
-              ></input>
+              <input type="text" className="search-select"></input>
+              <input type="text" className="search-optional"></input>
             </section>
           ) : null}
           <section className="search-dialog-component">
-            {searchKeyword ? <SearchKeyword></SearchKeyword> : null}
-            {searchRoadAddress ? <SearchRoadAddress></SearchRoadAddress> : null}
-            {searchLocation ? <SearchLocation></SearchLocation> : null}
+            {searchKeyword ? (
+              <SearchKeyword handleSearchClose={handleSearchClose} />
+            ) : null}
+            {searchRoadAddress ? (
+              <SearchRoadAddress handleSearchClose={handleSearchClose} />
+            ) : null}
+            {searchLocation ? (
+              <SearchLocation handleSearchClose={handleSearchClose} />
+            ) : null}
           </section>
         </section>
       </main>
