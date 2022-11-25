@@ -20,9 +20,106 @@
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
+
+      padding: 1.25em;
+
+      box-sizing: border-box;
+
       width: 100%;
       height: 100%;
       background-color: rgba($color: #008000, $alpha: 1);
+
+      // header
+      > .keyword-input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 10%;
+        width: 100%;
+      }
+
+      // main
+      > .keyword-preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 50%;
+        width: 100%;
+        .kakao-map-keyword {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      // footer
+      > footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0.5em;
+
+        box-sizing: border-box;
+
+        height: 30%;
+        width: 100%;
+        background-color: rgba($color: white, $alpha: 0.5);
+        .keyword-list {
+          display: flex;
+          flex-direction: column;
+
+          width: 100%;
+          height: 85%;
+          overflow: scroll;
+
+          font-size: 0.875em;
+
+          > article {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            // justify-content: space-between;
+            align-items: center;
+
+            margin: 0.25em 0;
+            > header {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 5%;
+            }
+            > main {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              width: 65%;
+              .place-name {
+                color: black !important;
+              }
+              .place-addr-name {
+                color: rgba($color: white, $alpha: 0.5);
+              }
+            }
+            > button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 15%;
+            }
+          }
+        }
+        .keyword-pagenation {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 15%;
+        }
+      }
     }
   }
 }
