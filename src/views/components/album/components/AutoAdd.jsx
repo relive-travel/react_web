@@ -10,6 +10,7 @@ function AutoAdd(props) {
   var dateRef = useRef(null);
   var addrRef = useRef(null);
   var semiAddrRef = useRef(null);
+  var kakaoMapRef = useRef(null);
 
   const [photoAddr, setPhotoAddr] = useState(null);
 
@@ -24,6 +25,7 @@ function AutoAdd(props) {
 
   const handleSetKakaoMap = useCallback(async () => {
     const res = setKakaoMapWithGeoPoint({
+      mapContainer: kakaoMapRef.current,
       latitude: photoData.exifdata.latitude,
       longitude: photoData.exifdata.longitude,
     });
@@ -67,7 +69,11 @@ function AutoAdd(props) {
           {photoData ? (
             <article className="info-location">
               <label htmlFor="location">위치</label>
-              <div className="kakao-map-auto" id="location"></div>
+              <div
+                className="kakao-map-auto"
+                id="location"
+                ref={kakaoMapRef}
+              ></div>
             </article>
           ) : null}
         </section>
