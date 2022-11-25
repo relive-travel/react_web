@@ -84,8 +84,7 @@ function DragAndDrop(props) {
             id="photo"
             type="file"
             onChange={handleChangeFiles}
-            accept="image/*"
-            capture="user"
+            accept="Image/*"
           ></input>
           <label
             className={isDrag ? "dragging" : "drop"}
@@ -103,7 +102,6 @@ function DragAndDrop(props) {
               type="file"
               onChange={handleChangeFiles}
               accept="image/*"
-              capture="user"
               multiple
             ></input>
             <label
