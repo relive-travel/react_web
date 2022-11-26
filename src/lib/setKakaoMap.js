@@ -3,30 +3,30 @@ export const setKakaoMapWithGeoPoint = ({
   latitude,
   longitude,
 }) => {
-  var mapOptions = {
+  let mapOptions = {
     center: new window.kakao.maps.LatLng(latitude, longitude),
     level: 4,
   };
-  var map = new window.kakao.maps.Map(mapContainer, mapOptions);
+  let map = new window.kakao.maps.Map(mapContainer, mapOptions);
 
-  var geocoder = new window.kakao.maps.services.Geocoder();
+  let geocoder = new window.kakao.maps.services.Geocoder();
 
-  var marker = new window.kakao.maps.Marker();
+  let marker = new window.kakao.maps.Marker();
 
-  var infowindow = new window.kakao.maps.InfoWindow({
+  let infowindow = new window.kakao.maps.InfoWindow({
     zindex: 1,
   });
 
   return new Promise((resolve) => {
     geocoder.coord2Address(longitude, latitude, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
-        var roadAddr = !!result[0].road_address
+        let roadAddr = !!result[0].road_address
           ? `<div>${result[0].road_address.building_name}</div>`
           : "";
-        var addr = !!result[0].road_address
+        let addr = !!result[0].road_address
           ? `<div>${result[0].road_address.address_name}</div>`
           : `<div>${result[0].address.address_name}</div>`;
-        var content = `
+        let content = `
           <div class="marker-infowindow" style="padding: 0.5em;">
             <div class="title">${roadAddr}</div>
             <div class="addr" style="font-size: 0.625em;">${addr}</div>
@@ -50,11 +50,11 @@ export const setKakaoMapWithKeyword = ({
   pageContainer,
   keyword,
 }) => {
-  console.log(keyword);
-  var message;
-  var ps = new window.kakao.maps.services.Places();
+  let message;
+  let ps = new window.kakao.maps.services.Places();
 
   const searchPlaces = () => {
+    removeMapChild();
     if (!keyword.replace(/^\s+|\s+$/g, "")) return false;
     ps.keywordSearch(keyword, (data, status, pagination) => {
       if (status === window.kakao.maps.services.Status.OK) {
@@ -73,10 +73,21 @@ export const setKakaoMapWithKeyword = ({
     removeListChild();
 
     for (let i = 0; i < places.length; i++) {
-      const $article = document.createElement("article");
+      const $section = document.createElement("section");
+      const $checkbox = document.createElement("input");
+      $checkbox.type = "checkbox";
+      $checkbox.id = `place-${i}`;
+      $checkbox.addEventListener("click", (e) => {
+        document
+          .querySelectorAll("input[type=checkbox]")
+          .forEach((el) => (el.checked = false));
+        e.target.checked = true;
+      });
+      const $label = document.createElement("label");
+      $label.setAttribute("for", `place-${i}`);
       const $button = document.createElement("button");
 
-      $article.innerHTML = `
+      $label.innerHTML = `
           <header class="place-${i}">${i + 1}</header>
           <main>
             <section class="place-name">${places[i].place_name}</section>
@@ -94,48 +105,94 @@ export const setKakaoMapWithKeyword = ({
         addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
       });
 
-      $article.appendChild($button);
-      listContainer.appendChild($article);
+      $section.appendChild($checkbox);
+      $section.appendChild($label);
+      $section.appendChild($button);
+      listContainer.appendChild($section);
     }
   };
   const displayPagination = (pagination) => {
-    console.log(pagination);
+    removePageChild();
+    let $fragment = document.createDocumentFragment();
+
+    let $prevButton = document.createElement("button");
+    $prevButton.className = "arrow";
+    $prevButton.innerHTML = `<<`;
+    $prevButton.addEventListener("click", () => {
+      removeMapChild();
+      pagination.gotoFirst();
+    });
+    $fragment.appendChild($prevButton);
+
+    for (let i = 1; i <= pagination.last; i++) {
+      let $button = document.createElement("button");
+      $button.innerHTML = i;
+
+      if (i === pagination.current) {
+        $button.className = "on";
+      } else {
+        $button.addEventListener("click", () => {
+          removeMapChild();
+          pagination.gotoPage(i);
+        });
+      }
+      $fragment.appendChild($button);
+    }
+
+    let $nextButton = document.createElement("button");
+    $nextButton.className = "arrow";
+    $nextButton.innerHTML = `>>`;
+    $nextButton.addEventListener("click", () => {
+      removeMapChild();
+      pagination.gotoLast();
+    });
+    $fragment.appendChild($nextButton);
+
+    pageContainer.appendChild($fragment);
+  };
+  const removeMapChild = () => {
+    // mapContainer.style = "";
+    mapContainer.removeAttribute("style");
+    while (mapContainer.firstChild) {
+      mapContainer.removeChild(mapContainer.firstChild);
+    }
   };
   const removeListChild = () => {
     while (listContainer.firstChild) {
-      if (listContainer.firstChild.tagName === "ARTICLE") {
-        listContainer.removeChild(listContainer.firstChild);
-      } else {
-        break;
-      }
+      listContainer.removeChild(listContainer.firstChild);
+    }
+  };
+  const removePageChild = () => {
+    while (pageContainer.firstChild) {
+      pageContainer.removeChild(pageContainer.firstChild);
     }
   };
   const addMarker = (position, idx) => {
-    var mapOptions = {
+    let mapOptions = {
       center: position,
-      level: 4,
+      level: 1,
     };
-    var map = new window.kakao.maps.Map(mapContainer, mapOptions);
+    let map = new window.kakao.maps.Map(mapContainer, mapOptions);
 
-    var bounds = new window.kakao.maps.LatLngBounds();
+    let bounds = new window.kakao.maps.LatLngBounds();
     bounds.extend(position);
     map.setBounds(bounds);
 
-    var imgSrc =
+    let imgSrc =
       "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
-    var imgSize = new window.kakao.maps.Size(36, 37);
-    var imgOptions = {
+    let imgSize = new window.kakao.maps.Size(36, 37);
+    let imgOptions = {
       spriteSize: new window.kakao.maps.Size(36, 691),
       spriteOrigin: new window.kakao.maps.Point(0, idx * 46 + 10),
       offset: new window.kakao.maps.Point(13, 37),
     };
 
-    var markerImg = new window.kakao.maps.MarkerImage(
+    let markerImg = new window.kakao.maps.MarkerImage(
       imgSrc,
       imgSize,
       imgOptions
     );
-    var marker = new window.kakao.maps.Marker({
+    let marker = new window.kakao.maps.Marker({
       position,
       image: markerImg,
     });

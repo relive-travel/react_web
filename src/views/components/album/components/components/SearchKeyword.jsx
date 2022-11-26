@@ -29,6 +29,26 @@ function SearchKeyword(props) {
     }
   });
 
+  const handleGetCheckBox = () => {
+    const $checked = listRef.current.querySelector(
+      "input[type=checkbox]:checked"
+    );
+
+    if ($checked) {
+      const $checkedParent = $checked.parentNode;
+      const placeName = $checkedParent.querySelector(".place-name").innerHTML,
+        placeRoadAddrName = $checkedParent.querySelector(
+          ".place-road-addr-name"
+        ).innerHTML,
+        placeAddrName =
+          $checkedParent.querySelector(".place-addr-name").innerHTML;
+
+      console.log(placeName, placeAddrName, placeRoadAddrName);
+    } else {
+      alert("선택해주세요!");
+    }
+  };
+
   return (
     <section className="keyword-component" onClick={handleSearchClick}>
       <article ref={compRef}>
@@ -50,6 +70,7 @@ function SearchKeyword(props) {
             <section className="keyword-list" ref={listRef}></section>
             <section className="keyword-pagenation" ref={pageRef}></section>
           </footer>
+          <button onClick={handleGetCheckBox}>선택</button>
         </section>
       </article>
     </section>
