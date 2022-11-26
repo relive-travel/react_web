@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { setKakaoMapWithKeyword } from "lib/setKakaoMap";
 
@@ -12,7 +12,7 @@ function SearchKeyword(props) {
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
-      props.handleSearchClose("roadaddress");
+      props.handleSearchClose("keyword");
     }
   };
 
@@ -66,12 +66,12 @@ function SearchKeyword(props) {
           <main className="keyword-preview">
             <section className="kakao-map-keyword" ref={kakaoMapRef}></section>
           </main>
-          <footer>
-            <section className="keyword-list" ref={listRef}></section>
-            <section className="keyword-pagenation" ref={pageRef}></section>
-          </footer>
           <button onClick={handleGetCheckBox}>선택</button>
         </section>
+        <aside>
+          <section className="keyword-list" ref={listRef}></section>
+          <section className="keyword-pagenation" ref={pageRef}></section>
+        </aside>
       </article>
     </section>
   );

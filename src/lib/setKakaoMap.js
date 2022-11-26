@@ -82,10 +82,14 @@ export const setKakaoMapWithKeyword = ({
           .querySelectorAll("input[type=checkbox]")
           .forEach((el) => (el.checked = false));
         e.target.checked = true;
+        addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
       });
       const $label = document.createElement("label");
       $label.setAttribute("for", `place-${i}`);
-      const $button = document.createElement("button");
+      $label.addEventListener("click", () => {
+        addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
+      });
+      // const $button = document.createElement("button");
 
       $label.innerHTML = `
           <header class="place-${i}">${i + 1}</header>
@@ -99,15 +103,15 @@ export const setKakaoMapWithKeyword = ({
             }
             </main>
         `;
-      $button.innerHTML = "보기";
+      // $button.innerHTML = "보기";
 
-      $button.addEventListener("click", () => {
-        addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
-      });
+      // $button.addEventListener("click", (e) => {
+      //   addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
+      // });
 
       $section.appendChild($checkbox);
+      // $label.appendChild($button);
       $section.appendChild($label);
-      $section.appendChild($button);
       listContainer.appendChild($section);
     }
   };
