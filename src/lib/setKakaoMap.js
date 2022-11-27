@@ -44,12 +44,10 @@ export const setKakaoMapWithGeoPoint = ({
   });
 };
 
-export const setKakaoMapWithKeyword = ({
-  mapContainer,
-  listContainer,
-  pageContainer,
-  keyword,
-}) => {
+export const setKakaoMapWithKeyword = (
+  { mapContainer, listContainer, pageContainer, keyword },
+  callback
+) => {
   let message;
   let ps = new window.kakao.maps.services.Places();
 
@@ -83,12 +81,10 @@ export const setKakaoMapWithKeyword = ({
           .forEach((el) => (el.checked = false));
         e.target.checked = true;
         addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
+        callback(places[i]);
       });
       const $label = document.createElement("label");
       $label.setAttribute("for", `place-${i}`);
-      $label.addEventListener("click", () => {
-        addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
-      });
 
       $label.innerHTML = `
           <header class="place-${i}">${i + 1}</header>

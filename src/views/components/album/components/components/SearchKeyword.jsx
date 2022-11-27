@@ -18,36 +18,21 @@ function SearchKeyword(props) {
 
   const handleSetKakaoMap = useCallback(() => {
     if (inputRef.current.value) {
-      setKakaoMapWithKeyword({
-        mapContainer: kakaoMapRef.current,
-        listContainer: listRef.current,
-        pageContainer: pageRef.current,
-        keyword: inputRef.current.value,
-      });
+      setKakaoMapWithKeyword(
+        {
+          mapContainer: kakaoMapRef.current,
+          listContainer: listRef.current,
+          pageContainer: pageRef.current,
+          keyword: inputRef.current.value,
+        },
+        (checkInfo) => {
+          console.log(checkInfo);
+        }
+      );
     } else {
       alert("입력해주세요!");
     }
   });
-
-  const handleGetCheckBox = () => {
-    const $checked = listRef.current.querySelector(
-      "input[type=checkbox]:checked"
-    );
-
-    if ($checked) {
-      const $checkedParent = $checked.parentNode;
-      const placeName = $checkedParent.querySelector(".place-name").innerHTML,
-        placeRoadAddrName = $checkedParent.querySelector(
-          ".place-road-addr-name"
-        ).innerHTML,
-        placeAddrName =
-          $checkedParent.querySelector(".place-addr-name").innerHTML;
-
-      console.log(placeName, placeAddrName, placeRoadAddrName);
-    } else {
-      alert("선택해주세요!");
-    }
-  };
 
   return (
     <section className="keyword-component" onClick={handleSearchClick}>
@@ -66,7 +51,7 @@ function SearchKeyword(props) {
           <main className="keyword-preview">
             <section className="kakao-map-keyword" ref={kakaoMapRef}></section>
           </main>
-          <button onClick={handleGetCheckBox}>선택</button>
+          <button>선택</button>
         </section>
         <aside>
           <section className="keyword-list" ref={listRef}></section>
