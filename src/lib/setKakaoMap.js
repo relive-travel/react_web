@@ -21,16 +21,16 @@ export const setKakaoMapWithGeoPoint = ({
     geocoder.coord2Address(longitude, latitude, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
         let roadAddr = !!result[0].road_address
-          ? `<div>${result[0].road_address.building_name}</div>`
+          ? `<section>${result[0].road_address.building_name}</section>`
           : "";
         let addr = !!result[0].road_address
-          ? `<div>${result[0].road_address.address_name}</div>`
-          : `<div>${result[0].address.address_name}</div>`;
+          ? `<section>${result[0].road_address.address_name}</section>`
+          : `<section>${result[0].address.address_name}</section>`;
         let content = `
-          <div class="marker-infowindow" style="padding: 0.5em;">
-            <div class="title">${roadAddr}</div>
-            <div class="addr" style="font-size: 0.625em;">${addr}</div>
-          </div>`;
+          <section class="marker-infowindow" style="padding: 0.5em;">
+            <header class="title">${roadAddr}</head>
+            <article class="addr" style="font-size: 0.625em;">${addr}</article>
+          </section>`;
 
         marker.setPosition(new window.kakao.maps.LatLng(latitude, longitude));
         marker.setMap(map);
@@ -89,7 +89,6 @@ export const setKakaoMapWithKeyword = ({
       $label.addEventListener("click", () => {
         addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
       });
-      // const $button = document.createElement("button");
 
       $label.innerHTML = `
           <header class="place-${i}">${i + 1}</header>
@@ -103,14 +102,8 @@ export const setKakaoMapWithKeyword = ({
             }
             </main>
         `;
-      // $button.innerHTML = "보기";
-
-      // $button.addEventListener("click", (e) => {
-      //   addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
-      // });
 
       $section.appendChild($checkbox);
-      // $label.appendChild($button);
       $section.appendChild($label);
       listContainer.appendChild($section);
     }
@@ -209,4 +202,55 @@ export const setKakaoMapWithKeyword = ({
 
 export const setKakaoMapWithRoad = (map, latitude, longitude) => {};
 
-export const setKakaoMapWithLocation = (map, latitude, longitude) => {};
+export const setKakaoMapWithLocation = (
+  { mapContainer, latitude, longitude },
+  callback
+) => {
+  let mapOption = {
+    center: new window.kakao.maps.LatLng(latitude, longitude),
+    level: 3,
+  };
+  let map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+  let geocoder = new window.kakao.maps.services.Geocoder();
+
+  let marker = new window.kakao.maps.Marker();
+  let customOverlay = new window.kakao.maps.CustomOverlay();
+
+  const searchDetailAddrFromCoords = (coords, callback) => {
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+  };
+
+  window.kakao.maps.event.addListener(map, "click", (mouseEvent) => {
+    searchDetailAddrFromCoords(mouseEvent.latLng, (result, status) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        let detailAddr = `
+          ${
+            result[0].road_address
+              ? `<section class="place-road-addr-name">도로명주소 : ${result[0].road_address.address_name}</section>
+                <section class="place-addr-name">지번&nbsp;&nbsp;&nbsp;주소 : ${result[0].address.address_name}</section>`
+              : `<section class="place-addr-name">지번&nbsp;&nbsp;&nbsp;주소 : ${result[0].address.address_name}</section>`
+          }
+        `;
+        let content = `
+          <article class="place-addr" style="${
+            result[0].road_address
+              ? "margin-bottom: 12em;"
+              : "margin-bottom: 10.875em;"
+          }">
+            <header class="place-title">법정동 주소정보</header>
+            ${detailAddr}
+          </article>
+        `;
+
+        marker.setPosition(mouseEvent.latLng);
+        marker.setMap(map);
+
+        customOverlay.setPosition(mouseEvent.latLng);
+        customOverlay.setContent(content);
+        customOverlay.setMap(map);
+        callback(result[0]);
+      }
+    });
+  });
+};

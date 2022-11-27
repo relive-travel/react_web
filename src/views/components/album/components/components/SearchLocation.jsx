@@ -1,31 +1,42 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+
+import { setKakaoMapWithLocation } from "lib/setKakaoMap";
+
 import "./SearchLocation.scss";
 function SearchLocation(props) {
-  const locationRef = useRef(null);
+  const compRef = useRef(null);
+  const kakaoMapRef = useRef(null);
 
   const handleSearchClick = (e) => {
-    if (locationRef.current && !locationRef.current.contains(e.target)) {
-      props.handleSearchClose("roadaddress");
+    if (compRef.current && !compRef.current.contains(e.target)) {
+      props.handleSearchClose("location");
     }
   };
 
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position.coords.latitude, position.coords.longitude);
+        setKakaoMapWithLocation(
+          {
+            mapContainer: kakaoMapRef.current,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          },
+          (markerInfo) => {
+            console.log(markerInfo);
+          }
+        );
+      });
+    }
+  }, []);
+
   return (
     <section className="location-component" onClick={handleSearchClick}>
-      <article ref={locationRef}>
-        <section className="location-main">
-          <header className="location-input">
-            <input type="text"></input>
-            <button>검색</button>
-          </header>
-          <main className="location-preview">
-            <section className="location-map"></section>
-          </main>
-          <footer className="location-list">
-            <section>
-              <article></article>
-              <button>보기</button>
-            </section>
-          </footer>
+      <article ref={compRef}>
+        <section className="location-preview">
+          <section className="kakao-map-location" ref={kakaoMapRef}></section>
+          <button>선택</button>
         </section>
       </article>
     </section>
