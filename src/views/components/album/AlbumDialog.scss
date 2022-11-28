@@ -60,12 +60,20 @@
       > button:hover {
         cursor: pointer;
       }
+      .album-clear-button {
+        color: white;
+        border-color: white;
+      }
+      .album-clear-button:hover {
+        color: black;
+        background-color: rgba($color: white, $alpha: 1);
+      }
       .album-preview-button {
         color: #ffcc88;
         border-color: #ffcc88;
       }
       .album-preview-button:hover {
-        color: white;
+        color: black;
         background-color: rgba($color: #ffcc88, $alpha: 1);
       }
       .album-add-button {
@@ -73,7 +81,7 @@
         border-color: #ff8822;
       }
       .album-add-button:hover {
-        color: white;
+        color: black;
         background-color: rgba($color: #ff8822, $alpha: 1);
       }
     }
