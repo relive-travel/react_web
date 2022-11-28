@@ -33,18 +33,18 @@ function AutoAdd(props) {
   };
 
   useEffect(() => {
-    if (photoFile) {
-      if (photoData) {
+    if (photoData) {
+      if (photoData.exifdata !== null) {
         var [date, time] = photoData.exifdata.date.split(" ");
         time = time.slice(0, time.length - 3);
         props.dateRef.current.value = [date, time].join("T");
 
         handleSetKakaoMap();
       } else {
-        props.handleChangeAlbum();
+        props.handleChangeAlbumOpen();
       }
     }
-  }, [photoFile]);
+  }, [photoData]);
 
   return (
     <section className="album-auto-info">
