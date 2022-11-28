@@ -5,7 +5,7 @@ import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 
 import AutoAdd from "./add/AutoAdd";
 import HandAdd from "./add/HandAdd";
-import ChangeAlbum from "./exception-modal/ChangeAlbum";
+import ChangeAlbum from "./exception/album/ChangeAlbum";
 
 import "./AlbumDialog.scss";
 function AlbumDialog(props) {
