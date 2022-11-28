@@ -120,6 +120,13 @@
     .info-main-bottom {
       display: flex;
       flex-direction: column;
+      .info-date {
+        > input {
+          text-align: center;
+          width: fit-content;
+          margin: auto;
+        }
+      }
     }
   }
 }
