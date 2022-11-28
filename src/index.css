@@ -2,6 +2,7 @@
   font-family: "BMJUA";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
     format("woff");
+
   font-weight: normal;
   font-style: normal;
 }
@@ -12,6 +13,34 @@
 
 body {
   margin: 0;
+}
+
+label {
+  color: #ff8822;
+  margin-bottom: 0.125em;
+}
+
+label > span {
+  color: pink;
+  margin-left: 0.5em;
+}
+
+input,
+textarea {
+  font-size: 1em;
+  line-height: 1.25em;
+  margin-bottom: 0.25em;
+
+  outline: 0;
+  border-width: 0 0 2px;
+
+  color: white;
+  background: none;
+  border-color: white;
+}
+
+textarea {
+  resize: none;
 }
 
 code {

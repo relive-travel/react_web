@@ -10,30 +10,30 @@ export const setKakaoMapWithGeoPoint = ({
   let map = new window.kakao.maps.Map(mapContainer, mapOptions);
   let marker = new window.kakao.maps.Marker();
   let geocoder = new window.kakao.maps.services.Geocoder();
-  let infowindow = new window.kakao.maps.InfoWindow({
-    zindex: 1,
-  });
+  let customOverlay = new window.kakao.maps.CustomOverlay();
 
   return new Promise((resolve) => {
     geocoder.coord2Address(longitude, latitude, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
-        let roadAddr = !!result[0].road_address
-          ? `<section>${result[0].road_address.building_name}</section>`
-          : "";
-        let addr = !!result[0].road_address
-          ? `<section>${result[0].road_address.address_name}</section>`
-          : `<section>${result[0].address.address_name}</section>`;
         let content = `
-          <section class="marker-infowindow" style="padding: 0.5em;">
-            <header class="title">${roadAddr}</head>
-            <article class="addr" style="font-size: 0.625em;">${addr}</article>
+          <section class="place-addr" style="margin-bottom: 10.875em;">
+            ${
+              result[0].road_address
+                ? `<header class="place-name">${result[0].road_address.building_name}</header>
+                  <hr />
+                  <section class="place-road-addr-name">${result[0].road_address.address_name}</section>`
+                : `<section class="place-addr-name">${result[0].address.address_name}</section>`
+            }
           </section>`;
 
         marker.setPosition(new window.kakao.maps.LatLng(latitude, longitude));
         marker.setMap(map);
 
-        infowindow.setContent(content);
-        infowindow.open(map, marker);
+        customOverlay.setPosition(
+          new window.kakao.maps.LatLng(latitude, longitude)
+        );
+        customOverlay.setContent(content);
+        customOverlay.setMap(map);
 
         resolve(result[0]);
       }

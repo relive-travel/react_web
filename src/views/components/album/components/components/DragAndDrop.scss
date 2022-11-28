@@ -11,7 +11,7 @@
     aspect-ratio: 1;
     overflow: hidden;
 
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 10px;
     > .photo-preview {
       aspect-ratio: 1;
@@ -29,7 +29,7 @@
     transition: 0.12s ease-in;
   }
   .dragging {
-    background-color: rgba($color: black, $alpha: 0.5);
+    background-color: rgba($color: white, $alpha: 0.5);
     color: white;
   }
   ::-webkit-scrollbar {

@@ -7,6 +7,7 @@ import DragAndDrop from "views/components/album/components/components/DragAndDro
 
 import "./AutoAdd.scss";
 function AutoAdd(props) {
+  var textRef = useRef(null);
   var dateRef = useRef(null);
   var addrRef = useRef(null);
   var semiAddrRef = useRef(null);
@@ -32,6 +33,12 @@ function AutoAdd(props) {
     setPhotoAddr(await res);
   });
 
+  const handleResizeHeight = (e) => {
+    console.log(e.target.scrollHeight);
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
+  };
+
   useEffect(() => {
     if (photoFile) {
       console.log(photoFile);
@@ -55,25 +62,38 @@ function AutoAdd(props) {
   return (
     <section className="album-auto-info">
       <header className="info-header">
-        <label htmlFor="title">당근 제목</label>
-        <input type="text" id="title"></input>
+        <section className="info-title">
+          <label htmlFor="title">제목</label>
+          <input type="text" id="title"></input>
+        </section>
+        <section className="info-content">
+          <label htmlFor="content">이야기</label>
+          <textarea
+            id="content"
+            rows={1}
+            ref={textRef}
+            spellCheck="false"
+            autoCorrect="on"
+            onChange={handleResizeHeight}
+          ></textarea>
+        </section>
       </header>
       <main className="info-main">
         <section className="info-main-top">
           <article className="info-photo">
             <label htmlFor="photo">
-              <span>*사진</span>
+              사진<span>(*)</span>
             </label>
             <DragAndDrop dragType="auto"></DragAndDrop>
           </article>
           {photoData ? (
             <article className="info-location">
               <label htmlFor="location">위치</label>
-              <div
+              <section
                 className="kakao-map-auto"
                 id="location"
                 ref={kakaoMapRef}
-              ></div>
+              ></section>
             </article>
           ) : null}
         </section>
@@ -101,10 +121,9 @@ function AutoAdd(props) {
           </section>
         ) : null}
       </main>
-      <footer className="info-footer">
-        <label htmlFor="content">당근 이야기</label>
-        <input id="content" type="textarea"></input>
-      </footer>
+      {/* <footer className="info-footer">
+
+      </footer> */}
     </section>
   );
 }

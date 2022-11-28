@@ -12,6 +12,18 @@
   > header {
     display: flex;
     flex-direction: column;
+
+    > * {
+      margin: 0.125em 0;
+    }
+    > .info-title {
+      display: flex;
+      flex-direction: column;
+    }
+    > .info-content {
+      display: flex;
+      flex-direction: column;
+    }
   }
   > main {
     display: flex;
@@ -45,18 +57,62 @@
       }
       .info-location {
         width: 42.5%;
-        > #location {
+        > .kakao-map-auto {
           aspect-ratio: 1;
           color: black;
-          border: 2px solid black;
+          border: 2px solid white;
           border-radius: 10px;
-          .marker-infowindow {
-            .title {
-              text-align: center;
+          .place-addr {
+            position: relative;
+            padding: 0.5em;
+            width: fit-content;
+            height: fit-content;
+
+            font-size: 0.875em;
+
+            border: 1px solid black;
+            background-color: rgba($color: white, $alpha: 1);
+            > hr {
+              margin: 0.125em;
             }
-            .addr {
-              text-align: center;
+            .place-name {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 1.125em;
             }
+          }
+          .place-addr:before {
+            content: "";
+            position: absolute;
+            margin-left: -0.875em;
+            margin-bottom: calc(-0.875em - 1px);
+
+            bottom: 0;
+            left: 50%;
+
+            width: 0;
+            height: 0;
+
+            border: 0.875em solid transparent;
+            border-top-color: black;
+            border-bottom: 0;
+          }
+          .place-addr:after {
+            content: "";
+            position: absolute;
+            margin-left: -0.875em;
+            margin-bottom: -0.875em;
+
+            bottom: 0;
+            left: 50%;
+
+            width: 0;
+            height: 0;
+
+            border: 0.875em solid transparent;
+            border-top-color: white;
+            border-bottom: 0;
           }
         }
       }
