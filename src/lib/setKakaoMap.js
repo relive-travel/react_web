@@ -8,11 +8,8 @@ export const setKakaoMapWithGeoPoint = ({
     level: 4,
   };
   let map = new window.kakao.maps.Map(mapContainer, mapOptions);
-
-  let geocoder = new window.kakao.maps.services.Geocoder();
-
   let marker = new window.kakao.maps.Marker();
-
+  let geocoder = new window.kakao.maps.services.Geocoder();
   let infowindow = new window.kakao.maps.InfoWindow({
     zindex: 1,
   });
@@ -53,6 +50,7 @@ export const setKakaoMapWithKeyword = (
 
   const searchPlaces = () => {
     removeMapChild();
+
     if (!keyword.replace(/^\s+|\s+$/g, "")) return false;
     ps.keywordSearch(keyword, (data, status, pagination) => {
       if (status === window.kakao.maps.services.Status.OK) {
@@ -80,7 +78,7 @@ export const setKakaoMapWithKeyword = (
           .querySelectorAll("input[type=checkbox]")
           .forEach((el) => (el.checked = false));
         e.target.checked = true;
-        addMarker(new window.kakao.maps.LatLng(places[i].y, places[i].x), i);
+        addMarker(places[i], i);
         callback(places[i]);
       });
       const $label = document.createElement("label");
@@ -144,7 +142,6 @@ export const setKakaoMapWithKeyword = (
     pageContainer.appendChild($fragment);
   };
   const removeMapChild = () => {
-    // mapContainer.style = "";
     mapContainer.removeAttribute("style");
     while (mapContainer.firstChild) {
       mapContainer.removeChild(mapContainer.firstChild);
@@ -160,12 +157,27 @@ export const setKakaoMapWithKeyword = (
       pageContainer.removeChild(pageContainer.firstChild);
     }
   };
-  const addMarker = (position, idx) => {
+  const addMarker = (place, idx) => {
+    console.log(place);
+    let position = new window.kakao.maps.LatLng(place.y, place.x);
     let mapOptions = {
       center: position,
-      level: 1,
+      level: 3,
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOptions);
+    let customOverlay = new window.kakao.maps.CustomOverlay();
+
+    let content = `
+      <article class="place-addr" style="margin-bottom: 12em;">
+        <header class="place-name">${place.place_name}</header>
+        <hr />
+        <section class="place-road-addr-name">도로명주소 : ${place.address_name}</section>
+        <section class="place-addr-name">지번&nbsp;&nbsp;&nbsp;주소 : ${place.road_address_name}</section>
+      </article>
+    `;
+    customOverlay.setPosition(position);
+    customOverlay.setContent(content);
+    customOverlay.setMap(map);
 
     let bounds = new window.kakao.maps.LatLngBounds();
     bounds.extend(position);
@@ -177,9 +189,8 @@ export const setKakaoMapWithKeyword = (
     let imgOptions = {
       spriteSize: new window.kakao.maps.Size(36, 691),
       spriteOrigin: new window.kakao.maps.Point(0, idx * 46 + 10),
-      offset: new window.kakao.maps.Point(13, 37),
+      offset: new window.kakao.maps.Point(14, 37),
     };
-
     let markerImg = new window.kakao.maps.MarkerImage(
       imgSrc,
       imgSize,
@@ -192,7 +203,6 @@ export const setKakaoMapWithKeyword = (
 
     marker.setMap(map);
   };
-
   searchPlaces();
 };
 
@@ -207,10 +217,8 @@ export const setKakaoMapWithLocation = (
     level: 3,
   };
   let map = new window.kakao.maps.Map(mapContainer, mapOption);
-
-  let geocoder = new window.kakao.maps.services.Geocoder();
-
   let marker = new window.kakao.maps.Marker();
+  let geocoder = new window.kakao.maps.services.Geocoder();
   let customOverlay = new window.kakao.maps.CustomOverlay();
 
   const searchDetailAddrFromCoords = (coords, callback) => {
