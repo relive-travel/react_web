@@ -1,4 +1,4 @@
-.change-album-modal {
+.change-album {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
   height: 100%;
 
   background-color: rgba($color: black, $alpha: 0.5);
-  .change-album-component {
+  > article {
     width: 25%;
     aspect-ratio: 2/1;
 

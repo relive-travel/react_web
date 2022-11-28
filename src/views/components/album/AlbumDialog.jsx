@@ -1,20 +1,27 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import AutoAdd from "./components/AutoAdd";
-import HandAdd from "./components/HandAdd";
-import ChangeAlbumModal from "./components/components/ChangeAlbumModal";
+import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
+
+import AutoAdd from "./add/AutoAdd";
+import HandAdd from "./add/HandAdd";
+import ChangeAlbum from "./exception-modal/ChangeAlbum";
 
 import "./AlbumDialog.scss";
 function AlbumDialog(props) {
+  const dispatch = useDispatch();
+
   var titleRef = useRef(null);
   var textRef = useRef(null);
   var dateRef = useRef(null);
   var addrRef = useRef(null);
   var semiAddrRef = useRef(null);
+  var kakaoMapRef = useRef(null);
 
   const [albumType, setAlbumType] = useState(props.albumType);
 
   const [changeOpen, setChangeOpen] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const handleChangeAlbumOpen = () => {
     setChangeOpen(true);
@@ -24,11 +31,31 @@ function AlbumDialog(props) {
     setChangeOpen(false);
   };
 
-  const handleChangeAlbum = (props) => {};
+  const handlePreviewAlbumOpen = () => {
+    setPreviewOpen(true);
+  };
 
-  const handleClearAlbum = () => {};
+  const handlePreviewAlbumClose = () => {
+    setPreviewOpen(false);
+  };
 
-  const handlePreviewAlbum = () => {};
+  const handleChangeAlbum = () => {
+    setAlbumType("hand");
+  };
+
+  const handleClearAlbum = () => {
+    titleRef.current.value = "";
+    textRef.current.value = "";
+    dateRef.current.value = "";
+    addrRef.current.value = "";
+    semiAddrRef.current.value = "";
+    dispatch(setPhotoFile(null));
+    dispatch(setPhotoData(null));
+  };
+
+  const handlePreviewAlbum = () => {
+    handlePreviewAlbumOpen();
+  };
 
   const handleAddAlbum = () => {
     console.log(
@@ -51,6 +78,7 @@ function AlbumDialog(props) {
             dateRef={dateRef}
             addrRef={addrRef}
             semiAddrRef={semiAddrRef}
+            kakaoMapRef={kakaoMapRef}
             handleChangeAlbumOpen={handleChangeAlbumOpen}
           />
         ) : (
@@ -70,7 +98,7 @@ function AlbumDialog(props) {
       </footer>
       <aside>
         {changeOpen ? (
-          <ChangeAlbumModal
+          <ChangeAlbum
             handleClearAlbum={handleClearAlbum}
             handleChangeAlbumClose={handleChangeAlbumClose}
             handleChangeAlbum={handleChangeAlbum}

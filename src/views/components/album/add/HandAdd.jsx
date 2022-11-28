@@ -1,10 +1,10 @@
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import DragAndDrop from "views/components/album/components/components/DragAndDrop";
-import SearchKeyword from "./components/SearchKeyword";
-import SearchRoadAddress from "./components/SearchRoadAddress";
-import SearchLocation from "./components/SearchLocation";
+import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
+import SearchKeyword from "./hand/SearchKeyword";
+import SearchRoadAddress from "./hand/SearchRoadAddress";
+import SearchLocation from "./hand/SearchLocation";
 
 import "./HandAdd.scss";
 function HandAdd(props) {

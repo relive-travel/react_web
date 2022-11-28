@@ -1,12 +1,8 @@
-import { useRef } from "react";
-
-import "./ChangeAlbumModal.scss";
-function ChangeAlbumModal(props) {
-  var compRef = useRef(null);
-
+import "./ChangeAlbum.scss";
+function ChangeAlbum(props) {
   return (
-    <section className="change-album-modal">
-      <article className="change-album-component">
+    <section className="change-album-component">
+      <article>
         <section className="change-album-main">
           <header className="change-album-title">
             이런..! 사진에 <span>데이터</span>가 없어요ㅠ.ㅠ
@@ -51,4 +47,4 @@ function ChangeAlbumModal(props) {
   );
 }
 
-export default ChangeAlbumModal;
+export default ChangeAlbum;

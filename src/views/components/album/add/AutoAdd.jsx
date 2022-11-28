@@ -3,18 +3,16 @@ import { useSelector } from "react-redux";
 
 import { setKakaoMapWithGeoPoint } from "lib/setKakaoMap";
 
-import DragAndDrop from "views/components/album/components/components/DragAndDrop";
+import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
 
 import "./AutoAdd.scss";
 function AutoAdd(props) {
-  var kakaoMapRef = useRef(null);
-
   const photoFile = useSelector((state) => state.photo.file);
   const photoData = useSelector((state) => state.photo.data);
 
   const handleSetKakaoMap = async () => {
     const res = setKakaoMapWithGeoPoint({
-      mapContainer: kakaoMapRef.current,
+      mapContainer: props.kakaoMapRef.current,
       latitude: photoData.exifdata.latitude,
       longitude: photoData.exifdata.longitude,
     });
@@ -78,7 +76,7 @@ function AutoAdd(props) {
               <section
                 className="kakao-map-auto"
                 id="location"
-                ref={kakaoMapRef}
+                ref={props.kakaoMapRef}
               ></section>
             </article>
           ) : null}
