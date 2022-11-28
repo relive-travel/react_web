@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 import AutoAdd from "./components/AutoAdd";
 import HandAdd from "./components/HandAdd";
+import ChangeAlbumModal from "./components/components/ChangeAlbumModal";
 
 import "./AlbumDialog.scss";
 function AlbumDialog(props) {
@@ -13,7 +14,21 @@ function AlbumDialog(props) {
 
   const [albumType, setAlbumType] = useState(props.albumType);
 
+  const [changeOpen, setChangeOpen] = useState(false);
+
+  const handleChangeAlbumOpen = () => {
+    setChangeOpen(true);
+  };
+
+  const handleChangeAlbumClose = () => {
+    setChangeOpen(false);
+  };
+
   const handleChangeAlbum = (props) => {};
+
+  const handleClearAlbum = () => {};
+
+  const handlePreviewAlbum = () => {};
 
   const handleAddAlbum = () => {
     console.log(
@@ -36,19 +51,32 @@ function AlbumDialog(props) {
             dateRef={dateRef}
             addrRef={addrRef}
             semiAddrRef={semiAddrRef}
-            handleChangeAlbum={handleChangeAlbum}
+            handleChangeAlbumOpen={handleChangeAlbumOpen}
           />
         ) : (
           <HandAdd />
         )}
       </main>
       <footer className="album-buttons">
-        <button className="album-clear-button">초기화</button>
-        <button className="album-preview-button">미리 보기</button>
+        <button className="album-clear-button" onClick={handleClearAlbum}>
+          초기화
+        </button>
+        <button className="album-preview-button" onClick={handlePreviewAlbum}>
+          미리 보기
+        </button>
         <button className="album-add-button" onClick={handleAddAlbum}>
           추가 하기
         </button>
       </footer>
+      <aside>
+        {changeOpen ? (
+          <ChangeAlbumModal
+            handleClearAlbum={handleClearAlbum}
+            handleChangeAlbumClose={handleChangeAlbumClose}
+            handleChangeAlbum={handleChangeAlbum}
+          />
+        ) : null}
+      </aside>
     </article>
   );
 }
