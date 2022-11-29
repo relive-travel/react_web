@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 
 import { preivewImage } from "lib/setPreview";
-import { getExifData } from "lib/getExifData";
+import { getExifData, getExifDataList } from "lib/getExifData";
 
 import "./DragAndDrop.scss";
 function DragAndDrop(props) {
@@ -17,7 +17,9 @@ function DragAndDrop(props) {
   const handleChangeFiles = useCallback(async (e) => {
     const fileObject =
       e.type === "drop" ? e.dataTransfer.files : e.target.files;
-    dispatch(setPhotoData(await getExifData(fileObject)));
+    fileObject.length === 1
+      ? dispatch(setPhotoData(await getExifData(fileObject)))
+      : dispatch(setPhotoData(await getExifDataList(fileObject)));
     dispatch(setPhotoFile(fileObject));
     preivewImage(fileObject);
   }, []);

@@ -12,7 +12,7 @@ function AlbumDialog(props) {
   const dispatch = useDispatch();
 
   var titleRef = useRef(null);
-  var textRef = useRef(null);
+  var contentRef = useRef(null);
   var dateRef = useRef(null);
   var addrRef = useRef(null);
   var semiAddrRef = useRef(null);
@@ -45,7 +45,7 @@ function AlbumDialog(props) {
 
   const handleClearAlbum = () => {
     titleRef.current.value = "";
-    textRef.current.value = "";
+    contentRef.current.value = "";
     dateRef.current.value = "";
     addrRef.current.value = "";
     semiAddrRef.current.value = "";
@@ -60,7 +60,7 @@ function AlbumDialog(props) {
   const handleAddAlbum = () => {
     console.log(
       titleRef.current.value,
-      textRef.current.value,
+      contentRef.current.value,
       dateRef.current.value,
       addrRef.current.value,
       semiAddrRef.current.value
@@ -74,7 +74,7 @@ function AlbumDialog(props) {
         {albumType === "auto" ? (
           <AutoAdd
             titleRef={titleRef}
-            textRef={textRef}
+            contentRef={contentRef}
             dateRef={dateRef}
             addrRef={addrRef}
             semiAddrRef={semiAddrRef}
@@ -82,7 +82,14 @@ function AlbumDialog(props) {
             handleChangeAlbumOpen={handleChangeAlbumOpen}
           />
         ) : (
-          <HandAdd />
+          <HandAdd
+            titleRef={titleRef}
+            contentRef={contentRef}
+            dateRef={dateRef}
+            addrRef={addrRef}
+            semiAddrRef={semiAddrRef}
+            kakaoMapRef={kakaoMapRef}
+          />
         )}
       </main>
       <footer className="album-buttons">

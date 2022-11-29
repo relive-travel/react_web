@@ -67,7 +67,7 @@ export const getExifDataList = async (fileObjects) => {
         });
       });
       return {
-        ...file,
+        name: file.name,
         exifdata,
       };
     })

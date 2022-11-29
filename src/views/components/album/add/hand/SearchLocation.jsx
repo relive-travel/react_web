@@ -1,16 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { setAlbumSearch } from "redux/slice/albumSlice";
 
 import { setKakaoMapWithLocation } from "lib/setKakaoMap";
 
 import "./SearchLocation.scss";
 function SearchLocation(props) {
+  const dispatch = useDispatch();
+
   const compRef = useRef(null);
   const kakaoMapRef = useRef(null);
+
+  const [locationRes, setLocationRes] = useState();
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
       props.handleSearchClose("location");
     }
+  };
+
+  const handleSelectResult = () => {
+    dispatch(setAlbumSearch(locationRes));
+    props.handleSearchClose("location");
   };
 
   useEffect(() => {
@@ -23,8 +35,8 @@ function SearchLocation(props) {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           },
-          (markerInfo) => {
-            console.log(markerInfo);
+          (locationResult) => {
+            setLocationRes(locationResult);
           }
         );
       });
@@ -36,7 +48,7 @@ function SearchLocation(props) {
       <article ref={compRef}>
         <section className="location-preview">
           <section className="kakao-map-location" ref={kakaoMapRef}></section>
-          <button>선택</button>
+          <button onClick={handleSelectResult}>선택</button>
         </section>
       </article>
     </section>

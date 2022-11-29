@@ -57,7 +57,7 @@ function AutoAdd(props) {
             id="content"
             rows={1}
             spellCheck="false"
-            ref={props.textRef}
+            ref={props.contentRef}
             onChange={handleResizeHeight}
           ></textarea>
         </section>

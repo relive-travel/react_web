@@ -1,39 +1,13 @@
 .album-auto-info {
-  > label {
-    font-size: 0.75em;
-    > span {
-      color: red;
-      text-shadow: 1px 1px 1px 1px white;
-    }
-  }
   > * {
     margin: 0.625em 0;
   }
-  > header {
-    display: flex;
-    flex-direction: column;
-
-    > * {
-      margin: 0.125em 0;
-    }
-    > .info-title {
-      display: flex;
-      flex-direction: column;
-    }
-    > .info-content {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-  > main {
-    display: flex;
-    flex-direction: column;
-  }
-  > footer {
-    display: flex;
-    flex-direction: column;
-  }
+  > header,
+  > main,
+  > footer,
   .info-header,
+  .info-title,
+  .info-content,
   .info-photo,
   .info-location,
   .info-address,
