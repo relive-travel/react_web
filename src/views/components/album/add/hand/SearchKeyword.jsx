@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
@@ -23,7 +23,7 @@ function SearchKeyword(props) {
     }
   };
 
-  const handleSetKakaoMap = useCallback(() => {
+  const handleSetKakaoMap = () => {
     if (inputRef.current.value) {
       setKakaoMapWithKeyword(
         {
@@ -39,10 +39,16 @@ function SearchKeyword(props) {
     } else {
       alert("입력해주세요!");
     }
-  });
+  };
 
   const handleSelectResult = () => {
-    dispatch(setAlbumSearch(keywordRes));
+    const res = {
+      latitude: parseFloat(keywordRes.y),
+      longitude: parseFloat(keywordRes.x),
+      addr: keywordRes.address_name,
+      semiAddr: keywordRes.place_name,
+    };
+    dispatch(setAlbumSearch(res));
     props.handleSearchClose("keyword");
   };
 
