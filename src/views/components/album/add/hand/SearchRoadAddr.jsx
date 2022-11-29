@@ -1,8 +1,9 @@
-import { setKakaoMapWithRoad } from "lib/setKakaoMap";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
+
+import { setKakaoMapWithRoad } from "lib/setKakaoMap";
 
 import "./SearchRoadAddr.scss";
 function SearchRoadAddr(props) {
@@ -47,17 +48,18 @@ function SearchRoadAddr(props) {
   };
 
   const handleSetKakaoMap = () => {
-    setKakaoMapWithRoad(
-      { mapContainer: kakaoMapRef.current, addr: postCodeRes.address },
-      (roadAddrResult) => {
-        setRoadAddrRes(roadAddrResult);
-      }
-    );
+    if (kakaoMapRef.current !== null) {
+      setKakaoMapWithRoad(
+        { mapContainer: kakaoMapRef.current, addr: postCodeRes.address },
+        (roadAddrResult) => {
+          setRoadAddrRes(roadAddrResult);
+        }
+      );
+    }
   };
 
   const handleReSearchAddr = () => {
     setRoadAddrResultOpen(false);
-    handleSetPostcodeService();
   };
 
   const handleSelectResult = () => {
@@ -78,14 +80,12 @@ function SearchRoadAddr(props) {
   };
 
   useEffect(() => {
-    handleSetPostcodeService();
-  }, []);
-
-  useEffect(() => {
     if (roadAddrResultOpen) {
       handleSetKakaoMap();
+    } else {
+      handleSetPostcodeService();
     }
-  }, [roadAddrResultOpen, postCodeRes]);
+  }, [roadAddrResultOpen]);
 
   return (
     <section className="road-addr-component" onClick={handleSearchClick}>
@@ -93,7 +93,7 @@ function SearchRoadAddr(props) {
         {roadAddrResultOpen ? (
           <section className="road-addr-result">
             <header>
-              <article>여기가 주소가 나올곳이에요</article>
+              <article>원하시는 곳이 맞는지 확인해주세요!</article>
             </header>
             <main>
               <article
@@ -106,13 +106,13 @@ function SearchRoadAddr(props) {
                 className="road-addr-re-search-button"
                 onClick={handleReSearchAddr}
               >
-                재검색
+                달라요ㅜ.ㅜ
               </button>
               <button
                 className="road-addr-select-button"
                 onClick={handleSelectResult}
               >
-                선택
+                맞아요!
               </button>
             </footer>
           </section>
