@@ -9,17 +9,17 @@ function SearchRoadAddr(props) {
   const dispatch = useDispatch();
 
   const compRef = useRef(null);
-  const roadaddrRef = useRef(null);
+  const roadAddrRef = useRef(null);
   const kakaoMapRef = useRef(null);
 
   const [roadAddrRes, setRoadAddrRes] = useState(null);
   const [postCodeRes, setPostCodeRes] = useState(null);
 
-  const [roadaddrResultOpen, setRoadaddrResultOpen] = useState(false);
+  const [roadAddrResultOpen, setRoadAddrResultOpen] = useState(false);
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
-      props.handleSearchClose("roadaddr");
+      props.handleSearchClose("road-addr");
     }
   };
 
@@ -38,12 +38,12 @@ function SearchRoadAddr(props) {
         } else if (state === "COMPLETE_CLOSE") {
           //사용자가 검색결과를 선택하여 팝업창이 닫혔을 경우, 실행될 코드를 작성하는 부분입니다.
           //oncomplete 콜백 함수가 실행 완료된 후에 실행됩니다.
-          setRoadaddrResultOpen(true);
+          setRoadAddrResultOpen(true);
         }
       },
       width: "100%",
       height: "100%",
-    }).embed(roadaddrRef.current, {});
+    }).embed(roadAddrRef.current, {});
   };
 
   const handleSetKakaoMap = () => {
@@ -56,7 +56,7 @@ function SearchRoadAddr(props) {
   };
 
   const handleReSearchAddr = () => {
-    setRoadaddrResultOpen(false);
+    setRoadAddrResultOpen(false);
     handleSetPostcodeService();
   };
 
@@ -74,7 +74,7 @@ function SearchRoadAddr(props) {
           addr: roadAddrRes.address.address_name,
         };
     dispatch(setAlbumSearch(res));
-    props.handleSearchClose("roadaddr");
+    props.handleSearchClose("road-addr");
   };
 
   useEffect(() => {
@@ -82,34 +82,34 @@ function SearchRoadAddr(props) {
   }, []);
 
   useEffect(() => {
-    if (roadaddrResultOpen) {
+    if (roadAddrResultOpen) {
       handleSetKakaoMap();
     }
-  }, [roadaddrResultOpen, postCodeRes]);
+  }, [roadAddrResultOpen, postCodeRes]);
 
   return (
-    <section className="roadaddr-component" onClick={handleSearchClick}>
+    <section className="road-addr-component" onClick={handleSearchClick}>
       <article ref={compRef}>
-        {roadaddrResultOpen ? (
-          <section className="roadaddr-result">
+        {roadAddrResultOpen ? (
+          <section className="road-addr-result">
             <header>
               <article>여기가 주소가 나올곳이에요</article>
             </header>
             <main>
               <article
-                className="kakao-map-roadaddr"
+                className="kakao-map-road-addr"
                 ref={kakaoMapRef}
               ></article>
             </main>
-            <footer className="roadaddr-buttons">
+            <footer className="road-addr-buttons">
               <button
-                className="roadaddr-re-search-button"
+                className="road-addr-re-search-button"
                 onClick={handleReSearchAddr}
               >
                 재검색
               </button>
               <button
-                className="roadaddr-select-button"
+                className="road-addr-select-button"
                 onClick={handleSelectResult}
               >
                 선택
@@ -117,7 +117,7 @@ function SearchRoadAddr(props) {
             </footer>
           </section>
         ) : (
-          <section className="roadaddr-main" ref={roadaddrRef}></section>
+          <section className="road-addr-main" ref={roadAddrRef}></section>
         )}
       </article>
     </section>

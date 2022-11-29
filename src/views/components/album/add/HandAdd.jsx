@@ -22,7 +22,7 @@ function HandAdd(props) {
       case "keyword":
         setSearchKeyword(false);
         break;
-      case "roadaddr":
+      case "road-addr":
         setSearchRoadAddr(false);
         break;
       case "location":
