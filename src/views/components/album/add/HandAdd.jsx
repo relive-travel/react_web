@@ -15,7 +15,7 @@ function HandAdd(props) {
   const photoFile = useSelector((state) => state.photo.file);
   const photoData = useSelector((state) => state.photo.data);
 
-  const searchData = useSelector((state) => state.album.addr);
+  const searchData = useSelector((state) => state.album.search);
 
   const handleSearchClose = (type) => {
     switch (type) {
