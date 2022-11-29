@@ -7,12 +7,14 @@ import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
 
 import "./AutoAdd.scss";
 function AutoAdd(props) {
+  const kakaoMapRef = useRef(null);
+
   const photoFile = useSelector((state) => state.photo.file);
   const photoData = useSelector((state) => state.photo.data);
 
   const handleSetKakaoMap = async () => {
     const res = setKakaoMapWithGeoPoint({
-      mapContainer: props.kakaoMapRef.current,
+      mapContainer: kakaoMapRef.current,
       latitude: photoData.exifdata.latitude,
       longitude: photoData.exifdata.longitude,
     });
@@ -76,7 +78,7 @@ function AutoAdd(props) {
               <section
                 className="kakao-map-auto"
                 id="location"
-                ref={props.kakaoMapRef}
+                ref={kakaoMapRef}
               ></section>
             </article>
           ) : null}

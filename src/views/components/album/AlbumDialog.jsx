@@ -16,7 +16,6 @@ function AlbumDialog(props) {
   var dateRef = useRef(null);
   var addrRef = useRef(null);
   var semiAddrRef = useRef(null);
-  var kakaoMapRef = useRef(null);
 
   const [albumType, setAlbumType] = useState(props.albumType);
 
@@ -78,7 +77,6 @@ function AlbumDialog(props) {
             dateRef={dateRef}
             addrRef={addrRef}
             semiAddrRef={semiAddrRef}
-            kakaoMapRef={kakaoMapRef}
             handleChangeAlbumOpen={handleChangeAlbumOpen}
           />
         ) : (
@@ -88,7 +86,6 @@ function AlbumDialog(props) {
             dateRef={dateRef}
             addrRef={addrRef}
             semiAddrRef={semiAddrRef}
-            kakaoMapRef={kakaoMapRef}
           />
         )}
       </main>
