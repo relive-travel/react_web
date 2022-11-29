@@ -290,7 +290,12 @@ export const setKakaoMapWithLocation = (
         customOverlay.setPosition(mouseEvent.latLng);
         customOverlay.setContent(content);
         customOverlay.setMap(map);
-        callback(result[0]);
+
+        callback({
+          latitude: mouseEvent.latLng.getLat(),
+          longitude: mouseEvent.latLng.getLng(),
+          ...result[0],
+        });
       }
     });
   });

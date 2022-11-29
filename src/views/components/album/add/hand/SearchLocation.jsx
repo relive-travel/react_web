@@ -21,7 +21,19 @@ function SearchLocation(props) {
   };
 
   const handleSelectResult = () => {
-    dispatch(setAlbumSearch(locationRes));
+    let res = locationRes.road_address
+      ? {
+          latitude: locationRes.latitude,
+          longitude: locationRes.longitude,
+          addr: locationRes.road_address.address_name,
+          semiAddr: locationRes.road_address.building_name,
+        }
+      : {
+          latitude: locationRes.latitude,
+          longitude: locationRes.longitude,
+          addr: locationRes.address.address_name,
+        };
+    dispatch(setAlbumSearch(res));
     props.handleSearchClose("location");
   };
 
