@@ -1,4 +1,4 @@
-.roadaddress-component {
+.roadaddr-component {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@
     min-width: 340px;
     aspect-ratio: 1;
     background-color: rgba($color: #ff8822, $alpha: 1);
-    .roadaddress-main {
+    .roadaddr-main {
       display: flex;
       flex-direction: column;
       justify-content: space-around;

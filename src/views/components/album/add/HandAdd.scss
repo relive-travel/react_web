@@ -9,8 +9,8 @@
   .info-title,
   .info-content,
   .info-photo,
-  .info-address,
-  .info-semi-address,
+  .info-addr,
+  .info-semi-addr,
   .info-date,
   .info-footer {
     display: flex;
@@ -34,7 +34,7 @@
     .info-main-bottom {
       display: flex;
       flex-direction: column;
-      .info-address-buttons {
+      .info-addr-buttons {
         display: flex;
         flex-direction: row;
         justify-content: space-around;

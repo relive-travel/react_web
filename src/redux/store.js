@@ -23,7 +23,7 @@ export const store = configureStore({
         // ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
         // // Ignore these paths in the state
         ignoredPaths: [
-          "marker.list", // has [geoPoint]
+          "marker.sliderList", // has [geoPoint]
           "photo.file", // has [file]
           "photo.data", // has [exif]
         ],

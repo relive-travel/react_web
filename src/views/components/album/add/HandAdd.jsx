@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 
 import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
 import SearchKeyword from "./hand/SearchKeyword";
-import SearchRoadAddress from "./hand/SearchRoadAddress";
+import SearchRoadAddr from "./hand/SearchRoadAddr";
 import SearchLocation from "./hand/SearchLocation";
 
 import "./HandAdd.scss";
 function HandAdd(props) {
   const [searchKeyword, setSearchKeyword] = useState(false);
-  const [searchRoadAddress, setSearchRoadAddress] = useState(false);
+  const [searchRoadAddr, setSearchRoadAddr] = useState(false);
   const [searchLocation, setSearchLocation] = useState(false);
 
   const photoFile = useSelector((state) => state.photo.file);
@@ -22,8 +22,8 @@ function HandAdd(props) {
       case "keyword":
         setSearchKeyword(false);
         break;
-      case "roadaddress":
-        setSearchRoadAddress(false);
+      case "roadaddr":
+        setSearchRoadAddr(false);
         break;
       case "location":
         setSearchLocation(false);
@@ -68,28 +68,26 @@ function HandAdd(props) {
         </section>
         <section className="info-main-bottom">
           <label htmlFor="content">주소 추가</label>
-          <aside className="info-address-buttons">
+          <aside className="info-addr-buttons">
             <button onClick={() => setSearchKeyword(true)}>키워드 검색</button>
-            <button onClick={() => setSearchRoadAddress(true)}>
-              도로명 검색
-            </button>
+            <button onClick={() => setSearchRoadAddr(true)}>도로명 검색</button>
             <button onClick={() => setSearchLocation(true)}>위치 선택</button>
           </aside>
           {searchData ? (
-            <section className="info-address">
-              <article className="info-address">
-                <label htmlFor="address">주소 확인</label>
+            <section className="info-addr">
+              <article className="info-addr">
+                <label htmlFor="addr">주소 확인</label>
                 <input
-                  id="address"
+                  id="addr"
                   type="text"
                   readOnly
                   ref={props.addrRef}
                 ></input>
               </article>
-              <article className="info-semi-address">
-                <label htmlFor="semi-address">추가 정보</label>
+              <article className="info-semi-addr">
+                <label htmlFor="semi-addr">추가 정보</label>
                 <input
-                  id="semi-address"
+                  id="semi-addr"
                   type="text"
                   ref={props.semiAddrRef}
                 ></input>
@@ -100,8 +98,8 @@ function HandAdd(props) {
             {searchKeyword ? (
               <SearchKeyword handleSearchClose={handleSearchClose} />
             ) : null}
-            {searchRoadAddress ? (
-              <SearchRoadAddress handleSearchClose={handleSearchClose} />
+            {searchRoadAddr ? (
+              <SearchRoadAddr handleSearchClose={handleSearchClose} />
             ) : null}
             {searchLocation ? (
               <SearchLocation handleSearchClose={handleSearchClose} />

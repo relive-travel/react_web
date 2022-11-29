@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getAddress, koreanAddress } from "lib/setAddress";
+import { getAddr, koreanAddr } from "lib/setAddr";
 
 import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
@@ -13,20 +13,20 @@ function Slider(props) {
   const [albumInfo, setAlbumInfo] = useState([]);
 
   const mapRegion = useSelector((state) => state.map.region);
-  const markerList = useSelector((state) => state.marker.list);
+  const sliderListData = useSelector((state) => state.marker.sliderList);
 
   useEffect(() => {
     if (mapRegion === "korea") {
       dispatch(getMarkerAll());
     } else {
-      dispatch(getMarkerMatchRegion(koreanAddress(mapRegion)));
+      dispatch(getMarkerMatchRegion(koreanAddr(mapRegion)));
     }
   }, [mapRegion]);
 
   useEffect(() => {
-    if (markerList) {
+    if (sliderListData) {
       const getAlbumInfo = async () => {
-        const info = markerList.reduce(async (promise, marker, idx) => {
+        const info = sliderListData.reduce(async (promise, marker, idx) => {
           let albumAcc = await promise;
 
           const albumData = await dispatch(
@@ -51,7 +51,7 @@ function Slider(props) {
       };
       getAlbumInfo();
     }
-  }, [markerList]);
+  }, [sliderListData]);
   return (
     <>
       {albumInfo
@@ -60,8 +60,8 @@ function Slider(props) {
           return (
             <div className="slider-info" key={info.id}>
               <div className="info-header">
-                <div className="info-address">
-                  {getAddress(info.marker.region.address)}
+                <div className="info-addr">
+                  {getAddr(info.marker.region.addr)}
                 </div>
                 <div className="info-marker-ea">🥕 1</div>
               </div>
@@ -69,10 +69,10 @@ function Slider(props) {
                 <div className="info-main">
                   <div className="info-date">{info.date}</div>
                   <div className="info-title">{info.title}</div>
-                  <div className="info-semi-address">
-                    {info.marker.region.address +
+                  <div className="info-semi-addr">
+                    {info.marker.region.addr +
                       " " +
-                      info.marker.region.semiAddress}
+                      info.marker.region.semiAddr}
                   </div>
                 </div>
               </div>

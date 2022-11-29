@@ -3,16 +3,16 @@ import { useDispatch } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
 
-import "./SearchRoadAddress.scss";
-function SearchRoadAddress(props) {
+import "./SearchRoadAddr.scss";
+function SearchRoadAddr(props) {
   const dispatch = useDispatch();
 
   const compRef = useRef(null);
-  const roadaddressRef = useRef(null);
+  const roadaddrRef = useRef(null);
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
-      props.handleSearchClose("roadaddress");
+      props.handleSearchClose("roadaddr");
     }
   };
 
@@ -29,20 +29,21 @@ function SearchRoadAddress(props) {
         } else if (state === "COMPLETE_CLOSE") {
           //사용자가 검색결과를 선택하여 팝업창이 닫혔을 경우, 실행될 코드를 작성하는 부분입니다.
           //oncomplete 콜백 함수가 실행 완료된 후에 실행됩니다.
-          props.handleSearchClose("roadaddress");
+          props.handleSearchClose("roadaddr");
         }
       },
       width: "100%",
       height: "100%",
-    }).embed(roadaddressRef.current, {});
+    }).embed(roadaddrRef.current, {});
+    console.log("만들어졌어");
   }, []);
 
   return (
-    <section className="roadaddress-component" onClick={handleSearchClick}>
+    <section className="roadaddr-component" onClick={handleSearchClick}>
       <article ref={compRef}>
-        <section className="roadaddress-main" ref={roadaddressRef}></section>
+        <section className="roadaddr-main" ref={roadaddrRef}></section>
       </article>
     </section>
   );
 }
-export default SearchRoadAddress;
+export default SearchRoadAddr;

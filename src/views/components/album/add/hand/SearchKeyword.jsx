@@ -42,9 +42,6 @@ function SearchKeyword(props) {
   });
 
   const handleSelectResult = () => {
-    const searchResult = {
-      addr,
-    };
     dispatch(setAlbumSearch(keywordRes));
     props.handleSearchClose("keyword");
   };

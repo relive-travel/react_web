@@ -5,11 +5,11 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setProjection } from "lib/setProjection";
+import { koreanAddr } from "lib/setAddr";
 
 import { getMarkerMatchRegion } from "redux/thunk/markerThunk";
 
 import "./MarkerElements.scss";
-import { koreanAddress } from "lib/setAddress";
 function MarkerElements(props) {
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ function MarkerElements(props) {
 
   useEffect(() => {
     if (mapRegion) {
-      dispatch(getMarkerMatchRegion({ region: koreanAddress(mapRegion) }));
+      dispatch(getMarkerMatchRegion({ region: koreanAddr(mapRegion) }));
     }
   }, [mapRegion]);
 

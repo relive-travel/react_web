@@ -94,22 +94,13 @@ function AutoAdd(props) {
                 ref={props.dateRef}
               ></input>
             </article>
-            <article className="info-address">
-              <label htmlFor="address">주소 확인</label>
-              <input
-                id="address"
-                type="text"
-                readOnly
-                ref={props.addrRef}
-              ></input>
+            <article className="info-addr">
+              <label htmlFor="addr">주소 확인</label>
+              <input id="addr" type="text" readOnly ref={props.addrRef}></input>
             </article>
-            <article className="info-semi-address">
-              <label htmlFor="semi-address">추가 정보</label>
-              <input
-                id="semi-address"
-                type="text"
-                ref={props.semiAddrRef}
-              ></input>
+            <article className="info-semi-addr">
+              <label htmlFor="semi-addr">추가 정보</label>
+              <input id="semi-addr" type="text" ref={props.semiAddrRef}></input>
             </article>
           </section>
         ) : null}
