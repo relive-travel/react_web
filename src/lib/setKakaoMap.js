@@ -206,7 +206,44 @@ export const setKakaoMapWithKeyword = (
   searchPlaces();
 };
 
-export const setKakaoMapWithRoad = (map, latitude, longitude) => {};
+export const setKakaoMapWithRoad = ({ mapContainer, addr }, callback) => {
+  let mapOptions = { center: new window.kakao.maps.LatLng(0, 0), level: 4 };
+  let map = new window.kakao.maps.Map(mapContainer, mapOptions);
+  let marker = new window.kakao.maps.Marker();
+  let customOverlay = new window.kakao.maps.CustomOverlay();
+
+  let geocoder = new window.kakao.maps.services.Geocoder();
+  geocoder.addressSearch(addr, (result, status) => {
+    if (status === window.kakao.maps.services.Status.OK) {
+      let position = new window.kakao.maps.LatLng(
+        parseFloat(result[0].y),
+        parseFloat(result[0].x)
+      );
+
+      let content = `
+        <section class="place-addr" style="margin-bottom: 10.875em;">
+          ${
+            result[0].road_address
+              ? `<header class="place-name">${result[0].road_address.building_name}</header>
+                <hr />
+                <section class="place-road-addr-name">${result[0].road_address.address_name}</section>`
+              : `<section class="place-addr-name">${result[0].address.address_name}</section>`
+          }
+        </section>
+      `;
+
+      map.setCenter(position);
+
+      marker.setPosition(position);
+      marker.setMap(map);
+
+      customOverlay.setPosition(position);
+      customOverlay.setContent(content);
+      customOverlay.setMap(map);
+      callback(result[0]);
+    }
+  });
+};
 
 export const setKakaoMapWithLocation = (
   { mapContainer, latitude, longitude },
