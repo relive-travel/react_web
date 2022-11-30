@@ -1,7 +1,12 @@
+@mixin flexColumWithMargin {
+  display: flex;
+  flex-direction: column;
+  margin: 0.125em 0;
+}
 .album-hand-info {
-  > * {
-    margin: 0.625em 0;
-  }
+  @include flexColumWithMargin();
+  justify-content: space-between;
+  height: 100%;
   > header,
   > main,
   > footer,
@@ -13,11 +18,11 @@
   .info-semi-addr,
   .info-date,
   .info-footer {
-    display: flex;
-    flex-direction: column;
-    margin: 0.125em 0;
+    @include flexColumWithMargin();
   }
   .info-main {
+    @include flexColumWithMargin();
+    justify-content: space-between;
     height: 100%;
 
     margin: 0.25em 0;
@@ -25,6 +30,15 @@
       margin: 0.25em 0;
     }
     .info-main-top {
+      @include flexColumWithMargin();
+      width: 100%;
+      .info-date {
+        > input {
+          text-align: center;
+          width: fit-content;
+          margin: auto;
+        }
+      }
     }
     .info-main-middle {
       .info-photo {
@@ -34,6 +48,10 @@
     .info-main-bottom {
       display: flex;
       flex-direction: column;
+
+      > * {
+        margin: 0.25em 0;
+      }
       .info-addr-buttons {
         display: flex;
         flex-direction: row;
@@ -57,6 +75,19 @@
         > button:hover {
           color: black;
           background-color: rgba($color: #ff8822, $alpha: 1);
+        }
+      }
+      .info-addres {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        > article {
+          width: 45%;
+        }
+        .info-addr {
+        }
+        .info-semi-addr {
         }
       }
     }

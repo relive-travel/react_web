@@ -33,7 +33,8 @@ function HandAdd(props) {
 
   useEffect(() => {
     if (searchData) {
-      console.log(searchData);
+      props.addrRef.current.value = searchData.addr;
+      props.semiAddrRef.current.value = searchData.semiAddr;
     }
   }, [searchData]);
 
@@ -74,7 +75,7 @@ function HandAdd(props) {
             <button onClick={() => setSearchLocation(true)}>위치 선택</button>
           </aside>
           {searchData ? (
-            <section className="info-addr">
+            <section className="info-addres">
               <article className="info-addr">
                 <label htmlFor="addr">주소 확인</label>
                 <input

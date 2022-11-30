@@ -39,6 +39,11 @@ textarea {
   border-color: white;
 }
 
+input:read-only {
+  color: white;
+  opacity: 0.5;
+}
+
 textarea {
   resize: none;
 }
