@@ -21,7 +21,7 @@ function DragAndDrop(props) {
       ? dispatch(setPhotoData(await getExifData(fileObject)))
       : dispatch(setPhotoData(await getExifDataList(fileObject)));
     dispatch(setPhotoFile(fileObject));
-    preivewImage(fileObject);
+    preivewImage(props.previewRef.current, fileObject);
   }, []);
 
   const handleFileFilter = useCallback((id) => {});
@@ -74,6 +74,8 @@ function DragAndDrop(props) {
   }, [handleDragEnter, handleDragLeave, handleDragOver, DragAndDrop]);
 
   useEffect(() => {
+    console.log(props.photoRef);
+    console.log(props.previewRef);
     initDragEvents();
 
     return () => resetDragEvents();
@@ -88,24 +90,26 @@ function DragAndDrop(props) {
             type="file"
             onChange={handleChangeFiles}
             accept="Image/*"
+            ref={props.photoRef}
           ></input>
           <label
             className={isDrag ? "dragging" : "drop"}
             ref={dragRef}
             htmlFor="photo"
           >
-            <section className="photo-preview"></section>
+            <section className="photo-preview" ref={props.previewRef}></section>
           </label>
         </section>
       ) : (
         <section className="drag-hand-component">
-          <main className="photo-preview">
+          <main className="photo-preview" ref={props.previewRef}>
             <input
               id="photo"
               type="file"
               onChange={handleChangeFiles}
               accept="image/*"
               multiple
+              ref={props.photoRef}
             ></input>
             <label
               className={isDrag ? "dragging" : "drop"}

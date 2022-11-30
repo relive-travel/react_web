@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 
+import { previewClearImage } from "lib/setPreview";
+
 import AutoAdd from "./add/AutoAdd";
 import HandAdd from "./add/HandAdd";
 import ChangeAlbum from "./exception/album/ChangeAlbum";
@@ -11,11 +13,13 @@ import "./AlbumDialog.scss";
 function AlbumDialog(props) {
   const dispatch = useDispatch();
 
-  var titleRef = useRef(null);
-  var contentRef = useRef(null);
-  var dateRef = useRef(null);
-  var addrRef = useRef(null);
-  var semiAddrRef = useRef(null);
+  const titleRef = useRef(null);
+  const contentRef = useRef(null);
+  const photoRef = useRef(null);
+  const previewRef = useRef(null);
+  const dateRef = useRef(null);
+  const addrRef = useRef(null);
+  const semiAddrRef = useRef(null);
 
   const [albumType, setAlbumType] = useState(props.albumType);
 
@@ -45,11 +49,16 @@ function AlbumDialog(props) {
   const handleClearAlbum = () => {
     titleRef.current.value = "";
     contentRef.current.value = "";
+
+    photoRef.current.value = "";
+    photoRef.current.files = null;
+    previewClearImage(previewRef.current);
+
     dateRef.current.value = "";
     addrRef.current.value = "";
     semiAddrRef.current.value = "";
-    dispatch(setPhotoFile(null));
     dispatch(setPhotoData(null));
+    dispatch(setPhotoFile(null));
   };
 
   const handlePreviewAlbum = () => {
@@ -74,6 +83,8 @@ function AlbumDialog(props) {
           <AutoAdd
             titleRef={titleRef}
             contentRef={contentRef}
+            photoRef={photoRef}
+            previewRef={previewRef}
             dateRef={dateRef}
             addrRef={addrRef}
             semiAddrRef={semiAddrRef}
@@ -83,6 +94,8 @@ function AlbumDialog(props) {
           <HandAdd
             titleRef={titleRef}
             contentRef={contentRef}
+            photoRef={photoRef}
+            previewRef={previewRef}
             dateRef={dateRef}
             addrRef={addrRef}
             semiAddrRef={semiAddrRef}

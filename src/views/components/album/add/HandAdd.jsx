@@ -64,7 +64,11 @@ function HandAdd(props) {
             <label htmlFor="photo">
               사진<span>(*)</span>
             </label>
-            <DragAndDrop dragType="hand"></DragAndDrop>
+            <DragAndDrop
+              dragType="hand"
+              photoRef={props.photoRef}
+              previewRef={props.previewRef}
+            ></DragAndDrop>
           </article>
         </section>
         <section className="info-main-bottom">

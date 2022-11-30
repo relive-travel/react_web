@@ -1,7 +1,6 @@
 import loadImage from "blueimp-load-image";
 
-export const preivewImage = (fileObjects) => {
-  var $preview = document.querySelector(".photo-preview");
+export const previewClearImage = ($preview) => {
   while ($preview.lastChild) {
     if ($preview.lastChild.tagName === "ARTICLE") {
       $preview.removeChild($preview.lastChild);
@@ -9,7 +8,10 @@ export const preivewImage = (fileObjects) => {
       break;
     }
   }
-  console.log($preview);
+};
+
+export const preivewImage = ($preview, fileObjects) => {
+  previewClearImage($preview);
 
   const files = Object.values(fileObjects);
   files.forEach(async (file, index) => {

@@ -70,7 +70,11 @@ function AutoAdd(props) {
             <label htmlFor="photo">
               사진<span>(*)</span>
             </label>
-            <DragAndDrop dragType="auto"></DragAndDrop>
+            <DragAndDrop
+              dragType="auto"
+              photoRef={props.photoRef}
+              previewRef={props.previewRef}
+            ></DragAndDrop>
           </article>
           {photoData ? (
             <article className="info-location">
