@@ -23,6 +23,7 @@ function ChangeAlbum(props) {
               className="change-picture-button"
               onClick={() => {
                 props.handleChangeAlbumClose();
+                props.handleClearPhoto();
               }}
             >
               사진

@@ -46,34 +46,28 @@ function AlbumDialog(props) {
     setAlbumType("hand");
   };
 
-  const handleClearAlbum = () => {
-    titleRef.current.value = "";
-    contentRef.current.value = "";
-
+  const handleClearPhoto = () => {
     photoRef.current.value = "";
     photoRef.current.files = null;
     previewClearImage(previewRef.current);
+    dispatch(setPhotoData(null));
+    dispatch(setPhotoFile(null));
+  };
 
+  const handleClearAlbum = () => {
+    titleRef.current.value = "";
+    contentRef.current.value = "";
     dateRef.current.value = "";
     addrRef.current.value = "";
     semiAddrRef.current.value = "";
-    dispatch(setPhotoData(null));
-    dispatch(setPhotoFile(null));
+    handleClearPhoto();
   };
 
   const handlePreviewAlbum = () => {
     handlePreviewAlbumOpen();
   };
 
-  const handleAddAlbum = () => {
-    console.log(
-      titleRef.current.value,
-      contentRef.current.value,
-      dateRef.current.value,
-      addrRef.current.value,
-      semiAddrRef.current.value
-    );
-  };
+  const handleAddAlbum = () => {};
 
   return (
     <article className="album-main">
@@ -116,9 +110,10 @@ function AlbumDialog(props) {
       <aside>
         {changeOpen ? (
           <ChangeAlbum
+            handleClearPhoto={handleClearPhoto}
+            handleChangeAlbum={handleChangeAlbum}
             handleClearAlbum={handleClearAlbum}
             handleChangeAlbumClose={handleChangeAlbumClose}
-            handleChangeAlbum={handleChangeAlbum}
           />
         ) : null}
       </aside>
