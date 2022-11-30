@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { setPhotoDelete } from "redux/slice/photoSlice";
 
 import AlbumDialog from "./AlbumDialog";
 
 import "./AlbumSelect.scss";
 function AlbumSelect(props) {
+  const dispatch = useDispatch();
   const [selectType, setSelectType] = useState(null);
   const [selectOptionOpen, setSelectOptionOpen] = useState(false);
   const [albumDialogOpen, setAlbumDialogOpen] = useState(false);
@@ -13,6 +17,7 @@ function AlbumSelect(props) {
   };
 
   const handleSelectOptionClose = (type) => {
+    dispatch(setPhotoDelete());
     setSelectOptionOpen(false);
     setSelectType(type);
     handleDialogOpen();

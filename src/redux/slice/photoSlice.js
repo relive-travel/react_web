@@ -15,9 +15,14 @@ const photoSlice = createSlice({
     setPhotoData: (state, action) => {
       state.data = action.payload;
     },
+    setPhotoDelete: (state, action) => {
+      state.file = null;
+      state.data = null;
+    },
   },
 });
 
-export const { setPhotoFile, setPhotoData } = photoSlice.actions;
+export const { setPhotoFile, setPhotoData, setPhotoDelete } =
+  photoSlice.actions;
 
 export default photoSlice.reducer;
