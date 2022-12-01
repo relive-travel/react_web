@@ -1,5 +1,11 @@
-import "./ChangeAlbum.scss";
-function ChangeAlbum(props) {
+import { useDispatch } from "react-redux";
+
+import { setAlbumChange } from "redux/slice/albumSlice";
+import { setAlbumChangeModal } from "redux/slice/statusSlice";
+
+import "./AlbumChange.scss";
+function AlbumChange(props) {
+  const dispatch = useDispatch();
   return (
     <section className="change-album-component">
       <article>
@@ -11,7 +17,7 @@ function ChangeAlbum(props) {
             <button
               className="re-start-button"
               onClick={() => {
-                props.handleChangeAlbumClose();
+                dispatch(setAlbumChangeModal(false));
                 props.handleClearAlbum();
               }}
             >
@@ -22,7 +28,7 @@ function ChangeAlbum(props) {
             <button
               className="change-picture-button"
               onClick={() => {
-                props.handleChangeAlbumClose();
+                dispatch(setAlbumChangeModal(false));
                 props.handleClearPhoto();
               }}
             >
@@ -33,8 +39,8 @@ function ChangeAlbum(props) {
             <button
               className="write-hand-button"
               onClick={() => {
-                props.handleChangeAlbumClose();
-                props.handleChangeAlbum();
+                dispatch(setAlbumChangeModal(false));
+                dispatch(setAlbumChange());
               }}
             >
               직접
@@ -48,4 +54,4 @@ function ChangeAlbum(props) {
   );
 }
 
-export default ChangeAlbum;
+export default AlbumChange;

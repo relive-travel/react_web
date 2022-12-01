@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
+import { setAlbumChangeModal } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithGeoPoint } from "lib/setKakaoMap";
 
@@ -53,7 +54,7 @@ function AutoAdd(props) {
 
         handleSetKakaoMap();
       } else {
-        props.handleChangeAlbumOpen();
+        dispatch(setAlbumChangeModal(true));
       }
     }
   }, [photoData]);

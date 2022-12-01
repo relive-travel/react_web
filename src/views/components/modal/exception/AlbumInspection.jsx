@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { setInspectionModal } from "redux/slice/modalSlice";
+import { setAlbumInspectionModal } from "redux/slice/statusSlice";
 
-import "./InspectionAlbum.scss";
-function InspectionAlbum(props) {
+import "./AlbumInspection.scss";
+function AlbumInspection(props) {
   const dispatch = useDispatch();
 
   const compRef = useRef(null);
@@ -13,12 +13,8 @@ function InspectionAlbum(props) {
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
-      handleInspectionAlbumClose();
+      dispatch(setAlbumInspectionModal(false));
     }
-  };
-
-  const handleInspectionAlbumClose = () => {
-    dispatch(setInspectionModal(false));
   };
 
   useEffect(() => {
@@ -42,7 +38,7 @@ function InspectionAlbum(props) {
     )
       setInspectList((inspectList) => [...inspectList, "주소"]);
 
-    return () => handleInspectionAlbumClose();
+    return () => dispatch(setAlbumInspectionModal(false));
   }, []);
 
   return (
@@ -58,11 +54,17 @@ function InspectionAlbum(props) {
             })}
           </main>
           <footer>
-            <button onClick={handleInspectionAlbumClose}>작성할게요!</button>
+            <button
+              onClick={() => {
+                dispatch(setAlbumInspectionModal(false));
+              }}
+            >
+              작성할게요!
+            </button>
           </footer>
         </section>
       </article>
     </section>
   );
 }
-export default InspectionAlbum;
+export default AlbumInspection;

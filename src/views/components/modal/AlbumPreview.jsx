@@ -1,5 +1,6 @@
-import "./PreviewAlbum.scss";
-function PreviewAlbum(props) {
+import "./AlbumPreview.scss";
+function AlbumPreview(props) {
+  const handlePreviewAlbumClose = () => {};
   return (
     <section className="preview-album-component">
       <article>
@@ -12,4 +13,4 @@ function PreviewAlbum(props) {
     </section>
   );
 }
-export default PreviewAlbum;
+export default AlbumPreview;

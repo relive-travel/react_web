@@ -6,7 +6,7 @@ import mapReducer from "./slice/mapSlice";
 import markerReducer from "./slice/markerSlice";
 import albumReducer from "./slice/albumSlice";
 import photoReducer from "./slice/photoSlice";
-import modalReducer from "./slice/modalSlice";
+import statusReducer from "./slice/statusSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +15,7 @@ export const store = configureStore({
     marker: markerReducer,
     album: albumReducer,
     photo: photoReducer,
-    modal: modalReducer,
+    status: statusReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
