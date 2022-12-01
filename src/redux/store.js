@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import { composeWithDevTools } from "redux-devtools-extension";
 // import logger from "redux-logger";
+import userReducer from "./slice/userSlice";
 import mapReducer from "./slice/mapSlice";
 import markerReducer from "./slice/markerSlice";
 import albumReducer from "./slice/albumSlice";
@@ -8,6 +9,7 @@ import photoReducer from "./slice/photoSlice";
 
 export const store = configureStore({
   reducer: {
+    user: userReducer,
     map: mapReducer,
     marker: markerReducer,
     album: albumReducer,

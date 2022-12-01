@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setAlbumSearch } from "redux/slice/albumSlice";
 
 import { setKakaoMapWithGeoPoint } from "lib/setKakaoMap";
 
@@ -7,6 +9,8 @@ import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
 
 import "./AutoAdd.scss";
 function AutoAdd(props) {
+  const dispatch = useDispatch();
+
   const kakaoMapRef = useRef(null);
 
   const photoFile = useSelector((state) => state.photo.file);
@@ -25,6 +29,14 @@ function AutoAdd(props) {
     } else {
       props.addrRef.current.value = addr.address.address_name;
     }
+    dispatch(
+      setAlbumSearch({
+        latitude: photoData.exifdata.latitude,
+        longitude: photoData.exifdata.longitude,
+        addr: props.addrRef.current.value,
+        semiAddr: props.semiAddrRef.current.value,
+      })
+    );
   };
 
   const handleResizeHeight = (e) => {

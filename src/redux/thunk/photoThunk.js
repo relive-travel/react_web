@@ -5,14 +5,13 @@ import { db } from "lib/setFilrebase";
 
 export const setPhoto = createAsyncThunk(
   `photo/setPhoto`,
-  async ({ id, name, url, width, height }) => {
+  async ({ albumId, name, url }) => {
     const data = {
-      album_id: id,
+      albumId,
       name,
       url,
-      width,
-      height,
     };
+    console.log(data);
 
     const docRef = await addDoc(collection(db, "photos"), data);
     return docRef.id;

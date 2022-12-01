@@ -1,9 +1,16 @@
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 
+import { getUser } from "redux/thunk/userThunk";
+import { setMarker } from "redux/thunk/markerThunk";
+import { setAlbum } from "redux/thunk/albumThunk";
+import { setPhoto } from "redux/thunk/photoThunk";
+
+import { getRegionAddr } from "lib/getAddr";
 import { previewClearImage } from "lib/setPreview";
+import { uploadFiles } from "lib/setS3Client";
 
 import AutoAdd from "./add/AutoAdd";
 import HandAdd from "./add/HandAdd";
@@ -25,6 +32,11 @@ function AlbumDialog(props) {
 
   const [changeOpen, setChangeOpen] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+
+  const userEmail = useSelector((state) => state.user.email);
+  const photoData = useSelector((state) => state.photo.data);
+  const photoFile = useSelector((state) => state.photo.file);
+  const searchData = useSelector((state) => state.album.search);
 
   const handleChangeAlbumOpen = () => {
     setChangeOpen(true);
@@ -67,7 +79,54 @@ function AlbumDialog(props) {
     handlePreviewAlbumOpen();
   };
 
-  const handleAddAlbum = () => {};
+  const handleAddAlbum = async () => {
+    const userId = dispatch(getUser({ email: userEmail })).then((response) => {
+      return response.payload;
+    });
+
+    const markerId = dispatch(
+      setMarker({
+        userId: await userId,
+        region: getRegionAddr({
+          addr: addrRef.current.value,
+          semiAddr: semiAddrRef.current.value,
+        }),
+        latitude: searchData.latitude,
+        longitude: searchData.longitude,
+      })
+    ).then((response) => {
+      return response.payload;
+    });
+
+    const albumId = dispatch(
+      setAlbum({
+        markerId: await markerId,
+        title: titleRef.current.value,
+        content: contentRef.current.value,
+        date: dateRef.current.value,
+      })
+    ).then((response) => {
+      return response.payload;
+    });
+
+    const filesInfo = await uploadFiles(
+      photoFile,
+      titleRef.current.value,
+      userEmail
+    );
+
+    filesInfo.forEach(async (file) => {
+      const photoId = dispatch(
+        setPhoto({
+          albumId: await albumId,
+          name: file.name,
+          url: file.url,
+        })
+      ).then((response) => {
+        return response.payload;
+      });
+    });
+  };
 
   return (
     <article className="album-main">

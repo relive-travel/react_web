@@ -5,9 +5,9 @@ import { db } from "lib/setFilrebase";
 
 export const setAlbum = createAsyncThunk(
   `album/setAlbum`,
-  async ({ id, title, content, date }) => {
+  async ({ markerId, title, content, date }) => {
     const data = {
-      marker_id: id,
+      markerId,
       title,
       content,
       date,

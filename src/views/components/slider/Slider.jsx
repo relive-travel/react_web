@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getAddr, koreanAddr } from "lib/setAddr";
+import { getAddr, getKoreanAddr } from "lib/getAddr";
 
 import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
@@ -19,7 +19,7 @@ function Slider(props) {
     if (mapRegion === "korea") {
       dispatch(getMarkerAll());
     } else {
-      dispatch(getMarkerMatchRegion(koreanAddr(mapRegion)));
+      dispatch(getMarkerMatchRegion(getKoreanAddr(mapRegion)));
     }
   }, [mapRegion]);
 

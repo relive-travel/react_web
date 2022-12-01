@@ -1,4 +1,4 @@
-export const separateAddr = ({ addr, semiAddr }) => {
+export const getRegionAddr = ({ addr, semiAddr }) => {
   const addrArray = addr.split(" ");
   const addrAry = addrArray.slice(1, addrArray.length);
 
@@ -50,14 +50,14 @@ export const separateAddr = ({ addr, semiAddr }) => {
 };
 
 export const getAddr = (addr) => {
-  const addrRes = separateAddr({ addr });
+  const addrRes = getRegionAddr({ addr });
   delete addrRes.addr;
   return Object.values(addrRes)
     .filter((value) => value && value != "")
     .join(" ");
 };
 
-export const koreanAddr = (region) => {
+export const getKoreanAddr = (region) => {
   switch (region) {
     case "Seoul":
       return "서울";
