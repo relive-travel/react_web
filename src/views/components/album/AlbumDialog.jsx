@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
+import { setInspectionModal } from "redux/slice/modalSlice";
 
 import { getUser } from "redux/thunk/userThunk";
 import { setMarker } from "redux/thunk/markerThunk";
@@ -15,6 +16,7 @@ import { uploadFiles } from "lib/setS3Client";
 import AutoAdd from "./add/AutoAdd";
 import HandAdd from "./add/HandAdd";
 import ChangeAlbum from "./exception/album/ChangeAlbum";
+import InspectionAlbum from "./exception/album/InspectionAlbum";
 
 import "./AlbumDialog.scss";
 function AlbumDialog(props) {
@@ -37,6 +39,8 @@ function AlbumDialog(props) {
   const photoData = useSelector((state) => state.photo.data);
   const photoFile = useSelector((state) => state.photo.file);
   const searchData = useSelector((state) => state.album.search);
+
+  const inspectStatus = useSelector((state) => state.modal.inspection);
 
   const handleChangeAlbumOpen = () => {
     setChangeOpen(true);
@@ -79,7 +83,50 @@ function AlbumDialog(props) {
     handlePreviewAlbumOpen();
   };
 
+  const handleAutoInspectAlbum = () => {
+    if (
+      dateRef.current === null ||
+      addrRef.current === null ||
+      titleRef.current.value === null ||
+      titleRef.current.value === "" ||
+      dateRef.current.value === null ||
+      dateRef.current.value === "" ||
+      photoFile === null ||
+      addrRef.current.value === null ||
+      addrRef.current.value === "" ||
+      searchData === null
+    ) {
+      dispatch(setInspectionModal(true));
+      return false;
+    }
+    return true;
+  };
+
+  const handleHandInspectAlbum = () => {
+    if (
+      titleRef.current.value === null ||
+      titleRef.current.value === "" ||
+      dateRef.current.value === null ||
+      dateRef.current.value === "" ||
+      photoFile === null ||
+      addrRef.current.value === null ||
+      addrRef.current.value === "" ||
+      searchData === null
+    ) {
+      dispatch(setInspectionModal(true));
+      return false;
+    }
+    return true;
+  };
+
   const handleAddAlbum = async () => {
+    if (
+      !(albumType === "auto"
+        ? handleAutoInspectAlbum()
+        : handleHandInspectAlbum())
+    )
+      return;
+
     const userId = dispatch(getUser({ email: userEmail })).then((response) => {
       return response.payload;
     });
@@ -173,6 +220,14 @@ function AlbumDialog(props) {
             handleChangeAlbum={handleChangeAlbum}
             handleClearAlbum={handleClearAlbum}
             handleChangeAlbumClose={handleChangeAlbumClose}
+          />
+        ) : null}
+        {inspectStatus ? (
+          <InspectionAlbum
+            titleRef={titleRef}
+            dateRef={dateRef}
+            photoRef={photoRef}
+            addrRef={addrRef}
           />
         ) : null}
       </aside>
