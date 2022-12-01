@@ -85,13 +85,13 @@ function AlbumDialog(props) {
 
   const handleAutoInspectAlbum = () => {
     if (
-      dateRef.current === null ||
-      addrRef.current === null ||
       titleRef.current.value === null ||
       titleRef.current.value === "" ||
+      dateRef.current === null ||
       dateRef.current.value === null ||
       dateRef.current.value === "" ||
       photoFile === null ||
+      addrRef.current === null ||
       addrRef.current.value === null ||
       addrRef.current.value === "" ||
       searchData === null
@@ -109,6 +109,7 @@ function AlbumDialog(props) {
       dateRef.current.value === null ||
       dateRef.current.value === "" ||
       photoFile === null ||
+      addrRef.current === null ||
       addrRef.current.value === null ||
       addrRef.current.value === "" ||
       searchData === null
