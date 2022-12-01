@@ -62,7 +62,9 @@ function AutoAdd(props) {
     <section className="album-auto-info">
       <header className="info-header">
         <section className="info-title">
-          <label htmlFor="title">제목</label>
+          <label htmlFor="title">
+            제목<span>(*)</span>
+          </label>
           <input type="text" id="title" ref={props.titleRef}></input>
         </section>
         <section className="info-content">
@@ -113,7 +115,9 @@ function AutoAdd(props) {
               ></input>
             </article>
             <article className="info-addr">
-              <label htmlFor="addr">주소 확인</label>
+              <label htmlFor="addr">
+                주소 확인<span>(*)</span>
+              </label>
               <input id="addr" type="text" readOnly ref={props.addrRef}></input>
             </article>
             <article className="info-semi-addr">

@@ -42,7 +42,9 @@ function HandAdd(props) {
     <section className="album-hand-info">
       <header className="info-header">
         <section className="info-title">
-          <label htmlFor="title">제목</label>
+          <label htmlFor="title">
+            제목<span>(*)</span>
+          </label>
           <input type="text" id="title" ref={props.titleRef}></input>
         </section>
         <section className="info-content">
@@ -72,7 +74,9 @@ function HandAdd(props) {
           </article>
         </section>
         <section className="info-main-bottom">
-          <label htmlFor="content">주소 추가</label>
+          <label htmlFor="content">
+            주소 추가<span>(*)</span>
+          </label>
           <aside className="info-addr-buttons">
             <button onClick={() => setSearchKeyword(true)}>키워드 검색</button>
             <button onClick={() => setSearchRoadAddr(true)}>도로명 검색</button>
@@ -81,7 +85,9 @@ function HandAdd(props) {
           {searchData ? (
             <section className="info-addres">
               <article className="info-addr">
-                <label htmlFor="addr">주소 확인</label>
+                <label htmlFor="addr">
+                  주소 확인<span>(*)</span>
+                </label>
                 <input
                   id="addr"
                   type="text"
