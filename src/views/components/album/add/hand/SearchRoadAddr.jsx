@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
+import { setAlbumHandRoadAddrDialog } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithRoad } from "lib/setKakaoMap";
 
@@ -20,7 +21,7 @@ function SearchRoadAddr(props) {
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
-      props.handleSearchClose("road-addr");
+      dispatch(setAlbumHandRoadAddrDialog(false));
     }
   };
 
@@ -28,8 +29,6 @@ function SearchRoadAddr(props) {
     new window.daum.Postcode({
       oncomplete: (data) => {
         setPostCodeRes(data);
-        // setKakaoMapWithRoad({ addr: data.address + " " + data.buildingName });
-        // dispatch(setAlbumSearch(data));
       },
       onclose: (state) => {
         //state는 우편번호 찾기 화면이 어떻게 닫혔는지에 대한 상태 변수 이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
@@ -76,7 +75,7 @@ function SearchRoadAddr(props) {
           addr: roadAddrRes.address.address_name,
         };
     dispatch(setAlbumSearch(res));
-    props.handleSearchClose("road-addr");
+    dispatch(setAlbumHandRoadAddrDialog(false));
   };
 
   useEffect(() => {

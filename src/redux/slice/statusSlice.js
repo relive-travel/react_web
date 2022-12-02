@@ -3,6 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   dialog: {
     create: false,
+    keyword: false,
+    location: false,
+    roadAddr: false,
   },
   modal: {
     select: false,
@@ -18,6 +21,15 @@ const statusSlice = createSlice({
   reducers: {
     setAlbumCreateDialog: (state, action) => {
       state.dialog.create = action.payload;
+    },
+    setAlbumHandKeywordDialog: (state, action) => {
+      state.dialog.keyword = action.payload;
+    },
+    setAlbumHandLocationDialog: (state, action) => {
+      state.dialog.location = action.payload;
+    },
+    setAlbumHandRoadAddrDialog: (state, action) => {
+      state.dialog.roadAddr = action.payload;
     },
     setAlbumSelectModal: (state, action) => {
       state.modal.select = action.payload;
@@ -36,6 +48,9 @@ const statusSlice = createSlice({
 
 export const {
   setAlbumCreateDialog,
+  setAlbumHandKeywordDialog,
+  setAlbumHandLocationDialog,
+  setAlbumHandRoadAddrDialog,
   setAlbumSelectModal,
   setAlbumChangeModal,
   setAlbumInspectionModal,

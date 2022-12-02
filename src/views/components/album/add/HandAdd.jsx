@@ -1,5 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  setAlbumHandKeywordDialog,
+  setAlbumHandLocationDialog,
+  setAlbumHandRoadAddrDialog,
+} from "redux/slice/statusSlice";
 
 import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
 import SearchKeyword from "./hand/SearchKeyword";
@@ -8,28 +14,16 @@ import SearchLocation from "./hand/SearchLocation";
 
 import "./HandAdd.scss";
 function HandAdd(props) {
-  const [searchKeyword, setSearchKeyword] = useState(false);
-  const [searchRoadAddr, setSearchRoadAddr] = useState(false);
-  const [searchLocation, setSearchLocation] = useState(false);
+  const dispatch = useDispatch();
 
   const photoFile = useSelector((state) => state.photo.file);
   const photoData = useSelector((state) => state.photo.data);
 
   const searchData = useSelector((state) => state.album.search);
 
-  const handleSearchClose = (type) => {
-    switch (type) {
-      case "keyword":
-        setSearchKeyword(false);
-        break;
-      case "road-addr":
-        setSearchRoadAddr(false);
-        break;
-      case "location":
-        setSearchLocation(false);
-        break;
-    }
-  };
+  const keywordStatus = useSelector((state) => state.status.dialog.keyword);
+  const locationStatus = useSelector((state) => state.status.dialog.location);
+  const roadAddrStatus = useSelector((state) => state.status.dialog.roadAddr);
 
   useEffect(() => {
     if (searchData) {
@@ -78,9 +72,27 @@ function HandAdd(props) {
             주소 추가<span>(*)</span>
           </label>
           <aside className="info-addr-buttons">
-            <button onClick={() => setSearchKeyword(true)}>키워드 검색</button>
-            <button onClick={() => setSearchRoadAddr(true)}>도로명 검색</button>
-            <button onClick={() => setSearchLocation(true)}>위치 선택</button>
+            <button
+              onClick={() => {
+                dispatch(setAlbumHandKeywordDialog(true));
+              }}
+            >
+              키워드 검색
+            </button>
+            <button
+              onClick={() => {
+                dispatch(setAlbumHandRoadAddrDialog(true));
+              }}
+            >
+              도로명 검색
+            </button>
+            <button
+              onClick={() => {
+                dispatch(setAlbumHandLocationDialog(true));
+              }}
+            >
+              위치 선택
+            </button>
           </aside>
           {searchData ? (
             <section className="info-addres">
@@ -106,15 +118,9 @@ function HandAdd(props) {
             </section>
           ) : null}
           <aside className="search-dialog-component">
-            {searchKeyword ? (
-              <SearchKeyword handleSearchClose={handleSearchClose} />
-            ) : null}
-            {searchRoadAddr ? (
-              <SearchRoadAddr handleSearchClose={handleSearchClose} />
-            ) : null}
-            {searchLocation ? (
-              <SearchLocation handleSearchClose={handleSearchClose} />
-            ) : null}
+            {keywordStatus ? <SearchKeyword /> : null}
+            {roadAddrStatus ? <SearchRoadAddr /> : null}
+            {locationStatus ? <SearchLocation /> : null}
           </aside>
         </section>
       </main>

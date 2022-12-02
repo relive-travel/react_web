@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
+import { setAlbumHandLocationDialog } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithLocation } from "lib/setKakaoMap";
 
@@ -16,7 +17,7 @@ function SearchLocation(props) {
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
-      props.handleSearchClose("location");
+      dispatch(setAlbumHandLocationDialog(false));
     }
   };
 
@@ -34,7 +35,7 @@ function SearchLocation(props) {
           addr: locationRes.address.address_name,
         };
     dispatch(setAlbumSearch(res));
-    props.handleSearchClose("location");
+    dispatch(setAlbumHandLocationDialog(false));
   };
 
   useEffect(() => {

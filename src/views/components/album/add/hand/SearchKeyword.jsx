@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
+import { setAlbumHandKeywordDialog } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithKeyword } from "lib/setKakaoMap";
 
@@ -19,7 +20,7 @@ function SearchKeyword(props) {
 
   const handleSearchClick = (e) => {
     if (compRef.current && !compRef.current.contains(e.target)) {
-      props.handleSearchClose("keyword");
+      dispatch(setAlbumHandKeywordDialog(false));
     }
   };
 
@@ -49,7 +50,7 @@ function SearchKeyword(props) {
       semiAddr: keywordRes.place_name,
     };
     dispatch(setAlbumSearch(res));
-    props.handleSearchClose("keyword");
+    dispatch(setAlbumHandKeywordDialog(false));
   };
 
   return (
