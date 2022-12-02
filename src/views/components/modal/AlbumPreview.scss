@@ -1,0 +1,15 @@
+@import "views/mixins/common";
+@import "views/mixins/album";
+
+.album-preview-component {
+  @include commonOutsideBackground();
+  > article {
+    @include albumCompArticle();
+    .album-preview-main {
+      @include albumMain();
+      .preview-writing {
+        @include albumWriting();
+      }
+    }
+  }
+}

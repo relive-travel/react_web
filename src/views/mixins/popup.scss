@@ -1,0 +1,21 @@
+@mixin popupCompArticle() {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25em;
+  background-color: rgba($color: #ff8822, $alpha: 1);
+}
+
+@mixin popupMainSection() {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 1.25em;
+
+  box-sizing: border-box;
+
+  background-color: rgba($color: #008000, $alpha: 1);
+}
