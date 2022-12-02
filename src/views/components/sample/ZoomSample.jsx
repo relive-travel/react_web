@@ -5,7 +5,7 @@ import { useRef } from "react";
 import GyeongGIJson from "assets/json/gyeonggi.json";
 import JejuJson from "assets/json/jeju.json";
 import KoreaJson from "assets/json/korea.json";
-import { setProjection } from "lib/setProjection";
+import { setProjection } from "lib/set/projection";
 import { useEffect } from "react";
 import { useState } from "react";
 

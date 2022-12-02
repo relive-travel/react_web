@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setMapRegion } from "redux/slice/mapSlice";
 
-import { setZoomEvent, setPathZoomEvent } from "lib/setMapEvent";
-import { setProjection } from "lib/setProjection";
+import { setZoomEvent, setPathZoomEvent } from "lib/set/mapEvent";
+import { setProjection } from "lib/set/projection";
 
 import "./PathElements.scss";
 function PathElements(props) {

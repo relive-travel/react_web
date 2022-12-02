@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAlbumSearch } from "redux/slice/albumSlice";
 import { setAlbumChangeModal } from "redux/slice/statusSlice";
 
-import { setKakaoMapWithGeoPoint } from "lib/setKakaoMap";
+import { setKakaoMapWithGeoPoint } from "lib/set/kakaoMap";
 
 import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
 

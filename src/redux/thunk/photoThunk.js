@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { addDoc, collection } from "firebase/firestore";
 
-import { db } from "lib/setFilrebase";
+import { db } from "lib/set/filrebase";
 
 export const setPhoto = createAsyncThunk(
   `photo/setPhoto`,

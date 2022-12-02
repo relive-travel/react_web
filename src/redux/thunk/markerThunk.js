@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore";
 
-import { db } from "lib/setFilrebase";
+import { db } from "lib/set/filrebase";
 
 export const setMarker = createAsyncThunk(
   `marker/setMarker`,

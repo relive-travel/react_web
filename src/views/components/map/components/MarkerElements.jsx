@@ -3,8 +3,8 @@ import * as topojson from "topojson";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setProjection } from "lib/setProjection";
-import { getKoreanAddr } from "lib/getAddr";
+import { setProjection } from "lib/set/projection";
+import { getKoreanAddr } from "lib/get/addr";
 
 import { getMarkerMatchRegion } from "redux/thunk/markerThunk";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getAddr, getKoreanAddr } from "lib/getAddr";
+import { getAddr, getKoreanAddr } from "lib/get/addr";
 
 import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
