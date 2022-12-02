@@ -17,8 +17,9 @@ export const setMarker = createAsyncThunk(
     // address_name : 행정도시, 시군구, 읍면동, 번지로만 표현된다
 
     const data = {
+      userId,
       point: new GeoPoint(parseFloat(latitude), parseFloat(longitude)),
-      region: region,
+      region,
     };
 
     const docRef = await addDoc(collection(db, "markers"), data);
