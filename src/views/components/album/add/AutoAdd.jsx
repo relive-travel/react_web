@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setAlbumSearch } from "redux/slice/albumSlice";
@@ -14,7 +14,6 @@ function AutoAdd(props) {
 
   const kakaoMapRef = useRef(null);
 
-  const photoFile = useSelector((state) => state.photo.file);
   const photoData = useSelector((state) => state.photo.data);
 
   const handleSetKakaoMap = async () => {

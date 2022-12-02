@@ -11,7 +11,6 @@ export const setPhoto = createAsyncThunk(
       name,
       url,
     };
-    console.log(data);
 
     const docRef = await addDoc(collection(db, "photos"), data);
     return docRef.id;

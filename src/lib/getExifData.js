@@ -1,17 +1,3 @@
-// var latRef = EXIF.getTag(file, "GPSLatitudeRef");
-// var lat = EXIF.getTag(file, "GPSLatitude");
-// latitude =
-//   latRef === "S"
-//     ? -1 * lat[0] + (60 * lat[1] + -1 * lat[2]) / 3600
-//     : lat[0] + (60 * lat[1] + lat[2]) / 3600;
-// var longRef = EXIF.getTag(file, "GPSLongitudeRef");
-// var long = EXIF.getTag(file, "GPSLongitude");
-// longitude =
-//   longRef === "W"
-//     ? -1 * long[0] + (60 * long[1] + -1 * long[2]) / 3600
-//     : long[0] + (60 * long[1] + long[2]) / 3600;
-// date = EXIF.getTag(file, "DateTime");
-
 import EXIF from "exif-js";
 
 export const getExifData = async (fileObject) => {

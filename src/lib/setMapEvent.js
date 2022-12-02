@@ -1,5 +1,4 @@
 import * as d3 from "d3";
-import { setMapRegion } from "redux/slice/mapSlice";
 
 export const setSvg = (props) => {
   const { svgCurElement } = props;

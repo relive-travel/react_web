@@ -41,7 +41,6 @@ function SearchLocation(props) {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords.latitude, position.coords.longitude);
         setKakaoMapWithLocation(
           {
             mapContainer: kakaoMapRef.current,

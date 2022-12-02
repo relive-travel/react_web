@@ -1,4 +1,3 @@
-import * as d3 from "d3";
 import * as topojson from "topojson";
 
 import { useState, useEffect } from "react";
@@ -12,8 +11,6 @@ import { getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import "./MarkerElements.scss";
 function MarkerElements(props) {
   const dispatch = useDispatch();
-
-  const { svgRef, gPathRef } = props;
 
   const mapData = useSelector((state) => state.map.topojson);
   const mapRegion = useSelector((state) => state.map.region);

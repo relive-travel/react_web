@@ -74,8 +74,6 @@ function DragAndDrop(props) {
   }, [handleDragEnter, handleDragLeave, handleDragOver, DragAndDrop]);
 
   useEffect(() => {
-    console.log(props.photoRef);
-    console.log(props.previewRef);
     initDragEvents();
 
     return () => resetDragEvents();

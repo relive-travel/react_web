@@ -158,7 +158,6 @@ export const setKakaoMapWithKeyword = (
     }
   };
   const addMarker = (place, idx) => {
-    console.log(place);
     let position = new window.kakao.maps.LatLng(place.y, place.x);
     let mapOptions = {
       center: position,

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -15,9 +15,6 @@ import SearchLocation from "./hand/SearchLocation";
 import "./HandAdd.scss";
 function HandAdd(props) {
   const dispatch = useDispatch();
-
-  const photoFile = useSelector((state) => state.photo.file);
-  const photoData = useSelector((state) => state.photo.data);
 
   const searchData = useSelector((state) => state.album.search);
 
