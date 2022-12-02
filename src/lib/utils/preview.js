@@ -1,17 +1,9 @@
 import loadImage from "blueimp-load-image";
 
-export const previewClearImage = ($preview) => {
-  while ($preview.lastChild) {
-    if ($preview.lastChild.tagName === "ARTICLE") {
-      $preview.removeChild($preview.lastChild);
-    } else {
-      break;
-    }
-  }
-};
+import { previewClear } from "./clear";
 
 export const preivewImage = ($preview, fileObjects) => {
-  previewClearImage($preview);
+  previewClear($preview);
 
   const files = Object.values(fileObjects);
   files.forEach(async (file, index) => {
