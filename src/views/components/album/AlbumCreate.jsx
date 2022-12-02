@@ -14,9 +14,10 @@ import { setMarker } from "redux/thunk/markerThunk";
 import { setAlbum } from "redux/thunk/albumThunk";
 import { setPhoto } from "redux/thunk/photoThunk";
 
-import { getRegionAddr } from "lib/getAddr";
-import { previewClearImage } from "lib/setPreview";
-import { uploadFiles } from "lib/setS3Client";
+import { getRegionAddr } from "lib/get/addr";
+import { clearPreview, clearRef } from "lib/utils/clear";
+import { inspectRef } from "lib/utils/inspect";
+import { uploadFiles } from "lib/utils/s3Utils";
 
 import AutoAdd from "./add/AutoAdd";
 import HandAdd from "./add/HandAdd";
@@ -57,41 +58,29 @@ function AlbumCreate(props) {
   const handleClearPhoto = () => {
     photoRef.current.value = "";
     photoRef.current.files = null;
-    previewClearImage(previewRef.current);
+    clearPreview(previewRef.current);
     dispatch(setPhotoDelete());
   };
 
   const handleClearAlbum = () => {
-    titleRef.current.value = "";
-    contentRef.current.value = "";
-    if (dateRef.current !== null) dateRef.current.value = "";
-    if (addrRef.current !== null) addrRef.current.value = "";
-    if (semiAddrRef.current !== null) semiAddrRef.current.value = "";
+    clearRef([titleRef, contentRef, dateRef, addrRef, semiAddrRef]);
     dispatch(setAlbumSearch(null));
     handleClearPhoto();
   };
 
   const handleInspectAlbum = () => {
-    if (
-      titleRef.current.value === null ||
-      titleRef.current.value === "" ||
-      dateRef.current === null ||
-      dateRef.current.value === null ||
-      dateRef.current.value === "" ||
-      photoFile === null ||
-      addrRef.current === null ||
-      addrRef.current.value === null ||
-      addrRef.current.value === "" ||
-      searchData === null
-    ) {
-      dispatch(setAlbumInspectionModal(true));
-      return false;
-    }
-    return true;
+    return (
+      inspectRef([titleRef, contentRef, dateRef, addrRef, semiAddrRef]) ||
+      photoFile !== null ||
+      searchData !== null
+    );
   };
 
   const handleAddAlbum = async () => {
-    if (!handleInspectAlbum()) return;
+    if (!handleInspectAlbum()) {
+      dispatch(setAlbumInspectionModal(true));
+      return;
+    }
 
     const userId = dispatch(getUser({ email: userEmail })).then((response) => {
       return response.payload;
@@ -122,11 +111,11 @@ function AlbumCreate(props) {
       return response.payload;
     });
 
-    const filesInfo = await uploadFiles(
-      photoFile,
-      titleRef.current.value,
-      userEmail
-    );
+    const filesInfo = await uploadFiles({
+      files: photoFile,
+      title: titleRef.current.value,
+      email: userEmail,
+    });
 
     filesInfo.forEach(async (file) => {
       const photoId = dispatch(
