@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { fetchTopoJson } from "redux/thunk/mapThunk.js";
 
-import { setSvg, setZoomEvent, setSvgResetEvent } from "lib/set/mapEvent.js";
+import { setSvg, setZoomEvent, setSvgResetEvent } from "lib/utils/mapEvent.js";
 
 import PathElements from "./components/PathElements.jsx";
 import MarkerElements from "./components/MarkerElements.jsx";

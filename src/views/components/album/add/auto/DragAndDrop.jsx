@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 
-import { preivewImage } from "lib/set/preview";
+import { preivewImage } from "lib/utils/preview";
 import { getExifData, getExifDataList } from "lib/get/exifData";
 
 import "./DragAndDrop.scss";
