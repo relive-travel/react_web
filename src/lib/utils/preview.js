@@ -1,9 +1,9 @@
 import loadImage from "blueimp-load-image";
 
-import { previewClear } from "./clear";
+import { clearPreview } from "./clear";
 
 export const preivewImage = ($preview, fileObjects) => {
-  previewClear($preview);
+  clearPreview($preview);
 
   const files = Object.values(fileObjects);
   files.forEach(async (file, index) => {
