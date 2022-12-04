@@ -30,8 +30,9 @@ function Slider(props) {
           let albumAcc = await promise;
 
           const albumData = await dispatch(
-            getAlbumMatchMarkerId({ id: marker.id })
+            getAlbumMatchMarkerId({ markerId: marker.id })
           ).then((response) => {
+            console.log(response);
             return response.payload;
           });
 
@@ -47,6 +48,7 @@ function Slider(props) {
               ]
             : [];
         }, []);
+        // console.log(await info);
         setAlbumInfo(await info);
       };
       getAlbumInfo();

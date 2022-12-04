@@ -28,9 +28,9 @@ export const getAlbum = createAsyncThunk(`album/getAlbum`, async ({ id }) => {
 
 export const getAlbumMatchMarkerId = createAsyncThunk(
   `album/getAlbumMatchMarkerId`,
-  async ({ id }) => {
+  async ({ markerId }) => {
     const albumCol = collection(db, "albums");
-    const MarkerIdQuery = query(albumCol, where("marker_id", "==", id));
+    const MarkerIdQuery = query(albumCol, where("markerId", "==", markerId));
     const querySnapshot = await getDocs(MarkerIdQuery);
     const queryItem = querySnapshot.docs.map((doc) => {
       return {
