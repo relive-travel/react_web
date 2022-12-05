@@ -32,7 +32,6 @@ function Slider(props) {
           const albumData = await dispatch(
             getAlbumMatchMarkerId({ markerId: marker.id })
           ).then((response) => {
-            console.log(response);
             return response.payload;
           });
 
