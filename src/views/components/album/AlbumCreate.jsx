@@ -70,8 +70,8 @@ function AlbumCreate(props) {
 
   const handleInspectAlbum = () => {
     return (
-      inspectRef([titleRef, contentRef, dateRef, addrRef, semiAddrRef]) ||
-      photoFile !== null ||
+      inspectRef([titleRef, contentRef, dateRef, addrRef, semiAddrRef]) &&
+      photoFile !== null &&
       searchData !== null
     );
   };
@@ -166,7 +166,9 @@ function AlbumCreate(props) {
             <button
               className="album-preview-button"
               onClick={() => {
-                dispatch(setAlbumPreviewModal(true));
+                handleInspectAlbum()
+                  ? dispatch(setAlbumPreviewModal(true))
+                  : dispatch(setAlbumInspectionModal(true));
               }}
             >
               미리 보기
