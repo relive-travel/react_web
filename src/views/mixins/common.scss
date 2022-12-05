@@ -6,7 +6,53 @@
   top: 0;
   left: 0;
 
+  z-index: 2147483647;
+
   width: 100%;
   height: 100%;
   background-color: rgba($color: black, $alpha: 0.7);
+}
+
+@mixin commonDialogClose() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 3em;
+
+  > svg {
+    font-size: 2em;
+
+    transition: 0.1s ease-in-out;
+  }
+  > svg:hover {
+    cursor: pointer;
+    color: #ff8822;
+  }
+}
+
+@mixin commonSwiper() {
+  width: 100%;
+  height: 100%;
+  > .swiper-wrapper {
+    > .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+  }
+  .swiper-pagination-bullet {
+    background-color: white;
+    border: 1px solid white;
+    opacity: 0.5;
+    width: 13px;
+    height: 13px;
+  }
 }

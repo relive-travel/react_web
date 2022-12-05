@@ -3,6 +3,7 @@
 
 .album-preview-component {
   @include commonOutsideBackground();
+  flex-direction: column;
   > article {
     @include albumCompArticle();
     .album-preview-main {
@@ -11,5 +12,8 @@
         @include albumWriting();
       }
     }
+  }
+  > aside {
+    @include commonDialogClose();
   }
 }

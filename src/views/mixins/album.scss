@@ -1,3 +1,5 @@
+@import "views/mixins/common";
+
 @mixin albumCompArticle() {
   display: flex;
   flex-direction: column;
@@ -17,10 +19,6 @@
 
     box-sizing: border-box;
     background-color: rgba($color: #008000, $alpha: 1);
-    > section {
-      display: flex;
-      align-items: center;
-    }
   }
   > [class$="bottom"] {
     padding: 0.75em;
@@ -30,6 +28,15 @@
 
     box-sizing: border-box;
     background-color: rgba($color: #ff8822, $alpha: 1);
+  }
+  [class$="addr"] {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  [class$="addr"]:hover {
+    cursor: help;
   }
 }
 
@@ -45,6 +52,7 @@
   > [class$="top"] {
     width: 100%;
     aspect-ratio: 1;
+    overflow: hidden;
     border-radius: 0.75em;
     background-color: rgba($color: white, $alpha: 0.5);
   }
@@ -58,7 +66,12 @@
     border-radius: 0.75em;
     background-color: rgba($color: white, $alpha: 0.5);
   }
-  > [class$="photos"] {
+  [class$="photos"] {
+    width: 100%;
+    height: 100%;
+    > .swiper {
+      @include commonSwiper();
+    }
   }
 }
 
@@ -78,13 +91,13 @@
     justify-content: space-between;
     align-items: center;
   }
-  > [class$="bottom"] {
+  [class$="bottom"] {
   }
-  > [class$="title"] {
+  [class$="title"] {
   }
-  > [class$="date"] {
+  [class$="date"] {
   }
-  > [class$="content"] {
+  [class$="content"] {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;

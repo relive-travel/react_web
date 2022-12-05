@@ -192,7 +192,16 @@ function AlbumCreate(props) {
                 addrRef={addrRef}
               />
             ) : null}
-            {previewStatus ? <AlbumPreview /> : null}
+            {previewStatus ? (
+              <AlbumPreview
+                title={titleRef.current.value}
+                content={contentRef.current.value}
+                preview={previewRef.current.childNodes}
+                date={dateRef.current.value}
+                addr={addrRef.current.value}
+                semiAddr={semiAddrRef.current.value}
+              />
+            ) : null}
           </aside>
         </section>
       </article>
