@@ -30,9 +30,10 @@ function MarkerElements(props) {
     if (mapData && markerList) {
       const geojson = topojson.feature(mapData, mapData.objects.regions);
       const projection = setProjection({ geojson, mapOption });
-      const markerElements = markerList.map((marker) => {
+      const markerElements = markerList.map((marker, index) => {
         return (
           <image
+            key={index}
             transform={`translate(${
               projection([marker.point._long, marker.point._lat])[0] -
               markerOption.width / 2
