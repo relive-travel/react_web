@@ -6,6 +6,7 @@ const initialState = {
   //앨범을 만드는곳
   search: null, // 검색한 앨범의 주소
   //앨범을 보여주는곳
+  data: null, // 추가된 앨범의 리스트
 };
 
 const albumSlice = createSlice({
@@ -15,9 +16,12 @@ const albumSlice = createSlice({
     setAlbumSearch: (state, action) => {
       state.search = action.payload;
     },
+    setAlbumData: (state, action) => {
+      state.data = action.payload;
+    },
   },
 });
 
-export const { setAlbumSearch } = albumSlice.actions;
+export const { setAlbumSearch, setAlbumData } = albumSlice.actions;
 
 export default albumSlice.reducer;

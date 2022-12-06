@@ -28,6 +28,7 @@ export const store = configureStore({
         // // Ignore these paths in the state
         ignoredPaths: [
           "marker.list", // has [geoPoint]
+          "album.data", // has [geoPoint] in album.data.marker
           "photo.file", // has [file]
           "photo.data", // has [exif]
         ],

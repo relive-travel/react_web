@@ -7,6 +7,7 @@ const initialState = {
     keyword: false,
     location: false,
     roadAddr: false,
+    view: false,
   },
   modal: {
     select: false,
@@ -35,6 +36,9 @@ const statusSlice = createSlice({
     setAlbumHandRoadAddrDialog: (state, action) => {
       state.dialog.roadAddr = action.payload;
     },
+    setAlbumViewDialog: (state, action) => {
+      state.dialog.view = action.payload;
+    },
     setAlbumSelectModal: (state, action) => {
       state.modal.select = action.payload;
     },
@@ -56,6 +60,7 @@ export const {
   setAlbumHandKeywordDialog,
   setAlbumHandLocationDialog,
   setAlbumHandRoadAddrDialog,
+  setAlbumViewDialog,
   setAlbumSelectModal,
   setAlbumChangeModal,
   setAlbumInspectionModal,
