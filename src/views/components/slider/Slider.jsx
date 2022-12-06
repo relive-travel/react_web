@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getAddr, getKoreanAddr } from "lib/get/addr";
+import { setAlbumData } from "redux/slice/albumSlice";
+import { setAlbumViewDialog } from "redux/slice/statusSlice";
 
 import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
 import { getPhotoMatchAlbumId } from "redux/thunk/photoThunk";
+
+import { getAddr, getKoreanAddr } from "lib/get/addr";
 
 import "./Slider.scss";
 function Slider(props) {
@@ -72,7 +75,14 @@ function Slider(props) {
         .sort((o1, o2) => Date.parse(o2.date) - Date.parse(o1.date))
         .map((info) => {
           return (
-            <div className="slider-info" key={info.id}>
+            <div
+              className="slider-info"
+              key={info.id}
+              onClick={() => {
+                dispatch(setAlbumData([info]));
+                dispatch(setAlbumViewDialog(true));
+              }}
+            >
               <div className="info-header">
                 <div className="info-addr">
                   {getAddr(info.marker.region.addr)}
