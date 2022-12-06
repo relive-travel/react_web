@@ -47,7 +47,12 @@ export const getMarkerMatchRegion = createAsyncThunk(
       where("region.district", "==", region)
     );
     const querySnapshot = await getDocs(regionQuery);
-    const queryList = querySnapshot.docs.map((doc) => doc.data());
+    const queryList = querySnapshot.docs.map((doc) => {
+      return {
+        ...doc.data(),
+        id: doc.id,
+      };
+    });
     return queryList;
   }
 );
