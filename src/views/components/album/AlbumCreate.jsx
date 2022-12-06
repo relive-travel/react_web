@@ -38,12 +38,11 @@ function AlbumCreate(props) {
   const addrRef = useRef(null);
   const semiAddrRef = useRef(null);
 
-  const albumType = useSelector((state) => state.album.type);
-
   const userEmail = useSelector((state) => state.user.email);
   const photoFile = useSelector((state) => state.photo.file);
   const searchData = useSelector((state) => state.album.search);
 
+  const autoStatus = useSelector((state) => state.status.dialog.auto);
   const changeStatus = useSelector((state) => state.status.modal.change);
   const inspectStatus = useSelector((state) => state.status.modal.inspection);
   const previewStatus = useSelector((state) => state.status.modal.preview);
@@ -136,7 +135,7 @@ function AlbumCreate(props) {
         <section className="album-main" ref={compRef}>
           <header className="album-title">당근 추가 하기</header>
           <main>
-            {albumType === "auto" ? (
+            {autoStatus ? (
               <AutoAdd
                 titleRef={titleRef}
                 contentRef={contentRef}

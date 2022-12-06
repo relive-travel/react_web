@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dialog: {
+    auto: false,
     create: false,
     keyword: false,
     location: false,
@@ -19,6 +20,9 @@ const statusSlice = createSlice({
   name: "status",
   initialState,
   reducers: {
+    setAlbumAuto: (state, action) => {
+      state.dialog.auto = action.payload;
+    },
     setAlbumCreateDialog: (state, action) => {
       state.dialog.create = action.payload;
     },
@@ -47,6 +51,7 @@ const statusSlice = createSlice({
 });
 
 export const {
+  setAlbumAuto,
   setAlbumCreateDialog,
   setAlbumHandKeywordDialog,
   setAlbumHandLocationDialog,

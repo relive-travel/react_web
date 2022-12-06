@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { setAlbumType } from "redux/slice/albumSlice";
 import {
+  setAlbumAuto,
   setAlbumCreateDialog,
   setAlbumSelectModal,
 } from "redux/slice/statusSlice";
@@ -22,7 +22,7 @@ function AlbumSelect(props) {
           <button
             onClick={() => {
               dispatch(setAlbumSelectModal(false));
-              dispatch(setAlbumType("auto"));
+              dispatch(setAlbumAuto(true));
             }}
           >
             간편하게!
@@ -30,7 +30,7 @@ function AlbumSelect(props) {
           <button
             onClick={() => {
               dispatch(setAlbumSelectModal(false));
-              dispatch(setAlbumType("hand"));
+              dispatch(setAlbumAuto(false));
             }}
           >
             직접쓸래!
