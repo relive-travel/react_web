@@ -1,0 +1,27 @@
+@import "views/mixins/common";
+@import "views/mixins/album";
+
+.album-swiper-component {
+  @include commonOutsideBackground();
+  .swiper {
+    width: 30%;
+    min-width: 300px;
+    max-width: 450px;
+    padding: 120px;
+    .swiper-wrapper {
+      .swiper-slide {
+        > article {
+          @include albumCompArticle();
+          width: 100%;
+          height: 100%;
+          .album-view-main {
+            @include albumMain();
+            .view-writing {
+              @include albumWriting();
+            }
+          }
+        }
+      }
+    }
+  }
+}

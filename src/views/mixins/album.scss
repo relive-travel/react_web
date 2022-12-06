@@ -10,6 +10,8 @@
   min-width: 300px;
   max-width: 450px;
   > [class$="top"] {
+    display: flex;
+    align-items: center;
     padding: 0.375em 0.75em;
 
     width: 100%;
@@ -70,7 +72,19 @@
     width: 100%;
     height: 100%;
     > .swiper {
-      @include commonSwiper();
+      width: 100%;
+      height: 100%;
+      > .swiper-wrapper {
+        > .swiper-slide {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+      }
     }
   }
 }

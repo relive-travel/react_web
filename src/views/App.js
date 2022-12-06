@@ -8,6 +8,7 @@ import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/slider/Slider.jsx";
 import AlbumSelect from "./components/modal/AlbumSelect";
 import AlbumCreate from "./components/album/AlbumCreate";
+import AlbumSwiper from "./components/album/AlbumSwiper";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
@@ -22,6 +23,7 @@ function App() {
 
   const selectStatus = useSelector((state) => state.status.modal.select);
   const createStatus = useSelector((state) => state.status.dialog.create);
+  const viewStatus = useSelector((state) => state.status.dialog.view);
 
   const handleSliderOpen = () => {
     sliderRef.current.classList.add("slider-open");
@@ -92,6 +94,7 @@ function App() {
       <aside>
         {selectStatus ? <AlbumSelect /> : null}
         {createStatus ? <AlbumCreate /> : null}
+        {viewStatus ? <AlbumSwiper /> : null}
       </aside>
       <footer></footer>
     </div>

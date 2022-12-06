@@ -1,3 +1,5 @@
+@import "views/mixins/common";
+
 .app-component {
   position: relative;
   .app-buttons {
@@ -12,6 +14,8 @@
   .slider-open {
     transform: translate(0%, 0%);
   }
+
+  @include commonSwiper();
 }
 
 // nav
