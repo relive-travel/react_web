@@ -39,7 +39,9 @@
       width: 75%;
     }
     .info-marker-ea {
-      width: 20%;
+      > span {
+        margin: 0 0.25em;
+      }
     }
   }
 

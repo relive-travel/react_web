@@ -77,16 +77,17 @@ function Slider(props) {
                 <div className="info-addr">
                   {getAddr(info.marker.region.addr)}
                 </div>
-                <div className="info-marker-ea">🥕 {info.photo.length}</div>
+                <div className="info-marker-ea">
+                  <span>{info.photo.length}</span>
+                  <span>🥕</span>
+                </div>
               </div>
               <div>
                 <div className="info-main">
                   <div className="info-date">{info.date}</div>
                   <div className="info-title">{info.title}</div>
                   <div className="info-semi-addr">
-                    {info.marker.region.addr +
-                      " " +
-                      info.marker.region.semiAddr}
+                    {info.marker.region.addr} {info.marker.region.semiAddr}
                   </div>
                 </div>
               </div>
