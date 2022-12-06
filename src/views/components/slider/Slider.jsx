@@ -5,6 +5,7 @@ import { getAddr, getKoreanAddr } from "lib/get/addr";
 
 import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
+import { getPhotoMatchAlbumId } from "redux/thunk/photoThunk";
 
 import "./Slider.scss";
 function Slider(props) {
@@ -23,34 +24,46 @@ function Slider(props) {
     }
   }, [mapRegion]);
 
+  const handleGetAlbumInfo = async () => {
+    const info = sliderData.reduce(async (promise, marker, idx) => {
+      let albumAcc = await promise;
+
+      const albumData = await dispatch(
+        getAlbumMatchMarkerId({ markerId: marker.id })
+      ).then((albumResponse) => {
+        return Promise.all(
+          albumResponse.payload.map(async (album) => {
+            const photoData = await dispatch(
+              getPhotoMatchAlbumId({ albumId: album.id })
+            ).then((photoResponse) => {
+              return photoResponse.payload;
+            });
+            return {
+              ...album,
+              photo: photoData,
+            };
+          })
+        );
+      });
+
+      return albumData
+        ? [
+            ...albumAcc,
+            ...albumData.map((album) => {
+              return {
+                ...album,
+                marker,
+              };
+            }),
+          ]
+        : [];
+    }, []);
+    setAlbumInfo(await info);
+  };
+
   useEffect(() => {
     if (sliderData) {
-      const getAlbumInfo = async () => {
-        const info = sliderData.reduce(async (promise, marker, idx) => {
-          let albumAcc = await promise;
-
-          const albumData = await dispatch(
-            getAlbumMatchMarkerId({ markerId: marker.id })
-          ).then((response) => {
-            return response.payload;
-          });
-
-          return albumData
-            ? [
-                ...albumAcc,
-                ...albumData.map((album) => {
-                  return {
-                    ...album,
-                    marker,
-                  };
-                }),
-              ]
-            : [];
-        }, []);
-        // console.log(await info);
-        setAlbumInfo(await info);
-      };
-      getAlbumInfo();
+      handleGetAlbumInfo();
     }
   }, [sliderData]);
   return (
@@ -64,7 +77,7 @@ function Slider(props) {
                 <div className="info-addr">
                   {getAddr(info.marker.region.addr)}
                 </div>
-                <div className="info-marker-ea">🥕 1</div>
+                <div className="info-marker-ea">🥕 {info.photo.length}</div>
               </div>
               <div>
                 <div className="info-main">
