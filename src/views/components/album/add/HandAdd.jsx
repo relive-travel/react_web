@@ -25,7 +25,9 @@ function HandAdd(props) {
   useEffect(() => {
     if (searchData) {
       props.addrRef.current.value = searchData.addr;
-      props.semiAddrRef.current.value = searchData.semiAddr;
+      props.semiAddrRef.current.value = searchData.semiAddr
+        ? searchData.semiAddr
+        : "";
     }
   }, [searchData]);
 
@@ -49,7 +51,12 @@ function HandAdd(props) {
             <label htmlFor="date">
               날짜<span>(*)</span>
             </label>
-            <input id="date" type="datetime-local" ref={props.dateRef}></input>
+            <input
+              id="date"
+              type="datetime-local"
+              max="9999-12-31"
+              ref={props.dateRef}
+            ></input>
           </article>
         </section>
         <section className="info-main-middle">
