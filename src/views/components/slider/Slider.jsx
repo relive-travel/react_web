@@ -13,7 +13,7 @@ function Slider(props) {
   const [albumInfo, setAlbumInfo] = useState([]);
 
   const mapRegion = useSelector((state) => state.map.region);
-  const sliderListData = useSelector((state) => state.marker.sliderList);
+  const sliderData = useSelector((state) => state.marker.list);
 
   useEffect(() => {
     if (mapRegion === "korea") {
@@ -24,9 +24,9 @@ function Slider(props) {
   }, [mapRegion]);
 
   useEffect(() => {
-    if (sliderListData) {
+    if (sliderData) {
       const getAlbumInfo = async () => {
-        const info = sliderListData.reduce(async (promise, marker, idx) => {
+        const info = sliderData.reduce(async (promise, marker, idx) => {
           let albumAcc = await promise;
 
           const albumData = await dispatch(
@@ -52,7 +52,7 @@ function Slider(props) {
       };
       getAlbumInfo();
     }
-  }, [sliderListData]);
+  }, [sliderData]);
   return (
     <>
       {albumInfo

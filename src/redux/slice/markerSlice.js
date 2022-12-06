@@ -7,7 +7,7 @@ const initialState = {
     width: 15,
     height: 10,
   },
-  sliderList: null,
+  list: null,
   status: null,
 };
 
@@ -19,11 +19,11 @@ const markerSlice = createSlice({
     builder
       .addCase(getMarkerMatchRegion.fulfilled, (state, action) => {
         state.status = "getMatchRegion";
-        state.sliderList = action.payload;
+        state.list = action.payload;
       })
       .addCase(getMarkerAll.fulfilled, (state, action) => {
         state.status = "getAll";
-        state.sliderList = action.payload;
+        state.list = action.payload;
       });
   },
 });
