@@ -7,7 +7,6 @@ import { childNodesFilter } from "lib/utils/filter";
 
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,9 +14,16 @@ import "./AlbumPreview.scss";
 function AlbumPreview(props) {
   const dispatch = useDispatch();
 
+  const compRef = useRef(null);
   const swiperRef = useRef(null);
 
   const [childNodes, setChildNodes] = useState();
+
+  const handleSearchClick = (e) => {
+    if (compRef.current && !compRef.current.contains(e.target)) {
+      dispatch(setAlbumPreviewModal(false));
+    }
+  };
 
   useEffect(() => {
     setChildNodes(
@@ -29,8 +35,8 @@ function AlbumPreview(props) {
   }, []);
 
   return (
-    <section className="album-preview-component">
-      <article>
+    <section className="album-preview-component" onClick={handleSearchClick}>
+      <article ref={compRef}>
         <section className="album-preview-top">
           <article
             className="preview-addr"
@@ -84,13 +90,6 @@ function AlbumPreview(props) {
           </article>
         </section>
       </article>
-      <aside>
-        <CancelOutlinedIcon
-          onClick={() => {
-            dispatch(setAlbumPreviewModal(false));
-          }}
-        />
-      </aside>
     </section>
   );
 }
