@@ -11,8 +11,8 @@ function AlbumInspection(props) {
 
   const [inspectList, setInspectList] = useState([]);
 
-  const handleSearchClick = (e) => {
-    if (compRef.current && !compRef.current.contains(e.target)) {
+  const handleOutsideClick = (e) => {
+    if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumInspectionModal(false));
     }
   };
@@ -42,7 +42,10 @@ function AlbumInspection(props) {
   }, []);
 
   return (
-    <section className="inspection-album-component" onClick={handleSearchClick}>
+    <section
+      className="inspection-album-component"
+      onClick={handleOutsideClick}
+    >
       <article>
         <section className="inspection-album-main" ref={compRef}>
           <header>

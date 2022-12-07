@@ -18,8 +18,8 @@ function AlbumPreview(props) {
 
   const [childNodes, setChildNodes] = useState();
 
-  const handleSearchClick = (e) => {
-    if (compRef.current && !compRef.current.contains(e.target)) {
+  const handleOutsideClick = (e) => {
+    if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumPreviewModal(false));
     }
   };
@@ -34,7 +34,7 @@ function AlbumPreview(props) {
   }, []);
 
   return (
-    <section className="album-preview-component" onClick={handleSearchClick}>
+    <section className="album-preview-component" onClick={handleOutsideClick}>
       <article ref={compRef}>
         <section className="album-preview-top">
           <article

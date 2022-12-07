@@ -47,8 +47,8 @@ function AlbumCreate(props) {
   const inspectStatus = useSelector((state) => state.status.modal.inspection);
   const previewStatus = useSelector((state) => state.status.modal.preview);
 
-  const handleCompClick = (e) => {
-    if (compRef.current && !compRef.current.contains(e.target)) {
+  const handleOutsideClick = (e) => {
+    if (!compRef.current?.contains(e.target)) {
       handleClearAlbum();
       dispatch(setAlbumCreateDialog(false));
     }
@@ -130,7 +130,7 @@ function AlbumCreate(props) {
   };
 
   return (
-    <section className="album-create-component" onClick={handleCompClick}>
+    <section className="album-create-component" onClick={handleOutsideClick}>
       <article>
         <section className="album-main" ref={compRef}>
           <header className="album-title">당근 추가 하기</header>

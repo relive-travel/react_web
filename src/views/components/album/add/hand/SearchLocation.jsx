@@ -15,8 +15,8 @@ function SearchLocation(props) {
 
   const [locationRes, setLocationRes] = useState();
 
-  const handleSearchClick = (e) => {
-    if (compRef.current && !compRef.current.contains(e.target)) {
+  const handleOutsideClick = (e) => {
+    if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumHandLocationDialog(false));
     }
   };
@@ -56,7 +56,7 @@ function SearchLocation(props) {
   }, []);
 
   return (
-    <section className="location-component" onClick={handleSearchClick}>
+    <section className="location-component" onClick={handleOutsideClick}>
       <article ref={compRef}>
         <section className="location-preview">
           <section className="kakao-map-location" ref={kakaoMapRef}></section>

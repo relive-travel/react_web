@@ -19,8 +19,8 @@ function SearchRoadAddr(props) {
 
   const [roadAddrResultOpen, setRoadAddrResultOpen] = useState(false);
 
-  const handleSearchClick = (e) => {
-    if (compRef.current && !compRef.current.contains(e.target)) {
+  const handleOutsideClick = (e) => {
+    if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumHandRoadAddrDialog(false));
     }
   };
@@ -87,7 +87,7 @@ function SearchRoadAddr(props) {
   }, [roadAddrResultOpen]);
 
   return (
-    <section className="road-addr-component" onClick={handleSearchClick}>
+    <section className="road-addr-component" onClick={handleOutsideClick}>
       <article ref={compRef}>
         {roadAddrResultOpen ? (
           <section className="road-addr-result">

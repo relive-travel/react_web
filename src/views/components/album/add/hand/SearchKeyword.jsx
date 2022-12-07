@@ -18,8 +18,8 @@ function SearchKeyword(props) {
 
   const [keywordRes, setKeywordRes] = useState(null);
 
-  const handleSearchClick = (e) => {
-    if (compRef.current && !compRef.current.contains(e.target)) {
+  const handleOutsideClick = (e) => {
+    if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumHandKeywordDialog(false));
     }
   };
@@ -54,7 +54,7 @@ function SearchKeyword(props) {
   };
 
   return (
-    <section className="keyword-component" onClick={handleSearchClick}>
+    <section className="keyword-component" onClick={handleOutsideClick}>
       <article ref={compRef}>
         <section className="keyword-main">
           <header className="keyword-input">
