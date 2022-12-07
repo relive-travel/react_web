@@ -42,7 +42,7 @@ function AlbumPreview(props) {
             className="preview-addr"
             title={`${props.addr} ${props.semiAddr}`}
           >
-            🥕&nbsp;{props.addr}&nbsp;{props.semiAddr}
+            🥕 {props.addr} {props.semiAddr}
           </article>
         </section>
         <section className="album-preview-bottom">
