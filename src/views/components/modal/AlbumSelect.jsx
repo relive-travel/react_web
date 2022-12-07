@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -11,26 +11,32 @@ import "./AlbumSelect.scss";
 function AlbumSelect(props) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    return () => dispatch(setAlbumCreateDialog(true));
-  }, []);
+  const compRef = useRef(null);
+
+  const handleOutsideClick = (e) => {
+    if (!compRef.current?.contains(e.target)) {
+      dispatch(setAlbumSelectModal(false));
+    }
+  };
 
   return (
-    <section className="album-select-component">
-      <article>
+    <section className="album-select-component" onClick={handleOutsideClick}>
+      <article ref={compRef}>
         <section className="select-buttons">
           <button
             onClick={() => {
-              dispatch(setAlbumSelectModal(false));
               dispatch(setAlbumAuto(true));
+              dispatch(setAlbumSelectModal(false));
+              dispatch(setAlbumCreateDialog(true));
             }}
           >
             간편하게!
           </button>
           <button
             onClick={() => {
-              dispatch(setAlbumSelectModal(false));
               dispatch(setAlbumAuto(false));
+              dispatch(setAlbumSelectModal(false));
+              dispatch(setAlbumCreateDialog(true));
             }}
           >
             직접쓸래!
