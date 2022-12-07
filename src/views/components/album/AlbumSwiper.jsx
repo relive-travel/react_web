@@ -27,9 +27,9 @@ function AlbumSwiper(props) {
         navigation={true}
         modules={[EffectCards, Pagination, Navigation]}
       >
-        {albumData?.map((album) => {
+        {albumData?.map((album, index) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={index}>
               <AlbumView album={album} />
             </SwiperSlide>
           );

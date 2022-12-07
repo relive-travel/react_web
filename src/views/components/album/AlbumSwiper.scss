@@ -3,7 +3,7 @@
 
 .album-swiper-component {
   @include commonOutsideBackground();
-  .swiper {
+  > .swiper {
     width: 30%;
     min-width: 300px;
     max-width: 450px;
