@@ -15,7 +15,6 @@ function AlbumPreview(props) {
   const dispatch = useDispatch();
 
   const compRef = useRef(null);
-  const swiperRef = useRef(null);
 
   const [childNodes, setChildNodes] = useState();
 
@@ -49,11 +48,7 @@ function AlbumPreview(props) {
           <article className="album-preview-main">
             <section className="preivew-main-top">
               <article className="preview-photos">
-                <Swiper
-                  modules={[Pagination]}
-                  pagination={{ clickable: true }}
-                  ref={swiperRef}
-                >
+                <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
                   {childNodes?.map((child, index) => {
                     const { src, style } = child.firstChild;
                     const newStyle = {
