@@ -104,7 +104,7 @@ function AlbumCreate(props) {
         markerId: await markerId,
         title: titleRef.current.value,
         content: contentRef.current.value,
-        date: dateRef.current.value,
+        date: dateRef.current.value.split("T").join(" "),
       })
     ).then((response) => {
       return response.payload;
