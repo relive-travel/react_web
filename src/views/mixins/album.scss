@@ -15,9 +15,6 @@
     padding: 0.375em 0.75em;
 
     width: 100%;
-    height: 10%;
-    min-height: 20px;
-    max-height: 40px;
 
     box-sizing: border-box;
     background-color: rgba($color: #008000, $alpha: 1);
@@ -32,13 +29,27 @@
     background-color: rgba($color: #ff8822, $alpha: 1);
   }
   [class$="addr"] {
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  [class$="addr"]:hover {
-    cursor: help;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .view-addr-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      padding: 0 0.75em;
+      > article {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      > article:hover {
+        text-overflow: clip;
+        white-space: normal;
+        word-break: break-all;
+      }
+    }
   }
 }
 
@@ -118,5 +129,8 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+  [class$="content"]:hover {
+    display: inline;
   }
 }

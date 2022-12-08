@@ -12,8 +12,11 @@ function AlbumView(props) {
           className="view-addr"
           title={`🥕 ${props.album.marker.region.addr} ${props.album.marker.region.semiAddr}`}
         >
-          🥕 {props.album.marker.region.addr}{" "}
-          {props.album.marker.region.semiAddr}
+          <span>🥕</span>
+          <section className="view-addr-info">
+            <article>{props.album.marker.region.addr}</article>
+            <article>{props.album.marker.region.semiAddr}</article>
+          </section>
         </article>
       </section>
       <section className="album-view-bottom">
