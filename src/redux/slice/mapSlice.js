@@ -6,6 +6,7 @@ const initialState = {
   topojson: null,
   region: null,
   option: null,
+  text: [],
 };
 
 const mapSlice = createSlice({
@@ -16,7 +17,11 @@ const mapSlice = createSlice({
       state.option = action.payload;
     },
     setMapRegion: (state, action) => {
+      state.text = [];
       state.region = action.payload;
+    },
+    setMapText: (state, action) => {
+      state.text = [...state.text, action.payload];
     },
   },
   extraReducers: (builder) => {
@@ -30,6 +35,6 @@ const mapSlice = createSlice({
   },
 });
 
-export const { setMapOption, setMapRegion } = mapSlice.actions;
+export const { setMapOption, setMapRegion, setMapText } = mapSlice.actions;
 
 export default mapSlice.reducer;
