@@ -4,10 +4,11 @@ import * as topojson from "topojson";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setMapRegion } from "redux/slice/mapSlice";
+import { setMapRegion, setMapText } from "redux/slice/mapSlice";
 
 import { setZoomEvent, setPathZoomEvent } from "lib/utils/svgEvent";
 import { setProjection } from "lib/get/projection";
+import { getKoreanAddr } from "lib/get/addr";
 
 import "./PathElements.scss";
 function PathElements(props) {
@@ -26,11 +27,19 @@ function PathElements(props) {
       const zoom = setZoomEvent({ gCurElement: gPathRef.current });
 
       const geojson = topojson.feature(mapData, mapData.objects.regions);
-      const path = d3
-        .geoPath()
-        .projection(setProjection({ geojson, mapOption }));
+      const projection = setProjection({ geojson, mapOption });
+      const path = d3.geoPath().projection(projection);
 
       const pathElements = geojson.features.map((geo) => {
+        const pathCenter = path.centroid(geo);
+        const pathInfo = {
+          translate: `translate(${pathCenter})`,
+          name:
+            mapRegion === "korea"
+              ? getKoreanAddr(geo.properties.CTP_ENG_NM)
+              : geo.properties.SGG_NM,
+        };
+        dispatch(setMapText(pathInfo));
         return (
           <path
             className="path"
