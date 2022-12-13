@@ -22,18 +22,16 @@ function SearchLocation(props) {
   };
 
   const handleSelectResult = () => {
-    let res = locationRes.road_address
-      ? {
-          latitude: locationRes.latitude,
-          longitude: locationRes.longitude,
-          addr: locationRes.road_address.address_name,
-          semiAddr: locationRes.road_address.building_name,
-        }
-      : {
-          latitude: locationRes.latitude,
-          longitude: locationRes.longitude,
-          addr: locationRes.address.address_name,
-        };
+    let res = {
+      latitude: locationRes.latitude,
+      longitude: locationRes.longitude,
+      addr: locationRes.road_address
+        ? locationRes.road_address.address_name
+        : locationRes.address.address_name,
+      semiAddr: locationRes.road_address
+        ? locationRes.road_address.building_name
+        : null,
+    };
     dispatch(setAlbumSearch(res));
     dispatch(setAlbumHandLocationDialog(false));
   };

@@ -62,18 +62,16 @@ function SearchRoadAddr(props) {
   };
 
   const handleSelectResult = () => {
-    let res = roadAddrRes.road_address
-      ? {
-          latitude: parseFloat(roadAddrRes.y),
-          longitude: parseFloat(roadAddrRes.x),
-          addr: roadAddrRes.road_address.address_name,
-          semiAddr: roadAddrRes.road_address.building_name,
-        }
-      : {
-          latitude: parseFloat(roadAddrRes.y),
-          longitude: parseFloat(roadAddrRes.x),
-          addr: roadAddrRes.address.address_name,
-        };
+    let res = {
+      latitude: parseFloat(roadAddrRes.y),
+      longitude: parseFloat(roadAddrRes.x),
+      addr: roadAddrRes.road_address
+        ? roadAddrRes.road_address.address_name
+        : roadAddrRes.address.address_name,
+      semiAddr: roadAddrRes.road_address
+        ? roadAddrRes.road_address.building_name
+        : null,
+    };
     dispatch(setAlbumSearch(res));
     dispatch(setAlbumHandRoadAddrDialog(false));
   };
