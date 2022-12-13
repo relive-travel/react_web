@@ -16,7 +16,7 @@ import { setPhoto } from "redux/thunk/photoThunk";
 
 import { getRegionAddr } from "lib/get/addr";
 import { clearPreview, clearRef } from "lib/utils/clear";
-import { inspectRef } from "lib/utils/inspect";
+import { inspectRefList } from "lib/utils/inspect";
 import { uploadFiles } from "lib/utils/s3Utils";
 
 import AutoAdd from "./add/AutoAdd";
@@ -69,7 +69,7 @@ function AlbumCreate(props) {
 
   const handleInspectAlbum = () => {
     return (
-      inspectRef([titleRef, contentRef, dateRef, addrRef, semiAddrRef]) &&
+      inspectRefList([titleRef, contentRef, dateRef, addrRef, semiAddrRef]) &&
       photoFile !== null &&
       searchData !== null
     );

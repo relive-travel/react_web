@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { setAlbumInspectionModal } from "redux/slice/statusSlice";
 
+import { inspectRef, inspectRefFile } from "lib/utils/inspect";
+
 import "./AlbumInspection.scss";
 function AlbumInspection(props) {
   const dispatch = useDispatch();
@@ -18,24 +20,13 @@ function AlbumInspection(props) {
   };
 
   useEffect(() => {
-    if (
-      props.titleRef.current.value === null ||
-      props.titleRef.current.value === ""
-    )
+    if (inspectRef(props.titleRef))
       setInspectList((inspectList) => [...inspectList, "제목"]);
-    if (
-      props.dateRef.current === null ||
-      props.dateRef.current.value === null ||
-      props.dateRef.current.value === ""
-    )
+    if (inspectRef(props.dateRef))
       setInspectList((inspectList) => [...inspectList, "날짜"]);
-    if (props.photoRef.current.files.length === 0)
+    if (inspectRefFile(props.photoRef))
       setInspectList((inspectList) => [...inspectList, "사진"]);
-    if (
-      props.addrRef.current === null ||
-      props.addrRef.current.value === null ||
-      props.addrRef.current.value === ""
-    )
+    if (inspectRef(props.addrRef))
       setInspectList((inspectList) => [...inspectList, "주소"]);
 
     return () => dispatch(setAlbumInspectionModal(false));
