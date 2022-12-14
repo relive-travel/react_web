@@ -5,10 +5,11 @@ import { setAlbumSelectModal } from "redux/slice/statusSlice";
 import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
 import D3Map from "views/components/map/D3Map.jsx";
-import Slider from "views/components/slider/Slider.jsx";
+import Slider from "views/components/addition/Slider.jsx";
 import AlbumSelect from "./components/modal/AlbumSelect";
 import AlbumCreate from "./components/album/AlbumCreate";
 import AlbumSwiper from "./components/album/AlbumSwiper";
+import SideDial from "./components/addition/SideDial";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
@@ -96,6 +97,7 @@ function App() {
         {selectStatus ? <AlbumSelect /> : null}
         {createStatus ? <AlbumCreate /> : null}
         {viewStatus ? <AlbumSwiper /> : null}
+        <SideDial />
       </aside>
       <footer></footer>
     </div>
