@@ -38,7 +38,7 @@
     .info-addr {
       width: 75%;
     }
-    .info-marker-ea {
+    .info-photo-ea {
       > span {
         margin: 0 0.25em;
       }
@@ -58,7 +58,7 @@
       padding: 0.075em;
     }
 
-    .info-semi-addr {
+    [class$="addr"] {
       opacity: 50%;
     }
   }

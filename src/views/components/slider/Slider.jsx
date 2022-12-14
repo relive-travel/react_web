@@ -75,7 +75,7 @@ function Slider(props) {
         .sort((o1, o2) => Date.parse(o2.date) - Date.parse(o1.date))
         .map((info) => {
           return (
-            <div
+            <article
               className="slider-info"
               key={info.id}
               onClick={() => {
@@ -83,25 +83,26 @@ function Slider(props) {
                 dispatch(setAlbumViewDialog(true));
               }}
             >
-              <div className="info-header">
+              <section className="info-header">
                 <div className="info-addr">
                   {getAddr(info.marker.region.addr)}
                 </div>
-                <div className="info-marker-ea">
+                <div className="info-photo-ea">
                   <span>{info.photo.length}</span>
                   <span>🥕</span>
                 </div>
-              </div>
-              <div>
+              </section>
+              <section>
                 <div className="info-main">
                   <div className="info-date">{info.date}</div>
                   <div className="info-title">{info.title}</div>
+                  <div className="info-addr">{info.marker.region.addr}</div>
                   <div className="info-semi-addr">
-                    {info.marker.region.addr} {info.marker.region.semiAddr}
+                    {info.marker.region.semiAddr}
                   </div>
                 </div>
-              </div>
-            </div>
+              </section>
+            </article>
           );
         })}
     </>
