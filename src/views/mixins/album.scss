@@ -111,16 +111,17 @@
     margin: 0.375em 0;
   }
   > [class$="top"] {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    > * {
+      margin: 0.125em 0;
+    }
   }
   [class$="bottom"] {
   }
   [class$="title"] {
+    float: left;
   }
   [class$="date"] {
+    float: right;
   }
   [class$="content"] {
     width: 100%;
