@@ -19,6 +19,7 @@ function SearchKeyword(props) {
   const [keywordRes, setKeywordRes] = useState(null);
 
   const handleOutsideClick = (e) => {
+    e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumHandKeywordDialog(false));
     }

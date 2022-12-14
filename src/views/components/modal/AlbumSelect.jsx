@@ -14,6 +14,7 @@ function AlbumSelect(props) {
   const compRef = useRef(null);
 
   const handleOutsideClick = (e) => {
+    e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumSelectModal(false));
     }

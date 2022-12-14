@@ -49,6 +49,7 @@ function AlbumCreate(props) {
 
   const handleOutsideClick = (e) => {
     if (!compRef.current?.contains(e.target)) {
+      e.stopPropagation();
       handleClearAlbum();
       dispatch(setAlbumCreateDialog(false));
     }

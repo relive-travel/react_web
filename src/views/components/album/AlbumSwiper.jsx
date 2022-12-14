@@ -21,6 +21,7 @@ function AlbumSwiper(props) {
   const albumData = useSelector((state) => state.album.data);
 
   const handleOutsideClick = (e) => {
+    e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumViewDialog(false));
     }

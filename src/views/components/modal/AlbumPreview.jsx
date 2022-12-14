@@ -19,6 +19,7 @@ function AlbumPreview(props) {
   const [childNodes, setChildNodes] = useState();
 
   const handleOutsideClick = (e) => {
+    e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumPreviewModal(false));
     }

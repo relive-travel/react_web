@@ -20,6 +20,7 @@ function SearchRoadAddr(props) {
   const [roadAddrResultOpen, setRoadAddrResultOpen] = useState(false);
 
   const handleOutsideClick = (e) => {
+    e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumHandRoadAddrDialog(false));
     }

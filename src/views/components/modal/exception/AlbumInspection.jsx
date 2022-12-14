@@ -14,6 +14,7 @@ function AlbumInspection(props) {
   const [inspectList, setInspectList] = useState([]);
 
   const handleOutsideClick = (e) => {
+    e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumInspectionModal(false));
     }

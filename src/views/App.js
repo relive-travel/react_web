@@ -36,6 +36,7 @@ function App() {
   };
 
   const handleSliderClick = (e) => {
+    e.stopPropagation();
     if (sliderRef.current && !sliderRef.current.contains(e.target)) {
       sliderRef.current.classList.remove("slider-open");
       setSliderOpen(false);

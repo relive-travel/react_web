@@ -16,6 +16,7 @@ function SearchLocation(props) {
   const [locationRes, setLocationRes] = useState();
 
   const handleOutsideClick = (e) => {
+    e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
       dispatch(setAlbumHandLocationDialog(false));
     }
