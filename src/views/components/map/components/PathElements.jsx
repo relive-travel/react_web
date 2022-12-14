@@ -38,16 +38,20 @@ function PathElements(props) {
             mapRegion === "korea"
               ? getKoreanAddr(geo.properties.CTP_ENG_NM)
               : geo.properties.SGG_NM,
+          key:
+            mapRegion === "korea"
+              ? geo.properties.CTPRVN_CD
+              : geo.properties.GID,
         };
         dispatch(setMapText(pathInfo));
         return (
           <path
             className="path"
-            key={
+            key={`path-${
               mapRegion === "korea"
                 ? geo.properties.CTPRVN_CD
                 : geo.properties.GID
-            }
+            }`}
             name={
               mapRegion === "korea"
                 ? geo.properties.CTP_ENG_NM

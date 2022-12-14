@@ -18,10 +18,10 @@ function TextElements(props) {
           : {
               fontSize: "0.75em",
             };
-      const textElements = mapText.map((text, index) => {
+      const textElements = mapText.map((text) => {
         return (
           <text
-            key={index}
+            key={`text-${text.key}`}
             className="text"
             textAnchor="middle"
             transform={text.translate}
