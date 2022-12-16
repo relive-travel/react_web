@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setAlbumSelectModal } from "redux/slice/statusSlice";
 import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
 import D3Map from "views/components/map/D3Map.jsx";
@@ -58,24 +57,6 @@ function App() {
 
   return (
     <div className="app-component" onClick={handleSliderClick}>
-      <header className="app-buttons">
-        <button
-          className="app-home-buttom"
-          onClick={() => {
-            dispatch(setMapRegion("korea"));
-          }}
-        >
-          홈으로
-        </button>
-        <button
-          className="app-album-buttom"
-          onClick={() => {
-            dispatch(setAlbumSelectModal(true));
-          }}
-        >
-          앨범
-        </button>
-      </header>
       <main>
         <nav className="slider-component" ref={sliderRef}>
           <section className="slider-main">

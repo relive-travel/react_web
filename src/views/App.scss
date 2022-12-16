@@ -2,15 +2,6 @@
 
 .app-component {
   position: relative;
-  .app-buttons {
-    position: absolute;
-    top: 0;
-    right: 0;
-    .app-home-buttom {
-    }
-    .app-album-button {
-    }
-  }
   .slider-open {
     transform: translate(0%, 0%);
   }
