@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dialog: {
+  value: {
     auto: false,
+    mapText: false,
+  },
+  dialog: {
     create: false,
     keyword: false,
     location: false,
@@ -21,9 +24,14 @@ const statusSlice = createSlice({
   name: "status",
   initialState,
   reducers: {
+    /** value */
     setAlbumAuto: (state, action) => {
-      state.dialog.auto = action.payload;
+      state.value.auto = action.payload;
     },
+    setMapTextValue: (state, action) => {
+      state.value.mapText = action.payload;
+    },
+    /** dialog */
     setAlbumCreateDialog: (state, action) => {
       state.dialog.create = action.payload;
     },
@@ -39,6 +47,7 @@ const statusSlice = createSlice({
     setAlbumViewDialog: (state, action) => {
       state.dialog.view = action.payload;
     },
+    /** modal */
     setAlbumSelectModal: (state, action) => {
       state.modal.select = action.payload;
     },
@@ -55,12 +64,16 @@ const statusSlice = createSlice({
 });
 
 export const {
+  /** value */
   setAlbumAuto,
+  setMapTextValue,
+  /** dialog */
   setAlbumCreateDialog,
   setAlbumHandKeywordDialog,
   setAlbumHandLocationDialog,
   setAlbumHandRoadAddrDialog,
   setAlbumViewDialog,
+  /** modal */
   setAlbumSelectModal,
   setAlbumChangeModal,
   setAlbumInspectionModal,
