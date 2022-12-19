@@ -3,6 +3,8 @@ import {
   GeoPoint,
   collection,
   addDoc,
+  doc,
+  getDoc,
   getDocs,
   query,
   where,
@@ -27,14 +29,19 @@ export const setMarker = createAsyncThunk(
   }
 );
 
-export const getMarkerOne = createAsyncThunk(
-  `marker/getMarkerOne`,
+export const getMarker = createAsyncThunk(
+  `marker/getMarker`,
   async ({ id }) => {
-    const markerCol = collection(db, "markers", id);
-    const markerSnapshot = await getDocs(markerCol);
+    const markerCol = doc(db, "markers", id);
+    const markerSnapshot = await getDoc(markerCol);
 
-    const marker = markerSnapshot.docs.map((doc) => doc.data());
-    return marker;
+    const markerId = markerSnapshot.id;
+    const markerItem = markerSnapshot.data();
+
+    return {
+      id: markerId,
+      ...markerItem,
+    };
   }
 );
 
@@ -49,8 +56,8 @@ export const getMarkerMatchRegion = createAsyncThunk(
     const querySnapshot = await getDocs(regionQuery);
     const queryList = querySnapshot.docs.map((doc) => {
       return {
-        ...doc.data(),
         id: doc.id,
+        ...doc.data(),
       };
     });
     return queryList;
@@ -64,8 +71,8 @@ export const getMarkerAll = createAsyncThunk(
     const markerSnapshot = await getDocs(markerCol);
     const markerList = markerSnapshot.docs.map((doc) => {
       return {
-        ...doc.data(),
         id: doc.id,
+        ...doc.data(),
       };
     });
     return markerList;
