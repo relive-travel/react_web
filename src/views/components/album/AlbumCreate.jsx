@@ -38,6 +38,7 @@ function AlbumCreate(props) {
   const addrRef = useRef(null);
   const semiAddrRef = useRef(null);
 
+  const userId = useSelector((state) => state.user.id);
   const userEmail = useSelector((state) => state.user.email);
   const photoFile = useSelector((state) => state.photo.file);
   const searchData = useSelector((state) => state.album.search);
@@ -82,13 +83,11 @@ function AlbumCreate(props) {
       return;
     }
 
-    const userId = dispatch(getUser({ email: userEmail })).then((response) => {
-      return response.payload;
-    });
+    if (!userId) return;
 
     const markerId = dispatch(
       setMarker({
-        userId: await userId,
+        userId: userId,
         region: getRegionAddr({
           addr: addrRef.current.value,
           semiAddr: semiAddrRef.current.value,
@@ -102,6 +101,7 @@ function AlbumCreate(props) {
 
     const albumId = dispatch(
       setAlbum({
+        userId: userId,
         markerId: await markerId,
         title: titleRef.current.value,
         content: contentRef.current.value,
@@ -120,6 +120,7 @@ function AlbumCreate(props) {
     filesInfo.forEach(async (file) => {
       const photoId = dispatch(
         setPhoto({
+          userId: userId,
           albumId: await albumId,
           name: file.name,
           url: file.url,
