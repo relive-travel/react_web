@@ -5,8 +5,9 @@ import { db } from "lib/set/filrebase";
 
 export const setPhoto = createAsyncThunk(
   `photo/setPhoto`,
-  async ({ albumId, name, url }) => {
+  async ({ userId, albumId, name, url }) => {
     const data = {
+      userId,
       albumId,
       name,
       url,
@@ -17,12 +18,20 @@ export const setPhoto = createAsyncThunk(
   }
 );
 
+export const getPhotoAll = createAsyncThunk(
+  `photo/getPhotoAll`,
+  async ({ userId }) => {
+    const photoCol = collection(db, "photos");
+    const photoQuery = query(photoCol, where(""));
+  }
+);
+
 export const getPhotoMatchAlbumId = createAsyncThunk(
   `photo/getPhotoMatchAlbumId`,
   async ({ albumId }) => {
     const photoCol = collection(db, "photos");
-    const albumQuery = query(photoCol, where("albumId", "==", albumId));
-    const querySnapshot = await getDocs(albumQuery);
+    const photoQuery = query(photoCol, where("albumId", "==", albumId));
+    const querySnapshot = await getDocs(photoQuery);
     const queryItem = querySnapshot.docs.map((doc) => {
       return {
         ...doc.data(),

@@ -5,8 +5,9 @@ import { db } from "lib/set/filrebase";
 
 export const setAlbum = createAsyncThunk(
   `album/setAlbum`,
-  async ({ markerId, title, content, date }) => {
+  async ({ userId, markerId, title, content, date }) => {
     const data = {
+      userId,
       markerId,
       title,
       content,
