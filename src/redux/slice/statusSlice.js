@@ -3,7 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   value: {
     auto: false,
-    mapText: false,
+  },
+  option: {
+    sort: false,
+    gather: false,
+    view: false,
   },
   dialog: {
     create: false,
@@ -28,8 +32,15 @@ const statusSlice = createSlice({
     setAlbumAuto: (state, action) => {
       state.value.auto = action.payload;
     },
-    setMapTextValue: (state, action) => {
-      state.value.mapText = action.payload;
+    /** option */
+    setDialSortOption: (state, action) => {
+      state.option.sort = action.payload;
+    },
+    setDialGatherOption: (state, action) => {
+      state.option.gather = action.payload;
+    },
+    setDialViewOption: (state, action) => {
+      state.option.view = action.payload;
     },
     /** dialog */
     setAlbumCreateDialog: (state, action) => {
@@ -66,7 +77,10 @@ const statusSlice = createSlice({
 export const {
   /** value */
   setAlbumAuto,
-  setMapTextValue,
+  /** option */
+  setDialSortOption,
+  setDialGatherOption,
+  setDialViewOption,
   /** dialog */
   setAlbumCreateDialog,
   setAlbumHandKeywordDialog,

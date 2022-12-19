@@ -5,10 +5,12 @@ import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
 import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/addition/Slider.jsx";
+import SideDial from "./components/addition/SideDial";
+
 import AlbumSelect from "./components/modal/AlbumSelect";
 import AlbumCreate from "./components/album/AlbumCreate";
 import AlbumSwiper from "./components/album/AlbumSwiper";
-import SideDial from "./components/addition/SideDial";
+import AlbumGather from "./components/album/AlbumGather";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
@@ -24,6 +26,7 @@ function App() {
   const selectStatus = useSelector((state) => state.status.modal.select);
   const createStatus = useSelector((state) => state.status.dialog.create);
   const viewStatus = useSelector((state) => state.status.dialog.view);
+  const gatherStatus = useSelector((state) => state.status.option.gather);
 
   const handleSliderOpen = () => {
     sliderRef.current.classList.add("slider-open");
@@ -78,6 +81,7 @@ function App() {
         {selectStatus ? <AlbumSelect /> : null}
         {createStatus ? <AlbumCreate /> : null}
         {viewStatus ? <AlbumSwiper /> : null}
+        {gatherStatus ? <AlbumGather /> : null}
         <SideDial />
       </aside>
       <footer></footer>

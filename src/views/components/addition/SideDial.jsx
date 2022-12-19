@@ -2,16 +2,26 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setMapRegion } from "redux/slice/mapSlice";
-import { setAlbumSelectModal, setMapTextValue } from "redux/slice/statusSlice";
+import {
+  setAlbumSelectModal,
+  setDialGatherOption,
+  setDialSortOption,
+  setDialViewOption,
+} from "redux/slice/statusSlice";
 
 import { Box, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+
 import HomeIcon from "@mui/icons-material/Home";
+
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PlaceIcon from "@mui/icons-material/Place";
-import PanoramaIcon from "@mui/icons-material/Panorama";
+
+import ImageIcon from "@mui/icons-material/Image";
+
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import "./SideDial.scss";
@@ -19,8 +29,10 @@ function SideDial(props) {
   const dispatch = useDispatch();
 
   const [dialOpen, setDialOpen] = useState(false);
-  const [sortOption, setSortOption] = useState(false);
-  const [viewOption, setViewOption] = useState(false);
+
+  const viewStatus = useSelector((state) => state.status.option.view);
+  const sortStatus = useSelector((state) => state.status.option.sort);
+  const gatherStatus = useSelector((state) => state.status.option.gather);
 
   return (
     <Box>
@@ -44,27 +56,29 @@ function SideDial(props) {
         />
         <SpeedDialAction
           key={`dial-action-sort`}
-          icon={sortOption ? <PlaceIcon /> : <AccessTimeIcon />}
-          tooltipTitle={sortOption ? "지역 순 정렬" : "시간 순 정렬"}
+          icon={sortStatus ? <PlaceIcon /> : <AccessTimeIcon />}
+          tooltipTitle={sortStatus ? "지역 순 정렬" : "시간 순 정렬"}
           onClick={(e) => {
             e.stopPropagation();
-            setSortOption(!sortOption);
+            dispatch(setDialSortOption(!sortStatus));
           }}
         />
         <SpeedDialAction
-          key={`dial-action-panorama`}
-          icon={<PanoramaIcon />}
-          tooltipTitle={"전체 사진 보기"}
-          // onClick={}
+          key={`dial-action-gather`}
+          icon={<ImageIcon />}
+          tooltipTitle={"사진 모아보기"}
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(setDialGatherOption(true));
+          }}
         />
         <SpeedDialAction
           key={`dial-action-visibility`}
-          icon={viewOption ? <VisibilityOffIcon /> : <VisibilityIcon />}
-          tooltipTitle={viewOption ? "지역이름 숨기기" : "지역이름 보기"}
+          icon={viewStatus ? <VisibilityOffIcon /> : <VisibilityIcon />}
+          tooltipTitle={viewStatus ? "지역이름 숨기기" : "지역이름 보기"}
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(setMapTextValue(!viewOption));
-            setViewOption(!viewOption);
+            dispatch(setDialViewOption(!viewStatus));
           }}
         />
         <SpeedDialAction
