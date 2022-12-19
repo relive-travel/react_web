@@ -22,7 +22,15 @@ export const getPhotoAll = createAsyncThunk(
   `photo/getPhotoAll`,
   async ({ userId }) => {
     const photoCol = collection(db, "photos");
-    const photoQuery = query(photoCol, where(""));
+    const photoQuery = query(photoCol, where("userId", "==", userId));
+    const querySnapshot = await getDocs(photoQuery);
+    const queryList = querySnapshot.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data(),
+      };
+    });
+    return queryList;
   }
 );
 
@@ -34,8 +42,8 @@ export const getPhotoMatchAlbumId = createAsyncThunk(
     const querySnapshot = await getDocs(photoQuery);
     const queryItem = querySnapshot.docs.map((doc) => {
       return {
-        ...doc.data(),
         id: doc.id,
+        ...doc.data(),
       };
     });
     return queryItem;
