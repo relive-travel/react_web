@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { setAlbumInspectionModal } from "redux/slice/statusSlice";
 
-import { inspectRef, inspectRefFile } from "lib/utils/inspect";
+import { inspectRef, inspectRefFile } from "lib/utils/jsUtils";
 
 import "./AlbumInspection.scss";
 function AlbumInspection(props) {

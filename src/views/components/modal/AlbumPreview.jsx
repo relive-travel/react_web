@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { setAlbumPreviewModal } from "redux/slice/statusSlice";
 
-import { childNodesFilter } from "lib/utils/filter";
+import { childNodesFilter } from "lib/utils/jsUtils";
 
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";

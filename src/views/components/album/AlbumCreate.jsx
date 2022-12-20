@@ -15,8 +15,7 @@ import { setAlbum } from "redux/thunk/albumThunk";
 import { setPhoto } from "redux/thunk/photoThunk";
 
 import { getRegionAddr } from "lib/get/addr";
-import { clearPreview, clearRef } from "lib/utils/clear";
-import { inspectRefList } from "lib/utils/inspect";
+import { clearPreview, clearRef, inspectRefList } from "lib/utils/jsUtils";
 import { uploadFiles } from "lib/utils/s3Utils";
 
 import AutoAdd from "./add/AutoAdd";
