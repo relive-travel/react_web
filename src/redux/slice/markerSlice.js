@@ -7,25 +7,29 @@ const initialState = {
     width: 15,
     height: 10,
   },
-  list: null,
-  status: null,
+  data: null,
+  slider: null,
 };
 
 const markerSlice = createSlice({
   name: "marker",
   initialState,
-  reducers: {},
+  reducers: {
+    setMarkerSlider: (state, action) => {
+      state.slider = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getMarkerMatchRegion.fulfilled, (state, action) => {
-        state.status = "getMatchRegion";
-        state.list = action.payload;
+        state.data = action.payload;
       })
       .addCase(getMarkerAll.fulfilled, (state, action) => {
-        state.status = "getAll";
-        state.list = action.payload;
+        state.data = action.payload;
       });
   },
 });
+
+export const { setMarkerSlider } = markerSlice.actions;
 
 export default markerSlice.reducer;
