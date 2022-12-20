@@ -25,7 +25,7 @@ function App() {
 
   const selectStatus = useSelector((state) => state.status.modal.select);
   const createStatus = useSelector((state) => state.status.dialog.create);
-  const viewStatus = useSelector((state) => state.status.dialog.view);
+  const swiperStatus = useSelector((state) => state.status.dialog.swiper);
   const gatherStatus = useSelector((state) => state.status.option.gather);
 
   const handleSliderOpen = () => {
@@ -80,7 +80,7 @@ function App() {
       <aside>
         {selectStatus ? <AlbumSelect /> : null}
         {createStatus ? <AlbumCreate /> : null}
-        {viewStatus ? <AlbumSwiper /> : null}
+        {swiperStatus ? <AlbumSwiper /> : null}
         {gatherStatus ? <PhotoGather /> : null}
         <SideDial />
       </aside>

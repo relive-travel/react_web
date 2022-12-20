@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setAlbumData } from "redux/slice/albumSlice";
-import { setAlbumViewDialog } from "redux/slice/statusSlice";
+import { setAlbumSwiperDialog } from "redux/slice/statusSlice";
 
 import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
@@ -80,7 +80,7 @@ function Slider(props) {
               key={info.id}
               onClick={() => {
                 dispatch(setAlbumData([info]));
-                dispatch(setAlbumViewDialog(true));
+                dispatch(setAlbumSwiperDialog(true));
               }}
             >
               <section className="info-header">

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { EffectCards, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { setAlbumViewDialog } from "redux/slice/statusSlice";
+import { setAlbumSwiperDialog } from "redux/slice/statusSlice";
 
 import AlbumView from "./AlbumView";
 
@@ -23,7 +23,7 @@ function AlbumSwiper(props) {
   const handleOutsideClick = (e) => {
     e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumViewDialog(false));
+      dispatch(setAlbumSwiperDialog(false));
     }
   };
 
