@@ -32,9 +32,11 @@ export const childNodesFilter = ({ childNodes, keepType }) => {
 };
 
 /** grouping */
-export const groupDate = (array) => {
-  return array.reduce((acc, cur) => {
-    const dateType = cur.album.date.split(" ").at(0);
+export const groupDate = ({ gather, type }) => {
+  return gather.reduce((acc, cur) => {
+    const dateType = type
+      ? cur.marker.region.addr.replace(/[0-9]|\-/g, "")
+      : cur.album.date.split(" ").at(0);
     if (!acc[dateType]) acc[dateType] = [];
     acc[dateType].push(cur);
     return acc;

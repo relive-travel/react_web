@@ -31,6 +31,7 @@ export const store = configureStore({
           "album.data", // has [geoPoint] in album.data.marker
           "photo.file", // has [file]
           "photo.data", // has [exif]
+          "photo.gather", // has [geoPoint] in marker of entries values
         ],
       },
     }),
