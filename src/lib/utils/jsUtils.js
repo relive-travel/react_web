@@ -32,13 +32,31 @@ export const childNodesFilter = ({ childNodes, keepType }) => {
 };
 
 /** grouping */
-export const groupDate = ({ gather, type }) => {
-  return gather.reduce((acc, cur) => {
-    const dateType = type
-      ? cur.marker.region.addr.replace(/[0-9]|\-/g, "")
+export const groupSortType = ({ array, type }) => {
+  return array.reduce((acc, cur) => {
+    const dataType = type
+      ? cur.marker.region.addr.replace(/[0-9]|\-/g, "").trim()
       : cur.album.date.split(" ").at(0);
-    if (!acc[dateType]) acc[dateType] = [];
-    acc[dateType].push(cur);
+
+    if (!acc[dataType]) acc[dataType] = [];
+    acc[dataType].push(cur);
     return acc;
   }, {});
+};
+
+export const groupRegion = ({ array }) => {
+  return array.reduce((acc, cur) => {
+    const dataRegion = cur.marker.region.addr
+      .replace(/[0-9]|\-/g, "")
+      .trim()
+      .split(" ");
+    dataRegion.push(cur);
+    if (!acc.includes(dataRegion.at(0))) acc.push(dataRegion.at(0));
+    for (let i = 1; i < dataRegion.length; i++) {
+      if (!acc[dataRegion[i - 1]]) acc[dataRegion[i - 1]] = [];
+      if (!acc[dataRegion[i - 1]].includes(dataRegion[i]))
+        acc[dataRegion[i - 1]].push(dataRegion[i]);
+    }
+    return acc;
+  }, []);
 };

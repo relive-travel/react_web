@@ -8,7 +8,10 @@ const initialState = {
     height: 10,
   },
   data: null,
-  slider: null,
+  slider: {
+    time: null,
+    region: null,
+  },
 };
 
 const markerSlice = createSlice({
@@ -16,7 +19,8 @@ const markerSlice = createSlice({
   initialState,
   reducers: {
     setMarkerSlider: (state, action) => {
-      state.slider = action.payload;
+      console.log(action.payload.data);
+      state.slider[action.payload.type] = action.payload.data;
     },
   },
   extraReducers: (builder) => {

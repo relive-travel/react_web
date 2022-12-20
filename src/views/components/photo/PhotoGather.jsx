@@ -8,7 +8,7 @@ import { getMarker } from "redux/thunk/markerThunk";
 import { getAlbum } from "redux/thunk/albumThunk";
 import { getPhotoAll } from "redux/thunk/photoThunk";
 
-import { groupDate } from "lib/utils/jsUtils";
+import { groupSortType } from "lib/utils/jsUtils";
 
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 
@@ -43,8 +43,8 @@ function PhotoGather(props) {
       })
     );
     console.log(await gatherList);
-    const gatherGroup = groupDate({
-      gather: await gatherList,
+    const gatherGroup = groupSortType({
+      array: await gatherList,
       type: sortStatus,
     });
 
