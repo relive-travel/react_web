@@ -1,7 +1,7 @@
 @import "views/mixins/common";
-.album-gather-component {
+.photo-gather-component {
   @include commonOutsideBackground();
-  .album-gather-main {
+  .photo-gather-main {
     padding: 4em;
 
     width: 100%;
@@ -9,9 +9,21 @@
 
     overflow: scroll;
     box-sizing: border-box;
+    .gather-date {
+      margin: 1em 0;
+      color: #ff8822;
+    }
     .gather-photos {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      @media (max-width: 4096px) {
+        grid-template-columns: repeat(12, 1fr);
+      }
+      @media (max-width: 2048px) {
+        grid-template-columns: repeat(8, 1fr);
+      }
+      @media (max-width: 1440px) {
+        grid-template-columns: repeat(6, 1fr);
+      }
       gap: 0.5em;
 
       > article {

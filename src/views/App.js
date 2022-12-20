@@ -10,7 +10,7 @@ import SideDial from "./components/addition/SideDial";
 import AlbumSelect from "./components/modal/AlbumSelect";
 import AlbumCreate from "./components/album/AlbumCreate";
 import AlbumSwiper from "./components/album/AlbumSwiper";
-import AlbumGather from "./components/album/AlbumGather";
+import PhotoGather from "./components/photo/PhotoGather";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
@@ -81,7 +81,7 @@ function App() {
         {selectStatus ? <AlbumSelect /> : null}
         {createStatus ? <AlbumCreate /> : null}
         {viewStatus ? <AlbumSwiper /> : null}
-        {gatherStatus ? <AlbumGather /> : null}
+        {gatherStatus ? <PhotoGather /> : null}
         <SideDial />
       </aside>
       <footer></footer>

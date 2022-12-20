@@ -22,6 +22,9 @@ const photoSlice = createSlice({
       state.file = null;
       state.data = null;
     },
+    setPhotoGather: (state, action) => {
+      state.gather = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getPhotoAll.fulfilled, (state, action) => {
@@ -30,7 +33,7 @@ const photoSlice = createSlice({
   },
 });
 
-export const { setPhotoFile, setPhotoData, setPhotoDelete } =
+export const { setPhotoFile, setPhotoData, setPhotoDelete, setPhotoGather } =
   photoSlice.actions;
 
 export default photoSlice.reducer;
