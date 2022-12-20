@@ -45,18 +45,24 @@ export const groupSortType = ({ array, type }) => {
 };
 
 export const groupRegion = ({ array }) => {
-  return array.reduce((acc, cur) => {
-    const dataRegion = cur.marker.region.addr
-      .replace(/[0-9]|\-/g, "")
-      .trim()
-      .split(" ");
-    dataRegion.push(cur);
-    if (!acc.includes(dataRegion.at(0))) acc.push(dataRegion.at(0));
-    for (let i = 1; i < dataRegion.length; i++) {
-      if (!acc[dataRegion[i - 1]]) acc[dataRegion[i - 1]] = [];
-      if (!acc[dataRegion[i - 1]].includes(dataRegion[i]))
-        acc[dataRegion[i - 1]].push(dataRegion[i]);
-    }
-    return acc;
-  }, []);
+  return array.reduce(
+    (acc, cur) => {
+      const dataRegion = cur.marker.region.addr
+        .replace(/[0-9]|\-/g, "")
+        .trim()
+        .split(" ");
+      const distRegion = dataRegion.at(0);
+      const semiRegion = dataRegion.slice(1, dataRegion.length).join(" ");
+
+      if (!acc.district.hasOwnProperty(distRegion))
+        acc.district[distRegion] = [];
+      if (!acc.district[distRegion].includes(semiRegion))
+        acc.district[distRegion].push(semiRegion);
+      if (!acc.region.hasOwnProperty(semiRegion)) acc.region[semiRegion] = [];
+      acc.region[semiRegion].push(cur);
+
+      return acc;
+    },
+    { district: {}, region: {} }
+  );
 };
