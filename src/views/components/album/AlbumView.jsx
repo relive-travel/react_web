@@ -10,12 +10,12 @@ function AlbumView(props) {
       <section className="album-view-top">
         <article
           className="view-addr"
-          title={`🥕 ${props.album.marker.region.addr} ${props.album.marker.region.semiAddr}`}
+          title={`🥕 ${props.marker.region.addr} ${props.marker.region.semiAddr}`}
         >
           <span>🥕</span>
           <section className="view-addr-info">
-            <article>{props.album.marker.region.addr}</article>
-            <article>{props.album.marker.region.semiAddr}</article>
+            <article>{props.marker.region.addr}</article>
+            <article>{props.marker.region.semiAddr}</article>
           </section>
         </article>
       </section>
@@ -24,7 +24,7 @@ function AlbumView(props) {
           <section className="view-main-top">
             <article className="view-photos">
               <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
-                {props.album.photo.map((photo, index) => {
+                {props.photo.map((photo, index) => {
                   const photoStyle =
                     photo.width > photo.height
                       ? { height: "100%" }

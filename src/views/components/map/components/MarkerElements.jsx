@@ -15,7 +15,7 @@ function MarkerElements(props) {
   const mapData = useSelector((state) => state.map.topojson);
   const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
-  const markerList = useSelector((state) => state.marker.list);
+  const markerData = useSelector((state) => state.marker.data);
   const markerOption = useSelector((state) => state.marker.option);
 
   const [drawMarker, setDrawMarker] = useState();
@@ -27,10 +27,10 @@ function MarkerElements(props) {
   }, [mapRegion]);
 
   useEffect(() => {
-    if (mapData && markerList) {
+    if (mapData && markerData) {
       const geojson = topojson.feature(mapData, mapData.objects.regions);
       const projection = setProjection({ geojson, mapOption });
-      const markerElements = markerList.map((marker, index) => {
+      const markerElements = markerData.map((marker, index) => {
         return (
           <image
             key={index}
@@ -49,7 +49,7 @@ function MarkerElements(props) {
       });
       setDrawMarker(markerElements);
     }
-  }, [mapData, markerList]);
+  }, [mapData, markerData]);
 
   return <>{drawMarker}</>;
 }
