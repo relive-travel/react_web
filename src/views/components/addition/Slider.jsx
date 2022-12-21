@@ -74,7 +74,14 @@ function Slider(props) {
       groupRegion({ array: await sliderInfo })
     )
       .map(([key, values]) => {
-        return [key, Object.entries(values).sort()];
+        return [
+          key,
+          Object.entries(values).sort((a, b) =>
+            a[0] === b[0]
+              ? b[1].album.date.localeCompare(a[1].album.date)
+              : a[0].localeCompare(b[0])
+          ),
+        ];
       })
       .sort((a, b) => addrPriority.indexOf(a[0]) - addrPriority.indexOf(b[0]));
 
@@ -96,17 +103,23 @@ function Slider(props) {
     <>
       {sortStatus
         ? sliderRegionData?.map(([district, regions], index) => {
-            regions.map(([region, values], idx) => {
-              values.map(({ marker, album, photo }) => {
-                return <></>;
-              });
-              return <></>;
-            });
-            return <></>;
+            return (
+              <>
+                {regions.map(([region, values], idx) => {
+                  return (
+                    <>
+                      {values.map(({ marker, album, photo }) => {
+                        return <></>;
+                      })}
+                    </>
+                  );
+                })}
+              </>
+            );
           })
         : sliderTimeData?.map(({ marker, album, photo }, index) => {
             return (
-              <article
+              <section
                 className="slider-time"
                 key={`slider-${index}`}
                 onClick={() => {
@@ -114,7 +127,7 @@ function Slider(props) {
                   dispatch(setAlbumSwiperDialog(true));
                 }}
               >
-                <section className="time-header">
+                <header className="time-header">
                   <article className="time-addr">
                     {getAddr(marker.region.addr)}
                   </article>
@@ -122,20 +135,16 @@ function Slider(props) {
                     <span>{photo.length}</span>
                     <span>🥕</span>
                   </article>
-                </section>
-                <section>
-                  <main className="time-main">
-                    <article className="time-date">{album.date}</article>
-                    <article className="time-title">{album.title}</article>
-                    <article className="time-addr">
-                      {marker.region.addr}
-                    </article>
-                    <article className="time-semi-addr">
-                      {marker.region.semiAddr}
-                    </article>
-                  </main>
-                </section>
-              </article>
+                </header>
+                <main className="time-main">
+                  <article className="time-date">{album.date}</article>
+                  <article className="time-title">{album.title}</article>
+                  <article className="time-addr">{marker.region.addr}</article>
+                  <article className="time-semi-addr">
+                    {marker.region.semiAddr}
+                  </article>
+                </main>
+              </section>
             );
           })}
     </>
