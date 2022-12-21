@@ -9,7 +9,7 @@ import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
 import { getPhotoMatchAlbumId } from "redux/thunk/photoThunk";
 
-import { getAddr, getAddrPriority, getKoreanAddr } from "lib/get/addr";
+import { getAddr, getAddrPriority, getKoreanAddr } from "lib/utils/addr";
 import { groupRegion } from "lib/utils/jsUtils";
 
 import "./Slider.scss";

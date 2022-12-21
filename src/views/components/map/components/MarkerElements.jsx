@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setProjection } from "lib/get/projection";
-import { getKoreanAddr } from "lib/get/addr";
+import { getKoreanAddr } from "lib/utils/addr";
 
 import { getMarkerMatchRegion } from "redux/thunk/markerThunk";
 
