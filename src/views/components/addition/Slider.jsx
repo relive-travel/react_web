@@ -107,30 +107,30 @@ function Slider(props) {
         : sliderTimeData?.map(({ marker, album, photo }, index) => {
             return (
               <article
-                className="slider-info"
+                className="slider-time"
                 key={`slider-${index}`}
                 onClick={() => {
                   dispatch(setAlbumData([{ marker, album, photo }]));
                   dispatch(setAlbumSwiperDialog(true));
                 }}
               >
-                <section className="info-header">
-                  <article className="info-addr">
+                <section className="time-header">
+                  <article className="time-addr">
                     {getAddr(marker.region.addr)}
                   </article>
-                  <article className="info-photo-ea">
+                  <article className="time-photo-ea">
                     <span>{photo.length}</span>
                     <span>🥕</span>
                   </article>
                 </section>
                 <section>
-                  <main className="info-main">
-                    <article className="info-date">{album.date}</article>
-                    <article className="info-title">{album.title}</article>
-                    <article className="info-addr">
+                  <main className="time-main">
+                    <article className="time-date">{album.date}</article>
+                    <article className="time-title">{album.title}</article>
+                    <article className="time-addr">
                       {marker.region.addr}
                     </article>
-                    <article className="info-semi-addr">
+                    <article className="time-semi-addr">
                       {marker.region.semiAddr}
                     </article>
                   </main>
