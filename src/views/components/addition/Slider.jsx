@@ -9,7 +9,7 @@ import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
 import { getPhotoMatchAlbumId } from "redux/thunk/photoThunk";
 
-import { getAddr, getKoreanAddr } from "lib/get/addr";
+import { getAddr, getAddrPriority, getKoreanAddr } from "lib/get/addr";
 import { groupRegion } from "lib/utils/jsUtils";
 
 import "./Slider.scss";
@@ -58,18 +58,30 @@ function Slider(props) {
       return sliderPromise;
     }, []);
 
+    const sliderTime = (await sliderInfo).sort((a, b) =>
+      b.album.date.localeCompare(a.album.date)
+    );
+
     dispatch(
       setMarkerSlider({
         type: "time",
-        data: (await sliderInfo).sort((a, b) =>
-          b.album.date.localeCompare(a.album.date)
-        ),
+        data: sliderTime,
       })
     );
+
+    const addrPriority = getAddrPriority();
+    const sliderRegion = Object.entries(
+      groupRegion({ array: await sliderInfo })
+    )
+      .map(([key, values]) => {
+        return [key, Object.entries(values).sort()];
+      })
+      .sort((a, b) => addrPriority.indexOf(a[0]) - addrPriority.indexOf(b[0]));
+
     dispatch(
       setMarkerSlider({
         type: "region",
-        data: groupRegion({ array: await sliderInfo }),
+        data: sliderRegion,
       })
     );
   };
@@ -83,7 +95,15 @@ function Slider(props) {
   return (
     <>
       {sortStatus
-        ? sliderRegionData?.map({})
+        ? sliderRegionData?.map(([district, regions], index) => {
+            regions.map(([region, values], idx) => {
+              values.map(({ marker, album, photo }) => {
+                return <></>;
+              });
+              return <></>;
+            });
+            return <></>;
+          })
         : sliderTimeData?.map(({ marker, album, photo }, index) => {
             return (
               <article
@@ -95,21 +115,25 @@ function Slider(props) {
                 }}
               >
                 <section className="info-header">
-                  <div className="info-addr">{getAddr(marker.region.addr)}</div>
-                  <div className="info-photo-ea">
+                  <article className="info-addr">
+                    {getAddr(marker.region.addr)}
+                  </article>
+                  <article className="info-photo-ea">
                     <span>{photo.length}</span>
                     <span>🥕</span>
-                  </div>
+                  </article>
                 </section>
                 <section>
-                  <div className="info-main">
-                    <div className="info-date">{album.date}</div>
-                    <div className="info-title">{album.title}</div>
-                    <div className="info-addr">{marker.region.addr}</div>
-                    <div className="info-semi-addr">
+                  <main className="info-main">
+                    <article className="info-date">{album.date}</article>
+                    <article className="info-title">{album.title}</article>
+                    <article className="info-addr">
+                      {marker.region.addr}
+                    </article>
+                    <article className="info-semi-addr">
                       {marker.region.semiAddr}
-                    </div>
-                  </div>
+                    </article>
+                  </main>
                 </section>
               </article>
             );
