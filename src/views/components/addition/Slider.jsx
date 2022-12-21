@@ -32,6 +32,28 @@ function Slider(props) {
   const sliderTimeData = useSelector((state) => state.marker.slider.time);
   const sliderRegionData = useSelector((state) => state.marker.slider.region);
 
+  const handleClickDistrict = (index) => (e) => {
+    const open = JSON.parse(e.target.dataset.open);
+    console.log(open, typeof open);
+    const $cities = document.querySelectorAll(`.slider-city-${index}`);
+    $cities.forEach(($city) => {
+      open
+        ? $city.classList.remove("city-open")
+        : $city.classList.add("city-open");
+    });
+    e.target.dataset.open = !open;
+  };
+  const handleClickCity = (idx) => (e) => {
+    const open = JSON.parse(e.target.dataset.open);
+    const $regions = document.querySelectorAll(`.slider-region-${idx}`);
+    $regions.forEach(($region) => {
+      open
+        ? $region.classList.remove("region-open")
+        : $region.classList.add("region-open");
+    });
+    e.target.dataset.open = !open;
+  };
+
   const handleGetSliderInfo = async () => {
     const sliderInfo = markerData.reduce(async (slider, marker, idx) => {
       const sliderPromise = await slider;
@@ -113,17 +135,33 @@ function Slider(props) {
       {sortStatus
         ? sliderRegionData?.map(([district, cities], index) => {
             return (
-              <section className="slider-district">
-                <header className="district-name">
+              <section className="slider-district" key={`district-${index}`}>
+                <header
+                  className="district-name"
+                  data-open={false}
+                  onClick={handleClickDistrict(index)}
+                >
                   {getFullKoreanAddr(district)}
                 </header>
                 {cities.map(([city, regions], idx) => {
                   return (
-                    <section className={`slider-city-${index}`}>
-                      <header className="city-name">{city}</header>
-                      {regions.map(({ marker, album, photo }) => {
+                    <section
+                      className={`slider-city-${index}`}
+                      key={`city-${idx}`}
+                    >
+                      <header
+                        className="city-name"
+                        data-open={false}
+                        onClick={handleClickCity(idx)}
+                      >
+                        {city}
+                      </header>
+                      {regions.map(({ marker, album, photo }, i) => {
                         return (
-                          <section className={`slider-region-${idx}`}>
+                          <section
+                            className={`slider-region-${idx}`}
+                            key={`region-${i}`}
+                          >
                             <header className="region-header">
                               <article className="region-addr">
                                 {marker.region.addr}
