@@ -42,7 +42,6 @@ function PhotoGather(props) {
         };
       })
     );
-    console.log(await gatherList);
     const gatherGroup = groupSortType({
       array: await gatherList,
       type: sortStatus,
