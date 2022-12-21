@@ -11,32 +11,31 @@
     cursor: pointer;
   }
   > [class$="name"] {
+    border-bottom: 2.5px solid white;
     color: black;
     background-color: #2499ff;
   }
-  [class^="slider-city"] {
+  [class*="-city-"] {
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     > [class$="name"] {
+      border-bottom: 1px solid white;
       color: black;
       background-color: #61ccfe;
     }
   }
-  [class^="slider-region"] {
+  [class*="-region-"] {
     display: none;
   }
-  .city-open {
-    display: flex;
-  }
-  .region-open {
+  .open {
     display: flex;
   }
 }
 .slider-time,
-[class^="slider-region"] {
+[class*="-region-"] {
   display: flex;
   flex-direction: column;
 

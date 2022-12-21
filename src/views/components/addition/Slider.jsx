@@ -17,10 +17,6 @@ import {
 } from "lib/utils/addr";
 import { groupRegion } from "lib/utils/jsUtils";
 
-import ListIcon from "@mui/icons-material/List";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
 import "./Slider.scss";
 function Slider(props) {
   const dispatch = useDispatch();
@@ -32,25 +28,18 @@ function Slider(props) {
   const sliderTimeData = useSelector((state) => state.marker.slider.time);
   const sliderRegionData = useSelector((state) => state.marker.slider.region);
 
-  const handleClickDistrict = (index) => (e) => {
-    const open = JSON.parse(e.target.dataset.open);
-    console.log(open, typeof open);
-    const $cities = document.querySelectorAll(`.slider-city-${index}`);
-    $cities.forEach(($city) => {
-      open
-        ? $city.classList.remove("city-open")
-        : $city.classList.add("city-open");
+  const handleElementStatus = ({ key, state }) => {
+    const $elements = document.querySelectorAll(`.slider-${key}`);
+    $elements.forEach(($element) => {
+      state
+        ? $element.classList.add("open")
+        : $element.classList.remove("open");
     });
-    e.target.dataset.open = !open;
   };
-  const handleClickCity = (idx) => (e) => {
+
+  const handleClickRegion = (key) => (e) => {
     const open = JSON.parse(e.target.dataset.open);
-    const $regions = document.querySelectorAll(`.slider-region-${idx}`);
-    $regions.forEach(($region) => {
-      open
-        ? $region.classList.remove("region-open")
-        : $region.classList.add("region-open");
-    });
+    handleElementStatus({ key, state: !open });
     e.target.dataset.open = !open;
   };
 
@@ -139,28 +128,33 @@ function Slider(props) {
                 <header
                   className="district-name"
                   data-open={false}
-                  onClick={handleClickDistrict(index)}
+                  onClick={handleClickRegion(`${district}-city-${index}`)}
                 >
                   {getFullKoreanAddr(district)}
                 </header>
                 {cities.map(([city, regions], idx) => {
                   return (
                     <section
-                      className={`slider-city-${index}`}
-                      key={`city-${idx}`}
+                      className={`slider-${district}-city-${index}`}
+                      key={`${district}-city-${idx}`}
                     >
                       <header
                         className="city-name"
                         data-open={false}
-                        onClick={handleClickCity(idx)}
+                        onClick={handleClickRegion(
+                          `${city.replace(" ", "-")}-region-${idx}`
+                        )}
                       >
                         {city}
                       </header>
                       {regions.map(({ marker, album, photo }, i) => {
                         return (
                           <section
-                            className={`slider-region-${idx}`}
-                            key={`region-${i}`}
+                            className={`slider-${city.replace(
+                              " ",
+                              "-"
+                            )}-region-${idx}`}
+                            key={`${city.replace(" ", "-")}-region-${i}`}
                           >
                             <header className="region-header">
                               <article className="region-addr">
