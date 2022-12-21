@@ -57,8 +57,8 @@ export const getAddr = (addr) => {
     .join(" ");
 };
 
-export const getKoreanAddr = (region) => {
-  switch (region) {
+export const getKoreanAddr = (district) => {
+  switch (district) {
     case "Seoul":
       return "서울";
     case "Busan":
@@ -74,7 +74,7 @@ export const getKoreanAddr = (region) => {
     case "Ulsan":
       return "울산";
     case "Sejong-si":
-      return "세종특별자치시"; // 세종
+      return "세종";
     case "Gyeonggi-do":
       return "경기";
     case "Gangwon-do":
@@ -92,7 +92,46 @@ export const getKoreanAddr = (region) => {
     case "Gyeongsangnam-do":
       return "경남";
     case "Jeju-do":
-      return "제주특별자치도"; // 제주
+      return "제주";
+  }
+};
+
+export const getFullKoreanAddr = (district) => {
+  switch (district) {
+    case "서울":
+      return "서울특별시";
+    case "부산":
+      return "부산광역시";
+    case "대구":
+      return "대구광역시";
+    case "인천":
+      return "인천광역시";
+    case "광주":
+      return "광주광역시";
+    case "대전":
+      return "대전광역시";
+    case "울산":
+      return "울산광역시";
+    case "세종":
+      return "세종특별자치시";
+    case "경기":
+      return "경기도";
+    case "강원":
+      return "강원도";
+    case "충북":
+      return "충청북도";
+    case "충남":
+      return "충청남도";
+    case "전북":
+      return "전라북도";
+    case "전남":
+      return "전라남도";
+    case "경북":
+      return "경상북도";
+    case "경남":
+      return "경상남도";
+    case "제주":
+      return "제주특별자치도";
   }
 };
 

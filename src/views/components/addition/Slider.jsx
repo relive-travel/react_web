@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setAlbumData } from "redux/slice/albumSlice";
@@ -9,8 +9,17 @@ import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
 import { getPhotoMatchAlbumId } from "redux/thunk/photoThunk";
 
-import { getAddr, getAddrPriority, getKoreanAddr } from "lib/utils/addr";
+import {
+  getAddr,
+  getAddrPriority,
+  getFullKoreanAddr,
+  getKoreanAddr,
+} from "lib/utils/addr";
 import { groupRegion } from "lib/utils/jsUtils";
+
+import ListIcon from "@mui/icons-material/List";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 import "./Slider.scss";
 function Slider(props) {
@@ -22,14 +31,6 @@ function Slider(props) {
   const markerData = useSelector((state) => state.marker.data);
   const sliderTimeData = useSelector((state) => state.marker.slider.time);
   const sliderRegionData = useSelector((state) => state.marker.slider.region);
-
-  useEffect(() => {
-    if (mapRegion === "korea") {
-      dispatch(getMarkerAll());
-    } else {
-      dispatch(getMarkerMatchRegion(getKoreanAddr(mapRegion)));
-    }
-  }, [mapRegion]);
 
   const handleGetSliderInfo = async () => {
     const sliderInfo = markerData.reduce(async (slider, marker, idx) => {
@@ -94,6 +95,14 @@ function Slider(props) {
   };
 
   useEffect(() => {
+    if (mapRegion === "korea") {
+      dispatch(getMarkerAll());
+    } else {
+      dispatch(getMarkerMatchRegion(getKoreanAddr(mapRegion)));
+    }
+  }, [mapRegion]);
+
+  useEffect(() => {
     if (markerData) {
       handleGetSliderInfo();
     }
@@ -102,19 +111,46 @@ function Slider(props) {
   return (
     <>
       {sortStatus
-        ? sliderRegionData?.map(([district, regions], index) => {
+        ? sliderRegionData?.map(([district, cities], index) => {
             return (
-              <>
-                {regions.map(([region, values], idx) => {
+              <section className="slider-district">
+                <header className="district-name">
+                  {getFullKoreanAddr(district)}
+                </header>
+                {cities.map(([city, regions], idx) => {
                   return (
-                    <>
-                      {values.map(({ marker, album, photo }) => {
-                        return <></>;
+                    <section className={`slider-city-${index}`}>
+                      <header className="city-name">{city}</header>
+                      {regions.map(({ marker, album, photo }) => {
+                        return (
+                          <section className={`slider-region-${idx}`}>
+                            <header className="region-header">
+                              <article className="region-addr">
+                                {marker.region.addr}
+                              </article>
+                              <article className="region-photo-ea">
+                                <span>{photo.length}</span>
+                                <span>🥕</span>
+                              </article>
+                            </header>
+                            <main className="region-main">
+                              <article className="region-date">
+                                {album.date}
+                              </article>
+                              <article className="region-title">
+                                {album.title}
+                              </article>
+                              <article className="region-semi-addr">
+                                {marker.region.semiAddr}
+                              </article>
+                            </main>
+                          </section>
+                        );
                       })}
-                    </>
+                    </section>
                   );
                 })}
-              </>
+              </section>
             );
           })
         : sliderTimeData?.map(({ marker, album, photo }, index) => {
