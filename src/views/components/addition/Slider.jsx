@@ -17,6 +17,8 @@ import {
 } from "lib/utils/addr";
 import { groupRegion } from "lib/utils/jsUtils";
 
+import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+
 import "./Slider.scss";
 function Slider(props) {
   const dispatch = useDispatch();
@@ -55,6 +57,7 @@ function Slider(props) {
   };
 
   const handleClickRegion = (key) => (e) => {
+    e.stopPropagation();
     const open = JSON.parse(e.target.dataset.open);
     if (open) handleElementAllClose({ element: e.target.closest("section") });
     handleElementStatus({ key, state: !open });
@@ -153,6 +156,22 @@ function Slider(props) {
                   onClick={handleClickRegion(`${district}-city-${index}`)}
                 >
                   {getFullKoreanAddr(district)}
+                  <aside
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dispatch(
+                        setAlbumData(
+                          cities.reduce((acc, [_, cur]) => {
+                            acc.push(...cur);
+                            return acc;
+                          }, [])
+                        )
+                      );
+                      dispatch(setAlbumSwiperDialog(true));
+                    }}
+                  >
+                    <PhotoLibraryIcon key={`district-${index}`} />
+                  </aside>
                 </header>
                 {cities.map(([city, regions], idx) => {
                   return (
@@ -168,6 +187,15 @@ function Slider(props) {
                         )}
                       >
                         {city}
+                        <aside
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            dispatch(setAlbumData(regions));
+                            dispatch(setAlbumSwiperDialog(true));
+                          }}
+                        >
+                          <PhotoLibraryIcon key={`${district}-city-${idx}`} />
+                        </aside>
                       </header>
                       {regions.map(({ marker, album, photo }, i) => {
                         return (
@@ -177,6 +205,12 @@ function Slider(props) {
                               "-"
                             )}-region-${idx}`}
                             key={`${city.replace(" ", "-")}-region-${i}`}
+                            onClick={() => {
+                              dispatch(
+                                setAlbumData([{ marker, album, photo }])
+                              );
+                              dispatch(setAlbumSwiperDialog(true));
+                            }}
                           >
                             <header className="region-header">
                               <article className="region-addr">

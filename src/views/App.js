@@ -10,6 +10,7 @@ import SideDial from "./components/addition/SideDial";
 import AlbumSelect from "./components/modal/AlbumSelect";
 import AlbumCreate from "./components/album/AlbumCreate";
 import AlbumSwiper from "./components/album/AlbumSwiper";
+import AlbumView from "./components/album/AlbumView";
 import PhotoGather from "./components/photo/PhotoGather";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
@@ -27,6 +28,7 @@ function App() {
   const selectStatus = useSelector((state) => state.status.modal.select);
   const createStatus = useSelector((state) => state.status.dialog.create);
   const swiperStatus = useSelector((state) => state.status.dialog.swiper);
+  const viewStatus = useSelector((state) => state.status.dialog.view);
   const gatherStatus = useSelector((state) => state.status.option.gather);
 
   const handleSliderOpen = () => {
@@ -82,6 +84,7 @@ function App() {
         {selectStatus ? <AlbumSelect /> : null}
         {createStatus ? <AlbumCreate /> : null}
         {swiperStatus ? <AlbumSwiper /> : null}
+        {viewStatus ? <AlbumView /> : null}
         {gatherStatus ? <PhotoGather /> : null}
         <SideDial />
       </aside>
