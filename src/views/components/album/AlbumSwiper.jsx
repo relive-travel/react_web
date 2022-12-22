@@ -8,6 +8,8 @@ import { setAlbumSwiperDialog } from "redux/slice/statusSlice";
 
 import AlbumView from "./AlbumView";
 
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 import "swiper/css";
 import "swiper/css/effect-cards";
 import "swiper/css/pagination";
@@ -46,6 +48,9 @@ function AlbumSwiper(props) {
           );
         })}
       </Swiper>
+      <aside onClick={handleOutsideClick}>
+        <HighlightOffIcon />
+      </aside>
     </section>
   );
 }

@@ -51,6 +51,7 @@
 }
 .slider-time,
 [class*="-region-"] {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
 
