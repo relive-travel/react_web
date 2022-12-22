@@ -37,9 +37,31 @@ function Slider(props) {
     });
   };
 
+  const handleElementsEffect = ({ element, state }) => {
+    state
+      ? element.classList.add("fade-in")
+      : element.classList.remove("fade-in");
+  };
+
+  const handleElementAllClose = ({ element }) => {
+    const $headers = element.querySelectorAll("header");
+    $headers.forEach(($header) => {
+      $header.dataset.open = false;
+    });
+    const $elements = element.querySelectorAll(".open");
+    $elements.forEach(($element) => {
+      $element.classList.remove("open");
+    });
+  };
+
   const handleClickRegion = (key) => (e) => {
     const open = JSON.parse(e.target.dataset.open);
+    if (open) handleElementAllClose({ element: e.target.closest("section") });
     handleElementStatus({ key, state: !open });
+    handleElementsEffect({
+      element: e.target.closest("section"),
+      state: !open,
+    });
     e.target.dataset.open = !open;
   };
 
