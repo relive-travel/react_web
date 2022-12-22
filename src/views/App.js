@@ -16,6 +16,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 import "./App.scss";
+import "views/animations/Dropdown.scss";
 function App() {
   const dispatch = useDispatch();
 
