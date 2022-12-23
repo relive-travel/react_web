@@ -23,7 +23,7 @@ import "./Slider.scss";
 function Slider(props) {
   const dispatch = useDispatch();
 
-  const sortStatus = useSelector((state) => state.status.option.sort);
+  const sortOptionStatus = useSelector((state) => state.status.option.sort);
 
   const mapRegion = useSelector((state) => state.map.region);
   const markerData = useSelector((state) => state.marker.data);
@@ -146,7 +146,7 @@ function Slider(props) {
 
   return (
     <>
-      {sortStatus
+      {sortOptionStatus
         ? sliderRegionData?.map(([district, cities], index) => {
             return (
               <section className="slider-district" key={`district-${index}`}>

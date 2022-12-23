@@ -18,7 +18,7 @@ function D3Map(props) {
 
   const dispatch = useDispatch();
 
-  const viewStatus = useSelector((state) => state.status.option.view);
+  const viewOptionStatus = useSelector((state) => state.status.option.view);
 
   const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
@@ -69,7 +69,7 @@ function D3Map(props) {
               gPathRef={gPathRef}
             ></MarkerElements>
           ) : null}
-          {viewStatus ? <TextElements /> : null}
+          {viewOptionStatus ? <TextElements /> : null}
         </g>
       </svg>
     </>

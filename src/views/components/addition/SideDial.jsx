@@ -30,9 +30,8 @@ function SideDial(props) {
 
   const [dialOpen, setDialOpen] = useState(false);
 
-  const viewStatus = useSelector((state) => state.status.option.view);
-  const sortStatus = useSelector((state) => state.status.option.sort);
-  const gatherStatus = useSelector((state) => state.status.option.gather);
+  const viewOptionStatus = useSelector((state) => state.status.option.view);
+  const sortOptionStatus = useSelector((state) => state.status.option.sort);
 
   return (
     <Box>
@@ -56,11 +55,11 @@ function SideDial(props) {
         />
         <SpeedDialAction
           key={`dial-action-sort`}
-          icon={sortStatus ? <PlaceIcon /> : <AccessTimeIcon />}
-          tooltipTitle={sortStatus ? "지역 순 정렬" : "시간 순 정렬"}
+          icon={sortOptionStatus ? <PlaceIcon /> : <AccessTimeIcon />}
+          tooltipTitle={sortOptionStatus ? "지역 순 정렬" : "시간 순 정렬"}
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(setDialSortOption(!sortStatus));
+            dispatch(setDialSortOption(!sortOptionStatus));
           }}
         />
         <SpeedDialAction
@@ -74,11 +73,11 @@ function SideDial(props) {
         />
         <SpeedDialAction
           key={`dial-action-visibility`}
-          icon={viewStatus ? <VisibilityOffIcon /> : <VisibilityIcon />}
-          tooltipTitle={viewStatus ? "지역이름 숨기기" : "지역이름 보기"}
+          icon={viewOptionStatus ? <VisibilityOffIcon /> : <VisibilityIcon />}
+          tooltipTitle={viewOptionStatus ? "지역이름 숨기기" : "지역이름 보기"}
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(setDialViewOption(!viewStatus));
+            dispatch(setDialViewOption(!viewOptionStatus));
           }}
         />
         <SpeedDialAction

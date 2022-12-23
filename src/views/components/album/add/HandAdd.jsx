@@ -18,9 +18,15 @@ function HandAdd(props) {
 
   const searchData = useSelector((state) => state.album.search);
 
-  const keywordStatus = useSelector((state) => state.status.dialog.keyword);
-  const locationStatus = useSelector((state) => state.status.dialog.location);
-  const roadAddrStatus = useSelector((state) => state.status.dialog.roadAddr);
+  const keywordDialogStatus = useSelector(
+    (state) => state.status.dialog.keyword
+  );
+  const roadAddrDialogStatus = useSelector(
+    (state) => state.status.dialog.roadAddr
+  );
+  const locationDialogStatus = useSelector(
+    (state) => state.status.dialog.location
+  );
 
   useEffect(() => {
     if (searchData) {
@@ -122,9 +128,9 @@ function HandAdd(props) {
             </section>
           ) : null}
           <aside className="search-dialog-component">
-            {keywordStatus ? <SearchKeyword /> : null}
-            {roadAddrStatus ? <SearchRoadAddr /> : null}
-            {locationStatus ? <SearchLocation /> : null}
+            {keywordDialogStatus ? <SearchKeyword /> : null}
+            {roadAddrDialogStatus ? <SearchRoadAddr /> : null}
+            {locationDialogStatus ? <SearchLocation /> : null}
           </aside>
         </section>
       </main>

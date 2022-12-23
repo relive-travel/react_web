@@ -20,7 +20,7 @@ function PhotoGather(props) {
   const allData = useSelector((state) => state.photo.all);
   const gatherData = useSelector((state) => state.photo.gather);
 
-  const sortStatus = useSelector((state) => state.status.option.sort);
+  const sortOptionStatus = useSelector((state) => state.status.option.sort);
 
   const handleGetGatherData = async () => {
     const gatherList = Promise.all(
@@ -44,7 +44,7 @@ function PhotoGather(props) {
     );
     const gatherGroup = groupSortType({
       array: await gatherList,
-      type: sortStatus,
+      type: sortOptionStatus,
     });
 
     dispatch(
@@ -70,7 +70,7 @@ function PhotoGather(props) {
     if (allData) {
       handleGetGatherData();
     }
-  }, [allData, sortStatus]);
+  }, [allData, sortOptionStatus]);
 
   return (
     <section className="photo-gather-component">
@@ -78,7 +78,9 @@ function PhotoGather(props) {
         {gatherData?.map(([keyData, gather]) => {
           return (
             <article key={keyData}>
-              <header className={`gather-${sortStatus ? "region" : "date"}`}>
+              <header
+                className={`gather-${sortOptionStatus ? "region" : "date"}`}
+              >
                 {keyData}
               </header>
               <main className="gather-photos" key={`${keyData}-photos`}>
@@ -87,9 +89,6 @@ function PhotoGather(props) {
                     photo.width > photo.height
                       ? { height: "100%" }
                       : { width: "100%" };
-                  // photoStyle은 공통
-                  // sortStatus : false = album => date
-                  // sortStatus : true = marker => region
                   return (
                     <article key={`${keyData}-photo-${idx}`}>
                       <img

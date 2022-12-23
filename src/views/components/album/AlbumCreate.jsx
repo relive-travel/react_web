@@ -42,10 +42,12 @@ function AlbumCreate(props) {
   const photoFile = useSelector((state) => state.photo.file);
   const searchData = useSelector((state) => state.album.search);
 
-  const autoStatus = useSelector((state) => state.status.dialog.auto);
-  const changeStatus = useSelector((state) => state.status.modal.change);
-  const inspectStatus = useSelector((state) => state.status.modal.inspection);
-  const previewStatus = useSelector((state) => state.status.modal.preview);
+  const autoDialogStatus = useSelector((state) => state.status.dialog.auto);
+  const changeModalStatus = useSelector((state) => state.status.modal.change);
+  const inspectModalStatus = useSelector(
+    (state) => state.status.modal.inspection
+  );
+  const previewModalStatus = useSelector((state) => state.status.modal.preview);
 
   const handleOutsideClick = (e) => {
     if (!compRef.current?.contains(e.target)) {
@@ -136,7 +138,7 @@ function AlbumCreate(props) {
         <section className="album-main" ref={compRef}>
           <header className="album-title">당근 추가 하기</header>
           <main>
-            {autoStatus ? (
+            {autoDialogStatus ? (
               <AutoAdd
                 titleRef={titleRef}
                 contentRef={contentRef}
@@ -178,13 +180,13 @@ function AlbumCreate(props) {
             </button>
           </footer>
           <aside>
-            {changeStatus ? (
+            {changeModalStatus ? (
               <AlbumChange
                 handleClearPhoto={handleClearPhoto}
                 handleClearAlbum={handleClearAlbum}
               />
             ) : null}
-            {inspectStatus ? (
+            {inspectModalStatus ? (
               <AlbumInspection
                 titleRef={titleRef}
                 dateRef={dateRef}
@@ -192,7 +194,7 @@ function AlbumCreate(props) {
                 addrRef={addrRef}
               />
             ) : null}
-            {previewStatus ? (
+            {previewModalStatus ? (
               <AlbumPreview
                 title={titleRef.current.value}
                 content={contentRef.current.value}

@@ -25,11 +25,11 @@ function App() {
 
   const [sliderOpen, setSliderOpen] = useState(false);
 
-  const selectStatus = useSelector((state) => state.status.modal.select);
-  const createStatus = useSelector((state) => state.status.dialog.create);
-  const swiperStatus = useSelector((state) => state.status.dialog.swiper);
-  const viewStatus = useSelector((state) => state.status.dialog.view);
-  const gatherStatus = useSelector((state) => state.status.option.gather);
+  const selectModalStatus = useSelector((state) => state.status.modal.select);
+  const createDialogStatus = useSelector((state) => state.status.dialog.create);
+  const swiperDialogStatus = useSelector((state) => state.status.dialog.swiper);
+  const viewDialogStatus = useSelector((state) => state.status.dialog.view);
+  const gatherOptionStatus = useSelector((state) => state.status.option.gather);
 
   const handleSliderOpen = () => {
     sliderRef.current.classList.add("slider-open");
@@ -81,11 +81,11 @@ function App() {
         </section>
       </main>
       <aside>
-        {selectStatus ? <AlbumSelect /> : null}
-        {createStatus ? <AlbumCreate /> : null}
-        {swiperStatus ? <AlbumSwiper /> : null}
-        {viewStatus ? <AlbumView /> : null}
-        {gatherStatus ? <PhotoGather /> : null}
+        {selectModalStatus ? <AlbumSelect /> : null}
+        {createDialogStatus ? <AlbumCreate /> : null}
+        {swiperDialogStatus ? <AlbumSwiper /> : null}
+        {viewDialogStatus ? <AlbumView /> : null}
+        {gatherOptionStatus ? <PhotoGather /> : null}
         <SideDial />
       </aside>
       <footer></footer>
