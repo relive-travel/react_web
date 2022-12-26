@@ -5,7 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { fetchTopoJson } from "redux/thunk/mapThunk.js";
 
-import { setSvg, setZoomEvent, setSvgResetEvent } from "lib/utils/svgEvent.js";
+import {
+  setSvg,
+  setZoomEvent,
+  setSvgResetEvent,
+  setZoomOutEvent,
+} from "lib/utils/svgEvent.js";
 
 import PathElements from "./components/PathElements.jsx";
 import MarkerElements from "./components/MarkerElements.jsx";
@@ -22,6 +27,11 @@ function D3Map(props) {
 
   const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
+
+  // svg zoom end event callback
+  const handleScaleChange = (scale) => {
+    console.log(scale);
+  };
 
   // svg 세팅할때, 그리고 Path를 설정하기전에 지역데이터 받아와야함
   useEffect(() => {
@@ -41,10 +51,10 @@ function D3Map(props) {
   // svg zoom 세팅
   useEffect(() => {
     if (mapOption) {
-      const zoom = setZoomEvent({ gCurElement: gPathRef.current });
-
       // d3 svg 내부 사용자 마우스 zoom 이벤트 할당
-      d3.select(svgRef.current).call(zoom);
+      d3.select(svgRef.current).call(
+        setZoomEvent({ gCurElement: gPathRef.current }, handleScaleChange)
+      );
 
       // svg 배경 클릭 시 zoom reset
       setSvgResetEvent({
@@ -53,7 +63,6 @@ function D3Map(props) {
           gCurElement: gPathRef.current,
         },
         mapOption,
-        zoom,
       });
     }
   }, [mapRegion, mapOption]);

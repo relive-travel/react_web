@@ -24,8 +24,6 @@ function PathElements(props) {
 
   useEffect(() => {
     if (mapData) {
-      const zoom = setZoomEvent({ gCurElement: gPathRef.current });
-
       const geojson = topojson.feature(mapData, mapData.objects.regions);
       const projection = setProjection({ geojson, mapOption });
       const path = d3.geoPath().projection(projection);
@@ -67,7 +65,6 @@ function PathElements(props) {
                       gCurElement: gPathRef.current,
                     },
                     mapOption,
-                    zoom,
                     path,
                     geo,
                   })
