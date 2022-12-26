@@ -33,7 +33,7 @@ function MarkerElements(props) {
       const markerElements = markerData.map((marker, index) => {
         return (
           <image
-            key={index}
+            key={`marker-${index}`}
             transform={`translate(${
               projection([marker.point._long, marker.point._lat])[0] -
               markerOption.width / 2
@@ -49,7 +49,7 @@ function MarkerElements(props) {
       });
       setDrawMarker(markerElements);
     }
-  }, [mapData, markerData]);
+  }, [mapData, markerData, markerOption]);
 
   return <>{drawMarker}</>;
 }

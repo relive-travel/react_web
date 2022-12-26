@@ -3,6 +3,9 @@ import * as d3 from "d3";
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { setMapScale } from "redux/slice/mapSlice.js";
+import { setMarkerOption } from "redux/slice/markerSlice.js";
+
 import { fetchTopoJson } from "redux/thunk/mapThunk.js";
 
 import {
@@ -27,10 +30,15 @@ function D3Map(props) {
 
   const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
+  const mapScale = useSelector((state) => state.map.scale);
 
   // svg zoom end event callback
   const handleScaleChange = (scale) => {
-    console.log(scale);
+    if (1 > parseInt(scale) || parseInt(scale) >= 100) return;
+    if (mapScale !== parseInt(scale)) {
+      dispatch(setMapScale(parseInt(scale)));
+      dispatch(setMarkerOption(parseInt(scale)));
+    }
   };
 
   // svg 세팅할때, 그리고 Path를 설정하기전에 지역데이터 받아와야함
