@@ -18,6 +18,9 @@ const markerSlice = createSlice({
   name: "marker",
   initialState,
   reducers: {
+    setMarkerData: (state, action) => {
+      state.data = action.payload;
+    },
     setMarkerSlider: (state, action) => {
       state.slider[action.payload.type] = action.payload.data;
     },
@@ -33,6 +36,6 @@ const markerSlice = createSlice({
   },
 });
 
-export const { setMarkerSlider } = markerSlice.actions;
+export const { setMarkerData, setMarkerSlider } = markerSlice.actions;
 
 export default markerSlice.reducer;

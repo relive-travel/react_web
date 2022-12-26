@@ -8,6 +8,7 @@ import {
   setDialSortOption,
   setDialViewOption,
 } from "redux/slice/statusSlice";
+import { setMarkerData } from "redux/slice/markerSlice";
 
 import { Box, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
@@ -50,6 +51,7 @@ function SideDial(props) {
           tooltipTitle={"홈 지도 이동"}
           onClick={(e) => {
             e.stopPropagation();
+            dispatch(setMarkerData(null));
             dispatch(setMapRegion("korea"));
           }}
         />
