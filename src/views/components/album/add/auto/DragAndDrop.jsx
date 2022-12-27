@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 
 import { preivewImage } from "lib/utils/image";
-import { getExifData, getExifDataList } from "lib/get/exifData";
+import { getExifData, getExifDataList } from "lib/utils/exifData";
 
 import "./DragAndDrop.scss";
 function DragAndDrop(props) {

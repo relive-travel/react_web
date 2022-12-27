@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setAlbumSearch } from "redux/slice/albumSlice";
 import { setAlbumHandLocationDialog } from "redux/slice/statusSlice";
 
-import { setKakaoMapWithLocation } from "lib/get/kakaoMap";
+import { setKakaoMapWithLocation } from "lib/utils/kakaoMap";
 
 import "./SearchLocation.scss";
 function SearchLocation(props) {

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setAlbumSearch } from "redux/slice/albumSlice";
 import { setAlbumHandKeywordDialog } from "redux/slice/statusSlice";
 
-import { setKakaoMapWithKeyword } from "lib/get/kakaoMap";
+import { setKakaoMapWithKeyword } from "lib/utils/kakaoMap";
 
 import "./SearchKeyword.scss";
 function SearchKeyword(props) {
