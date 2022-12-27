@@ -12,6 +12,23 @@ function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Navigate to="/login" /> },
     {
+      path: "/oauth",
+      children: [
+        {
+          path: "/oauth/kakao",
+          element: (
+            <Navigate
+              to="/login"
+              state={{
+                code: new URL(window.location.href).searchParams.get("code"),
+              }}
+            />
+          ),
+        },
+        // { path: "/google", element: <Navigate /> },
+      ],
+    },
+    {
       path: "/login",
       element: <Login />,
     },
