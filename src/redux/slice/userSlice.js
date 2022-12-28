@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getKakaoInfo, getUser } from "redux/thunk/userThunk";
 
 const initialState = {
-  id: "ZhEzfwLkBX2nFh8Lvhfn",
-  email: "arisu0906@naver.com",
+  id: null,
+  nickName: null,
+  email: null,
 };
 
 const userSlice = createSlice({
@@ -11,8 +13,19 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.id = action.payload.id;
+      state.nickName = action.payload.nickName;
       state.email = action.payload.email;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.id = action.payload;
+      })
+      .addCase(getKakaoInfo.fulfilled, (state, action) => {
+        state.nickName = action.payload.nickName;
+        state.email = action.payload.email;
+      });
   },
 });
 
