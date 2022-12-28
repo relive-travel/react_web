@@ -2,6 +2,8 @@
 
 .map-component {
   position: relative;
+  width: 100%;
+  height: 100%;
   .slider-open {
     transform: translate(0%, 0%);
   }

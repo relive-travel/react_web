@@ -1,0 +1,40 @@
+.login-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  background-color: skyblue;
+  > header {
+    height: 15%;
+  }
+  // .login-main
+  > main {
+    height: 30%;
+    > section {
+      height: 100%;
+    }
+  }
+  > footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    width: 100%;
+    [class$="rabbit"] {
+      > img {
+        width: 100%;
+      }
+    }
+    .left-rabbit,
+    .right-rabbit {
+      width: 30%;
+    }
+    .middle-rabbit {
+      width: 40%;
+    }
+  }
+}
