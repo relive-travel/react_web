@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
+import Logout from "views/components/user/Logout";
+
 import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/addition/Slider.jsx";
 import SideDial from "views/components/addition/SideDial";
@@ -63,6 +65,9 @@ function Map() {
 
   return (
     <section className="map-component" onClick={handleSliderClick}>
+      <header>
+        <Logout />
+      </header>
       <main>
         <nav className="slider-component" ref={sliderRef}>
           <section className="slider-main">
