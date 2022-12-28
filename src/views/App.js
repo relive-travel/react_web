@@ -6,8 +6,8 @@ import {
 
 import Map from "./parents/Map";
 import Login from "./parents/Login";
+import OAuthKakao from "./components/user/oauth/OAuthKakao";
 
-import "./App.scss";
 function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Navigate to="/login" /> },
@@ -16,14 +16,7 @@ function App() {
       children: [
         {
           path: "/oauth/kakao",
-          element: (
-            <Navigate
-              to="/login"
-              state={{
-                code: new URL(window.location.href).searchParams.get("code"),
-              }}
-            />
-          ),
+          element: <OAuthKakao />,
         },
         // { path: "/google", element: <Navigate /> },
       ],
