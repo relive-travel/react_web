@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
-import Logout from "views/components/user/Logout";
+import Logout from "views/components/home/Logout";
 
 import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/addition/Slider.jsx";

@@ -6,8 +6,8 @@ import {
 
 import Home from "./parents/Home";
 import Login from "./components/home/Login";
-import LoginSuccess from "./components/user/LoginSuccess";
-import Regist from "./components/user/Regist";
+import LoginSuccess from "./components/home/LoginSuccess";
+import Regist from "./components/home/Regist";
 
 import OAuthKakao from "./components/home/oauth/OAuthKakao";
 
