@@ -65,9 +65,14 @@ function Home(props) {
   }, []);
 
   return (
-    <section className="login-component">
-      <header>여기는 Relive-travel의 마크가 들어갈 곳이에요</header>
-      <main className="login-main">
+    <section className="home-component">
+      <header>
+        <img
+          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/Logo.png`}
+          alt="relive travel, 여행을 기록하다"
+        />
+      </header>
+      <main className="home-main">
         {userEmail ? userId ? <LoginSuccess /> : <Regist /> : <Login />}
       </main>
       <footer>
