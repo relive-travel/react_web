@@ -4,13 +4,35 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Map from "./parents/Map";
-import Login from "./parents/Login";
+import Home from "./parents/Home";
+import Login from "./components/user/Login";
+import LoginSuccess from "./components/user/LoginSuccess";
+import Regist from "./components/user/Regist";
+
 import OAuthKakao from "./components/user/oauth/OAuthKakao";
+
+import Map from "./parents/Map";
 
 function App() {
   const router = createBrowserRouter([
-    { path: "/", element: <Navigate to="/login" /> },
+    {
+      path: "/",
+      element: <Home />,
+      children: [
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/success",
+          element: <LoginSuccess />,
+        },
+        {
+          path: "/regist",
+          element: <Regist />,
+        },
+      ],
+    },
     {
       path: "/oauth",
       children: [
@@ -18,12 +40,7 @@ function App() {
           path: "/oauth/kakao",
           element: <OAuthKakao />,
         },
-        // { path: "/google", element: <Navigate /> },
       ],
-    },
-    {
-      path: "/login",
-      element: <Login />,
     },
     {
       path: "/map",

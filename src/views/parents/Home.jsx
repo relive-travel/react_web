@@ -1,14 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { Outlet, redirect, useLocation, useNavigate } from "react-router-dom";
 
 import { getKakaoInfo, getKakaoToken, getUser } from "redux/thunk/userThunk";
 
 import { getCookie } from "lib/utils/cookie";
-
-import Login from "views/components/user/Login";
-import LoginSuccess from "views/components/user/LoginSuccess";
-import Regist from "views/components/user/Regist";
 
 import "./Home.scss";
 function Home(props) {
@@ -73,7 +69,7 @@ function Home(props) {
         />
       </header>
       <main className="home-main">
-        {userEmail ? userId ? <LoginSuccess /> : <Regist /> : <Login />}
+        <Outlet />
       </main>
       <footer>
         {["left", "middle", "right"].map((rabbit, index) => {
