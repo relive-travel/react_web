@@ -7,19 +7,31 @@ import axios from "axios";
 
 import { setCookie } from "lib/utils/cookie";
 
-export const setUser = createAsyncThunk(`user/setUser`, async (data) => {
-  // 문서를 생성하는 경우, 문서의 id를 지정하려면, setDoc
-  // cloud firestore가 자동으로 id를 생성하는 경우, addDoc'
-  const docRef = await addDoc(collection(db, "users"), data);
-});
+export const setUser = createAsyncThunk(
+  `user/setUser`,
+  async ({ kakaoId, nickName, email }) => {
+    // 문서를 생성하는 경우, 문서의 id를 지정하려면, setDoc
+    // cloud firestore가 자동으로 id를 생성하는 경우, addDoc'
+    const docRef = await addDoc(collection(db, "users"), {
+      kakaoId,
+      nickName,
+      email,
+    });
 
-export const getUser = createAsyncThunk(`user/getUser`, async ({ email }) => {
-  const userCol = collection(db, "users");
-  const emailQuery = query(userCol, where("email", "==", email));
-  const querySnapshot = await getDocs(emailQuery);
-  const queryItem = querySnapshot.docs[0].id;
-  return queryItem;
-});
+    return docRef.id;
+  }
+);
+
+export const getUserMatchKakaoId = createAsyncThunk(
+  `user/getUserMatchKakaoId`,
+  async ({ kakaoId }) => {
+    const userCol = collection(db, "users");
+    const kakaoIdQuery = query(userCol, where("kakaoId", "==", kakaoId));
+    const querySnapshot = await getDocs(kakaoIdQuery);
+    const queryItem = querySnapshot.docs[0].id;
+    return queryItem;
+  }
+);
 
 export const getKakaoToken = createAsyncThunk(
   `user/getKakaoToken`,
@@ -58,7 +70,6 @@ export const getKakaoToken = createAsyncThunk(
       });
     }
     window.Kakao.Auth.setAccessToken(kakaoToken.access_token);
-    getKakaoInfo(kakaoToken.access_token);
   }
 );
 
@@ -68,6 +79,7 @@ export const getKakaoInfo = createAsyncThunk(`user/getKakaoInfo`, async () => {
   // if (!kakaoInfo.is_email_valid || !kakaoInfo.is_email_verified) return
 
   return {
+    kakaoId: kakaoInfo.id,
     nickName: kakaoInfo.kakao_account.profile.nickname,
     email: kakaoInfo.kakao_account.email,
   };

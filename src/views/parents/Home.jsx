@@ -1,25 +1,33 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Outlet, redirect, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import { getKakaoInfo, getKakaoToken, getUser } from "redux/thunk/userThunk";
+import {
+  getKakaoInfo,
+  getKakaoToken,
+  getUserMatchKakaoId,
+} from "redux/thunk/userThunk";
 
 import { getCookie } from "lib/utils/cookie";
 
 import "./Home.scss";
 function Home(props) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const userId = useSelector((state) => state.user.id);
-  const userEmail = useSelector((state) => state.user.email);
-
-  useEffect(() => {
-    if (userEmail) {
-      dispatch(getUser({ email: userEmail }));
-    }
-  }, [userEmail]);
+  const handleGetKakaoUser = async () => {
+    const kakaoInfo = await dispatch(getKakaoInfo()).then((response) => {
+      return response.payload;
+    });
+    const userInfo = await dispatch(
+      getUserMatchKakaoId({ kakaoId: kakaoInfo.kakaoId })
+    ).then((response) => {
+      return response.payload;
+    });
+    navigate(userInfo ? "/success" : "/regist");
+  };
 
   // authorize를 통해 발급된 인가코드로 카카오 사용자 accessToken을 발급한다.
   useEffect(() => {
@@ -31,29 +39,35 @@ function Home(props) {
         redirect_uri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
         code: location.state.code,
       };
-      dispatch(getKakaoToken({ url, params }));
+      dispatch(getKakaoToken({ url, params })).then(() => {
+        handleGetKakaoUser();
+      });
     }
   }, [location.state?.code]);
 
   // cookie에 access-token이 존재하는 경우 access-token등록
   useEffect(() => {
     const accessToken = getCookie({ name: "authorize-access-token" });
-    if (accessToken) {
+    if (accessToken && accessToken !== "undefined") {
       window.Kakao.Auth.setAccessToken(accessToken);
       // access-token으로 사용자 정보를 가져온다.
-      dispatch(getKakaoInfo());
+      handleGetKakaoUser();
     } else {
       // cookie에 access-token은 없으나
       // refresh-token이 존재하는 경우 access-token 재 발급 후 사용자 정보 불러오기
       const refreshToken = getCookie({ name: "authorize-refresh-token" });
-      if (refreshToken) {
+      if (refreshToken && accessToken !== "undefined") {
         const url = "https://kauth.kakao.com/oauth/token";
         const params = {
           grant_type: "refresh_token",
           client_id: process.env.REACT_APP_KAKAO_REST_API,
           refresh_token: refreshToken,
         };
-        dispatch(getKakaoToken({ url, params }));
+        dispatch(getKakaoToken({ url, params })).then(() => {
+          handleGetKakaoUser();
+        });
+      } else {
+        navigate("/login");
       }
     }
     // codeReview

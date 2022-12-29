@@ -9,7 +9,7 @@ import {
   setAlbumPreviewModal,
 } from "redux/slice/statusSlice";
 
-import { getUser } from "redux/thunk/userThunk";
+// import { getUser } from "redux/thunk/userThunk";
 import { setMarker } from "redux/thunk/markerThunk";
 import { setAlbum } from "redux/thunk/albumThunk";
 import { setPhoto } from "redux/thunk/photoThunk";
