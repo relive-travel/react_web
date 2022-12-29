@@ -5,11 +5,11 @@ import {
 } from "react-router-dom";
 
 import Home from "./parents/Home";
-import Login from "./components/user/Login";
+import Login from "./components/home/Login";
 import LoginSuccess from "./components/user/LoginSuccess";
 import Regist from "./components/user/Regist";
 
-import OAuthKakao from "./components/user/oauth/OAuthKakao";
+import OAuthKakao from "./components/home/oauth/OAuthKakao";
 
 import Map from "./parents/Map";
 

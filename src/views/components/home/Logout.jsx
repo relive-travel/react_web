@@ -12,7 +12,11 @@ function Logout() {
     delCookie({ name: "authorize-access-token" });
     window.Kakao.Auth.setAccessToken(null);
   };
-  return <></>;
+  return (
+    <button className="logout-button" onClick={handleClickLogout}>
+      로그아웃
+    </button>
+  );
 }
 
 export default Logout;
