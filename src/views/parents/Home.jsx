@@ -6,12 +6,12 @@ import { getKakaoInfo, getKakaoToken, getUser } from "redux/thunk/userThunk";
 
 import { getCookie } from "lib/utils/cookie";
 
-import LoginWaitting from "views/components/user/LoginWaitting";
+import Login from "views/components/user/Login";
 import LoginSuccess from "views/components/user/LoginSuccess";
-import Register from "views/components/user/Register";
+import Regist from "views/components/user/Regist";
 
-import "./Login.scss";
-function Login(props) {
+import "./Home.scss";
+function Home(props) {
   const location = useLocation();
 
   const dispatch = useDispatch();
@@ -68,15 +68,7 @@ function Login(props) {
     <section className="login-component">
       <header>여기는 Relive-travel의 마크가 들어갈 곳이에요</header>
       <main className="login-main">
-        {userEmail ? (
-          userId ? (
-            <LoginSuccess />
-          ) : (
-            <Register />
-          )
-        ) : (
-          <LoginWaitting />
-        )}
+        {userEmail ? userId ? <LoginSuccess /> : <Regist /> : <Login />}
       </main>
       <footer>
         {["left", "middle", "right"].map((rabbit, index) => {
@@ -93,4 +85,4 @@ function Login(props) {
     </section>
   );
 }
-export default Login;
+export default Home;

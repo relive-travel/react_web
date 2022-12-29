@@ -1,4 +1,4 @@
-.login-component {
+.home-component {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -9,8 +9,11 @@
   background-color: skyblue;
   > header {
     height: 15%;
+    > img {
+      height: 100%;
+    }
   }
-  // .login-main
+  // .home-main
   > main {
     height: 30%;
     > section {
@@ -35,6 +38,35 @@
     }
     .middle-rabbit {
       width: 40%;
+      overflow: visible;
     }
+  }
+}
+
+.home-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  font-size: 1.25em;
+  .login-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 20%;
+    > main {
+      > img {
+        cursor: pointer;
+        width: 100%;
+      }
+    }
+  }
+
+  .login-success-component {
+  }
+  .register-component {
   }
 }
