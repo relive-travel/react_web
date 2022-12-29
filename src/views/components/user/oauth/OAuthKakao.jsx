@@ -9,7 +9,7 @@ function OAuthKakao() {
 
   return (
     <Navigate
-      to="/login"
+      to="/"
       state={{
         code: new URL(window.location.href).searchParams.get("code"),
       }}
