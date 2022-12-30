@@ -1,21 +1,32 @@
 .home-component {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 100%;
 
   background-color: skyblue;
+
   > header {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
     height: 15%;
+    // aspect-ratio: 1;
+
+    // border-radius: 50%;
+    // background-color: white;
     > img {
       height: 100%;
+      // height: 90%;
+      // aspect-ratio: 1;
     }
   }
   // .home-main
   > main {
-    height: 30%;
+    height: 40%;
     > section {
       height: 100%;
     }
@@ -23,22 +34,29 @@
   > footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-end;
 
     width: 100%;
+    height: 45%;
     [class$="rabbit"] {
-      > img {
-        width: 100%;
-      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .left-rabbit,
     .right-rabbit {
-      width: 30%;
+      width: 25%;
+      height: 75%;
+      > img {
+        height: 100%;
+      }
     }
     .middle-rabbit {
-      width: 40%;
-      overflow: visible;
+      width: 30%;
+      > img {
+        width: 100%;
+      }
     }
   }
 }
@@ -50,23 +68,147 @@
   width: 100%;
 
   font-size: 1.25em;
-  .login-component {
+}
+
+.login-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  > header {
+    width: 100%;
+    height: 85%;
+    > .swiper {
+      --swiper-theme-color: #eb898e !important;
+      height: 100%;
+      > .swiper-wrapper {
+        > .swiper-slide {
+          > section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+
+            width: 90%;
+            height: 100%;
+          }
+        }
+      }
+      > .swiper-pagination-horizontal {
+        left: auto;
+        top: auto;
+        bottom: 0;
+      }
+    }
+  }
+  > main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 10%;
+    > img {
+      cursor: pointer;
+      height: 100%;
+    }
+  }
+}
+
+.login-success-component {
+}
+.regist-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #eb898e;
+  > header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 15%;
+
+    font-size: 2.125em;
+  }
+  > main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
-    width: 20%;
+    padding: 1.25em;
+    height: 70%;
+    box-sizing: border-box;
+    border-radius: 25px;
+    background-color: white;
+    > header {
+      height: 15%;
+      color: rgba($color: #eb898e, $alpha: 1);
+    }
     > main {
-      > img {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      height: 60%;
+      > article {
+        margin: 0.5em 0;
+        color: black;
+        > span {
+          opacity: 0.75;
+        }
+      }
+    }
+    > footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+
+      height: 15%;
+      width: 100%;
+
+      > button {
+        padding: 0.25em 0.875em;
+
+        border: 2px solid;
+        border-radius: 0.625em;
+        background-color: transparent;
+
+        transition: 0.25s ease-in-out;
+      }
+      > button:hover {
         cursor: pointer;
-        width: 100%;
+      }
+      .regist-rallback-button {
+        color: gray;
+        border-color: gray;
+      }
+      .regist-rallback-button:hover {
+        color: white;
+        background-color: rgba($color: gray, $alpha: 1);
+      }
+      .regist-complete-button {
+        color: #eb898e;
+        border-color: #eb898e;
+      }
+      .regist-complete-button:hover {
+        color: black;
+        background-color: rgba($color: #eb898e, $alpha: 1);
       }
     }
   }
+  > footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  .login-success-component {
-  }
-  .register-component {
+    height: 5%;
+    font-size: 0.75em;
+    color: rgba($color: #eb898e, $alpha: 0.75);
   }
 }
