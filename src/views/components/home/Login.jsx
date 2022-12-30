@@ -1,5 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import Banner from "./component/Banner";
+
 function Login() {
   // cookie에 access/refresh-token이 존재하지 않는 경우
   // login버튼을 통해 authorize실행, 토큰 발급진행
@@ -12,9 +14,7 @@ function Login() {
   return (
     <section className="login-component">
       <header>
-        <Swiper>
-          <SwiperSlide></SwiperSlide>
-        </Swiper>
+        <Banner />
       </header>
       <main>
         <img
