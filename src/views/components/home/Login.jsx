@@ -6,9 +6,6 @@ function Login() {
   const handleClickLogin = () => {
     window.Kakao.Auth.authorize({
       redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
-      // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce
-      // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID
-      nonce: window.crypto.randomUUID(),
     });
   };
 
