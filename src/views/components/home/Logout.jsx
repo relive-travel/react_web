@@ -1,4 +1,4 @@
-import { delCookie } from "lib/utils/cookie";
+import { delCookie } from "lib/utils/data/cookie";
 
 function Logout() {
   const handleClickLogout = () => {

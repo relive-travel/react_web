@@ -14,7 +14,7 @@ import {
   getAddrPriority,
   getFullKoreanAddr,
   getKoreanAddr,
-} from "lib/utils/addr";
+} from "lib/utils/data/addr";
 import { groupRegion } from "lib/utils/jsUtils";
 
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";

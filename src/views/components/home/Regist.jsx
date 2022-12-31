@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setUser } from "redux/thunk/userThunk";
 
-import { delCookie } from "lib/utils/cookie";
+import { delCookie } from "lib/utils/data/cookie";
 import {
   setPhotoUserFolder,
   getPhotoUserFolder,

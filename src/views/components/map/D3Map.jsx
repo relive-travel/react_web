@@ -13,7 +13,7 @@ import {
   setZoomEvent,
   setSvgResetEvent,
   setZoomOutEvent,
-} from "lib/utils/svgEvent.js";
+} from "lib/utils/map/svgEvent.js";
 
 import PathElements from "./components/PathElements.jsx";
 import MarkerElements from "./components/MarkerElements.jsx";

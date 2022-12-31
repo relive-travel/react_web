@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setMapRegion, setMapText } from "redux/slice/mapSlice";
 
-import { setZoomEvent, setPathZoomEvent } from "lib/utils/svgEvent";
-import { setProjection } from "lib/utils/projection";
-import { getKoreanAddr } from "lib/utils/addr";
+import { setPathZoomEvent } from "lib/utils/map/svgEvent";
+import { setProjection } from "lib/utils/map/projection";
+import { getKoreanAddr } from "lib/utils/data/addr";
 
 import "./PathElements.scss";
 function PathElements(props) {

@@ -1,6 +1,6 @@
 import loadImage from "blueimp-load-image";
 
-import { clearPreview } from "./jsUtils";
+import { clearPreview } from "../jsUtils";
 
 export const preivewImage = ($preview, fileObjects) => {
   clearPreview($preview);

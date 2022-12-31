@@ -5,7 +5,7 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 import axios from "axios";
 
-import { setCookie } from "lib/utils/cookie";
+import { setCookie } from "lib/utils/data/cookie";
 
 export const setUser = createAsyncThunk(
   `user/setUser`,
@@ -75,7 +75,6 @@ export const getKakaoToken = createAsyncThunk(
 
 export const getKakaoInfo = createAsyncThunk(`user/getKakaoInfo`, async () => {
   const kakaoInfo = await window.Kakao.API.request({ url: "/v2/user/me" });
-
   // if (!kakaoInfo.is_email_valid || !kakaoInfo.is_email_verified) return
 
   return {

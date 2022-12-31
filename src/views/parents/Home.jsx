@@ -8,7 +8,7 @@ import {
   getUserMatchKakaoId,
 } from "redux/thunk/userThunk";
 
-import { getCookie } from "lib/utils/cookie";
+import { getCookie } from "lib/utils/data/cookie";
 
 import "./Home.scss";
 function Home(props) {

@@ -14,7 +14,7 @@ import { setMarker } from "redux/thunk/markerThunk";
 import { setAlbum } from "redux/thunk/albumThunk";
 import { setPhoto } from "redux/thunk/photoThunk";
 
-import { getRegionAddr } from "lib/utils/addr";
+import { getRegionAddr } from "lib/utils/data/addr";
 import { clearPreview, clearRef, inspectRefList } from "lib/utils/jsUtils";
 import { uploadFiles } from "lib/utils/s3Utils";
 
