@@ -1,9 +1,9 @@
 @import "views/scss/mixins/setAttribute";
 
 @mixin dialogOutside() {
-  @include setAbsolute(0, none, none, 0);
-  @include setFlex(none, center, center);
-  @include setSize(100%, 100%, none, none, none);
+  @include setAbsolute(0, null, null, 0);
+  @include setFlex(null, center, center);
+  @include setSize(100%, 100%, null, null, null);
 
   z-index: 2147483647;
 
@@ -11,7 +11,7 @@
 }
 
 @mixin dialogBorder($width, $height, $margin, $padding, $aspectRatio) {
-  @include setFlex(none, center, center);
+  @include setFlex(null, center, center);
   @include setSize($width, $height, $margin, $padding, $aspectRatio);
 
   box-sizing: border-box;
@@ -21,7 +21,7 @@
 
 @mixin dialogInside($flexDirection, $justifyContent, $alginItems) {
   @include setFlex($flexDirection, $justifyContent, $alginItems);
-  @include setSize(100%, 100%, none, 1.25em, none);
+  @include setSize(100%, 100%, null, 1.25em, null);
 
   box-sizing: border-box;
 
