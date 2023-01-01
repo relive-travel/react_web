@@ -13,12 +13,14 @@ function LoginSuccess() {
     <section className="login-success-component">
       <header>
         <p className="success-user">{userNickName} !</p>
-        <img src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/hi.png`} />
+        <img
+          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/toshimee/hi.png`}
+        />
         <p className="success-welcome">오늘도 기억에 많이 남은 하루야?!</p>
       </header>
       <main onClick={handleClickStart}>
         <img
-          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/success_medium_wide.png`}
+          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/kakao/success_medium_wide.png`}
         />
         <span>시작하기</span>
       </main>

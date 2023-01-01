@@ -16,7 +16,7 @@ function Login() {
       </header>
       <main>
         <img
-          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/kakao_login_medium_wide.png`}
+          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/kakao/kakao_login_medium_wide.png`}
           alt="카카오 로그인 버튼"
           onClick={handleClickLogin}
         />

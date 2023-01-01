@@ -78,7 +78,7 @@ function Home(props) {
     <section className="home-component">
       <header>
         <img
-          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/Logo.png`}
+          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/logo/Logo.png`}
           alt="relive travel, 여행을 기록하다"
         />
       </header>
@@ -90,7 +90,7 @@ function Home(props) {
           return (
             <article className={`${rabbit}-rabbit`} key={`rabbit-${index}`}>
               <img
-                src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/${rabbit}_rabbit.png`}
+                src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/rabbit/${rabbit}_rabbit.png`}
                 alt={`${rabbit}을(를) 바라보는 토끼`}
               />
             </article>
