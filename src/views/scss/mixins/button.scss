@@ -1,0 +1,35 @@
+@import "views/scss/mixins/setAttribute";
+
+@mixin buttonSelect($buttons) {
+  @include setFlex(row, space-around, center);
+
+  > button {
+    @include buttonMain;
+  }
+
+  @each $name, $color in $buttons {
+    .#{$name}-button {
+      color: $color;
+      border-color: $color;
+
+      &:hover {
+        color: black;
+        background-color: rgba($color: $color, $alpha: 1);
+      }
+    }
+  }
+}
+
+@mixin buttonMain {
+  padding: 0.25em 0.875em;
+
+  border: 2px solid;
+  border-radius: 0.625em;
+  background-color: transparent;
+
+  transition: 0.25s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
