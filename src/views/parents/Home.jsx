@@ -56,7 +56,7 @@ function Home(props) {
       // cookie에 access-token은 없으나
       // refresh-token이 존재하는 경우 access-token 재 발급 후 사용자 정보 불러오기
       const refreshToken = getCookie({ name: "authorize-refresh-token" });
-      if (refreshToken && accessToken !== "undefined") {
+      if (refreshToken && refreshToken !== "undefined") {
         const url = "https://kauth.kakao.com/oauth/token";
         const params = {
           grant_type: "refresh_token",
