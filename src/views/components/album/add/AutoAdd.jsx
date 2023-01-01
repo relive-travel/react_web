@@ -90,7 +90,7 @@ function AutoAdd(props) {
               previewRef={props.previewRef}
             ></DragAndDrop>
           </article>
-          {photoData ? (
+          {photoData?.exifdata ? (
             <article className="info-location">
               <label htmlFor="location">위치</label>
               <section
@@ -101,7 +101,7 @@ function AutoAdd(props) {
             </article>
           ) : null}
         </section>
-        {photoData ? (
+        {photoData?.exifdata ? (
           <section className="info-main-bottom">
             <article className="info-date">
               <label htmlFor="date">
