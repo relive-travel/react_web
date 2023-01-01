@@ -1,13 +1,26 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function LoginSuccess() {
+  const navigate = useNavigate();
   const userNickName = useSelector((state) => state.user.nickName);
+
+  const handleClickStart = () => {
+    navigate("/map");
+  };
 
   return (
     <section className="login-success-component">
-      <header>오늘하루도 기억에 남으셨나요?</header>
-      <main>
-        <button className="start-button">시작하기</button>
+      <header>
+        <p className="success-user">{userNickName} !</p>
+        <img src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/hi.png`} />
+        <p className="success-welcome">오늘도 기억에 많이 남은 하루야?!</p>
+      </header>
+      <main onClick={handleClickStart}>
+        <img
+          src={`${process.env.REACT_APP_API_S3_ADDRESS}/image/success_medium_wide.png`}
+        />
+        <span>시작하기</span>
       </main>
     </section>
   );

@@ -52,15 +52,15 @@ function Map() {
   };
 
   useEffect(() => {
+    dispatch(setMapRegion("korea"));
+    dispatch(
+      setMapOption({ width: window.innerWidth, height: window.innerHeight })
+    );
     window.onresize = function () {
       dispatch(
         setMapOption({ width: window.innerWidth, height: window.innerHeight })
       );
     };
-    dispatch(setMapRegion("korea"));
-    dispatch(
-      setMapOption({ width: window.innerWidth, height: window.innerHeight })
-    );
   }, [dispatch]);
 
   return (
