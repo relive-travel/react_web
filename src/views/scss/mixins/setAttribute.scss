@@ -1,0 +1,22 @@
+@mixin setFlex($flexDirection, $justifyContent, $alignItems) {
+  display: flex;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
+
+@mixin setSize($width, $height, $margin, $padding, $aspectRatio) {
+  width: $width;
+  height: $height;
+  margin: $margin;
+  padding: $padding;
+  aspect-ratio: $aspectRatio;
+}
+
+@mixin setAbsolute($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
