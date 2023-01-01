@@ -117,7 +117,52 @@
 }
 
 .login-success-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  > header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 85%;
+    > p {
+      color: #eb898e;
+    }
+    > img {
+      width: 10%;
+      aspect-ratio: 1;
+    }
+    .success-user {
+      font-size: 1.5em;
+    }
+    .success-welcome {
+      font-size: 1.25em;
+    }
+  }
+  > main {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 10%;
+    > span {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
 }
+
 .regist-component {
   display: flex;
   flex-direction: column;
