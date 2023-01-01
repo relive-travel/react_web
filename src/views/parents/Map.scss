@@ -1,4 +1,5 @@
-@import "views/mixins/common";
+@import "views/scss/mixins/addition";
+@import "views/scss/mixins/setAttribute";
 
 .map-component {
   position: relative;
@@ -51,10 +52,7 @@
     overflow: scroll;
 
     .slider-exception {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @include setFlex(column, center, center);
       width: 100%;
       height: 100%;
       > img {

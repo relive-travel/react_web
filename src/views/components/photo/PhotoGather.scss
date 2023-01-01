@@ -1,6 +1,6 @@
-@import "views/mixins/common";
+@import "views/scss/mixins/dialog";
 .photo-gather-component {
-  @include commonOutsideBackground();
+  @include dialogOutside();
   .photo-gather-main {
     padding: 5em;
 

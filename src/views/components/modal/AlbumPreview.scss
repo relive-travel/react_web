@@ -1,8 +1,8 @@
-@import "views/mixins/common";
-@import "views/mixins/album";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/album";
 
 .album-preview-component {
-  @include commonOutsideBackground();
+  @include dialogOutside();
   flex-direction: column;
   > article {
     @include albumCompArticle();
