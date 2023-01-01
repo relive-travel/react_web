@@ -136,7 +136,7 @@ function AlbumCreate(props) {
     <section className="album-create-component" onClick={handleOutsideClick}>
       <article>
         <section className="album-main" ref={compRef}>
-          <header className="album-title">당근 추가 하기</header>
+          <header className="album-title">오늘 나의 추억</header>
           <main>
             {autoDialogStatus ? (
               <AutoAdd
