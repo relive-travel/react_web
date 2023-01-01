@@ -15,7 +15,13 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    delUser: (state, payload) => {
+      state.kakaoId = null;
+      state.nickName = null;
+      state.email = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(setUser.fulfilled, (state, action) => {
@@ -32,6 +38,6 @@ const userSlice = createSlice({
   },
 });
 
-export const {} = userSlice.actions;
+export const { delUser } = userSlice.actions;
 
 export default userSlice.reducer;

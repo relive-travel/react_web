@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setUser } from "redux/thunk/userThunk";
 
-import { delCookie } from "lib/utils/data/cookie";
+import { delUser } from "redux/slice/userSlice";
+
 import { setUserObject } from "lib/utils/s3Utils";
+import { delCookie } from "lib/utils/data/cookie";
 
 function Regist() {
   const dispatch = useDispatch();
@@ -15,13 +17,14 @@ function Regist() {
   const userEmail = useSelector((state) => state.user.email);
 
   const handleRallbackClick = () => {
+    dispatch(delUser());
     delCookie({ name: "authorize-access-token" });
     delCookie({ name: "authorize-refresh-token" });
     // navigate("/")
     navigate("/login");
   };
 
-  const handleCompleteClick = async () => {
+  const handleCompleteClick = () => {
     dispatch(
       setUser({
         kakaoId: userKakaoId,
