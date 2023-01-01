@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import {
-  setAlbumAuto,
+  setAlbumDialogAuto,
   setAlbumCreateDialog,
   setAlbumSelectModal,
 } from "redux/slice/statusSlice";
@@ -33,7 +33,7 @@ function AlbumSelect(props) {
             <button
               className="select-auto-button"
               onClick={() => {
-                dispatch(setAlbumAuto(true));
+                dispatch(setAlbumDialogAuto(true));
                 dispatch(setAlbumSelectModal(false));
                 dispatch(setAlbumCreateDialog(true));
               }}
@@ -43,7 +43,7 @@ function AlbumSelect(props) {
             <button
               className="select-hand-button"
               onClick={() => {
-                dispatch(setAlbumAuto(false));
+                dispatch(setAlbumDialogAuto(false));
                 dispatch(setAlbumSelectModal(false));
                 dispatch(setAlbumCreateDialog(true));
               }}

@@ -1,6 +1,9 @@
 import { useDispatch } from "react-redux";
 
-import { setAlbumAuto, setAlbumChangeModal } from "redux/slice/statusSlice";
+import {
+  setAlbumDialogAuto,
+  setAlbumChangeModal,
+} from "redux/slice/statusSlice";
 
 import "./AlbumChange.scss";
 function AlbumChange(props) {
@@ -39,7 +42,7 @@ function AlbumChange(props) {
               className="write-hand-button"
               onClick={() => {
                 dispatch(setAlbumChangeModal(false));
-                dispatch(setAlbumAuto(false));
+                dispatch(setAlbumDialogAuto(false));
               }}
             >
               직접

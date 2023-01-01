@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: {
-    auto: false,
-  },
   option: {
     sort: false,
     gather: false,
     view: false,
   },
   dialog: {
+    auto: false,
     create: false,
     keyword: false,
     location: false,
@@ -29,10 +27,6 @@ const statusSlice = createSlice({
   name: "status",
   initialState,
   reducers: {
-    /** value */
-    setAlbumAuto: (state, action) => {
-      state.value.auto = action.payload;
-    },
     /** option */
     setDialSortOption: (state, action) => {
       state.option.sort = action.payload;
@@ -44,6 +38,9 @@ const statusSlice = createSlice({
       state.option.view = action.payload;
     },
     /** dialog */
+    setAlbumDialogAuto: (state, action) => {
+      state.dialog.auto = action.payload;
+    },
     setAlbumCreateDialog: (state, action) => {
       state.dialog.create = action.payload;
     },
@@ -79,13 +76,12 @@ const statusSlice = createSlice({
 });
 
 export const {
-  /** value */
-  setAlbumAuto,
   /** option */
   setDialSortOption,
   setDialGatherOption,
   setDialViewOption,
   /** dialog */
+  setAlbumDialogAuto,
   setAlbumCreateDialog,
   setAlbumHandKeywordDialog,
   setAlbumHandLocationDialog,
