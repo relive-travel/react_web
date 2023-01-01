@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setAlbumData } from "redux/slice/albumSlice";
@@ -16,6 +16,8 @@ import {
   getKoreanAddr,
 } from "lib/utils/data/addr";
 import { groupRegion } from "lib/utils/jsUtils";
+
+import SliderEmpty from "./exception/SliderEmpty";
 
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 
@@ -99,12 +101,14 @@ function Slider(props) {
       b.album.date.localeCompare(a.album.date)
     );
 
-    dispatch(
-      setMarkerSlider({
-        type: "time",
-        data: sliderTime,
-      })
-    );
+    if (sliderTime.length) {
+      dispatch(
+        setMarkerSlider({
+          type: "time",
+          data: sliderTime,
+        })
+      );
+    }
 
     const addrPriority = getAddrPriority();
     const sliderRegion = Object.entries(
@@ -122,12 +126,14 @@ function Slider(props) {
       })
       .sort((a, b) => addrPriority.indexOf(a[0]) - addrPriority.indexOf(b[0]));
 
-    dispatch(
-      setMarkerSlider({
-        type: "region",
-        data: sliderRegion,
-      })
-    );
+    if (sliderRegion.length) {
+      dispatch(
+        setMarkerSlider({
+          type: "region",
+          data: sliderRegion,
+        })
+      );
+    }
   };
 
   useEffect(() => {
@@ -146,8 +152,9 @@ function Slider(props) {
 
   return (
     <>
-      {sortOptionStatus
-        ? sliderRegionData?.map(([district, cities], index) => {
+      {sortOptionStatus ? (
+        sliderRegionData ? (
+          sliderRegionData.map(([district, cities], index) => {
             return (
               <section className="slider-district" key={`district-${index}`}>
                 <header
@@ -241,36 +248,43 @@ function Slider(props) {
               </section>
             );
           })
-        : sliderTimeData?.map(({ marker, album, photo }, index) => {
-            return (
-              <section
-                className="slider-time"
-                key={`slider-${index}`}
-                onClick={() => {
-                  dispatch(setAlbumData([{ marker, album, photo }]));
-                  dispatch(setAlbumSwiperDialog(true));
-                }}
-              >
-                <header className="time-header">
-                  <article className="time-addr">
-                    {getAddr(marker.region.addr)}
-                  </article>
-                  <article className="time-photo-ea">
-                    <span>{photo.length}</span>
-                    <span>🥕</span>
-                  </article>
-                </header>
-                <main className="time-main">
-                  <article className="time-date">{album.date}</article>
-                  <article className="time-title">{album.title}</article>
-                  <article className="time-addr">{marker.region.addr}</article>
-                  <article className="time-semi-addr">
-                    {marker.region.semiAddr}
-                  </article>
-                </main>
-              </section>
-            );
-          })}
+        ) : (
+          <SliderEmpty />
+        )
+      ) : sliderTimeData ? (
+        sliderTimeData.map(({ marker, album, photo }, index) => {
+          return (
+            <section
+              className="slider-time"
+              key={`slider-${index}`}
+              onClick={() => {
+                dispatch(setAlbumData([{ marker, album, photo }]));
+                dispatch(setAlbumSwiperDialog(true));
+              }}
+            >
+              <header className="time-header">
+                <article className="time-addr">
+                  {getAddr(marker.region.addr)}
+                </article>
+                <article className="time-photo-ea">
+                  <span>{photo.length}</span>
+                  <span>🥕</span>
+                </article>
+              </header>
+              <main className="time-main">
+                <article className="time-date">{album.date}</article>
+                <article className="time-title">{album.title}</article>
+                <article className="time-addr">{marker.region.addr}</article>
+                <article className="time-semi-addr">
+                  {marker.region.semiAddr}
+                </article>
+              </main>
+            </section>
+          );
+        })
+      ) : (
+        <SliderEmpty />
+      )}
     </>
   );
 }

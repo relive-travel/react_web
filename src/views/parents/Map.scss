@@ -49,5 +49,49 @@
     background-color: rgba($color: #ffffff, $alpha: 0.33);
 
     overflow: scroll;
+
+    .slider-exception {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      > img {
+        width: 90%;
+        aspect-ratio: 1;
+      }
+      main {
+        height: 5%;
+      }
+      footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        height: 5%;
+        > button {
+          padding: 0.25em 0.875em;
+
+          border: 2px solid;
+          border-radius: 0.625em;
+          background-color: transparent;
+
+          transition: 0.25s ease-in-out;
+        }
+        > button:hover {
+          cursor: pointer;
+        }
+        .make-memory-button {
+          color: #008000;
+          border-color: #008000;
+        }
+        .make-memory-button:hover {
+          color: white;
+          background-color: rgba($color: #008000, $alpha: 1);
+        }
+      }
+    }
   }
 }
