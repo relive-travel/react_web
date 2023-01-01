@@ -1,47 +1,29 @@
+@import "views/scss/variables";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/button";
+@import "views/scss/mixins/setAttribute";
+
 .album-select-component {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  background-color: rgba($color: black, $alpha: 0.5);
+  @include dialogOutside();
 
   > article {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include dialogBorder(null, 40%, null, 1em, 1);
 
-    padding: 1em;
-    height: 20%;
-    max-height: 125px;
-    aspect-ratio: 1.75/1;
-    background-color: rgba($color: #ff8822, $alpha: 1);
+    .select-main {
+      @include dialogInside(column, space-between, null);
 
-    .select-buttons {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      padding: 1.25em;
-
-      width: 100%;
-      height: 100%;
-
-      box-sizing: border-box;
-
-      background-color: rgba($color: #008000, $alpha: 1);
-      > button {
-        height: 100%;
-        aspect-ratio: 1;
+      > header {
+        @include setFlex(null, center, center);
+        @include setSize(null, 90%, null, null, 1);
+        > img {
+          height: 100%;
+        }
       }
-      > button:hover {
-        cursor: pointer;
+      > footer {
+        height: 10%;
+        @include buttonSelect(
+          ("select-auto" $button-sub-color, "select-hand" $button-main-color)
+        );
       }
     }
   }
