@@ -5,10 +5,10 @@ import {
   CopyObjectCommand,
 } from "@aws-sdk/client-s3";
 
-export const setUserObject = async ({ kakaoId, key }) => {
+export const setUserObject = async ({ kakaoId }) => {
   const params = {
     Bucket: process.env.REACT_APP_S3_BUCKET_NAME,
-    Key: `photo/${kakaoId}/${key}`,
+    Key: `photo/${kakaoId}/`,
   };
   const command = new PutObjectCommand(params);
   try {
