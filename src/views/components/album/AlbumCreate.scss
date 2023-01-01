@@ -7,33 +7,29 @@
   @include dialogOutside();
   > article {
     @include dialogBorder(45%, 85%, null, 1.25em, null);
-
     color: white;
     .album-main {
       @include dialogInside(column, space-between, null);
-
       > header {
         @include setFlex(null, center, center);
-
         height: 10%;
-
         font-size: 2.125em;
       }
       > main {
         @include setSize(null, 80%, null, 0 2.5em, null);
-
         overflow: scroll;
       }
       > footer {
+        @include setSize(100%, 5%, null, null, null);
         @include buttonSelect(
           (
             "album-clear" $button-default-color,
             "album-preview" $button-sub-color,
             "album-add" $button-main-color
-          )
+          ),
+          1,
+          20%
         );
-
-        height: 5%;
       }
     }
   }

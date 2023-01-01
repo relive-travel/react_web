@@ -1,10 +1,14 @@
 @import "views/scss/mixins/setAttribute";
 
-@mixin buttonSelect($buttons) {
+@mixin buttonSelect($buttons, $line, $width) {
   @include setFlex(row, space-around, center);
 
   > button {
-    @include buttonMain;
+    @include setSize($width, null, null, null, null);
+    @include buttonMain($line);
+    @if $line != 1 {
+      @include buttonOverflow;
+    }
   }
 
   @each $name, $color in $buttons {
@@ -20,11 +24,11 @@
   }
 }
 
-@mixin buttonMain {
-  padding: 0.25em 0.875em;
+@mixin buttonMain($line) {
+  padding: 0.25em * $line 0.875em;
 
   border: 2px solid;
-  border-radius: 0.625em;
+  border-radius: 10px;
   background-color: transparent;
 
   transition: 0.25s ease-in-out;
@@ -32,4 +36,8 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+@mixin buttonOverflow {
+  @include setFlex(row, space-around, center);
 }

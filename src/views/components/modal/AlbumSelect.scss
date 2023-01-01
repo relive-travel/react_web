@@ -20,9 +20,11 @@
         }
       }
       > footer {
-        height: 10%;
+        @include setSize(100%, 10%, null, null, null);
         @include buttonSelect(
-          ("select-auto" $button-sub-color, "select-hand" $button-main-color)
+          ("select-auto" $button-sub-color, "select-hand" $button-main-color),
+          1,
+          45%
         );
       }
     }

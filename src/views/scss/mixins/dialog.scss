@@ -1,3 +1,4 @@
+@import "views/scss/mixins/addition";
 @import "views/scss/mixins/setAttribute";
 
 @mixin dialogOutside() {
@@ -26,4 +27,11 @@
   box-sizing: border-box;
 
   background-color: rgba($color: #008000, $alpha: 1);
+}
+
+@mixin dialogException() {
+  @include setFlex(column, center, center);
+  height: 100%;
+
+  @include exception;
 }
