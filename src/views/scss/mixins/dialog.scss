@@ -1,0 +1,29 @@
+@import "views/scss/mixins/setAttribute";
+
+@mixin dialogOutside() {
+  @include setAbsolute(0, none, none, 0);
+  @include setFlex(none, center, center);
+  @include setSize(100%, 100%, none, none, none);
+
+  z-index: 2147483647;
+
+  background-color: rgba($color: black, $alpha: 0.7);
+}
+
+@mixin dialogBorder($width, $height, $margin, $padding, $aspectRatio) {
+  @include setFlex(none, center, center);
+  @include setSize($width, $height, $margin, $padding, $aspectRatio);
+
+  box-sizing: border-box;
+
+  background-color: rgba($color: #ff8822, $alpha: 1);
+}
+
+@mixin dialogInside($flexDirection, $justifyContent, $alginItems) {
+  @include setFlex($flexDirection, $justifyContent, $alginItems);
+  @include setSize(100%, 100%, none, 1.25em, none);
+
+  box-sizing: border-box;
+
+  background-color: rgba($color: #008000, $alpha: 1);
+}
