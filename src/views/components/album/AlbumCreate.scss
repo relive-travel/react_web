@@ -1,3 +1,4 @@
+@import "views/scss/variables";
 @import "views/scss/mixins/dialog";
 @import "views/scss/mixins/button";
 @import "views/scss/mixins/setAttribute";
@@ -25,7 +26,11 @@
       }
       > footer {
         @include buttonSelect(
-          ("album-clear" white, "album-preview" #ffcc88, "album-add" #ff8822)
+          (
+            "album-clear" $button-default-color,
+            "album-preview" $button-sub-color,
+            "album-add" $button-main-color
+          )
         );
 
         height: 5%;
