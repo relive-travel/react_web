@@ -4,11 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "redux/thunk/userThunk";
 
 import { delCookie } from "lib/utils/data/cookie";
-import {
-  setPhotoUserFolder,
-  getPhotoUserFolder,
-  copyPhotoUserFolder,
-} from "lib/utils/s3Utils";
+import { setUserObject } from "lib/utils/s3Utils";
 
 function Regist() {
   const dispatch = useDispatch();
@@ -26,15 +22,15 @@ function Regist() {
   };
 
   const handleCompleteClick = async () => {
-    // dispatch(
-    //   setUser({
-    //     kakaoId: userKakaoId,
-    //     nickName: userNickName,
-    //     email: userEmail,
-    //   })
-    // );
-    // setPhotoUserFolder({ email: userEmail });
-    // navigate("/success");
+    dispatch(
+      setUser({
+        kakaoId: userKakaoId,
+        nickName: userNickName,
+        email: userEmail,
+      })
+    );
+    setUserObject({ kakaoId: userKakaoId });
+    navigate("/success");
   };
 
   return (
