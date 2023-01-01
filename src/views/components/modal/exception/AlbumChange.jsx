@@ -5,27 +5,33 @@ import {
   setAlbumChangeModal,
 } from "redux/slice/statusSlice";
 
+import PhotoDataEmpty from "views/components/exception/PhotoDataEmpty";
+
 import "./AlbumChange.scss";
 function AlbumChange(props) {
   const dispatch = useDispatch();
   return (
-    <section className="change-album-component">
+    <section className="album-change-component">
       <article>
-        <section className="change-album-main">
-          <header className="change-album-title">
-            이런..! 사진에 <span>데이터</span>가 없어요ㅠ.ㅠ
+        <section className="album-change-main">
+          <header>
+            <PhotoDataEmpty />
           </header>
-          <main className="change-album-buttons">
+          <footer className="album-change-buttons">
             <button
-              className="re-start-button"
+              className="change-restart-button"
               onClick={() => {
                 dispatch(setAlbumChangeModal(false));
                 props.handleClearAlbum();
               }}
             >
-              처음부터
-              <br />
-              다시쓸래요
+              <aside>🥕</aside>
+              <main>
+                처음부터
+                <br />
+                다시쓸래요!
+              </main>
+              <aside>🥕</aside>
             </button>
             <button
               className="change-picture-button"
@@ -34,22 +40,30 @@ function AlbumChange(props) {
                 props.handleClearPhoto();
               }}
             >
-              사진
-              <br />
-              바꿀래요
+              <aside>🥕</aside>
+              <main>
+                사진
+                <br />
+                바꿀래요!
+              </main>
+              <aside>🥕</aside>
             </button>
             <button
-              className="write-hand-button"
+              className="change-write-button"
               onClick={() => {
                 dispatch(setAlbumChangeModal(false));
                 dispatch(setAlbumDialogAuto(false));
               }}
             >
-              직접
-              <br />
-              쓸래요!
+              <aside>🥕</aside>
+              <main>
+                직접
+                <br />
+                쓸래요!
+              </main>
+              <aside>🥕</aside>
             </button>
-          </main>
+          </footer>
         </section>
       </article>
     </section>
