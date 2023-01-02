@@ -23,13 +23,13 @@ function AlbumInspect(props) {
   };
 
   useEffect(() => {
-    if (inspectRef(props.titleRef))
+    if (!inspectRef(props.titleRef))
       setInspectList((inspectList) => [...inspectList, "제목"]);
-    if (inspectRef(props.dateRef))
+    if (!inspectRef(props.dateRef))
       setInspectList((inspectList) => [...inspectList, "날짜"]);
     if (inspectRefFile(props.photoRef))
       setInspectList((inspectList) => [...inspectList, "사진"]);
-    if (inspectRef(props.addrRef))
+    if (!inspectRef(props.addrRef))
       setInspectList((inspectList) => [...inspectList, "주소"]);
 
     return () => dispatch(setAlbumInspectModal(false));
