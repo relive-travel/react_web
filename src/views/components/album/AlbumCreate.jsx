@@ -5,7 +5,7 @@ import { setPhotoDelete } from "redux/slice/photoSlice";
 import { setAlbumSearch } from "redux/slice/albumSlice";
 import {
   setAlbumCreateDialog,
-  setAlbumInspectionModal,
+  setAlbumInspectModal,
   setAlbumPreviewModal,
 } from "redux/slice/statusSlice";
 
@@ -21,7 +21,7 @@ import { uploadFiles } from "lib/utils/s3Utils";
 import AutoAdd from "./add/AutoAdd";
 import HandAdd from "./add/HandAdd";
 import AlbumChange from "../modal/exception/AlbumChange";
-import AlbumInspection from "../modal/exception/AlbumInspection";
+import AlbumInspect from "../modal/exception/AlbumInspect";
 import AlbumPreview from "../modal/AlbumPreview";
 
 import "./AlbumCreate.scss";
@@ -44,9 +44,7 @@ function AlbumCreate(props) {
 
   const autoDialogStatus = useSelector((state) => state.status.dialog.auto);
   const changeModalStatus = useSelector((state) => state.status.modal.change);
-  const inspectModalStatus = useSelector(
-    (state) => state.status.modal.inspection
-  );
+  const inspectModalStatus = useSelector((state) => state.status.modal.inspect);
   const previewModalStatus = useSelector((state) => state.status.modal.preview);
 
   const handleOutsideClick = (e) => {
@@ -80,7 +78,7 @@ function AlbumCreate(props) {
 
   const handleAddAlbum = async () => {
     if (!handleInspectAlbum()) {
-      dispatch(setAlbumInspectionModal(true));
+      dispatch(setAlbumInspectModal(true));
       return;
     }
 
@@ -170,7 +168,7 @@ function AlbumCreate(props) {
               onClick={() => {
                 handleInspectAlbum()
                   ? dispatch(setAlbumPreviewModal(true))
-                  : dispatch(setAlbumInspectionModal(true));
+                  : dispatch(setAlbumInspectModal(true));
               }}
             >
               미리 보기
@@ -187,7 +185,7 @@ function AlbumCreate(props) {
               />
             ) : null}
             {inspectModalStatus ? (
-              <AlbumInspection
+              <AlbumInspect
                 titleRef={titleRef}
                 dateRef={dateRef}
                 photoRef={photoRef}

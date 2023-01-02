@@ -1,0 +1,49 @@
+@import "views/scss/variables";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/button";
+@import "views/scss/mixins/setAttribute";
+
+.alubm-inspect-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(25%, null, null, 1.25em, 1.5/1);
+    .alubm-inspect-main {
+      @include dialogInside(column, space-around, center);
+
+      .inspect-exception {
+        @include dialogException();
+      }
+
+      > header {
+        > span {
+          color: #ff8822;
+        }
+      }
+      > main {
+        > span {
+          margin: 0 0.5em;
+          color: pink;
+        }
+      }
+      > footer {
+        > button {
+          padding: 0.25em 0.875em;
+
+          border: 2px solid;
+          border-radius: 0.625em;
+          background-color: transparent;
+
+          transition: 0.25s ease-in-out;
+
+          color: #ff8822;
+          border-color: #ff8822;
+        }
+        > button:hover {
+          cursor: pointer;
+          color: black;
+          background-color: rgba($color: #ff8822, $alpha: 1);
+        }
+      }
+    }
+  }
+}

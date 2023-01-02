@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { setAlbumInspectionModal } from "redux/slice/statusSlice";
+import { setAlbumInspectModal } from "redux/slice/statusSlice";
 
 import { inspectRef, inspectRefFile } from "lib/utils/jsUtils";
 
-import "./AlbumInspection.scss";
-function AlbumInspection(props) {
+import "./AlbumInspect.scss";
+function AlbumInspect(props) {
   const dispatch = useDispatch();
 
   const compRef = useRef(null);
@@ -16,7 +16,7 @@ function AlbumInspection(props) {
   const handleOutsideClick = (e) => {
     e.stopPropagation();
     if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumInspectionModal(false));
+      dispatch(setAlbumInspectModal(false));
     }
   };
 
@@ -30,31 +30,29 @@ function AlbumInspection(props) {
     if (inspectRef(props.addrRef))
       setInspectList((inspectList) => [...inspectList, "주소"]);
 
-    return () => dispatch(setAlbumInspectionModal(false));
+    return () => dispatch(setAlbumInspectModal(false));
   }, []);
 
   return (
-    <section
-      className="inspection-album-component"
-      onClick={handleOutsideClick}
-    >
+    <section className="alubm-inspect-component" onClick={handleOutsideClick}>
       <article>
-        <section className="inspection-album-main" ref={compRef}>
+        <section className="alubm-inspect-main" ref={compRef}>
           <header>
             이런..! <span>필수항목</span>이 비어있어요!
           </header>
           <main>
             {inspectList.map((inspect, index) => {
-              return <span key={index}>{inspect}</span>;
+              return <span key={`inspect-${index}`}>{inspect}</span>;
             })}
           </main>
           <footer>
             <button
+              className="inspect-write-button"
               onClick={() => {
-                dispatch(setAlbumInspectionModal(false));
+                dispatch(setAlbumInspectModal(false));
               }}
             >
-              작성할게요!
+              작성할게요! 🥕
             </button>
           </footer>
         </section>
@@ -62,4 +60,4 @@ function AlbumInspection(props) {
     </section>
   );
 }
-export default AlbumInspection;
+export default AlbumInspect;

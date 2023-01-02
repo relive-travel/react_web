@@ -18,7 +18,7 @@ const initialState = {
   modal: {
     select: false,
     change: false,
-    inspection: false,
+    inspect: false,
     preview: false,
   },
 };
@@ -66,8 +66,8 @@ const statusSlice = createSlice({
     setAlbumChangeModal: (state, action) => {
       state.modal.change = action.payload;
     },
-    setAlbumInspectionModal: (state, action) => {
-      state.modal.inspection = action.payload;
+    setAlbumInspectModal: (state, action) => {
+      state.modal.inspect = action.payload;
     },
     setAlbumPreviewModal: (state, action) => {
       state.modal.preview = action.payload;
@@ -91,7 +91,7 @@ export const {
   /** modal */
   setAlbumSelectModal,
   setAlbumChangeModal,
-  setAlbumInspectionModal,
+  setAlbumInspectModal,
   setAlbumPreviewModal,
 } = statusSlice.actions;
 

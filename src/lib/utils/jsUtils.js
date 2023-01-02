@@ -13,7 +13,7 @@ export const clearPreview = ($preview) => {
   }
 };
 
-/** inspection */
+/** inspect */
 export const inspectRef = (ref) => {
   return ref?.current?.value && ref?.current?.value == "";
 };
