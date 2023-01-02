@@ -5,7 +5,7 @@ export const fetchTopoJson = createAsyncThunk(
   async ({ region }) => {
     if (region) {
       const res = await fetch(
-        `${process.env.REACT_APP_API_S3_ADDRESS}/topojson/${region}.json`
+        `${process.env.REACT_APP_S3_ADDRESS}/topojson/${region}.json`
       );
       return res.json();
     }

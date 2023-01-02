@@ -71,7 +71,7 @@ export const uploadFiles = async ({ files, title, kakaoId }) => {
         if (data.$metadata.httpStatusCode === 200) {
           return {
             name: `${title}-${index}`,
-            url: `${process.env.REACT_APP_API_S3_ADDRESS}/photo/${kakaoId}/${title}-${index}.${fileType}`,
+            url: `${process.env.REACT_APP_S3_ADDRESS}/photo/${kakaoId}/${title}-${index}.${fileType}`,
           };
         } else {
           return null;
