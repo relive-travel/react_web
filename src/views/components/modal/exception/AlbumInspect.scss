@@ -6,43 +6,32 @@
 .alubm-inspect-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(25%, null, null, 1.25em, 1.5/1);
+    @include dialogBorder(null, null, null, 1.25em, 1.125/1);
+    max-width: 400px;
+    min-width: 400px;
     .alubm-inspect-main {
       @include dialogInside(column, space-around, center);
-
-      .inspect-exception {
-        @include dialogException();
-      }
-
       > header {
-        > span {
-          color: #ff8822;
+        height: 75%;
+        .inspect-exception {
+          @include dialogException();
         }
       }
       > main {
-        > span {
-          margin: 0 0.5em;
-          color: pink;
-        }
+        @include setFlex(row, space-around, center);
+        @include setSize(50%, 12.5%, null, null, null);
+        @include setFont(1.25em, null, $text-sub-color);
       }
       > footer {
-        > button {
-          padding: 0.25em 0.875em;
-
-          border: 2px solid;
-          border-radius: 0.625em;
-          background-color: transparent;
-
-          transition: 0.25s ease-in-out;
-
-          color: #ff8822;
-          border-color: #ff8822;
-        }
-        > button:hover {
-          cursor: pointer;
-          color: black;
-          background-color: rgba($color: #ff8822, $alpha: 1);
-        }
+        @include setSize(100%, 12.5%, null, null, null);
+        @include buttonSelect(
+          (
+            "inspect-write" $button-main-color,
+            "inspect-write" $button-main-color
+          ),
+          1,
+          35%
+        );
       }
     }
   }
