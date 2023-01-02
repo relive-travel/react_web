@@ -1,8 +1,10 @@
 @import "views/scss/variables";
+@import "views/scss/mixins/setAttribute";
 
 @mixin exception {
   font-size: 1.5em;
   > main {
+    @include setFlex(null, center, center);
     height: 15%;
     > span {
       color: $text-highlight-color;
