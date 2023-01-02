@@ -5,6 +5,8 @@ import { setAlbumInspectModal } from "redux/slice/statusSlice";
 
 import { inspectRef, inspectRefFile } from "lib/utils/jsUtils";
 
+import InspectEmpty from "views/components/exception/InspectEmpty";
+
 import "./AlbumInspect.scss";
 function AlbumInspect(props) {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ function AlbumInspect(props) {
       <article>
         <section className="alubm-inspect-main" ref={compRef}>
           <header>
-            이런..! <span>필수항목</span>이 비어있어요!
+            <InspectEmpty />
           </header>
           <main>
             {inspectList.map((inspect, index) => {
