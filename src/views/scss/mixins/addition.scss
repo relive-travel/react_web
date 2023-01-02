@@ -1,9 +1,15 @@
+@import "views/scss/variables";
+
 @mixin exception {
-  > img {
-    height: 85%;
-  }
+  font-size: 1.5em;
   > main {
     height: 15%;
+    > span {
+      color: $text-highlight-color;
+    }
+  }
+  > img {
+    height: 85%;
   }
 }
 
