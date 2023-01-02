@@ -15,7 +15,7 @@ export const clearPreview = ($preview) => {
 
 /** inspect */
 export const inspectRef = (ref) => {
-  return ref?.current?.value && ref?.current?.value == "";
+  return ref?.current?.value && ref?.current?.value !== "";
 };
 export const inspectRefList = (refList) => {
   return refList.every(
