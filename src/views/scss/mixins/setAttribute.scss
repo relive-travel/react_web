@@ -1,3 +1,11 @@
+@mixin setAbsolute($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
 @mixin setFlex($flexDirection, $justifyContent, $alignItems) {
   display: flex;
   flex-direction: $flexDirection;
@@ -13,10 +21,8 @@
   aspect-ratio: $aspectRatio;
 }
 
-@mixin setAbsolute($top, $right, $bottom, $left) {
-  position: absolute;
-  top: $top;
-  right: $right;
-  bottom: $bottom;
-  left: $left;
+@mixin setFont($fontSize, $fontWeight, $fontColor) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  color: $fontColor;
 }
