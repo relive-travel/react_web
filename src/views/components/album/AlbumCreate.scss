@@ -23,9 +23,9 @@
         @include setSize(100%, 5%, null, null, null);
         @include buttonSelect(
           (
-            "album-clear" $button-default-color,
-            "album-preview" $button-sub-color,
-            "album-add" $button-main-color
+            "album-clear": $button-default-color,
+            "album-preview": $button-sub-color,
+            "album-add": $button-main-color,
           ),
           1,
           20%

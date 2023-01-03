@@ -21,9 +21,9 @@
         @include setSize(100%, 30%, null, null, null);
         @include buttonSelect(
           (
-            "change-restart" $button-default-color,
-            "change-picture" $button-sub-color,
-            "change-write" $button-main-color
+            "change-restart": $button-default-color,
+            "change-picture": $button-sub-color,
+            "change-write": $button-main-color,
           ),
           2,
           30%

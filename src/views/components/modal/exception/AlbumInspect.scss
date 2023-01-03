@@ -26,8 +26,7 @@
         @include setSize(100%, 12.5%, null, null, null);
         @include buttonSelect(
           (
-            "inspect-write" $button-main-color,
-            "inspect-write" $button-main-color
+            "inspect-write": $button-main-color,
           ),
           1,
           35%
