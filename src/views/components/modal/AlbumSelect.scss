@@ -12,11 +12,7 @@
       @include dialogInside(column, space-between, null);
 
       > header {
-        @include setFlex(null, center, center);
-        @include setSize(null, 90%, null, null, 1);
-        > img {
-          height: 100%;
-        }
+        @include dialogNotify();
       }
       > footer {
         @include setSize(100%, 10%, null, null, null);
