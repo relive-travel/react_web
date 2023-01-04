@@ -38,7 +38,7 @@ function AlbumCreate(props) {
   const semiAddrRef = useRef(null);
 
   const userId = useSelector((state) => state.user.id);
-  const userEmail = useSelector((state) => state.user.email);
+  const userKakaoId = useSelector((state) => state.user.kakaoId);
   const photoFile = useSelector((state) => state.photo.file);
   const searchData = useSelector((state) => state.album.search);
 
@@ -113,21 +113,25 @@ function AlbumCreate(props) {
     const filesInfo = await uploadFiles({
       files: photoFile,
       title: titleRef.current.value,
-      email: userEmail,
+      kakaoId: userKakaoId,
     });
 
-    filesInfo.forEach(async (file) => {
-      const photoId = dispatch(
-        setPhoto({
-          userId: userId,
-          albumId: await albumId,
-          name: file.name,
-          url: file.url,
-        })
-      ).then((response) => {
-        return response.payload;
-      });
-    });
+    const photoIdList = Promise.all(
+      filesInfo.map(async (file) => {
+        const photoId = dispatch(
+          setPhoto({
+            userId: userId,
+            albumId: await albumId,
+            name: file.name,
+            url: file.url,
+          })
+        ).then((response) => {
+          return response.payload;
+        });
+
+        return photoId;
+      })
+    );
   };
 
   return (
