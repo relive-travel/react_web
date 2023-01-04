@@ -1,3 +1,4 @@
+/* component */
 @mixin setAbsolute($top, $right, $bottom, $left) {
   position: absolute;
   top: $top;
@@ -21,12 +22,36 @@
   aspect-ratio: $aspectRatio;
 }
 
+/* text */
+@mixin setTextOverflow($line) {
+  width: 100%;
+  overflow: hidden;
+  @if $line == 1 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    &:hover {
+      white-space: normal;
+      word-break: break-word;
+    }
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    white-space: pre-line;
+    &:hover {
+      display: inline;
+    }
+  }
+}
+
 @mixin setFont($fontSize, $fontWeight, $fontColor) {
   font-size: $fontSize;
   font-weight: $fontWeight;
   color: $fontColor;
 }
 
+/* button element */
 @mixin setButton($line) {
   padding: 0.25em * $line 0.875em;
 
