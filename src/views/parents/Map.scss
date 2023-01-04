@@ -10,7 +10,18 @@
     transform: translate(0%, 0%);
   }
 
-  @include commonSwiper();
+  --swiper-theme-color: white;
+
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+  }
+  .swiper-pagination-bullet {
+    background-color: white;
+    border: 1px solid white;
+    opacity: 0.5;
+    width: 13px;
+    height: 13px;
+  }
 }
 
 // nav
