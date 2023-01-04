@@ -1,8 +1,6 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import useLoginInterval from "hooks/useLoginInterval";
 
 import Home from "./parents/Home";
 import Login from "./components/home/Login";
@@ -14,6 +12,8 @@ import OAuthKakao from "./components/home/oauth/OAuthKakao";
 import Map from "./parents/Map";
 
 function App() {
+  useLoginInterval(process.env.REACT_APP_INTERVAL_TIME);
+
   const router = createBrowserRouter([
     {
       path: "/",
