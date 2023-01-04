@@ -28,6 +28,11 @@ function HandAdd(props) {
     (state) => state.status.dialog.location
   );
 
+  const handleResizeHeight = (e) => {
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
+  };
+
   useEffect(() => {
     if (searchData) {
       props.addrRef.current.value = searchData.addr;
@@ -48,7 +53,14 @@ function HandAdd(props) {
         </section>
         <section className="info-content">
           <label htmlFor="content">이야기</label>
-          <input id="content" type="textarea" ref={props.contentRef}></input>
+
+          <textarea
+            id="content"
+            rows={1}
+            spellCheck="false"
+            ref={props.contentRef}
+            onChange={handleResizeHeight}
+          ></textarea>
         </section>
       </header>
       <main className="info-main">
