@@ -66,18 +66,17 @@ export const getMarkerAllMatchRegion = createAsyncThunk(
   `marker/getMarkerAllMatchRegion`,
   async ({ userId, region }) => {
     const markerCol = collection(db, "markers");
-    const regionQuery = query(
-      markerCol,
-      where("userId", "==", userId),
-      where("region.district", "==", region)
-    );
+    const regionQuery = query(markerCol, where("userId", "==", userId));
     const querySnapshot = await getDocs(regionQuery);
-    const queryList = querySnapshot.docs.map((doc) => {
-      return {
-        id: doc.id,
-        ...doc.data(),
-      };
-    });
+    const queryList = querySnapshot.docs
+      .filter((doc) => doc.data().region.district.includes(region))
+      .map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+
     return queryList;
   }
 );
