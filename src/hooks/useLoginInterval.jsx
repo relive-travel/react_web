@@ -14,9 +14,9 @@ function useLoginInterval(delay) {
 
   const userId = useSelector((state) => state.user.id);
 
-  const handleGetKakaoUser = () => {
+  const handleGetKakaoUser = async () => {
     if (!userId) {
-      const kakaoInfo = dispatch(getKakaoInfo()).then((response) => {
+      const kakaoInfo = await dispatch(getKakaoInfo()).then((response) => {
         return response.payload;
       });
       dispatch(getUserMatchKakaoId({ kakaoId: kakaoInfo.kakaoId }));
