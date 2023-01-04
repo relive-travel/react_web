@@ -7,7 +7,7 @@ import {
   setAlbumSelectModal,
 } from "redux/slice/statusSlice";
 
-import S3Image from "views/components/addition/S3Image";
+import AlbumSelectInfo from "../notify/information/AlbumSelectInfo";
 
 import "./AlbumSelect.scss";
 function AlbumSelect(props) {
@@ -27,7 +27,7 @@ function AlbumSelect(props) {
       <article ref={compRef}>
         <section className="select-main">
           <header>
-            <S3Image folder={"toshimee"} file={"select.png"} />
+            <AlbumSelectInfo />
           </header>
           <footer className="select-buttons">
             <button
