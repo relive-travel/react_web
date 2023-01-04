@@ -11,9 +11,7 @@ import OAuthKakao from "./components/home/oauth/OAuthKakao";
 
 import Map from "./parents/Map";
 
-function App() {
-  useLoginInterval(process.env.REACT_APP_INTERVAL_TIME);
-
+function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -51,4 +49,4 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default App;
+export default Router;
