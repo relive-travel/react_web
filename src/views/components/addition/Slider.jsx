@@ -5,7 +5,7 @@ import { setAlbumData } from "redux/slice/albumSlice";
 import { setAlbumSwiperDialog } from "redux/slice/statusSlice";
 import { setMarkerSlider } from "redux/slice/markerSlice";
 
-import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
+import { getMarkerAll, getMarkerAllMatchRegion } from "redux/thunk/markerThunk";
 import { getAlbumMatchMarkerId } from "redux/thunk/albumThunk";
 import { getPhotoMatchAlbumId } from "redux/thunk/photoThunk";
 
@@ -26,6 +26,8 @@ function Slider(props) {
   const dispatch = useDispatch();
 
   const sortOptionStatus = useSelector((state) => state.status.option.sort);
+
+  const userId = useSelector((state) => state.user.id);
 
   const mapRegion = useSelector((state) => state.map.region);
   const markerData = useSelector((state) => state.marker.data);
@@ -137,12 +139,19 @@ function Slider(props) {
   };
 
   useEffect(() => {
-    if (mapRegion === "korea") {
-      dispatch(getMarkerAll());
-    } else {
-      dispatch(getMarkerMatchRegion(getKoreanAddr(mapRegion)));
+    if (userId) {
+      if (mapRegion === "korea") {
+        dispatch(getMarkerAll({ userId }));
+      } else {
+        dispatch(
+          getMarkerAllMatchRegion({
+            userId: userId,
+            region: getKoreanAddr(mapRegion),
+          })
+        );
+      }
     }
-  }, [mapRegion]);
+  }, [userId, mapRegion]);
 
   useEffect(() => {
     if (markerData) {

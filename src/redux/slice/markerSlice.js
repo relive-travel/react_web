@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMarkerAll, getMarkerMatchRegion } from "redux/thunk/markerThunk";
+import { getMarkerAll, getMarkerAllMatchRegion } from "redux/thunk/markerThunk";
 
 const initialState = {
   default: {
@@ -39,7 +39,7 @@ const markerSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getMarkerMatchRegion.fulfilled, (state, action) => {
+      .addCase(getMarkerAllMatchRegion.fulfilled, (state, action) => {
         state.data = action.payload;
       })
       .addCase(getMarkerAll.fulfilled, (state, action) => {

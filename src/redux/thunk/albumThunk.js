@@ -40,6 +40,23 @@ export const getAlbum = createAsyncThunk(`album/getAlbum`, async ({ id }) => {
   };
 });
 
+export const getAlbumAll = createAsyncThunk(
+  `album/getAlbumAll`,
+  async ({ userId }) => {
+    const albumCol = collection(db, "albums");
+    const albumQuery = query(albumCol, where("userId", "==", userId));
+
+    const querySnapshot = await getDocs(albumQuery);
+    const queryList = querySnapshot.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data(),
+      };
+    });
+    return queryList;
+  }
+);
+
 export const getAlbumMatchMarkerId = createAsyncThunk(
   `album/getAlbumMatchMarkerId`,
   async ({ markerId }) => {

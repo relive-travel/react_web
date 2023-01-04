@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProjection } from "lib/utils/map/projection";
 import { getKoreanAddr } from "lib/utils/data/addr";
 
-import { getMarkerMatchRegion } from "redux/thunk/markerThunk";
+import { getMarkerAllMatchRegion } from "redux/thunk/markerThunk";
 
 import "./MarkerElements.scss";
 function MarkerElements(props) {
   const dispatch = useDispatch();
+
+  const userId = useSelector((state) => state.user.id);
 
   const mapData = useSelector((state) => state.map.topojson);
   const mapRegion = useSelector((state) => state.map.region);
@@ -21,10 +23,15 @@ function MarkerElements(props) {
   const [drawMarker, setDrawMarker] = useState();
 
   useEffect(() => {
-    if (mapRegion) {
-      dispatch(getMarkerMatchRegion({ region: getKoreanAddr(mapRegion) }));
+    if (userId && mapRegion) {
+      dispatch(
+        getMarkerAllMatchRegion({
+          userId: userId,
+          region: getKoreanAddr(mapRegion),
+        })
+      );
     }
-  }, [mapRegion]);
+  }, [userId, mapRegion]);
 
   useEffect(() => {
     if (mapData && markerData) {

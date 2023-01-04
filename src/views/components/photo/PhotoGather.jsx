@@ -63,8 +63,10 @@ function PhotoGather(props) {
   };
 
   useEffect(() => {
-    dispatch(getPhotoAll({ userId: userId }));
-  }, []);
+    if (userId) {
+      dispatch(getPhotoAll({ userId: userId }));
+    }
+  }, [userId]);
 
   useEffect(() => {
     if (allData) {

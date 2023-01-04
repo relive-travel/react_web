@@ -45,15 +45,13 @@ export const getMarker = createAsyncThunk(
   }
 );
 
-export const getMarkerMatchRegion = createAsyncThunk(
-  `marker/getMarkerMatchRegion`,
-  async ({ region }) => {
+export const getMarkerAll = createAsyncThunk(
+  `marker/getMarkerAll`,
+  async ({ userId }) => {
     const markerCol = collection(db, "markers");
-    const regionQuery = query(
-      markerCol,
-      where("region.district", "==", region)
-    );
-    const querySnapshot = await getDocs(regionQuery);
+    const markerQuery = query(markerCol, where("userId", "==", userId));
+
+    const querySnapshot = await getDocs(markerQuery);
     const queryList = querySnapshot.docs.map((doc) => {
       return {
         id: doc.id,
@@ -64,17 +62,22 @@ export const getMarkerMatchRegion = createAsyncThunk(
   }
 );
 
-export const getMarkerAll = createAsyncThunk(
-  `marker/getMarkerAll`,
-  async () => {
+export const getMarkerAllMatchRegion = createAsyncThunk(
+  `marker/getMarkerAllMatchRegion`,
+  async ({ userId, region }) => {
     const markerCol = collection(db, "markers");
-    const markerSnapshot = await getDocs(markerCol);
-    const markerList = markerSnapshot.docs.map((doc) => {
+    const regionQuery = query(
+      markerCol,
+      where("userId", "==", userId),
+      where("region.district", "==", region)
+    );
+    const querySnapshot = await getDocs(regionQuery);
+    const queryList = querySnapshot.docs.map((doc) => {
       return {
         id: doc.id,
         ...doc.data(),
       };
     });
-    return markerList;
+    return queryList;
   }
 );
