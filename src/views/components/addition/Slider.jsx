@@ -141,7 +141,7 @@ function Slider(props) {
   useEffect(() => {
     if (userId) {
       if (mapRegion === "korea") {
-        dispatch(getMarkerAll({ userId }));
+        dispatch(getMarkerAll({ userId: userId }));
       } else {
         dispatch(
           getMarkerAllMatchRegion({
