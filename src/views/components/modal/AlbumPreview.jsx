@@ -36,13 +36,17 @@ function AlbumPreview(props) {
 
   return (
     <section className="album-preview-component" onClick={handleOutsideClick}>
-      <article ref={compRef}>
+      <article className="album-preview-outside" ref={compRef}>
         <section className="album-preview-top">
           <article
             className="preview-addr"
             title={`${props.addr} ${props.semiAddr}`}
           >
-            🥕 {props.addr} {props.semiAddr}
+            <span className="preview-addr-icon">🥕</span>
+            <section className="preview-addr-info">
+              <article>{props.addr}</article>
+              <article>{props.semiAddr}</article>
+            </section>
           </article>
         </section>
         <section className="album-preview-bottom">
@@ -52,17 +56,13 @@ function AlbumPreview(props) {
                 <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
                   {childNodes?.map((child, index) => {
                     const { src, style } = child.firstChild;
-                    const newStyle = {
+                    const photoStyle = {
                       width: style.width,
                       height: style.height,
                     };
                     return (
-                      <SwiperSlide key={index}>
-                        <img
-                          className={`slider-photo-${index}`}
-                          src={src}
-                          style={newStyle}
-                        />
+                      <SwiperSlide key={`preview-photo-${index}`}>
+                        <img src={src} style={photoStyle} />
                       </SwiperSlide>
                     );
                   })}
@@ -70,17 +70,21 @@ function AlbumPreview(props) {
               </article>
             </section>
             <section className="preview-main-bottom">
-              <article className="preview-writing">
-                <section className="preview-writing-top">
-                  <article className="writing-title">{props.title}</article>
-                  <article className="writing-date">
+              <article className="preview-write">
+                <header className="preview-write-info">
+                  <article className="preview-write-title">
+                    {props.title}
+                  </article>
+                  <article className="preview-write-date">
                     {props.date.split("T").join(" ")}
                   </article>
-                </section>
+                </header>
                 <hr />
-                <section className="preview-writing-bottom">
-                  <article className="writing-content">{props.content}</article>
-                </section>
+                <main className="preview-write-main">
+                  <article className="preview-write-content">
+                    {props.content}
+                  </article>
+                </main>
               </article>
             </section>
           </article>

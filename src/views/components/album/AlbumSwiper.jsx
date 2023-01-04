@@ -42,7 +42,10 @@ function AlbumSwiper(props) {
         {albumData?.map((data, index) => {
           const { marker, album, photo } = data;
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide
+              className="album-view-component"
+              key={`swiper-view-${index}`}
+            >
               <AlbumView marker={marker} album={album} photo={photo} />
             </SwiperSlide>
           );
