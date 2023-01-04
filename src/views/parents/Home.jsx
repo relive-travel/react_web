@@ -70,8 +70,6 @@ function Home(props) {
         navigate("/login");
       }
     }
-    // codeReview
-    return () => window.Kakao.Auth.setAccessToken(null);
   }, []);
 
   return (
