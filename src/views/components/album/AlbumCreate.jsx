@@ -131,6 +131,8 @@ function AlbumCreate(props) {
             albumId: await albumId,
             name: file.name,
             url: file.url,
+            width: file.width,
+            height: file.height,
           })
         ).then((response) => {
           return response.payload;
@@ -139,9 +141,6 @@ function AlbumCreate(props) {
         return photoId;
       })
     );
-
-    console.log(await photoIdList);
-    console.log((await photoIdList).length);
 
     if ((await photoIdList).length) {
       dispatch(setNotifyAlbumCreate(true));

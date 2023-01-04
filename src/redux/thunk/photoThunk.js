@@ -5,12 +5,14 @@ import { db } from "lib/set/filrebase";
 
 export const setPhoto = createAsyncThunk(
   `photo/setPhoto`,
-  async ({ userId, albumId, name, url }) => {
+  async ({ userId, albumId, name, url, width, height }) => {
     const data = {
       userId,
       albumId,
       name,
       url,
+      width,
+      height,
     };
 
     const docRef = await addDoc(collection(db, "photos"), data);

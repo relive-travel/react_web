@@ -72,6 +72,8 @@ export const uploadFiles = async ({ files, title, kakaoId }) => {
           return {
             name: `${title}-${index}`,
             url: `${process.env.REACT_APP_S3_ADDRESS}/photo/${kakaoId}/${title}-${index}.${fileType}`,
+            width: file.exifdata.ImageWidth,
+            height: file.exifdata.ImageHeight,
           };
         } else {
           return null;
