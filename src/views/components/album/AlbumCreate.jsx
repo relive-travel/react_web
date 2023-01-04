@@ -7,6 +7,7 @@ import {
   setAlbumCreateDialog,
   setAlbumInspectModal,
   setAlbumPreviewModal,
+  setNotifyAlbumCreate,
 } from "redux/slice/statusSlice";
 
 // import { getUser } from "redux/thunk/userThunk";
@@ -23,6 +24,8 @@ import HandAdd from "./add/HandAdd";
 import AlbumChange from "../modal/exception/AlbumChange";
 import AlbumInspect from "../modal/exception/AlbumInspect";
 import AlbumPreview from "../modal/AlbumPreview";
+
+import AlbumCreateComplete from "../notify/complete/AlbumCreateComplete";
 
 import "./AlbumCreate.scss";
 function AlbumCreate(props) {
@@ -46,6 +49,10 @@ function AlbumCreate(props) {
   const changeModalStatus = useSelector((state) => state.status.modal.change);
   const inspectModalStatus = useSelector((state) => state.status.modal.inspect);
   const previewModalStatus = useSelector((state) => state.status.modal.preview);
+
+  const albumCreateNotifyStatus = useSelector(
+    (state) => state.status.notify.album.create
+  );
 
   const handleOutsideClick = (e) => {
     if (!compRef.current?.contains(e.target)) {
@@ -132,6 +139,13 @@ function AlbumCreate(props) {
         return photoId;
       })
     );
+
+    console.log(await photoIdList);
+    console.log((await photoIdList).length);
+
+    if ((await photoIdList).length) {
+      dispatch(setNotifyAlbumCreate(true));
+    }
   };
 
   return (
@@ -206,6 +220,7 @@ function AlbumCreate(props) {
                 semiAddr={semiAddrRef.current.value}
               />
             ) : null}
+            {albumCreateNotifyStatus ? <AlbumCreateComplete /> : null}
           </aside>
         </section>
       </article>

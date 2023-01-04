@@ -1,0 +1,36 @@
+@import "views/scss/variables";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/setAttribute";
+
+.user-empty-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(null, null, null, 1.25em, 1.125/1);
+    max-width: 400px;
+    min-width: 400px;
+    .user-empty-main {
+      @include dialogInside(column, space-around, center);
+      > header {
+        height: 75%;
+        .user-info-empty-exception {
+          @include dialogException();
+        }
+      }
+      > main {
+        @include setFlex(row, space-around, center);
+        @include setSize(50%, 12.5%, null, null, null);
+        @include setFont(1.25em, null, $text-sub-color);
+      }
+      > footer {
+        @include setSize(100%, 12.5%, null, null, null);
+        @include setButtons(
+          (
+            "empty-ok": $button-main-color,
+          ),
+          1,
+          35%
+        );
+      }
+    }
+  }
+}

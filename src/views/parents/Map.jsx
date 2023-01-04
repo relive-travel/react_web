@@ -17,6 +17,8 @@ import AlbumSwiper from "views/components/album/AlbumSwiper";
 import AlbumView from "views/components/album/AlbumView";
 import PhotoGather from "views/components/photo/PhotoGather";
 
+import UserEmpty from "views/components/modal/exception/UserEmpty";
+
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
@@ -34,6 +36,10 @@ function Map() {
   const swiperDialogStatus = useSelector((state) => state.status.dialog.swiper);
   const viewDialogStatus = useSelector((state) => state.status.dialog.view);
   const gatherOptionStatus = useSelector((state) => state.status.option.gather);
+
+  const userEmptyNotifyStatus = useSelector(
+    (state) => state.status.notify.user.empty
+  );
 
   const handleSliderOpen = () => {
     sliderRef.current.classList.add("slider-open");
@@ -95,6 +101,7 @@ function Map() {
         {swiperDialogStatus ? <AlbumSwiper /> : null}
         {viewDialogStatus ? <AlbumView /> : null}
         {gatherOptionStatus ? <PhotoGather /> : null}
+        {userEmptyNotifyStatus ? <UserEmpty /> : null}
         <SideDial />
       </aside>
       <footer></footer>

@@ -1,0 +1,31 @@
+@import "views/scss/variables";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/setAttribute";
+
+.album-create-success-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(null, null, null, 1.25em, 1.5/1);
+    max-width: 500px;
+    min-width: 500px;
+    .album-create-success-main {
+      @include dialogInside(column, space-around, center);
+      > header {
+        height: 75%;
+        .photo-data-exception {
+          @include dialogException();
+        }
+      }
+      > footer {
+        @include setSize(100%, 30%, null, null, null);
+        @include setButtons(
+          (
+            "create-success-ok": $button-main-color,
+          ),
+          1,
+          30%
+        );
+      }
+    }
+  }
+}

@@ -21,6 +21,14 @@ const initialState = {
     inspect: false,
     preview: false,
   },
+  notify: {
+    album: {
+      create: false,
+    },
+    user: {
+      empty: false,
+    },
+  },
 };
 
 const statusSlice = createSlice({
@@ -72,6 +80,13 @@ const statusSlice = createSlice({
     setAlbumPreviewModal: (state, action) => {
       state.modal.preview = action.payload;
     },
+    /** notify */
+    setNotifyAlbumCreate: (state, action) => {
+      state.notify.album.create = action.payload;
+    },
+    setNotifyUserEmpty: (state, action) => {
+      state.notify.user.empty = action.payload;
+    },
   },
 });
 
@@ -93,6 +108,9 @@ export const {
   setAlbumChangeModal,
   setAlbumInspectModal,
   setAlbumPreviewModal,
+  /** notify */
+  setNotifyAlbumCreate,
+  setNotifyUserEmpty,
 } = statusSlice.actions;
 
 export default statusSlice.reducer;
