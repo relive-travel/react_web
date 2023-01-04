@@ -25,7 +25,7 @@ import AlbumChange from "../modal/exception/AlbumChange";
 import AlbumInspect from "../modal/exception/AlbumInspect";
 import AlbumPreview from "../modal/AlbumPreview";
 
-import AlbumCreateComplete from "../notify/complete/AlbumCreateComplete";
+import AlbumCreateSuccess from "../modal/success/AlbumCreateSuccess";
 
 import "./AlbumCreate.scss";
 function AlbumCreate(props) {
@@ -220,7 +220,7 @@ function AlbumCreate(props) {
                 semiAddr={semiAddrRef.current.value}
               />
             ) : null}
-            {albumCreateNotifyStatus ? <AlbumCreateComplete /> : null}
+            {albumCreateNotifyStatus ? <AlbumCreateSuccess /> : null}
           </aside>
         </section>
       </article>
