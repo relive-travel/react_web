@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import Router from "./views/Router";
-import Scheduler from "./views/Scheduler";
 import { store } from "redux/store.js";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
+
+import Router from "./views/Router";
+import Scheduler from "./views/Scheduler";
+
+import "./index.css";
+import "views/components/notify/notify.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
