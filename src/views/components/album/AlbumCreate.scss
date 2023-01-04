@@ -1,6 +1,5 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/dialog";
-@import "views/scss/mixins/button";
 @import "views/scss/mixins/setAttribute";
 
 .album-create-component {
@@ -21,7 +20,7 @@
       }
       > footer {
         @include setSize(100%, 5%, null, null, null);
-        @include buttonSelect(
+        @include setButtons(
           (
             "album-clear": $button-default-color,
             "album-preview": $button-sub-color,

@@ -1,6 +1,5 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/dialog";
-@import "views/scss/mixins/button";
 @import "views/scss/mixins/setAttribute";
 
 .alubm-inspect-component {
@@ -24,7 +23,7 @@
       }
       > footer {
         @include setSize(100%, 12.5%, null, null, null);
-        @include buttonSelect(
+        @include setButtons(
           (
             "inspect-write": $button-main-color,
           ),

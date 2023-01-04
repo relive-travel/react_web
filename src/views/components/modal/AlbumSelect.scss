@@ -1,6 +1,5 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/dialog";
-@import "views/scss/mixins/button";
 @import "views/scss/mixins/setAttribute";
 
 .album-select-component {
@@ -21,7 +20,7 @@
       }
       > footer {
         @include setSize(100%, 10%, null, null, null);
-        @include buttonSelect(
+        @include setButtons(
           (
             "select-auto": $button-sub-color,
             "select-hand": $button-main-color,

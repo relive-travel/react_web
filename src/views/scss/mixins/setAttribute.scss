@@ -26,3 +26,41 @@
   font-weight: $fontWeight;
   color: $fontColor;
 }
+
+@mixin setButton($line) {
+  padding: 0.25em * $line 0.875em;
+
+  border: 2px solid;
+  border-radius: 10px;
+  background-color: transparent;
+
+  transition: 0.25s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin setButtons($buttons, $line, $width) {
+  @include setFlex(row, space-around, center);
+
+  > button {
+    @if $line != 1 {
+      @include setFlex(row, space-around, center);
+    }
+    @include setSize($width, null, null, null, null);
+    @include setButton($line);
+  }
+
+  @each $name, $color in $buttons {
+    .#{$name}-button {
+      color: $color;
+      border-color: $color;
+
+      &:hover {
+        color: black;
+        background-color: rgba($color: $color, $alpha: 1);
+      }
+    }
+  }
+}

@@ -1,6 +1,5 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/dialog";
-@import "views/scss/mixins/button";
 @import "views/scss/mixins/setAttribute";
 
 .album-change-component {
@@ -19,7 +18,7 @@
       }
       > footer {
         @include setSize(100%, 30%, null, null, null);
-        @include buttonSelect(
+        @include setButtons(
           (
             "change-restart": $button-default-color,
             "change-picture": $button-sub-color,
