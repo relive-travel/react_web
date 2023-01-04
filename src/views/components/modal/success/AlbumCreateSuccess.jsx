@@ -1,19 +1,26 @@
-import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { getKoreanAddr } from "lib/utils/data/addr";
+import { useDispatch, useSelector } from "react-redux";
 
-import { setNotifyAlbumCreate } from "redux/slice/statusSlice";
+import {
+  setAlbumCreateDialog,
+  setNotifyAlbumCreate,
+} from "redux/slice/statusSlice";
+
+import { getMarkerAll, getMarkerAllMatchRegion } from "redux/thunk/markerThunk";
 
 import AlbumCreateComplete from "views/components/notify/complete/AlbumCreateComplete";
 
-import "./AlbumCreateSuccess";
+import "./AlbumCreateSuccess.scss";
 function AlbumCreateSuccess() {
   const dispatch = useDispatch();
 
-  const compRef = useRef();
+  const userId = useSelector((state) => state.user.id);
+  const mapRegion = useSelector((state) => state.map.region);
+
   return (
     <section className="album-create-success-component">
       <article>
-        <section className="album-create-success-main" ref={compRef}>
+        <section className="album-create-success-main">
           <header>
             <AlbumCreateComplete />
           </header>
@@ -21,7 +28,16 @@ function AlbumCreateSuccess() {
             <button
               className="create-success-ok-button"
               onClick={() => {
+                mapRegion === "korea"
+                  ? dispatch(getMarkerAll({ userId: userId }))
+                  : dispatch(
+                      getMarkerAllMatchRegion({
+                        userId: userId,
+                        region: getKoreanAddr(mapRegion),
+                      })
+                    );
                 dispatch(setNotifyAlbumCreate(false));
+                dispatch(setAlbumCreateDialog(false));
               }}
             >
               고마워요! 🥕

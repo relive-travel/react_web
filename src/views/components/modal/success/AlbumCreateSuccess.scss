@@ -5,25 +5,22 @@
 .album-create-success-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(null, null, null, 1.25em, 1.5/1);
-    max-width: 500px;
-    min-width: 500px;
+    @include dialogBorder(null, null, null, 1.25em, 1);
+    max-width: 350px;
+    min-width: 350px;
     .album-create-success-main {
       @include dialogInside(column, space-around, center);
       > header {
-        height: 75%;
-        .photo-data-exception {
-          @include dialogException();
-        }
+        @include dialogNotify();
       }
       > footer {
-        @include setSize(100%, 30%, null, null, null);
+        @include setSize(100%, null, null, null, null);
         @include setButtons(
           (
             "create-success-ok": $button-main-color,
           ),
           1,
-          30%
+          50%
         );
       }
     }
