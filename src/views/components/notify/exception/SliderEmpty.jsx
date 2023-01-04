@@ -1,4 +1,4 @@
-import S3Image from "../addition/S3Image";
+import S3Image from "views/components/addition/S3Image";
 
 function SliderEmpty() {
   return (

@@ -7,7 +7,7 @@ import {
   setAlbumSelectModal,
 } from "redux/slice/statusSlice";
 
-import S3Image from "../addition/S3Image";
+import S3Image from "views/components/addition/S3Image";
 
 import "./AlbumSelect.scss";
 function AlbumSelect(props) {
