@@ -5,7 +5,7 @@ import {
   setAlbumChangeModal,
 } from "redux/slice/statusSlice";
 
-import PhotoDataEmpty from "views/components/exception/PhotoDataEmpty";
+import PhotoDataEmpty from "views/components/notify/exception/PhotoDataEmpty";
 
 import "./AlbumChange.scss";
 function AlbumChange(props) {

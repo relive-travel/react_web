@@ -5,7 +5,7 @@ import { setAlbumInspectModal } from "redux/slice/statusSlice";
 
 import { inspectRef, inspectRefFile } from "lib/utils/jsUtils";
 
-import InspectEmpty from "views/components/exception/InspectEmpty";
+import InspectEmpty from "views/components/notify/exception/InspectEmpty";
 
 import "./AlbumInspect.scss";
 function AlbumInspect(props) {

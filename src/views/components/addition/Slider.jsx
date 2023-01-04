@@ -17,7 +17,7 @@ import {
 } from "lib/utils/data/addr";
 import { groupRegion } from "lib/utils/jsUtils";
 
-import SliderEmpty from "../exception/SliderEmpty";
+import SliderEmpty from "../notify/exception/SliderEmpty";
 
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 
