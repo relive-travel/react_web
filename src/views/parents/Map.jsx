@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
+import useKakaoLogin from "hooks/useKakaoLogin";
+
 import Logout from "views/components/home/Logout";
 
 import D3Map from "views/components/map/D3Map.jsx";
@@ -62,6 +64,8 @@ function Map() {
       );
     };
   }, [dispatch]);
+
+  useKakaoLogin();
 
   return (
     <section className="map-component" onClick={handleSliderClick}>
