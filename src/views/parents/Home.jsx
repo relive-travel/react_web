@@ -32,7 +32,7 @@ function Home(props) {
   // authorize를 통해 발급된 인가코드로 카카오 사용자 accessToken을 발급한다.
   useEffect(() => {
     if (location.state?.code) {
-      const url = "https://kauth.kakao.com/oauth/token";
+      const url = process.env.REACT_APP_KAKAO_TOKEN_URL;
       const params = {
         grant_type: "authorization_code",
         client_id: process.env.REACT_APP_KAKAO_REST_API,
@@ -57,7 +57,7 @@ function Home(props) {
       // refresh-token이 존재하는 경우 access-token 재 발급 후 사용자 정보 불러오기
       const refreshToken = getCookie({ name: "authorize-refresh-token" });
       if (refreshToken && refreshToken !== "undefined") {
-        const url = "https://kauth.kakao.com/oauth/token";
+        const url = process.env.REACT_APP_KAKAO_TOKEN_URL;
         const params = {
           grant_type: "refresh_token",
           client_id: process.env.REACT_APP_KAKAO_REST_API,
