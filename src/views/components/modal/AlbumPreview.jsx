@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import { setAlbumPreviewModal } from "redux/slice/statusSlice";
 
 import { childNodesFilter } from "lib/utils/jsUtils";
 
-import { Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -35,7 +37,7 @@ function AlbumPreview(props) {
   }, []);
 
   return (
-    <section className="album-preview-component" onClick={handleOutsideClick}>
+    <section className="album-preview-component">
       <article className="album-preview-outside" ref={compRef}>
         <section className="album-preview-top">
           <article
@@ -90,6 +92,9 @@ function AlbumPreview(props) {
           </article>
         </section>
       </article>
+      <aside onClick={handleOutsideClick}>
+        <HighlightOffIcon />
+      </aside>
     </section>
   );
 }
