@@ -126,7 +126,11 @@ function Slider(props) {
           ),
         ];
       })
-      .sort((a, b) => addrPriority.indexOf(a[0]) - addrPriority.indexOf(b[0]));
+      .sort(
+        (a, b) =>
+          addrPriority.findIndex((addr) => a[0].includes(addr)) -
+          addrPriority.findIndex((addr) => b[0].includes(addr))
+      );
 
     if (sliderRegion.length) {
       dispatch(
