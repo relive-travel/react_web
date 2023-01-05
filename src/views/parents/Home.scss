@@ -34,8 +34,8 @@
   > footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-end;
+    justify-content: space-between;
+    align-items: center;
 
     width: 100%;
     height: 45%;
@@ -44,18 +44,15 @@
       justify-content: center;
       align-items: center;
     }
-    .left-rabbit,
-    .right-rabbit {
-      width: 25%;
-      height: 75%;
+    .hello-rabbit {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
       > img {
         height: 100%;
-      }
-    }
-    .middle-rabbit {
-      width: 30%;
-      > img {
-        width: 100%;
       }
     }
   }
@@ -85,6 +82,7 @@
       height: 100%;
       > .swiper-wrapper {
         > .swiper-slide {
+          width: 100%;
           > section {
             display: flex;
             justify-content: center;
@@ -93,6 +91,9 @@
 
             width: 90%;
             height: 100%;
+            > img {
+              width: 100%;
+            }
           }
         }
       }
@@ -153,12 +154,16 @@
     align-items: center;
 
     height: 10%;
+    > img {
+      height: 100%;
+    }
     > span {
       position: absolute;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100%;
+      font-size: 0.75em;
     }
   }
 }

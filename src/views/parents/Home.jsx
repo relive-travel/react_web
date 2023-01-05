@@ -10,6 +10,8 @@ import {
 
 import { getCookie } from "lib/utils/data/cookie";
 
+import S3Image from "views/components/addition/S3Image";
+
 import "./Home.scss";
 function Home(props) {
   const location = useLocation();
@@ -84,16 +86,10 @@ function Home(props) {
         <Outlet />
       </main>
       <footer>
-        {["left", "middle", "right"].map((rabbit, index) => {
-          return (
-            <article className={`${rabbit}-rabbit`} key={`rabbit-${index}`}>
-              <img
-                src={`${process.env.REACT_APP_S3_ADDRESS}/image/rabbit/${rabbit}_rabbit.png`}
-                alt={`${rabbit}을(를) 바라보는 토끼`}
-              />
-            </article>
-          );
-        })}
+        <article className="hello-rabbit">
+          <S3Image folder={"toshimee"} file={"hello_right.png"} />
+          <S3Image folder={"toshimee"} file={"hello_left.png"} />
+        </article>
       </footer>
     </section>
   );
