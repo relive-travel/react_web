@@ -30,12 +30,12 @@ function AlbumSwiper(props) {
   };
 
   return (
-    <section className="album-swiper-component" onClick={handleOutsideClick}>
+    <section className="album-swiper-component">
       <Swiper
         ref={compRef}
         effect={"cards"}
         grabCursor={true}
-        pagination={true}
+        pagination={{ clickable: true }}
         navigation={true}
         modules={[EffectCards, Pagination, Navigation]}
       >
