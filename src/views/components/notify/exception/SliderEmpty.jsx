@@ -8,7 +8,9 @@ function SliderEmpty() {
 
   return (
     <section className="slider-exception">
-      <main>아직 추억이 남아있지 않아요...!</main>
+      <main>
+        아직은 <span>추억</span>이 없어요...!
+      </main>
       <S3Image folder={"toshimee"} file={"empty.png"} />
       <footer>
         <button
