@@ -6,8 +6,7 @@
   @include dialogOutside();
   > article {
     @include dialogBorder(null, null, null, 1.25em, 1.125/1);
-    max-width: 400px;
-    min-width: 400px;
+    @include setMinSize(400px, 400px, null, null);
     .user-empty-main {
       @include dialogInside(column, space-around, center);
       > header {

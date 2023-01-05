@@ -80,8 +80,7 @@
 
   @include setFlex(column, center, center);
   @include setSize($width, $height, null, null, null);
-  min-width: 300px;
-  max-width: 450px;
+  @include setMinSize(300px, 450px, null, null);
 
   @include viewDivision("top", "", #008000, 1);
   @include viewDivision("bottom", "", #ff8822, 1);

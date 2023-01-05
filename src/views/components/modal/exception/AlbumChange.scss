@@ -6,8 +6,7 @@
   @include dialogOutside();
   > article {
     @include dialogBorder(null, null, null, 1.25em, 1.5/1);
-    max-width: 500px;
-    min-width: 500px;
+    @include setMinSize(500px, 500px, null, null);
     .album-change-main {
       @include dialogInside(column, space-around, center);
       > header {

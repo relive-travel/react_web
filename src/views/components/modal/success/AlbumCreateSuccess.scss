@@ -6,8 +6,7 @@
   @include dialogOutside();
   > article {
     @include dialogBorder(null, null, null, 1.25em, 1);
-    max-width: 350px;
-    min-width: 350px;
+    @include setMinSize(350px, 350px, null, null);
     .album-create-success-main {
       @include dialogInside(column, space-around, center);
       > header {
