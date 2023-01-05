@@ -12,7 +12,9 @@
       > header {
         height: 75%;
         .photo-data-exception {
-          @include dialogException();
+          @include setFlex(column, center, center);
+          height: 100%;
+          @include exception(15%, 85%);
         }
       }
       > footer {

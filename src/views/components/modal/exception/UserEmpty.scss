@@ -5,20 +5,17 @@
 .user-empty-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(null, null, null, 1.25em, 1.125/1);
-    @include setMinSize(400px, 400px, null, null);
+    @include dialogBorder(null, null, null, 1.25em, 1.25/1);
+    @include setMinSize(450px, 400px, null, null);
     .user-empty-main {
       @include dialogInside(column, space-around, center);
       > header {
-        height: 75%;
+        height: 87.5%;
         .user-info-empty-exception {
-          @include dialogException();
+          @include setFlex(column, center, center);
+          height: 100%;
+          @include exception(25%, 75%);
         }
-      }
-      > main {
-        @include setFlex(row, space-around, center);
-        @include setSize(50%, 12.5%, null, null, null);
-        @include setFont(1.25em, null, $text-sub-color);
       }
       > footer {
         @include setSize(100%, 12.5%, null, null, null);

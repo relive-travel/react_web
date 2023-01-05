@@ -48,10 +48,3 @@
     }
   }
 }
-
-@mixin dialogException() {
-  @include setFlex(column, center, center);
-  height: 100%;
-
-  @include exception;
-}
