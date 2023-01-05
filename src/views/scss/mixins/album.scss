@@ -1,135 +1,130 @@
-@mixin albumCompArticle() {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+@import "views/scss/mixins/addition";
+@import "views/scss/mixins/setAttribute";
 
-  width: 30%;
-  min-width: 300px;
-  max-width: 450px;
-  > [class$="top"] {
-    display: flex;
-    align-items: center;
-    padding: 0.375em 0.75em;
-
-    width: 100%;
-
-    box-sizing: border-box;
-    background-color: rgba($color: #008000, $alpha: 1);
-  }
-  > [class$="bottom"] {
-    padding: 0.75em;
-
-    width: 100%;
-    height: 90%;
-
-    box-sizing: border-box;
-    background-color: rgba($color: #ff8822, $alpha: 1);
-  }
+@mixin album {
+  color: white;
   [class$="addr"] {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    .view-addr-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: white;
-      padding: 0 0.75em;
+    @include setFlex(row, left, center);
+    @include setSize(100%, 100%, null, null, null);
+    box-sizing: border-box;
+
+    [class$="info"] {
+      @include setFlex(column, center, center);
+      @include setSize(calc(95% - 0.75em), 100%, null, null, null);
       > article {
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      > article:hover {
-        text-overflow: clip;
-        white-space: normal;
-        word-break: break-all;
+        @include setTextOverflow(1);
       }
     }
-  }
-}
-
-@mixin albumMain {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 100%;
-  height: 100%;
-
-  > [class$="top"] {
-    width: 100%;
-    aspect-ratio: 1;
-    overflow: hidden;
-    border-radius: 0.75em;
-    background-color: rgba($color: white, $alpha: 0.5);
-  }
-
-  > [class$="bottom"] {
-    padding: 0.75em;
-    margin-top: 0.75em;
-    width: 100%;
-    height: 22.5%;
-    box-sizing: border-box;
-    border-radius: 0.75em;
-    background-color: rgba($color: white, $alpha: 0.5);
+    [class$="icon"] {
+      @include setSize(5%, 100%, 0 0.75em 0 0, null, null);
+    }
   }
   [class$="photos"] {
-    width: 100%;
-    height: 100%;
+    @include setSize(100%, 100%, null, null, null);
     > .swiper {
-      width: 100%;
-      height: 100%;
+      @include setSize(100%, 100%, null, null, null);
       > .swiper-wrapper {
         > .swiper-slide {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include setFlex(null, center, center);
+          @include setSize(100%, 100%, null, null, null);
 
-          width: 100%;
-          height: 100%;
           overflow: hidden;
         }
       }
     }
   }
-}
-
-@mixin albumWriting {
-  display: flex;
-  flex-direction: column;
-
-  color: black;
-  > hr {
-    border: 1px solid #ff8822;
+  [class$="write"] {
+    @include setFlex(column, flex-start, center);
     width: 100%;
-    margin: 0.375em 0;
-  }
-  > [class$="top"] {
-    > * {
-      margin: 0.125em 0;
+    color: black;
+    [class$="info"] {
+      width: 100%;
+      > article {
+        margin: 0.125em 0;
+      }
+      [class$="title"] {
+        @include setTextOverflow(1);
+        float: left;
+      }
+      [class$="date"] {
+        float: right;
+      }
+    }
+    [class$="main"] {
+      width: 100%;
+      [class$="content"] {
+        @include setTextOverflow(3);
+      }
+    }
+    > hr {
+      @include setSize(100%, null, 0.375em 0, null, null);
+      border: 1px solid #ff8822;
     }
   }
-  [class$="bottom"] {
+}
+
+@mixin albumAside {
+  @include setAbsolute(10%, null, null, 50%);
+  @include setFlex(null, center, center);
+  cursor: pointer;
+  color: white;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  > svg {
+    font-size: 2.5em;
   }
-  [class$="title"] {
-    float: left;
+}
+
+@mixin view($width, $height) {
+  @include album;
+
+  @include setFlex(column, center, center);
+  @include setSize($width, $height, null, null, null);
+  min-width: 300px;
+  max-width: 450px;
+
+  @include viewDivision("top", "", #008000, 1);
+  @include viewDivision("bottom", "", #ff8822, 1);
+}
+
+@mixin viewMain() {
+  @include setFlex(column, space-between, center);
+  @include setSize(100%, null, null, null, 1);
+
+  @include viewDivision("top", "main", white, 0.5);
+  @include viewDivision("bottom", "main", white, 0.5);
+}
+
+@mixin viewDivision($type, $element, $color, $alpha) {
+  > [class$="#{$type}"] {
+    @if $type == "top" {
+      @include viewTop($element);
+    } @else if $type == "bottom" {
+      @include viewBottom($element);
+    }
+
+    box-sizing: border-box;
+    background-color: rgba($color: $color, $alpha: $alpha);
   }
-  [class$="date"] {
-    float: right;
-  }
-  [class$="content"] {
-    width: 100%;
+}
+
+@mixin viewTop($component) {
+  @if $component == "" {
+    @include setFlex(null, null, center);
+    @include setSize(100%, null, null, 0.375em 0.75em, null);
+  } @else if $component == "main" {
+    @include setSize(100%, 100%, null, null, null);
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    border-radius: 0.75em;
   }
-  [class$="content"]:hover {
-    display: inline;
+}
+
+@mixin viewBottom($component) {
+  @if $component == "" {
+    @include setFlex(null, null, center);
+    @include setSize(100%, 90%, null, 0.75em, null);
+  } @else if $component == "main" {
+    @include setSize(100%, null, 0.75em 0 0 0, 0.75em, null);
+    border-radius: 0.75em;
   }
 }

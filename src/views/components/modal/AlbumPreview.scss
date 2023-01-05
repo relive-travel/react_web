@@ -3,14 +3,13 @@
 
 .album-preview-component {
   @include dialogOutside();
-  flex-direction: column;
   > article {
-    @include albumCompArticle();
+    @include view(30%, null);
     .album-preview-main {
-      @include albumMain();
-      .preview-writing {
-        @include albumWriting();
-      }
+      @include viewMain();
     }
+  }
+  aside {
+    @include albumAside;
   }
 }
