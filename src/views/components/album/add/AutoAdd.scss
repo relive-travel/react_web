@@ -46,6 +46,12 @@
 
             border: 1px solid black;
             background-color: rgba($color: white, $alpha: 1);
+            .place-addr-name {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 1.125em;
+            }
             > hr {
               margin: 0.125em;
             }
@@ -53,14 +59,13 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              font-size: 1.125em;
             }
           }
           .place-addr:before {
             content: "";
             position: absolute;
-            margin-left: -0.875em;
-            margin-bottom: calc(-0.875em - 1px);
+            margin-left: -0.625em;
+            margin-bottom: calc(-0.625em - 1px);
 
             bottom: 0;
             left: 50%;
@@ -68,15 +73,15 @@
             width: 0;
             height: 0;
 
-            border: 0.875em solid transparent;
+            border: 0.625em solid transparent;
             border-top-color: black;
             border-bottom: 0;
           }
           .place-addr:after {
             content: "";
             position: absolute;
-            margin-left: -0.875em;
-            margin-bottom: -0.875em;
+            margin-left: -0.625em;
+            margin-bottom: -0.625em;
 
             bottom: 0;
             left: 50%;
@@ -84,7 +89,7 @@
             width: 0;
             height: 0;
 
-            border: 0.875em solid transparent;
+            border: 0.625em solid transparent;
             border-top-color: white;
             border-bottom: 0;
           }

@@ -16,13 +16,15 @@ export const setKakaoMapWithGeoPoint = ({
     geocoder.coord2Address(longitude, latitude, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
         let content = `
-          <section class="place-addr" style="margin-bottom: 10.875em;">
+          <section class="place-addr" style="margin-bottom: 9.625em;">
+            <header class="place-addr-name">${
+              result[0].address.address_name
+            }</header>
             ${
               result[0].road_address
-                ? `<header class="place-name">${result[0].road_address.building_name}</header>
-                  <hr />
-                  <section class="place-road-addr-name">${result[0].road_address.address_name}</section>`
-                : `<section class="place-addr-name">${result[0].address.address_name}</section>`
+                ? `<hr />
+                <main class="place-name">${result[0].road_address.building_name}</main>`
+                : null
             }
           </section>`;
 
