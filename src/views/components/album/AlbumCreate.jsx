@@ -144,6 +144,9 @@ function AlbumCreate(props) {
 
     if ((await photoIdList).length) {
       dispatch(setNotifyAlbumCreate(true));
+      handleClearAlbum();
+    } else {
+      alert("album create error");
     }
   };
 
