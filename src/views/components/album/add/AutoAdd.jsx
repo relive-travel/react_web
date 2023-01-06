@@ -59,60 +59,58 @@ function AutoAdd(props) {
 
   return (
     <section className="album-auto-info">
-      <header className="info-header">
-        <section className="info-title">
-          <label htmlFor="title">
-            제목<span>(*)</span>
+      <article className="info-title">
+        <label htmlFor="title">
+          제목<span>(*)</span>
+        </label>
+        <input type="text" id="title" ref={props.titleRef}></input>
+      </article>
+      <article className="info-content">
+        <label htmlFor="content">이야기</label>
+        <textarea
+          id="content"
+          rows={1}
+          spellCheck="false"
+          ref={props.contentRef}
+          onChange={handleResizeHeight}
+        ></textarea>
+      </article>
+      <section className="info-main">
+        <article className="info-photo">
+          <label htmlFor="photo">
+            사진<span>(*)</span>
           </label>
-          <input type="text" id="title" ref={props.titleRef}></input>
-        </section>
-        <section className="info-content">
-          <label htmlFor="content">이야기</label>
-          <textarea
-            id="content"
-            rows={1}
-            spellCheck="false"
-            ref={props.contentRef}
-            onChange={handleResizeHeight}
-          ></textarea>
-        </section>
-      </header>
-      <main className="info-main">
-        <section className="info-main-top">
-          <article className="info-photo">
-            <label htmlFor="photo">
-              사진<span>(*)</span>
-            </label>
-            <DragAndDrop
-              dragType="auto"
-              photoRef={props.photoRef}
-              previewRef={props.previewRef}
-            ></DragAndDrop>
-          </article>
-          {photoData?.exifdata ? (
-            <article className="info-location">
-              <label htmlFor="location">위치</label>
-              <section
-                className="kakao-map-auto"
-                id="location"
-                ref={kakaoMapRef}
-              ></section>
-            </article>
-          ) : null}
-        </section>
+          <DragAndDrop
+            dragType="auto"
+            photoRef={props.photoRef}
+            previewRef={props.previewRef}
+          ></DragAndDrop>
+        </article>
         {photoData?.exifdata ? (
-          <section className="info-main-bottom">
-            <article className="info-date">
-              <label htmlFor="date">
-                날짜<span>(*)</span>
-              </label>
-              <input
-                id="date"
-                type="datetime-local"
-                readOnly
-                ref={props.dateRef}
-              ></input>
-            </article>
+          <article className="info-location">
+            <label htmlFor="location">위치</label>
+            <section
+              className="kakao-map-info"
+              id="location"
+              ref={kakaoMapRef}
+            ></section>
+          </article>
+        ) : null}
+      </section>
+      {photoData?.exifdata ? (
+        <>
+          <article className="info-date">
+            <label htmlFor="date">
+              날짜<span>(*)</span>
+            </label>
+            <input
+              id="date"
+              type="datetime-local"
+              readOnly
+              ref={props.dateRef}
+            ></input>
+          </article>
+          <section className="info-address">
             <article className="info-addr">
               <label htmlFor="addr">
                 주소 확인<span>(*)</span>
@@ -124,8 +122,8 @@ function AutoAdd(props) {
               <input id="semi-addr" type="text" ref={props.semiAddrRef}></input>
             </article>
           </section>
-        ) : null}
-      </main>
+        </>
+      ) : null}
     </section>
   );
 }
