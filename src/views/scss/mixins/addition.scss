@@ -14,3 +14,54 @@
     height: $imgHeight;
   }
 }
+
+@mixin kakaoMap {
+  @include setSize(100%, 100%);
+  @include setColor(black);
+  @include setBorder(2px, 10px, white);
+  box-sizing: border-box;
+
+  [class$="tooltip"] {
+    position: relative;
+    @include setFont(0.875em);
+    @include setBorder(1px, 10px);
+    padding: 0.5em;
+    background-color: white;
+
+    [class$="title"] {
+      @include setFlex(null, center, center);
+      @include setSize(fit-content, fit-content);
+      @include setFont(1.125em);
+    }
+    [class$="content"] {
+      @include setFlex(column, center, center);
+      @include setSize(fit-content, fit-content, auto);
+    }
+    > hr {
+      margin: 0.125em;
+    }
+    &::before {
+      @include tooltipArrow("before", 0.625em, black);
+    }
+    &::after {
+      @include tooltipArrow("after", 0.625em, white);
+    }
+  }
+}
+
+@mixin tooltipArrow($type, $margin, $color) {
+  content: "";
+  @include setAbsolute(null, null, 0, 50%);
+  @include setSize(0, 0);
+
+  border: $margin solid transparent;
+  border-bottom: 0;
+  border-top-color: $color;
+
+  margin-left: -$margin;
+  @if $type == "before" {
+    margin-bottom: calc(-#{$margin} - 1px);
+  } @else if $type == "after" {
+    margin-bottom: -$margin;
+  }
+}
