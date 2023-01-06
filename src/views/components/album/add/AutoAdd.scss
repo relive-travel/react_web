@@ -1,111 +1,33 @@
+@import "views/scss/mixins/addition";
+@import "views/scss/mixins/setAttribute";
+
 .album-auto-info {
-  > * {
-    margin: 0.625em 0;
+  @include setFlex(column);
+  @include setSize(100%, 100%);
+  article {
+    @include setFlex(column);
+    @include setSize(null, null, 0.625em 0);
   }
-  > header,
-  > main,
-  > footer,
-  .info-header,
-  .info-title,
-  .info-content,
-  .info-photo,
-  .info-location,
-  .info-addr,
-  .info-semi-addr,
-  .info-date,
-  .info-footer {
-    display: flex;
-    flex-direction: column;
-    margin: 0.125em 0;
-  }
-  .info-main {
-    height: 100%;
-    .info-main-top {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      height: 100%;
-
-      .info-photo {
-        width: 42.5%;
-      }
-      .info-location {
-        width: 42.5%;
-        > .kakao-map-auto {
-          aspect-ratio: 1;
-          color: black;
-          border: 2px solid white;
-          border-radius: 10px;
-          .place-addr {
-            position: relative;
-            padding: 0.5em;
-            width: fit-content;
-            height: fit-content;
-
-            font-size: 0.875em;
-
-            border: 1px solid black;
-            background-color: rgba($color: white, $alpha: 1);
-            .place-addr-name {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 1.125em;
-            }
-            > hr {
-              margin: 0.125em;
-            }
-            .place-name {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-          }
-          .place-addr:before {
-            content: "";
-            position: absolute;
-            margin-left: -0.625em;
-            margin-bottom: calc(-0.625em - 1px);
-
-            bottom: 0;
-            left: 50%;
-
-            width: 0;
-            height: 0;
-
-            border: 0.625em solid transparent;
-            border-top-color: black;
-            border-bottom: 0;
-          }
-          .place-addr:after {
-            content: "";
-            position: absolute;
-            margin-left: -0.625em;
-            margin-bottom: -0.625em;
-
-            bottom: 0;
-            left: 50%;
-
-            width: 0;
-            height: 0;
-
-            border: 0.625em solid transparent;
-            border-top-color: white;
-            border-bottom: 0;
-          }
-        }
-      }
+  > section {
+    @include setFlex(row, space-between, center);
+    width: 100%;
+    [class$="addr"] {
+      width: 45%;
     }
-    .info-main-bottom {
-      display: flex;
-      flex-direction: column;
-      .info-date {
-        > input {
-          text-align: center;
-          width: fit-content;
-          margin: auto;
-        }
-      }
+  }
+  [class$="date"] {
+    input {
+      @include setSize(fit-content, null, auto);
+      text-align: center;
+    }
+  }
+  [class$="photo"] {
+    @include setSize(45%, null, null, null, 1);
+  }
+  [class$="location"] {
+    @include setSize(45%, null, null, null, 1);
+    .kakao-map-info {
+      @include kakaoMap;
     }
   }
 }

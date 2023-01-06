@@ -11,12 +11,12 @@ export const preivewImage = ($preview, fileObjects) => {
     const width = fileExifData.originalWidth;
     const height = fileExifData.originalHeight;
 
-    const $article = document.createElement("article");
+    const $section = document.createElement("section");
     const $img = document.createElement("img");
     $img.classList = `preview-${index}`;
     width > height ? ($img.style.height = "100%") : ($img.style.width = "100%");
-    $article.appendChild($img);
-    $preview.appendChild($article);
+    $section.appendChild($img);
+    $preview.appendChild($section);
 
     const reader = new FileReader();
 
