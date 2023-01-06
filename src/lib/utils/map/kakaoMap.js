@@ -16,14 +16,14 @@ export const setKakaoMapWithGeoPoint = ({
     geocoder.coord2Address(longitude, latitude, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
         let content = `
-          <section class="place-addr" style="margin-bottom: 9.625em;">
-            <header class="place-addr-name">${
+          <section class="kakao-map-tooltip" style="margin-bottom: 9.625em;">
+            <article class="kakao-map-title">${
               result[0].address.address_name
-            }</header>
+            }</article>
             ${
               result[0].road_address
                 ? `<hr />
-                <main class="place-name">${result[0].road_address.building_name}</main>`
+                <article class="kakao-map-content">${result[0].road_address.building_name}</article>`
                 : null
             }
           </section>`;
@@ -87,16 +87,16 @@ export const setKakaoMapWithKeyword = (
       $label.setAttribute("for", `place-${i}`);
 
       $label.innerHTML = `
-          <header class="place-${i}">${i + 1}</header>
+          <header class="place-${i}-index">${i + 1}</header>
           <main>
-            <section class="place-name">${places[i].place_name}</section>
+            <article class="place-name">${places[i].place_name}</article>
+            <article class="place-addr">${places[i].address_name}</article>
             ${
               places[i].road_address_name
-                ? `<section class="place-road-addr-name">${places[i].road_address_name}</section>
-                <section class="place-addr-name">${places[i].address_name}</section>`
-                : `<section class="place-addr-name">${places[i].address_name}</section>`
+                ? `<article class="place-road-addr">${places[i].road_address_name}</article>`
+                : null
             }
-            </main>
+          </main>
         `;
 
       $section.appendChild($checkbox);
