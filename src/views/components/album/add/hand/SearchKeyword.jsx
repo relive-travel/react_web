@@ -55,9 +55,9 @@ function SearchKeyword(props) {
   };
 
   return (
-    <section className="keyword-component" onClick={handleOutsideClick}>
+    <section className="search-keyword-component" onClick={handleOutsideClick}>
       <article ref={compRef}>
-        <section className="keyword-main">
+        <section className="search-keyword-main">
           <header className="keyword-input">
             <input
               type="text"
@@ -66,17 +66,31 @@ function SearchKeyword(props) {
                 if (e.key === "Enter") handleSetKakaoMap();
               }}
             ></input>
-            <button onClick={handleSetKakaoMap}>검색</button>
+            <aside>
+              <button
+                className="keyword-search-button"
+                onClick={handleSetKakaoMap}
+              >
+                검색
+              </button>
+            </aside>
           </header>
           <main className="keyword-preview">
-            <section className="kakao-map-keyword" ref={kakaoMapRef}></section>
+            <section className="kakao-map-info" ref={kakaoMapRef}></section>
           </main>
-          <button onClick={handleSelectResult}>선택</button>
+          <footer>
+            <button
+              className="keyword-select-button"
+              onClick={handleSelectResult}
+            >
+              선택
+            </button>
+          </footer>
         </section>
-        <aside>
+        <section className="search-keyword-result">
           <section className="keyword-list" ref={listRef}></section>
           <section className="keyword-pagenation" ref={pageRef}></section>
-        </aside>
+        </section>
       </article>
     </section>
   );

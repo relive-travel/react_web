@@ -1,251 +1,108 @@
-.keyword-component {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
+@import "views/scss/variables";
+@import "views/scss/mixins/dialog";
 
-  width: 100%;
-  height: 100%;
-  background-color: rgba($color: black, $alpha: 0.7);
+.search-keyword-component {
+  @include dialogOutside();
   > article {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 1.25em;
-    width: 60%;
-    max-width: 750px;
-    aspect-ratio: 2/1;
-    background-color: rgba($color: #ff8822, $alpha: 1);
-    .keyword-main {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-
-      padding: 1.25em;
-
-      box-sizing: border-box;
-
-      width: 50%;
-      height: 100%;
-      background-color: rgba($color: #008000, $alpha: 1);
-
-      // header
-      > .keyword-input {
+    @media (min-width: 750px) {
+      @include dialogBorder(null, null, null, 1.25em, 2/1);
+      @include setFlex(row);
+      @include setMinSize(750px, 750px);
+    }
+    @media (max-width: 749px) {
+      @include dialogBorder(null, null, null, 1.25em, 1);
+      @include setFlex(column);
+      @include setMinSize(350px, 350px);
+    }
+    .search-keyword-main {
+      @include dialogInside(column, center, center);
+      > header {
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        height: 10%;
-        width: 100%;
-        > button {
-          cursor: pointer;
-          position: absolute;
-          right: 1%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 15%;
-
-          background-color: rgba($color: white, $alpha: 0.5);
-          border-radius: 20px;
-          transition: 0.125s ease-in-out;
+        @include setFlex(null, center, center);
+        @include setSize(100%, 10%, 0 0 0.625em 0);
+        > input {
+          width: 50%;
         }
-        > button:hover {
-          color: rgba($color: #008000, $alpha: 1);
-          border-color: rgba($color: white, $alpha: 0.5);
-          background-color: rgba($color: white, $alpha: 1);
+        > aside {
+          @include setAbsolute(null, 0, null, null);
+          @include setSize(20%, 100%);
+          @include setButtons(
+            (
+              "keyword-search": $button-main-color,
+            ),
+            100%
+          );
         }
       }
-
-      // main
-      > .keyword-preview {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        height: 75%;
-        width: 100%;
-        .kakao-map-keyword {
-          width: 100%;
-          height: 100%;
-          color: black;
-          .place-addr {
-            position: relative;
-            padding: 0.5em;
-            width: fit-content;
-            height: fit-content;
-
-            font-size: 0.875em;
-
-            border: 1px solid black;
-            background-color: rgba($color: white, $alpha: 1);
-            > hr {
-              margin: 0.125em;
-            }
-            .place-name {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 1.125em;
-            }
-          }
-          .place-addr:before {
-            content: "";
-            position: absolute;
-            margin-left: -0.875em;
-            margin-bottom: calc(-0.875em - 1px);
-
-            bottom: 0;
-            left: 50%;
-
-            width: 0;
-            height: 0;
-
-            border: 0.875em solid transparent;
-            border-top-color: black;
-            border-bottom: 0;
-          }
-          .place-addr:after {
-            content: "";
-            position: absolute;
-            margin-left: -0.875em;
-            margin-bottom: -0.875em;
-
-            bottom: 0;
-            left: 50%;
-
-            width: 0;
-            height: 0;
-
-            border: 0.875em solid transparent;
-            border-top-color: white;
-            border-bottom: 0;
-          }
+      > main {
+        @include setSize(100%, 80%);
+        .kakao-map-info {
+          @include kakaoMap;
         }
       }
-
-      > button {
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width: 15%;
-
-        background-color: rgba($color: white, $alpha: 0.5);
-        border-radius: 20px;
-        transition: 0.125s ease-in-out;
-      }
-      > button:hover {
-        color: rgba($color: #008000, $alpha: 1);
-        border-color: rgba($color: white, $alpha: 0.5);
-        background-color: rgba($color: white, $alpha: 1);
+      > footer {
+        @include setSize(100%, 10%, 0.625em 0 0 0);
+        @include setButtons(
+          (
+            "keyword-select": $button-main-color,
+          ),
+          20%
+        );
       }
     }
-    > aside {
-      display: flex;
-      flex-direction: column;
-      padding: 1.25em;
-
-      box-sizing: border-box;
-
-      width: 50%;
-      height: 100%;
-      background-color: rgba($color: #008000, $alpha: 1);
-
-      > * {
-        background-color: rgba($color: white, $alpha: 0.5);
-      }
-
+    .search-keyword-result {
+      @include dialogInside(column, center, center);
       .keyword-list {
-        display: flex;
-        flex-direction: column;
-
-        padding: 1.25em;
-
-        box-sizing: border-box;
-
-        width: 100%;
-        height: 95%;
+        @include setFlex(column);
+        @include setSize(100%, 90%, null, 0.625em);
         overflow: scroll;
-
-        font-size: 0.875em;
-
+        box-sizing: border-box;
+        border-radius: 10px;
+        background-color: rgba($color: white, $alpha: 0.5);
         > section {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
+          @include setFlex(row, space-between, center);
+          @include setSize(100%, fit-content, 0.125em 0);
           > input {
             width: 5%;
+            opacity: 1;
           }
           > label {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            // justify-content: space-between;
-            align-items: center;
-
-            margin: 0.25em 0;
-
-            width: 90%;
+            @include setFlex(row, space-between, center);
+            @include setSize(90%, null, 0.25em 0);
             > header {
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              @include setFlex(null, center, center);
               width: 5%;
+              color: black;
             }
             > main {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              width: 85%;
-              .place-name {
+              @include setFlex(column, center);
+              width: 90%;
+              > article {
+                @include setTextOverflow;
+              }
+              [class$="name"] {
                 color: black;
               }
-              .place-addr-name {
+              [class$="addr"] {
+                color: white;
+              }
+              [class*="road"] {
                 color: rgba($color: white, $alpha: 0.5);
               }
-            }
-            > button {
-              cursor: pointer;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 15%;
-
-              background: none;
-              border-radius: 20px;
-              transition: 0.125s ease-in-out;
-            }
-            > button:hover {
-              color: rgba($color: white, $alpha: 1);
-              border-color: rgba($color: #008000, $alpha: 0.5);
-              background-color: rgba($color: #008000, $alpha: 1);
             }
           }
         }
       }
       .keyword-pagenation {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 5%;
+        @include setFlex(row, center, center);
+        @include setSize(100%, 10%, 0.625em 0 0 0);
         .on {
           color: white;
         }
-        > button {
+        button {
           cursor: pointer;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include setFlex(null, center, center);
+          @include setFont(1em);
           border: none;
           background: none;
         }
