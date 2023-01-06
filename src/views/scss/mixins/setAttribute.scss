@@ -7,14 +7,20 @@
   left: $left;
 }
 
-@mixin setFlex($flexDirection, $justifyContent, $alignItems) {
+@mixin setFlex($flexDirection, $justifyContent: null, $alignItems: null) {
   display: flex;
   flex-direction: $flexDirection;
   justify-content: $justifyContent;
   align-items: $alignItems;
 }
 
-@mixin setSize($width, $height, $margin, $padding, $aspectRatio) {
+@mixin setSize(
+  $width,
+  $height,
+  $margin: null,
+  $padding: null,
+  $aspectRatio: null
+) {
   width: $width;
   height: $height;
   margin: $margin;
@@ -22,15 +28,40 @@
   aspect-ratio: $aspectRatio;
 }
 
-@mixin setMinSize($minWidth, $maxWidth, $minHeight, $maxHeight) {
+@mixin setMinSize(
+  $minWidth: null,
+  $maxWidth: null,
+  $minHeight: null,
+  $maxHeight: null
+) {
   min-width: $minWidth;
   max-width: $maxWidth;
   min-height: $minHeight;
   max-height: $maxHeight;
 }
 
+@mixin setBorder($width, $radius, $color: "", $type: null, $style: solid) {
+  @if $type == "top" {
+    border-top: $width $style unquote($color);
+  } @else if $type == "right" {
+    border-right: $width $style unquote($color);
+  } @else if $type == "bottom" {
+    border-bottom: $width $style unquote($color);
+  } @else if $type == "left" {
+    border-left: $width $style unquote($color);
+  } @else {
+    border: $width $style unquote($color);
+  }
+  border-radius: $radius;
+}
+
+@mixin setColor($color, $background: transparent) {
+  color: $color;
+  background-color: $background;
+}
+
 /* text */
-@mixin setTextOverflow($line) {
+@mixin setTextOverflow($line: 1) {
   width: 100%;
   overflow: hidden;
   @if $line == 1 {
@@ -52,7 +83,7 @@
   }
 }
 
-@mixin setFont($fontSize, $fontWeight, $fontColor) {
+@mixin setFont($fontSize, $fontWeight: null, $fontColor: null) {
   font-size: $fontSize;
   font-weight: $fontWeight;
   color: $fontColor;
@@ -73,7 +104,7 @@
   }
 }
 
-@mixin setButtons($buttons, $line, $width) {
+@mixin setButtons($buttons, $width, $line: 1) {
   @include setFlex(row, space-around, center);
 
   > button {
