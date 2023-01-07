@@ -4,14 +4,15 @@
 .album-auto-info {
   @include setFlex(column);
   @include setSize(100%, 100%);
-  article {
+  > article {
     @include setFlex(column);
     @include setSize(null, null, 0.625em 0);
   }
   > section {
     @include setFlex(row, space-between, center);
     width: 100%;
-    [class$="addr"] {
+    > article {
+      @include setFlex(column);
       width: 45%;
     }
   }

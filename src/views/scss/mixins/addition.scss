@@ -29,8 +29,7 @@
     background-color: white;
 
     [class$="title"] {
-      @include setFlex(null, center, center);
-      @include setSize(fit-content, fit-content);
+      @include setSize(fit-content, fit-content, auto);
       @include setFont(1.125em);
     }
     [class$="content"] {
