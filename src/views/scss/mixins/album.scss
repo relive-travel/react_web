@@ -12,7 +12,7 @@
       @include setFlex(column, center, center);
       @include setSize(calc(95% - 0.75em), 100%);
       > article {
-        @include setTextOverflow(1);
+        @include setTextOverflow();
       }
     }
     [class$="icon"] {
@@ -43,7 +43,7 @@
         margin: 0.125em 0;
       }
       [class$="title"] {
-        @include setTextOverflow(1);
+        @include setTextOverflow();
         float: left;
       }
       [class$="date"] {

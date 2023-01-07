@@ -45,23 +45,20 @@
 }
 
 @mixin setBorder($width, $radius, $color: "", $type: null, $style: solid) {
-  @if $type == "top" {
-    border-top: $width $style unquote($color);
-  } @else if $type == "right" {
-    border-right: $width $style unquote($color);
-  } @else if $type == "bottom" {
-    border-bottom: $width $style unquote($color);
-  } @else if $type == "left" {
-    border-left: $width $style unquote($color);
+  @if $type {
+    @each $place in $type {
+      border-#{$place}-left-radius: $radius;
+      border-#{$place}-right-radius: $radius;
+    }
   } @else {
-    border: $width $style unquote($color);
+    border-radius: $radius;
   }
-  border-radius: $radius;
+  border: $width $style unquote($color);
 }
 
 /* text */
-@mixin setTextOverflow($line: 1) {
-  width: 100%;
+@mixin setTextOverflow($line: 1, $width: 100%) {
+  width: $width;
   overflow: hidden;
   @if $line == 1 {
     white-space: nowrap;

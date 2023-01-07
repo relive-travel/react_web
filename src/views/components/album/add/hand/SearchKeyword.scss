@@ -83,7 +83,7 @@
               @include setFlex(column, center);
               width: 90%;
               > article {
-                @include setTextOverflow;
+                @include setTextOverflow();
               }
               [class$="name"] {
                 color: black;
