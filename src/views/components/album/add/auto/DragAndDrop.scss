@@ -1,29 +1,50 @@
-.drag-auto-component {
-  width: 100%;
-  height: 100%;
+@import "views/scss/mixins/setAttribute";
 
-  > input {
+@mixin inputPicture {
+  input {
     display: none;
   }
-  > label {
-    display: flex;
+  label {
+    @include setFlex;
+    @include setSize(100%, null, null, null, 1);
+    @include setBorder(2px, 10px, white);
 
-    aspect-ratio: 1;
     overflow: hidden;
+    box-sizing: border-box;
+  }
+}
 
-    border: 2px solid white;
-    border-radius: 10px;
-    > .photo-preview {
+.auto-drag-component {
+  @include setSize(100%, 100%);
+  @include inputPicture;
+  label {
+    .drag-photo-preview {
       aspect-ratio: 1;
-      > article {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
+      section {
+        @include setFlex(null, center, center);
+        @include setSize(100%, 100%);
       }
     }
   }
+}
+
+.hand-drag-component {
+  @include setSize(100%, 100%);
+  .drag-photo-preview {
+    @include inputPicture;
+    @include setGrid(columns, repeat(4, 1fr), 0.625em);
+    @include setSize(100%, 100%);
+    > section {
+      @include setFlex(null, center, center);
+      @include setSize(100%, null, null, null, 1);
+      @include setBorder(2px, 10px, white);
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  }
+}
+
+[class$="drag-component"] {
   .drop {
     cursor: pointer;
     transition: 0.12s ease-in;
@@ -31,54 +52,6 @@
   .dragging {
     background-color: rgba($color: white, $alpha: 0.5);
     color: white;
-  }
-  ::-webkit-scrollbar {
-    display: block;
-  }
-}
-
-.drag-hand-component {
-  width: 100%;
-  height: 100%;
-
-  .photo-preview {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5em;
-
-    > article {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-
-      border: 1px solid black;
-      border-radius: 10px;
-      > img {
-      }
-    }
-    input {
-      display: none;
-    }
-    label {
-      width: 100%;
-      aspect-ratio: 1;
-
-      border: 2px solid black;
-      border-radius: 10px;
-    }
-    .drop {
-      cursor: pointer;
-      transition: 0.12s ease-in;
-    }
-    .dragging {
-      background-color: rgba($color: black, $alpha: 0.5);
-      color: white;
-    }
   }
   ::-webkit-scrollbar {
     display: block;

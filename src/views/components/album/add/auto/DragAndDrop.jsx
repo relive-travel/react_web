@@ -82,7 +82,7 @@ function DragAndDrop(props) {
   return (
     <>
       {props.dragType === "auto" ? (
-        <section className="drag-auto-component">
+        <section className="auto-drag-component">
           <input
             id="photo"
             type="file"
@@ -95,12 +95,15 @@ function DragAndDrop(props) {
             ref={dragRef}
             htmlFor="photo"
           >
-            <section className="photo-preview" ref={props.previewRef}></section>
+            <section
+              className="drag-photo-preview"
+              ref={props.previewRef}
+            ></section>
           </label>
         </section>
       ) : (
-        <section className="drag-hand-component">
-          <main className="photo-preview" ref={props.previewRef}>
+        <section className="hand-drag-component">
+          <main className="drag-photo-preview" ref={props.previewRef}>
             <input
               id="photo"
               type="file"
