@@ -1,0 +1,75 @@
+@import "views/scss/variables";
+@import "views/scss/mixins/setAttribute";
+
+/* variables */
+@font-face {
+  font-family: "BMJUA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
+    format("woff");
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "BMJUA";
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* element */
+html,
+#root,
+body {
+  @include setSize(100%, 100%, 0);
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label {
+  margin-bottom: 0.125em;
+  color: $text-highlight-color;
+  > span {
+    margin-left: 0.5em;
+    color: $text-sub-color;
+  }
+}
+
+input,
+textarea {
+  @include setFont(1em, null, $text-default-color);
+  line-height: 1.25em;
+  margin-bottom: 0.25em;
+
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: white;
+
+  background: none;
+}
+
+input:read-only {
+  color: rgba($color: $text-default-color, $alpha: 0.5);
+}
+
+textarea {
+  resize: none;
+}
+
+/* component */
+.text-highlight-main {
+  color: $text-highlight-color;
+}
