@@ -25,7 +25,6 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-import "./SideDial.scss";
 function SideDial(props) {
   const dispatch = useDispatch();
 

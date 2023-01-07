@@ -10,7 +10,6 @@ import { setPathZoomEvent } from "lib/utils/map/svgEvent";
 import { setProjection } from "lib/utils/map/projection";
 import { getKoreanAddr } from "lib/utils/data/addr";
 
-import "./PathElements.scss";
 function PathElements(props) {
   const { svgRef, gPathRef } = props;
 

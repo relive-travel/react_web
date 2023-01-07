@@ -7,7 +7,6 @@ import reportWebVitals from "./reportWebVitals";
 import Router from "./views/Router";
 import Scheduler from "./views/Scheduler";
 
-import "./index.css";
 import "./index.scss";
 import "views/components/notify/notify.scss";
 

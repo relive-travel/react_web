@@ -8,7 +8,6 @@ import { getKoreanAddr } from "lib/utils/data/addr";
 
 import { getMarkerAllMatchRegion } from "redux/thunk/markerThunk";
 
-import "./MarkerElements.scss";
 function MarkerElements(props) {
   const dispatch = useDispatch();
 

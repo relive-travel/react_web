@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "./Banner.scss";
 function Banner() {
   return (
     <Swiper

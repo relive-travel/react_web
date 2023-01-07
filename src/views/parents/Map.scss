@@ -22,6 +22,31 @@
     width: 13px;
     height: 13px;
   }
+
+  .map-main {
+    background-color: skyblue;
+
+    .path {
+      fill: #009300;
+      fill-opacity: 0.5;
+      stroke: #000000;
+      stroke-width: 1px;
+    }
+
+    .path:hover {
+      cursor: pointer;
+      fill: #009300;
+      fill-opacity: 1;
+    }
+    .text {
+      cursor: pointer;
+      fill: white;
+      fill-opacity: 0.5;
+    }
+    .text:hover {
+      fill-opacity: 1;
+    }
+  }
 }
 
 // nav

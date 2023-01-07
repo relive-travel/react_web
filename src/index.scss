@@ -74,3 +74,24 @@ textarea {
 .text-highlight-main {
   color: $text-highlight-color;
 }
+
+/* library */
+.MuiBox-root {
+  position: absolute;
+  flex-grow: 1;
+
+  bottom: 0;
+  right: 0;
+
+  transform: translateZ(0px);
+}
+.MuiSpeedDial-root {
+  position: absolute;
+
+  bottom: 16px;
+  right: 16px;
+  > button,
+  > button:hover {
+    background-color: #008000;
+  }
+}

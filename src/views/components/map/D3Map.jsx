@@ -19,7 +19,6 @@ import PathElements from "./components/PathElements.jsx";
 import MarkerElements from "./components/MarkerElements.jsx";
 import TextElements from "./components/TextElements.jsx";
 
-import "./D3Map.scss";
 function D3Map(props) {
   var svgRef = useRef(null);
   var gPathRef = useRef(null);
