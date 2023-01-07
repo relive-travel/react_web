@@ -14,6 +14,13 @@
   align-items: $alignItems;
 }
 
+@mixin setGrid($type, $track, $gap) {
+  display: grid;
+  grid-template-#{$type}: $track;
+  gap: 0.625em;
+  //row-gap, column-gap
+}
+
 @mixin setSize(
   $width,
   $height,
