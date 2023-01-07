@@ -42,7 +42,7 @@ body {
 
 label {
   margin-bottom: 0.125em;
-  color: $text-highlight-color;
+  color: $text-highlight-main-color;
   > span {
     margin-left: 0.5em;
     color: $text-sub-color;
@@ -71,8 +71,11 @@ textarea {
 }
 
 /* component */
-.text-highlight-main {
-  color: $text-highlight-color;
+.text-highlight-main-color {
+  color: $text-highlight-main-color;
+}
+.text-highlight-behind-color {
+  color: rgba($color: $text-highlight-behind-color, $alpha: 0.5);
 }
 
 /* library */

@@ -5,10 +5,13 @@ function UserInfoEmpty() {
     <section className="user-info-empty-exception">
       <main>
         <article>
-          아이쿠...! <span>사용자</span>님의 <span>정보</span>가 없어요..!
+          아이쿠...! <span className="text-highlight-main-color">사용자</span>
+          님의 <span className="text-highlight-main-color">정보</span>가
+          없어요..!
         </article>
         <article>
-          다시 <span>로그인</span> 해주세요...!
+          다시 <span className="text-highlight-main-color">로그인</span>{" "}
+          해주세요...!
         </article>
       </main>
       <S3Image folder={"toshimee"} file={"sullen.png"} />

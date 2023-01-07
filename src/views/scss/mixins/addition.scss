@@ -2,16 +2,13 @@
 @import "views/scss/mixins/setAttribute";
 
 @mixin notify($textHeight, $imgHeight) {
-  @include setFont(1.5em, color);
+  @include setFont(1.5em, white);
   > section {
     @include setFlex(column, center, center);
     @include setSize(100%, 100%);
     > main {
       @include setFlex(column, space-around, center);
       @include setSize(100%, $textHeight);
-      span {
-        color: $text-highlight-color;
-      }
     }
     > img {
       height: $imgHeight;

@@ -5,7 +5,8 @@ function AlbumSelectInfo() {
     <section className="notify-select-information">
       <main>
         <article>
-          <span>추억</span> 만들러 온거야?~!
+          <span className="text-highlight-main-color">추억</span> 만들러
+          온거야?~!
         </article>
       </main>
       <S3Image folder={"toshimee"} file={"select.png"} />
