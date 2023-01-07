@@ -2,129 +2,55 @@
 @import "views/scss/mixins/setAttribute";
 
 .map-component {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
   .slider-open {
     transform: translate(0%, 0%);
   }
 
-  --swiper-theme-color: white;
-
-  .swiper-pagination-bullet-active {
-    opacity: 1 !important;
-  }
-  .swiper-pagination-bullet {
-    background-color: white;
-    border: 1px solid white;
-    opacity: 0.5;
-    width: 13px;
-    height: 13px;
-  }
-
-  .map-main {
-    background-color: skyblue;
-
-    .path {
-      fill: #009300;
-      fill-opacity: 0.5;
-      stroke: #000000;
-      stroke-width: 1px;
-    }
-
-    .path:hover {
-      cursor: pointer;
-      fill: #009300;
-      fill-opacity: 1;
-    }
-    .text {
-      cursor: pointer;
-      fill: white;
-      fill-opacity: 0.5;
-    }
-    .text:hover {
-      fill-opacity: 1;
-    }
+  @include setSize(100%, 100%);
+  position: relative;
+  overflow: hidden;
+  .d3-component {
+    background-color: $point-sub-color;
   }
 }
 
-// nav
 .slider-component {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  @include setFlex(row, space-between, center);
+  @include setSize(30%, 100%);
+  @include setMinSize(350px);
 
   position: absolute;
-
-  width: 30%;
-  height: 100%;
-  min-width: 350px;
-
   transform: translate(-86%, 0%);
   transition: 1s ease-in-out;
 
   .slider-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 10%;
-    height: fit-content;
+    @include setFlex(null, center, center);
+    @include setSize(10%, fit-content);
   }
   .slider-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 85%;
-    min-width: 300px;
-    height: 100%;
-
-    // opacity는 전체자식 상속, rgba는 현재 요소만 적용
-    background-color: rgba($color: #ffffff, $alpha: 0.33);
-
+    @include setFlex(column, flex-start, center);
+    @include setSize(85%, 100%);
+    @include setMinSize(300px);
     overflow: scroll;
-
+    background-color: rgba($color: $default-color, $alpha: 0.3);
     .slider-exception {
       @include setFlex(column, center, center);
-      width: 100%;
-      height: 100%;
+      @include setSize(100%, 100%);
       > img {
-        width: 90%;
-        aspect-ratio: 1;
+        @include setSize(90%, null, 1);
       }
       main {
-        height: 5%;
+        @include setSize(null, 5%);
       }
       footer {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-
-        height: 5%;
-        > button {
-          padding: 0.25em 0.875em;
-
-          border: 2px solid;
-          border-radius: 0.625em;
-          background-color: transparent;
-
-          transition: 0.25s ease-in-out;
-        }
-        > button:hover {
-          cursor: pointer;
-        }
-        .make-memory-button {
-          color: #008000;
-          border-color: #008000;
-        }
-        .make-memory-button:hover {
-          color: white;
-          background-color: rgba($color: #008000, $alpha: 1);
-        }
+        @include setFlex(row, space-around, center);
+        @include setSize(null, 5%);
+        @include setButtons(
+          (
+            "make-memory": $sub-color,
+          ),
+          30%
+        );
       }
     }
   }

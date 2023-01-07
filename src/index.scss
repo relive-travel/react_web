@@ -81,7 +81,43 @@ textarea {
   color: $highlight-none;
 }
 
-/* library */
+/* library : swiper */
+body {
+  --swiper-theme-color: white;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet {
+  background-color: white;
+  border: 1px solid white;
+  opacity: 0.5;
+  width: 13px;
+  height: 13px;
+}
+
+/* library : d3 */
+
+.path {
+  fill: $sub-bright-color;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 1px;
+  &:hover {
+    cursor: pointer;
+    fill-opacity: 1;
+  }
+}
+.text {
+  cursor: pointer;
+  fill: white;
+  fill-opacity: 0.5;
+  &:hover {
+    fill-opacity: 1;
+  }
+}
+
+/* library : metarial-ui */
 .MuiBox-root {
   position: absolute;
   flex-grow: 1;
