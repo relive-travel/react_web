@@ -10,8 +10,13 @@ $sub-bright-color: #00aa00;
 $point-color: #eb898e;
 $point-bright-color: #ffc0cb;
 
+$point-sub-color: skyblue;
+$point-sub-bright-color: #61ccfe;
+$point-sub-deep-color: #2499ff;
+
 $highlight: $main-color;
 $highlight-behind: rgba(
   $color: $default-color,
   $alpha: 0.5,
 );
+$highlight-none: black;

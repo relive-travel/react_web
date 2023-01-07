@@ -99,10 +99,10 @@
   }
   .district-name {
     border-bottom: 2px solid white;
-    background-color: #2499ff;
+    background-color: $point-sub-deep-color;
   }
   .city-name {
     border-bottom: 1px solid white;
-    background-color: #61ccfe;
+    background-color: $point-sub-bright-color;
   }
 }

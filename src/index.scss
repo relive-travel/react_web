@@ -77,6 +77,9 @@ textarea {
 .highlight-behind {
   color: rgba($color: $highlight-behind, $alpha: 0.5);
 }
+.highlight-none {
+  color: $highlight-none;
+}
 
 /* library */
 .MuiBox-root {
