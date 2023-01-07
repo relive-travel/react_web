@@ -86,20 +86,23 @@ function SearchRoadAddr(props) {
   }, [roadAddrResultOpen]);
 
   return (
-    <section className="road-addr-component" onClick={handleOutsideClick}>
+    <section
+      className="search-road-addr-component"
+      onClick={handleOutsideClick}
+    >
       <article ref={compRef}>
         {roadAddrResultOpen ? (
-          <section className="road-addr-result">
+          <section className="search-road-addr-result">
             <header>
-              <article>원하시는 곳이 맞는지 확인해주세요!</article>
+              <article>
+                추억의 <span className="text-highlight-main">장소</span>가
+                여기인가요?~!
+              </article>
             </header>
             <main>
-              <article
-                className="kakao-map-road-addr"
-                ref={kakaoMapRef}
-              ></article>
+              <article className="kakao-map-info" ref={kakaoMapRef}></article>
             </main>
-            <footer className="road-addr-buttons">
+            <footer>
               <button
                 className="road-addr-re-search-button"
                 onClick={handleReSearchAddr}
@@ -115,7 +118,10 @@ function SearchRoadAddr(props) {
             </footer>
           </section>
         ) : (
-          <section className="road-addr-main" ref={roadAddrRef}></section>
+          <section
+            className="search-road-addr-main"
+            ref={roadAddrRef}
+          ></section>
         )}
       </article>
     </section>

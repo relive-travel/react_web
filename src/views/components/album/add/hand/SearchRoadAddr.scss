@@ -1,151 +1,37 @@
-.road-addr-component {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
+@import "views/scss/variables";
+@import "views/scss/mixins/setAttribute";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/addition";
 
-  width: 100%;
-  height: 100%;
-  background-color: rgba($color: black, $alpha: 0.7);
+.search-road-addr-component {
+  @include dialogOutside();
   > article {
-    padding: 1.25em;
-    width: 30%;
-    min-width: 340px;
-    aspect-ratio: 1;
-    background-color: rgba($color: #ff8822, $alpha: 1);
-    .road-addr-main {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-
-      padding: 1.25em;
-      box-sizing: border-box;
-
-      width: 100%;
-      min-width: 300px;
-      aspect-ratio: 1;
-      background-color: rgba($color: #008000, $alpha: 1);
+    @include dialogBorder(30%, null, null, 1.25em, 1);
+    @include setMinSize(450px);
+    .search-road-addr-main {
+      @include dialogInside();
     }
-    .road-addr-result {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-
-      padding: 1.25em;
-      box-sizing: border-box;
-
-      width: 100%;
-      min-width: 300px;
-      aspect-ratio: 1;
-      background-color: rgba($color: #008000, $alpha: 1);
+    .search-road-addr-result {
+      @include dialogInside(column, space-between, center);
       > header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 10%;
+        @include setFlex(null, center, center);
+        @include setSize(100%, 10%, 0 0 0.625em 0);
       }
       > main {
-        width: 100%;
-        height: 70%;
-        .kakao-map-road-addr {
-          width: 100%;
-          height: 100%;
-          color: black;
-          .place-addr {
-            position: relative;
-            padding: 0.5em;
-            width: fit-content;
-            height: fit-content;
-
-            font-size: 0.875em;
-
-            border: 1px solid black;
-            background-color: rgba($color: white, $alpha: 1);
-            > hr {
-              margin: 0.125em;
-            }
-            .place-name {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 1.125em;
-            }
-          }
-          .place-addr:before {
-            content: "";
-            position: absolute;
-            margin-left: -0.875em;
-            margin-bottom: calc(-0.875em - 1px);
-
-            bottom: 0;
-            left: 50%;
-
-            width: 0;
-            height: 0;
-
-            border: 0.875em solid transparent;
-            border-top-color: black;
-            border-bottom: 0;
-          }
-          .place-addr:after {
-            content: "";
-            position: absolute;
-            margin-left: -0.875em;
-            margin-bottom: -0.875em;
-
-            bottom: 0;
-            left: 50%;
-
-            width: 0;
-            height: 0;
-
-            border: 0.875em solid transparent;
-            border-top-color: white;
-            border-bottom: 0;
-          }
+        @include setSize(100%, 80%);
+        .kakao-map-info {
+          @include kakaoMap;
         }
       }
       > footer {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        height: 10%;
-        > button {
-          padding: 0.25em 0.875em;
-
-          width: 30%;
-
-          border: 2px solid;
-          border-radius: 0.625em;
-          background-color: transparent;
-
-          transition: 0.25s ease-in-out;
-        }
-        > button:hover {
-          cursor: pointer;
-        }
-        .road-addr-re-search-button {
-          color: white;
-          border-color: white;
-        }
-        .road-addr-re-search-button:hover {
-          color: black;
-          background-color: rgba($color: white, $alpha: 1);
-        }
-        .road-addr-select-button {
-          color: #ff8822;
-          border-color: #ff8822;
-        }
-        .road-addr-select-button:hover {
-          color: black;
-          background-color: rgba($color: #ff8822, $alpha: 1);
-        }
+        @include setButtons(
+          (
+            "road-addr-re-search": $button-default-color,
+            "road-addr-select": $button-main-color,
+          ),
+          30%
+        );
+        @include setSize(100%, 10%, 0.625em 0 0 0);
       }
     }
   }
