@@ -33,22 +33,3 @@
 
   background-color: rgba($color: #008000, $alpha: 1);
 }
-
-@mixin dialogNotify() {
-  @include setSize(100%, 90%, null, null, null);
-  > section {
-    @include setFlex(column, center, center);
-    @include setSize(100%, 100%, null, null, null);
-    > main {
-      @include setFlex(null, center, center);
-      height: 10%;
-      @include setFont(1.25em, null, white);
-      > span {
-        color: $text-highlight-color;
-      }
-    }
-    > img {
-      height: 90%;
-    }
-  }
-}

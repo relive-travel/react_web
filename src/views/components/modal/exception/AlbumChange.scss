@@ -9,12 +9,12 @@
     @include setMinSize(500px, 500px, null, null);
     .album-change-main {
       @include dialogInside(column, space-around, center);
+      @include setSize(100%, 100%);
       > header {
-        height: 75%;
+        @include setSize(100%, 75%);
         .photo-data-exception {
           @include setFlex(column, center, center);
-          height: 100%;
-          @include exception(15%, 85%);
+          @include notify(15%, 85%);
         }
       }
       > footer {

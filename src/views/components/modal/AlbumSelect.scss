@@ -4,15 +4,14 @@
 
 .album-select-component {
   @include dialogOutside();
-
   > article {
     @include dialogBorder(null, 40%, null, 1em, 1);
-
     .select-main {
       @include dialogInside(column, space-between, null);
-
+      @include setSize(100%, 100%);
       > header {
-        @include dialogNotify();
+        @include setSize(100%, 90%);
+        @include notify(10%, 90%);
       }
       > footer {
         @include setSize(100%, 10%, null, null, null);

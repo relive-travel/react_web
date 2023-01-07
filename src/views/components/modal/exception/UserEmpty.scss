@@ -10,12 +10,8 @@
     .user-empty-main {
       @include dialogInside(column, space-around, center);
       > header {
-        height: 87.5%;
-        .user-info-empty-exception {
-          @include setFlex(column, center, center);
-          height: 100%;
-          @include exception(25%, 75%);
-        }
+        @include setSize(100%, 87.5%);
+        @include notify(25%, 75%);
       }
       > footer {
         @include setSize(100%, 12.5%, null, null, null);

@@ -1,17 +1,21 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/setAttribute";
 
-@mixin exception($textHeight, $imgHeight) {
-  font-size: 1.5em;
-  > main {
-    @include setFlex(column, space-between, center);
-    height: $textHeight;
-    span {
-      color: $text-highlight-color;
+@mixin notify($textHeight, $imgHeight) {
+  @include setFont(1.5em, null, color);
+  > section {
+    @include setFlex(column, center, center);
+    @include setSize(100%, 100%);
+    > main {
+      @include setFlex(column, space-around, center);
+      @include setSize(100%, $textHeight);
+      span {
+        color: $text-highlight-color;
+      }
     }
-  }
-  > img {
-    height: $imgHeight;
+    > img {
+      height: $imgHeight;
+    }
   }
 }
 

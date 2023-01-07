@@ -4,7 +4,9 @@ function AlbumCreateComplete() {
   return (
     <section className="album-create-complete">
       <main>
-        예~!&nbsp;<span>추억</span>이 만들어 졌어요!
+        <article>
+          예~!&nbsp;<span>추억</span>이 만들어 졌어요!
+        </article>
       </main>
       <S3Image folder={"toshimee"} file={"hooray.png"} />
     </section>

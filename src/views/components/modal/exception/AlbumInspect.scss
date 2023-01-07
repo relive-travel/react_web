@@ -9,13 +9,10 @@
     @include setMinSize(400px, 400px, null, null);
     .alubm-inspect-main {
       @include dialogInside(column, space-around, center);
+      @include setSize(100%, 100%);
       > header {
-        height: 75%;
-        .inspect-exception {
-          @include setFlex(column, center, center);
-          height: 100%;
-          @include exception(15%, 85%);
-        }
+        @include setSize(100%, 75%);
+        @include notify(15%, 85%);
       }
       > main {
         @include setFlex(row, space-around, center);

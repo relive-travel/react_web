@@ -9,11 +9,13 @@
     @include setMinSize(350px, 350px, null, null);
     .album-create-success-main {
       @include dialogInside(column, space-around, center);
+      @include setSize(100%, 100%);
       > header {
-        @include dialogNotify();
+        @include setSize(100%, 90%);
+        @include notify(10%, 90%);
       }
       > footer {
-        @include setSize(100%, null, null, null, null);
+        @include setSize(100%, 10%, null, null, null);
         @include setButtons(
           (
             "create-success-ok": $button-main-color,
