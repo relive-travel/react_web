@@ -55,11 +55,20 @@ function SearchLocation(props) {
   }, []);
 
   return (
-    <section className="location-component" onClick={handleOutsideClick}>
+    <section className="search-location-component" onClick={handleOutsideClick}>
       <article ref={compRef}>
-        <section className="location-preview">
-          <section className="kakao-map-location" ref={kakaoMapRef}></section>
-          <button onClick={handleSelectResult}>선택</button>
+        <section className="search-location-main">
+          <main>
+            <section className="kakao-map-info" ref={kakaoMapRef}></section>
+          </main>
+          <footer>
+            <button
+              className="location-select-button"
+              onClick={handleSelectResult}
+            >
+              선택
+            </button>
+          </footer>
         </section>
       </article>
     </section>

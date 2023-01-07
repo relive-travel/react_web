@@ -1,97 +1,29 @@
-.location-component {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
+@import "views/scss/variables";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/setAttribute";
 
-  width: 100%;
-  height: 100%;
-  background-color: rgba($color: black, $alpha: 0.7);
+.search-location-component {
+  @include dialogOutside();
   > article {
-    padding: 1.25em;
-    width: 60%;
-    min-width: 500px;
-    max-width: 750px;
-    aspect-ratio: 2/1.25;
-    background-color: rgba($color: #ff8822, $alpha: 1);
-    .location-preview {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-
-      padding: 1.25em;
-      box-sizing: border-box;
-
-      width: 100%;
-      height: 100%;
-      background-color: rgba($color: #008000, $alpha: 1);
-
-      > section {
-        width: 100%;
-        height: 90%;
-
-        font-size: 0.875em;
-        color: black;
-        .place-addr {
-          position: relative;
-          padding: 0.5em;
-          width: fit-content;
-          height: fit-content;
-          border: 1px solid black;
-          background-color: rgba($color: white, $alpha: 1);
-        }
-        .place-addr:before {
-          content: "";
-          position: absolute;
-          margin-left: -0.875em;
-          margin-bottom: calc(-0.875em - 1px);
-
-          bottom: 0;
-          left: 50%;
-
-          width: 0;
-          height: 0;
-
-          border: 0.875em solid transparent;
-          border-top-color: black;
-          border-bottom: 0;
-        }
-        .place-addr:after {
-          content: "";
-          position: absolute;
-          margin-left: -0.875em;
-          margin-bottom: -0.875em;
-
-          bottom: 0;
-          left: 50%;
-
-          width: 0;
-          height: 0;
-
-          border: 0.875em solid transparent;
-          border-top-color: white;
-          border-bottom: 0;
+    @include dialogBorder(60%, null, null, 1.25em, 2/1.25);
+    @include setFlex(column);
+    @include setMinSize(500px, 750px);
+    .search-location-main {
+      @include dialogInside(column, center, center);
+      > main {
+        @include setSize(100%, 90%);
+        .kakao-map-info {
+          @include kakaoMap;
         }
       }
-      > button {
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width: 15%;
-
-        background-color: rgba($color: white, $alpha: 0.5);
-        border-radius: 20px;
-        transition: 0.125s ease-in-out;
-      }
-      > button:hover {
-        color: rgba($color: #008000, $alpha: 1);
-        border-color: rgba($color: white, $alpha: 0.5);
-        background-color: rgba($color: white, $alpha: 1);
+      > footer {
+        @include setButtons(
+          (
+            "location-select": $button-main-color,
+          ),
+          15%
+        );
+        @include setSize(100%, 10%, 0.625em 0 0 0);
       }
     }
   }
