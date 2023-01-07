@@ -51,7 +51,7 @@ label {
 
 input,
 textarea {
-  @include setFont(1em, null, $text-default-color);
+  @include setFont(1em, $text-default-color);
   line-height: 1.25em;
   margin-bottom: 0.25em;
 

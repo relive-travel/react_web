@@ -82,7 +82,7 @@
   }
 }
 
-@mixin setFont($fontSize, $fontWeight: null, $fontColor: null) {
+@mixin setFont($fontSize, $fontColor: null, $fontWeight: null) {
   font-size: $fontSize;
   font-weight: $fontWeight;
   color: $fontColor;

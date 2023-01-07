@@ -17,7 +17,7 @@
       > main {
         @include setFlex(row, space-around, center);
         @include setSize(50%, 12.5%);
-        @include setFont(1.25em, null, $text-sub-color);
+        @include setFont(1.25em, $text-sub-color);
       }
       > footer {
         @include setSize(100%, 12.5%);
