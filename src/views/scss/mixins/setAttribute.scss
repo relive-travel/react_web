@@ -7,7 +7,7 @@
   left: $left;
 }
 
-@mixin setFlex($flexDirection, $justifyContent: null, $alignItems: null) {
+@mixin setFlex($flexDirection: null, $justifyContent: null, $alignItems: null) {
   display: flex;
   flex-direction: $flexDirection;
   justify-content: $justifyContent;
@@ -119,6 +119,7 @@
     .#{$name}-button {
       color: $color;
       border-color: $color;
+      background-color: rgba($color: white, $alpha: 0.1);
 
       &:hover {
         color: black;

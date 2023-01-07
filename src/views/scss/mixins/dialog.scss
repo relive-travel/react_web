@@ -21,7 +21,11 @@
   background-color: rgba($color: #ff8822, $alpha: 1);
 }
 
-@mixin dialogInside($flexDirection, $justifyContent, $alginItems) {
+@mixin dialogInside(
+  $flexDirection: null,
+  $justifyContent: null,
+  $alginItems: null
+) {
   @include setFlex($flexDirection, $justifyContent, $alginItems);
   @include setSize(100%, 100%, null, 1.25em, null);
 
