@@ -1,128 +1,108 @@
-.slider-district {
-  width: 100%;
-  [class$="name"] {
-    position: relative;
-    padding: 0.5em;
+@import "views/scss/variables";
+@import "views/scss/mixins/setAttribute";
 
-    width: 100%;
+@mixin sliderInfo {
+  cursor: pointer;
+  @include setFlex(column);
+  @include setSize(90%, fit-content);
+  @include setBlank(0.625em 0);
+  @include setFont(0.875em, white);
+  @include setBorder(0.25em, 10px, white, ("top", "bottom"));
+  overflow: hidden;
 
+  article {
+    @include setTextOverflow(1, 100%);
+  }
+  &:hover {
+    article {
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+
+  > header {
+    @include setFlex(row, space-between, center);
+    @include setSize(100%, fit-content);
+    @include setBlank(null, 0.25em 0.5em);
+    overflow: hidden;
     box-sizing: border-box;
+    background-color: rgba($color: $modal-sub-bright-color, $alpha: 1);
+    [class$="addr"] {
+      width: 85%;
+    }
+    [class$="photo"] {
+      width: 15%;
+      @include setFlex(row, space-between, center);
+      @include setBlank(0 0.25em);
+      > span {
+        @include setTextOverflow(1, 100%);
+        text-align: right;
+      }
+    }
   }
-  [class$="name"]:hover {
-    cursor: pointer;
+  > main {
+    @include setFlex(column);
+    @include setBlank(null, 0.25em 0.5em);
+    overflow: hidden;
+    background-color: rgba($color: $modal-main-color, $alpha: 1);
+    > article {
+      @include setSize(100%, fit-content);
+      @include setBlank(null, 0.075em);
+    }
+    [class$="date"] {
+      @include setFont(null, black);
+    }
+    [class$="title"] {
+    }
+    [class$="address"] {
+      @include setFont(null, black);
+    }
   }
-  > [class$="name"] {
-    border-bottom: 2.5px solid white;
-    color: black;
-    background-color: #2499ff;
-  }
+}
+
+.slider-time {
+  @include sliderInfo;
+}
+
+.slider-district {
   [class*="-city-"] {
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    > [class$="name"] {
-      border-bottom: 1px solid white;
-      color: black;
-      background-color: #61ccfe;
+    &.open {
+      @include setFlex(column, center, center);
     }
   }
   [class*="-region-"] {
     display: none;
-  }
-  .open {
-    display: flex;
-  }
-  aside {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    right: 0;
-    height: 100%;
-    aspect-ratio: 1;
-
-    z-index: 1;
-    color: white;
-    cursor: pointer;
-  }
-}
-.slider-time,
-[class*="-region-"] {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-
-  margin: 0.625em 0;
-
-  width: 90%;
-  height: fit-content;
-
-  font-size: 0.875em;
-
-  border: 0.125em solid white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-
-  color: white;
-
-  * {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  *:hover {
-    text-overflow: clip;
-    white-space: normal;
-    word-break: break-all;
-  }
-
-  > [class$="header"] {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0.25em 0.5em;
-
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: rgba($color: #00aa00, $alpha: 1);
-
-    > [class$="addr"] {
-      width: 75%;
-    }
-    > [class$="photo-ea"] > span {
-      margin: 0 0.25em;
+    &.open {
+      @include sliderInfo;
     }
   }
 
-  [class$="main"] {
-    display: flex;
-    flex-direction: column;
-
-    padding: 0.25em 0.5em;
-
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: rgba($color: #ff8822, $alpha: 1);
-
-    * {
-      width: 100%;
-      padding: 0.075em;
+  @include setSize(100%, fit-content);
+  [class$="name"] {
+    position: relative;
+    @include setSize(100%, fit-content);
+    @include setBlank(null, 0.5em);
+    @include setFont(null, black);
+    box-sizing: border-box;
+    &:hover {
+      cursor: pointer;
     }
-
-    [class$="addr"] {
-      opacity: 50%;
+    aside {
+      cursor: pointer;
+      @include setAbsolute(0, 0, null, null);
+      @include setFlex(null, center, center);
+      @include setSize(null, 100%, 1);
+      z-index: 1;
+      color: white;
     }
-    [class$="semi-addr"] {
-      color: black;
-      opacity: 1;
-    }
+  }
+  .district-name {
+    border-bottom: 2px solid white;
+    background-color: #2499ff;
+  }
+  .city-name {
+    border-bottom: 1px solid white;
+    background-color: #61ccfe;
   }
 }

@@ -232,23 +232,23 @@ function Slider(props) {
                               dispatch(setAlbumSwiperDialog(true));
                             }}
                           >
-                            <header className="region-header">
+                            <header>
                               <article className="region-addr">
                                 {marker.region.addr}
                               </article>
-                              <article className="region-photo-ea">
+                              <article className="region-photo">
                                 <span>{photo.length}</span>
                                 <span>🥕</span>
                               </article>
                             </header>
-                            <main className="region-main">
+                            <main>
                               <article className="region-date">
                                 {album.date}
                               </article>
                               <article className="region-title">
                                 {album.title}
                               </article>
-                              <article className="region-semi-addr">
+                              <article className="region-address">
                                 {marker.region.semiAddr}
                               </article>
                             </main>
@@ -275,21 +275,23 @@ function Slider(props) {
                 dispatch(setAlbumSwiperDialog(true));
               }}
             >
-              <header className="time-header">
+              <header>
                 <article className="time-addr">
                   {getAddr(marker.region.addr)}
                 </article>
-                <article className="time-photo-ea">
+                <article className="time-photo">
                   <span>{photo.length}</span>
                   <span>🥕</span>
                 </article>
               </header>
-              <main className="time-main">
+              <main>
                 <article className="time-date">{album.date}</article>
                 <article className="time-title">{album.title}</article>
-                <article className="time-addr">{marker.region.addr}</article>
-                <article className="time-semi-addr">
-                  {marker.region.semiAddr}
+                <article className="time-address">
+                  {marker.region.semiAddr}{" "}
+                  <span className="text-highlight-behind">
+                    ({marker.region.addr})
+                  </span>
                 </article>
               </main>
             </section>

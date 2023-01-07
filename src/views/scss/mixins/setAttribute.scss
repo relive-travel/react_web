@@ -53,7 +53,9 @@
   } @else {
     border-radius: $radius;
   }
-  border: $width $style unquote($color);
+  @if $width {
+    border: $width $style unquote($color);
+  }
 }
 
 /* text */
