@@ -82,11 +82,11 @@ function Home(props) {
           alt="relive travel, 여행을 기록하다"
         />
       </header>
-      <main className="home-main">
+      <main>
         <Outlet />
       </main>
       <footer>
-        <article className="hello-rabbit">
+        <article className="welcome-imgs">
           <S3Image folder={"toshimee"} file={"hello_right.png"} />
           <S3Image folder={"toshimee"} file={"hello_left.png"} />
         </article>

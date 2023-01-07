@@ -1,56 +1,30 @@
+@import "views/scss/variables";
+@import "views/scss/mixins/setAttribute";
+
 .home-component {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-
-  background-color: skyblue;
-
+  @include setFlex(column, space-between, center);
+  @include setSize(100%, 100%);
+  background-color: $point-sub-color;
   > header {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-
     height: 15%;
-    // aspect-ratio: 1;
-
-    // border-radius: 50%;
-    // background-color: white;
     > img {
       height: 100%;
-      // height: 90%;
-      // aspect-ratio: 1;
     }
   }
-  // .home-main
   > main {
-    height: 40%;
+    @include setFlex(null, center, center);
+    @include setSize(100%, 40%);
+    @include setFont(1.25em, $point-color);
     > section {
       height: 100%;
     }
   }
   > footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 100%;
-    height: 45%;
-    [class$="rabbit"] {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .hello-rabbit {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      height: 100%;
+    @include setFlex(row, space-between, center);
+    @include setSize(100%, 45%);
+    .welcome-imgs {
+      @include setFlex(row, space-between, center);
+      @include setSize(100%, 100%);
       > img {
         height: 100%;
       }
@@ -58,39 +32,21 @@
   }
 }
 
-.home-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  font-size: 1.25em;
-}
-
 .login-component {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
+  @include setFlex(column, space-between, center);
   width: 100%;
   > header {
-    width: 100%;
-    height: 85%;
+    @include setSize(100%, 85%);
     > .swiper {
-      --swiper-theme-color: #eb898e !important;
       height: 100%;
+      --swiper-theme-color: $point-color !important;
       > .swiper-wrapper {
         > .swiper-slide {
           width: 100%;
           > section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-
-            width: 90%;
-            height: 100%;
+            @include setFlex(null, center, center);
+            @include setSize(90%, 100%);
+            @include setBlank(auto);
             > img {
               width: 100%;
             }
@@ -105,10 +61,7 @@
     }
   }
   > main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    @include setFlex(null, center, center);
     height: 10%;
     > img {
       cursor: pointer;
@@ -118,147 +71,75 @@
 }
 
 .login-success-component {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 100%;
+  @include setFlex(column, space-between, center);
+  @include setSize(100%, null);
   > header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 85%;
-    > p {
-      color: #eb898e;
-    }
+    @include setFlex(column, space-around, center);
+    @include setSize(100%, 85%);
+    @include setFont(1.5em);
     > img {
-      width: 10%;
-      aspect-ratio: 1;
-    }
-    .success-user {
-      font-size: 1.5em;
-    }
-    .success-welcome {
-      font-size: 1.25em;
+      @include setSize(10%, null, 1);
     }
   }
   > main {
     cursor: pointer;
+    @include setFlex(null, center, center);
+    @include setSize(null, 10%);
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 10%;
     > img {
       height: 100%;
     }
     > span {
+      @include setFlex(null, center, center);
+      @include setSize(null, 100%);
+      @include setFont(0.75em);
       position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      font-size: 0.75em;
     }
   }
 }
 
 .regist-component {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  color: #eb898e;
+  @include setFlex(column, space-between, center);
   > header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 15%;
-
-    font-size: 2.125em;
+    @include setFlex(null, center, center);
+    @include setSize(null, 15%);
+    @include setFont(2.125em);
   }
   > main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    @include setFlex(column, space-between, center);
+    @include setSize(null, 70%);
+    @include setBlank(null, 1.25em);
 
-    padding: 1.25em;
-    height: 70%;
     box-sizing: border-box;
     border-radius: 25px;
     background-color: white;
     > header {
       height: 15%;
-      color: rgba($color: #eb898e, $alpha: 1);
     }
     > main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
+      @include setFlex(column, center, center);
       height: 60%;
       > article {
-        margin: 0.5em 0;
-        color: black;
-        > span {
-          opacity: 0.75;
-        }
+        @include setBlank(0.625em 0);
+        @include setFont(null, black);
       }
     }
     > footer {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-
-      height: 15%;
-      width: 100%;
-
-      > button {
-        padding: 0.25em 0.875em;
-
-        border: 2px solid;
-        border-radius: 0.625em;
-        background-color: transparent;
-
-        transition: 0.25s ease-in-out;
-      }
-      > button:hover {
-        cursor: pointer;
-      }
-      .regist-rallback-button {
-        color: gray;
-        border-color: gray;
-      }
-      .regist-rallback-button:hover {
-        color: white;
-        background-color: rgba($color: gray, $alpha: 1);
-      }
-      .regist-complete-button {
-        color: #eb898e;
-        border-color: #eb898e;
-      }
-      .regist-complete-button:hover {
-        color: black;
-        background-color: rgba($color: #eb898e, $alpha: 1);
-      }
+      @include setFlex(row, space-around, center);
+      @include setSize(100%, 15%);
+      @include setButtons(
+        (
+          "regist-rallback": $default-color,
+          "regist-complete": $point-color,
+        ),
+        30%
+      );
     }
   }
   > footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 5%;
-    font-size: 0.75em;
-    color: rgba($color: #eb898e, $alpha: 0.75);
+    @include setFlex(null, center, center);
+    @include setSize(null, 5%);
+    @include setFont(0.75em);
+    color: rgba($color: $point-color, $alpha: 0.75);
   }
 }

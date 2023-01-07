@@ -12,17 +12,19 @@ function LoginSuccess() {
   return (
     <section className="login-success-component">
       <header>
-        <p className="success-user">{userNickName} !</p>
+        <article className="success-user">{userNickName} !</article>
         <img
           src={`${process.env.REACT_APP_S3_ADDRESS}/image/toshimee/hi.png`}
         />
-        <p className="success-welcome">오늘도 기억에 많이 남은 하루야?!</p>
+        <article className="success-content">
+          오늘도 기억이 많이 남은 하루야?!
+        </article>
       </header>
-      <main onClick={handleClickStart}>
+      <main className="success-start-button" onClick={handleClickStart}>
         <img
           src={`${process.env.REACT_APP_S3_ADDRESS}/image/kakao/success_medium_wide.png`}
         />
-        <span>시작하기</span>
+        <span className="highlight-none">시작하기</span>
       </main>
     </section>
   );

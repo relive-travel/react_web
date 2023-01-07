@@ -43,13 +43,13 @@ function Regist() {
         <header>정보가 바뀌면 토끼가 알아볼 수 없어요!</header>
         <main className="regist-info">
           <article className="regist-nickName">
-            닉네임 : <span>{userNickName}</span>
+            닉네임 : <span className="highlight-behind">{userNickName}</span>
           </article>
           <article className="regist-email">
-            이메일 : <span>{userEmail}</span>
+            이메일 : <span className="highlight-behind">{userEmail}</span>
           </article>
         </main>
-        <footer className="regist-buttons">
+        <footer>
           <button
             className="regist-rallback-button"
             onClick={handleRallbackClick}
