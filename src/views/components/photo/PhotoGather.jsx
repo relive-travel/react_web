@@ -83,7 +83,7 @@ function PhotoGather(props) {
               <header
                 className={`gather-${sortOptionStatus ? "region" : "date"}`}
               >
-                {keyData}
+                🥕 {keyData}
               </header>
               <main className="gather-photos" key={`${keyData}-photos`}>
                 {gather.map(({ photo, album, marker }, idx) => {
