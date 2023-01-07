@@ -5,7 +5,7 @@
 .album-select-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(null, 40%, null, 1em, 1);
+    @include dialogBorder(null, 40%, 1);
     .select-main {
       @include dialogInside(column, space-between, null);
       @include setSize(100%, 100%);
@@ -14,7 +14,7 @@
         @include notify(10%, 90%);
       }
       > footer {
-        @include setSize(100%, 10%, null, null, null);
+        @include setSize(100%, 10%);
         @include setButtons(
           (
             "select-auto": $button-sub-color,

@@ -5,8 +5,8 @@
 .album-create-success-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(null, null, null, 1.25em, 1);
-    @include setMinSize(350px, 350px, null, null);
+    @include dialogBorder(null, null, 1);
+    @include setMinSize(350px, 350px);
     .album-create-success-main {
       @include dialogInside(column, space-around, center);
       @include setSize(100%, 100%);
@@ -15,7 +15,7 @@
         @include notify(10%, 90%);
       }
       > footer {
-        @include setSize(100%, 10%, null, null, null);
+        @include setSize(100%, 10%);
         @include setButtons(
           (
             "create-success-ok": $button-main-color,

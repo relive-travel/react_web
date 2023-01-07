@@ -6,7 +6,7 @@
   @include setSize(100%, 100%);
   > article {
     @include setFlex(column);
-    @include setSize(null, null, 0.625em 0);
+    @include setBlank(0.625em 0);
   }
   > section {
     @include setFlex(row, space-between, center);
@@ -18,15 +18,16 @@
   }
   [class$="date"] {
     input {
-      @include setSize(fit-content, null, auto);
+      @include setSize(fit-content, null);
+      @include setBlank(auto);
       text-align: center;
     }
   }
   [class$="photo"] {
-    @include setSize(45%, null, null, null, 1);
+    @include setSize(45%, null, 1);
   }
   [class$="location"] {
-    @include setSize(45%, null, null, null, 1);
+    @include setSize(45%, null, 1);
     .kakao-map-info {
       @include kakaoMap;
     }

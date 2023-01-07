@@ -21,17 +21,9 @@
   //row-gap, column-gap
 }
 
-@mixin setSize(
-  $width,
-  $height,
-  $margin: null,
-  $padding: null,
-  $aspectRatio: null
-) {
+@mixin setSize($width, $height, $aspectRatio: null) {
   width: $width;
   height: $height;
-  margin: $margin;
-  padding: $padding;
   aspect-ratio: $aspectRatio;
 }
 
@@ -47,6 +39,11 @@
   max-height: $maxHeight;
 }
 
+@mixin setBlank($margin: null, $padding: null) {
+  margin: $margin;
+  padding: $padding;
+}
+
 @mixin setBorder($width, $radius, $color: "", $type: null, $style: solid) {
   @if $type == "top" {
     border-top: $width $style unquote($color);
@@ -60,11 +57,6 @@
     border: $width $style unquote($color);
   }
   border-radius: $radius;
-}
-
-@mixin setColor($color, $background: transparent) {
-  color: $color;
-  background-color: $background;
 }
 
 /* text */
@@ -118,7 +110,7 @@
     @if $line != 1 {
       @include setFlex(row, space-around, center);
     }
-    @include setSize($width, null, null, null, null);
+    @include setSize($width, null);
     @include setButton($line);
   }
 

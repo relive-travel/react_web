@@ -6,7 +6,7 @@
 .search-road-addr-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(30%, null, null, 1.25em, 1);
+    @include dialogBorder(30%, null, 1);
     @include setMinSize(450px);
     .search-road-addr-main {
       @include dialogInside();
@@ -15,7 +15,8 @@
       @include dialogInside(column, space-between, center);
       > header {
         @include setFlex(null, center, center);
-        @include setSize(100%, 10%, 0 0 0.625em 0);
+        @include setSize(100%, 10%);
+        @include setBlank(0 0 0.625em 0);
       }
       > main {
         @include setSize(100%, 80%);
@@ -31,7 +32,8 @@
           ),
           30%
         );
-        @include setSize(100%, 10%, 0.625em 0 0 0);
+        @include setSize(100%, 10%);
+        @include setBlank(0.625em 0 0 0);
       }
     }
   }

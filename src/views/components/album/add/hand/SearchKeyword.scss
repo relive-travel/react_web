@@ -5,12 +5,12 @@
   @include dialogOutside();
   > article {
     @media (min-width: 750px) {
-      @include dialogBorder(null, null, null, 1.25em, 2/1);
+      @include dialogBorder(null, null, 2/1);
       @include setFlex(row);
       @include setMinSize(750px, 750px);
     }
     @media (max-width: 749px) {
-      @include dialogBorder(null, null, null, 1.25em, 1);
+      @include dialogBorder(null, null, 1);
       @include setFlex(column);
       @include setMinSize(350px, 350px);
     }
@@ -19,7 +19,8 @@
       > header {
         position: relative;
         @include setFlex(null, center, center);
-        @include setSize(100%, 10%, 0 0 0.625em 0);
+        @include setSize(100%, 10%);
+        @include setBlank(0 0 0.625em 0);
         > input {
           width: 50%;
         }
@@ -41,7 +42,8 @@
         }
       }
       > footer {
-        @include setSize(100%, 10%, 0.625em 0 0 0);
+        @include setSize(100%, 10%);
+        @include setBlank(0.625em 0 0 0);
         @include setButtons(
           (
             "keyword-select": $button-main-color,
@@ -54,21 +56,24 @@
       @include dialogInside(column, center, center);
       .keyword-list {
         @include setFlex(column);
-        @include setSize(100%, 90%, null, 0.625em);
+        @include setSize(100%, 90%);
+        @include setBlank(null, 0.625em);
         overflow: scroll;
         box-sizing: border-box;
         border-radius: 10px;
         background-color: rgba($color: white, $alpha: 0.5);
         > section {
           @include setFlex(row, space-between, center);
-          @include setSize(100%, fit-content, 0.125em 0);
+          @include setSize(100%, fit-content);
+          @include setBlank(0.125em 0);
           > input {
             width: 5%;
             opacity: 1;
           }
           > label {
             @include setFlex(row, space-between, center);
-            @include setSize(90%, null, 0.25em 0);
+            @include setSize(90%, null);
+            @include setBlank(0.25em 0);
             > header {
               @include setFlex(null, center, center);
               width: 5%;
@@ -95,7 +100,8 @@
       }
       .keyword-pagenation {
         @include setFlex(row, center, center);
-        @include setSize(100%, 10%, 0.625em 0 0 0);
+        @include setSize(100%, 10%);
+        @include setBlank(0.625em 0 0 0);
         .on {
           color: white;
         }

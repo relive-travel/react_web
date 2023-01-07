@@ -5,29 +5,29 @@
   color: white;
   [class$="addr"] {
     @include setFlex(row, left, center);
-    @include setSize(100%, 100%, null, null, null);
+    @include setSize(100%, 100%);
     box-sizing: border-box;
 
     [class$="info"] {
       @include setFlex(column, center, center);
-      @include setSize(calc(95% - 0.75em), 100%, null, null, null);
+      @include setSize(calc(95% - 0.75em), 100%);
       > article {
         @include setTextOverflow(1);
       }
     }
     [class$="icon"] {
-      @include setSize(5%, 100%, 0 0.75em 0 0, null, null);
+      @include setSize(5%, 100%);
+      @include setBlank(0 0.75em 0 0);
     }
   }
   [class$="photos"] {
-    @include setSize(100%, 100%, null, null, null);
+    @include setSize(100%, 100%);
     > .swiper {
-      @include setSize(100%, 100%, null, null, null);
+      @include setSize(100%, 100%);
       > .swiper-wrapper {
         > .swiper-slide {
           @include setFlex(null, center, center);
-          @include setSize(100%, 100%, null, null, null);
-
+          @include setSize(100%, 100%);
           overflow: hidden;
         }
       }
@@ -35,10 +35,10 @@
   }
   [class$="write"] {
     @include setFlex(column, flex-start, center);
-    width: 100%;
+    @include setSize(100%, null);
     color: black;
     [class$="info"] {
-      width: 100%;
+      @include setSize(100%, null);
       > article {
         margin: 0.125em 0;
       }
@@ -51,13 +51,14 @@
       }
     }
     [class$="main"] {
-      width: 100%;
+      @include setSize(100%, null);
       [class$="content"] {
         @include setTextOverflow(3);
       }
     }
     > hr {
-      @include setSize(100%, null, 0.375em 0, null, null);
+      @include setSize(100%, null);
+      @include setBlank(0.375em 0);
       border: 1px solid #ff8822;
     }
   }
@@ -79,8 +80,8 @@
   @include album;
 
   @include setFlex(column, center, center);
-  @include setSize($width, $height, null, null, null);
-  @include setMinSize(300px, 450px, null, null);
+  @include setSize($width, $height);
+  @include setMinSize(300px, 450px);
 
   @include viewDivision("top", "", #008000, 1);
   @include viewDivision("bottom", "", #ff8822, 1);
@@ -88,7 +89,7 @@
 
 @mixin viewMain() {
   @include setFlex(column, space-between, center);
-  @include setSize(100%, null, null, null, 1);
+  @include setSize(100%, null, 1);
 
   @include viewDivision("top", "main", white, 0.5);
   @include viewDivision("bottom", "main", white, 0.5);
@@ -110,9 +111,10 @@
 @mixin viewTop($component) {
   @if $component == "" {
     @include setFlex(null, null, center);
-    @include setSize(100%, null, null, 0.375em 0.75em, null);
+    @include setSize(100%, null);
+    @include setBlank(null, 0.375em 0.75em);
   } @else if $component == "main" {
-    @include setSize(100%, 100%, null, null, null);
+    @include setSize(100%, 100%);
     overflow: hidden;
     border-radius: 0.75em;
   }
@@ -121,9 +123,11 @@
 @mixin viewBottom($component) {
   @if $component == "" {
     @include setFlex(null, null, center);
-    @include setSize(100%, 90%, null, 0.75em, null);
+    @include setSize(100%, 90%);
+    @include setBlank(null, 0.75em);
   } @else if $component == "main" {
-    @include setSize(100%, null, 0.75em 0 0 0, 0.75em, null);
+    @include setSize(100%, null);
+    @include setBlank(0.75em 0 0 0, 0.75em);
     border-radius: 0.75em;
   }
 }

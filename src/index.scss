@@ -28,7 +28,8 @@ code {
 html,
 #root,
 body {
-  @include setSize(100%, 100%, 0);
+  @include setSize(100%, 100%);
+  @include setBlank(0);
   box-sizing: border-box;
 }
 

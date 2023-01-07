@@ -5,8 +5,8 @@
 .alubm-inspect-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(null, null, null, 1.25em, 1.125/1);
-    @include setMinSize(400px, 400px, null, null);
+    @include dialogBorder(null, null, 1.125/1);
+    @include setMinSize(400px, 400px);
     .alubm-inspect-main {
       @include dialogInside(column, space-around, center);
       @include setSize(100%, 100%);
@@ -16,11 +16,11 @@
       }
       > main {
         @include setFlex(row, space-around, center);
-        @include setSize(50%, 12.5%, null, null, null);
+        @include setSize(50%, 12.5%);
         @include setFont(1.25em, null, $text-sub-color);
       }
       > footer {
-        @include setSize(100%, 12.5%, null, null, null);
+        @include setSize(100%, 12.5%);
         @include setButtons(
           (
             "inspect-write": $button-main-color,

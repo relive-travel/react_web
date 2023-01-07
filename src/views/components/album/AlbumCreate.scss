@@ -5,7 +5,7 @@
 .album-create-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(45%, 85%, null, 1.25em, null);
+    @include dialogBorder(45%, 85%);
     color: white;
     .album-main {
       @include dialogInside(column, space-between, null);
@@ -15,11 +15,12 @@
         font-size: 2.125em;
       }
       > main {
-        @include setSize(null, 80%, null, 0 2.5em, null);
+        @include setSize(null, 80%);
+        @include setBlank(null, 0 2.5em);
         overflow: scroll;
       }
       > footer {
-        @include setSize(100%, 5%, null, null, null);
+        @include setSize(100%, 5%);
         @include setButtons(
           (
             "album-clear": $button-default-color,

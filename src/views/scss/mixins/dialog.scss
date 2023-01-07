@@ -5,16 +5,17 @@
 @mixin dialogOutside() {
   @include setAbsolute(0, null, null, 0);
   @include setFlex(null, center, center);
-  @include setSize(100%, 100%, null, null, null);
+  @include setSize(100%, 100%);
 
   z-index: 2147483647;
 
   background-color: rgba($color: black, $alpha: 0.7);
 }
 
-@mixin dialogBorder($width, $height, $margin, $padding, $aspectRatio) {
+@mixin dialogBorder($width, $height, $aspectRatio: null, $margin: null) {
   @include setFlex(null, center, center);
-  @include setSize($width, $height, $margin, $padding, $aspectRatio);
+  @include setSize($width, $height, $aspectRatio);
+  @include setBlank($margin, 1.25em);
 
   box-sizing: border-box;
 
@@ -27,7 +28,8 @@
   $alginItems: null
 ) {
   @include setFlex($flexDirection, $justifyContent, $alginItems);
-  @include setSize(100%, 100%, null, 1.25em, null);
+  @include setSize(100%, 100%);
+  @include setBlank(null, 1.25em);
 
   box-sizing: border-box;
 

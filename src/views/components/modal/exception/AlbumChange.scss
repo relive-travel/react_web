@@ -5,8 +5,8 @@
 .album-change-component {
   @include dialogOutside();
   > article {
-    @include dialogBorder(null, null, null, 1.25em, 1.5/1);
-    @include setMinSize(500px, 500px, null, null);
+    @include dialogBorder(null, null, 1.5/1);
+    @include setMinSize(500px, 500px);
     .album-change-main {
       @include dialogInside(column, space-around, center);
       @include setSize(100%, 100%);
@@ -18,7 +18,7 @@
         }
       }
       > footer {
-        @include setSize(100%, 30%, null, null, null);
+        @include setSize(100%, 30%);
         @include setButtons(
           (
             "change-restart": $button-default-color,
