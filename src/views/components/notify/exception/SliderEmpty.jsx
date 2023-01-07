@@ -10,8 +10,7 @@ function SliderEmpty() {
     <section className="slider-exception">
       <main>
         <article>
-          아직은 <span className="text-highlight-main-color">추억</span>이
-          없어요...!
+          아직은 <span className="main-color">추억</span>이 없어요...!
         </article>
       </main>
       <S3Image folder={"toshimee"} file={"empty.png"} />

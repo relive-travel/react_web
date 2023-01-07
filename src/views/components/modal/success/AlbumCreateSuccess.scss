@@ -18,7 +18,7 @@
         @include setSize(100%, 10%);
         @include setButtons(
           (
-            "create-success-ok": $button-main-color,
+            "create-success-ok": $main-color,
           ),
           50%
         );

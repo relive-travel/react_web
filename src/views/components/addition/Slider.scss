@@ -26,7 +26,7 @@
     @include setBlank(null, 0.25em 0.5em);
     overflow: hidden;
     box-sizing: border-box;
-    background-color: rgba($color: $modal-sub-bright-color, $alpha: 1);
+    background-color: rgba($color: $sub-bright-color, $alpha: 1);
     [class$="addr"] {
       width: 85%;
     }
@@ -44,7 +44,7 @@
     @include setFlex(column);
     @include setBlank(null, 0.25em 0.5em);
     overflow: hidden;
-    background-color: rgba($color: $modal-main-color, $alpha: 1);
+    background-color: rgba($color: $main-color, $alpha: 1);
     > article {
       @include setSize(100%, fit-content);
       @include setBlank(null, 0.075em);

@@ -19,7 +19,7 @@
       > footer {
         @include setButtons(
           (
-            "location-select": $button-main-color,
+            "location-select": $main-color,
           ),
           15%
         );

@@ -1,20 +1,17 @@
-/* project */
+/* color */
+$default-color: white;
+
 $main-color: #ff8822;
+$main-bright-color: #ffcc88;
+
 $sub-color: #008000;
-/* text */
-$text-highlight-main-color: $main-color;
-$text-highlight-behind-color: rgba(white, 1);
+$sub-bright-color: #00aa00;
 
-$text-main-color: #eb898e;
-$text-sub-color: #ffc0cb;
-$text-default-color: white;
+$point-color: #eb898e;
+$point-bright-color: #ffc0cb;
 
-/* modal */
-$modal-main-color: $main-color;
-$modal-sub-color: $sub-color;
-$modal-sub-bright-color: #00aa00;
-
-/* button */
-$button-main-color: $main-color;
-$button-sub-color: #ffcc88;
-$button-default-color: white;
+$highlight: $main-color;
+$highlight-behind: rgba(
+  $color: $default-color,
+  $alpha: 0.5,
+);

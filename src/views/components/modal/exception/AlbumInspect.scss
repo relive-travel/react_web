@@ -17,13 +17,13 @@
       > main {
         @include setFlex(row, space-around, center);
         @include setSize(50%, 12.5%);
-        @include setFont(1.25em, $text-sub-color);
+        @include setFont(1.25em, $point-bright-color);
       }
       > footer {
         @include setSize(100%, 12.5%);
         @include setButtons(
           (
-            "inspect-write": $button-main-color,
+            "inspect-write": $main-color,
           ),
           35%
         );

@@ -23,9 +23,9 @@
         @include setSize(100%, 5%);
         @include setButtons(
           (
-            "album-clear": $button-default-color,
-            "album-preview": $button-sub-color,
-            "album-add": $button-main-color,
+            "album-clear": $default-color,
+            "album-preview": $main-bright-color,
+            "album-add": $main-color,
           ),
           20%
         );

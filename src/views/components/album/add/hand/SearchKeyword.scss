@@ -29,7 +29,7 @@
           @include setSize(20%, 100%);
           @include setButtons(
             (
-              "keyword-search": $button-main-color,
+              "keyword-search": $main-color,
             ),
             100%
           );
@@ -46,7 +46,7 @@
         @include setBlank(0.625em 0 0 0);
         @include setButtons(
           (
-            "keyword-select": $button-main-color,
+            "keyword-select": $main-color,
           ),
           20%
         );

@@ -42,16 +42,16 @@ body {
 
 label {
   margin-bottom: 0.125em;
-  color: $text-highlight-main-color;
+  color: $main-color;
   > span {
     margin-left: 0.5em;
-    color: $text-sub-color;
+    color: $point-bright-color;
   }
 }
 
 input,
 textarea {
-  @include setFont(1em, $text-default-color);
+  @include setFont(1em, $default-color);
   line-height: 1.25em;
   margin-bottom: 0.25em;
 
@@ -63,7 +63,7 @@ textarea {
 }
 
 input:read-only {
-  color: rgba($color: $text-default-color, $alpha: 0.5);
+  color: rgba($color: $default-color, $alpha: 0.5);
 }
 
 textarea {
@@ -71,11 +71,11 @@ textarea {
 }
 
 /* component */
-.text-highlight-main-color {
-  color: $text-highlight-main-color;
+.main-color {
+  color: $main-color;
 }
-.text-highlight-behind-color {
-  color: rgba($color: $text-highlight-behind-color, $alpha: 0.5);
+.highlight-behind {
+  color: rgba($color: $highlight-behind, $alpha: 0.5);
 }
 
 /* library */

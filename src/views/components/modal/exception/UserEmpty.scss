@@ -17,7 +17,7 @@
         @include setSize(100%, 12.5%);
         @include setButtons(
           (
-            "empty-ok": $button-main-color,
+            "empty-ok": $main-color,
           ),
           35%
         );

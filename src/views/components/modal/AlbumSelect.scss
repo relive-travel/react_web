@@ -17,8 +17,8 @@
         @include setSize(100%, 10%);
         @include setButtons(
           (
-            "select-auto": $button-sub-color,
-            "select-hand": $button-main-color,
+            "select-auto": $main-bright-color,
+            "select-hand": $main-color,
           ),
           45%
         );

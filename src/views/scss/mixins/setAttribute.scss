@@ -17,7 +17,7 @@
 @mixin setGrid($type, $track, $gap) {
   display: grid;
   grid-template-#{$type}: $track;
-  gap: 0.625em;
+  gap: $gap;
   //row-gap, column-gap
 }
 

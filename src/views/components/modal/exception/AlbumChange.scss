@@ -21,9 +21,9 @@
         @include setSize(100%, 30%);
         @include setButtons(
           (
-            "change-restart": $button-default-color,
-            "change-picture": $button-sub-color,
-            "change-write": $button-main-color,
+            "change-restart": $default-color,
+            "change-picture": $main-bright-color,
+            "change-write": $main-color,
           ),
           30%,
           2

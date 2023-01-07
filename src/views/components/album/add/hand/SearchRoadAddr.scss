@@ -27,8 +27,8 @@
       > footer {
         @include setButtons(
           (
-            "road-addr-re-search": $button-default-color,
-            "road-addr-select": $button-main-color,
+            "road-addr-re-search": $default-color,
+            "road-addr-select": $main-color,
           ),
           30%
         );

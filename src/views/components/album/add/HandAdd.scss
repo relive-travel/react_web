@@ -32,9 +32,9 @@
     [class$="buttons"] {
       @include setButtons(
         (
-          "search-keyword": $button-default-color,
-          "search-road-addr": $button-sub-color,
-          "search-location": $button-main-color,
+          "search-keyword": $default-color,
+          "search-road-addr": $main-bright-color,
+          "search-location": $main-color,
         ),
         20%
       );
