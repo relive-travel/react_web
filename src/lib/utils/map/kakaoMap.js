@@ -24,7 +24,7 @@ export const setKakaoMapWithGeoPoint = ({
               result[0].road_address
                 ? `<hr />
                 <article class="kakao-map-content">${result[0].road_address.building_name}</article>`
-                : null
+                : ``
             }
           </section>`;
 
@@ -94,7 +94,7 @@ export const setKakaoMapWithKeyword = (
             ${
               places[i].road_address_name
                 ? `<article class="place-road-addr">${places[i].road_address_name}</article>`
-                : null
+                : ``
             }
           </main>
         `;
@@ -163,17 +163,29 @@ export const setKakaoMapWithKeyword = (
     let position = new window.kakao.maps.LatLng(place.y, place.x);
     let mapOptions = {
       center: position,
-      level: 3,
+      level: 2,
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOptions);
     let customOverlay = new window.kakao.maps.CustomOverlay();
 
+    console.log(place);
+
     let content = `
-      <article class="place-addr" style="margin-bottom: 12em;">
-        <header class="place-name">${place.place_name}</header>
+      <article class="place-tooltip" style="${
+        place.road_address_name
+          ? "margin-bottom: 11.25em;"
+          : "margin-bottom: 9.25em;"
+      }">
+        <header class="place-title">${place.place_name}</header>
         <hr />
-        <section class="place-road-addr-name">도로명주소 : ${place.address_name}</section>
-        <section class="place-addr-name">지번&nbsp;&nbsp;&nbsp;주소 : ${place.road_address_name}</section>
+        <section class="place-content">
+          <article class="place-addr">${place.address_name}</article>
+          ${
+            place.road_address_name
+              ? `<article class="place-road-addr">${place.road_address_name}</article>`
+              : ``
+          }
+        </section>
       </article>
     `;
     customOverlay.setPosition(position);
@@ -222,13 +234,26 @@ export const setKakaoMapWithRoad = ({ mapContainer, addr }, callback) => {
       );
 
       let content = `
-        <section class="place-addr" style="margin-bottom: 10.875em;">
+        <section class="place-tooltip" style="${
+          result[0].road_address?.building_name
+            ? "margin-bottom: 10.875em;"
+            : result[0].road_address
+            ? "margin-bottom: 8.875em;"
+            : "margin-bottom: 6.875em;"
+        }">
+          ${
+            result[0].road_address?.building_name
+              ? `<header class="place-title">${result[0].road_address.building_name}</header>
+                <hr />`
+              : ``
+          }
           ${
             result[0].road_address
-              ? `<header class="place-name">${result[0].road_address.building_name}</header>
-                <hr />
-                <section class="place-road-addr-name">${result[0].road_address.address_name}</section>`
-              : `<section class="place-addr-name">${result[0].address.address_name}</section>`
+              ? `<section class="place-content">
+                  <article class="place-addr">${result[0].address.address_name}</article>
+                  <article class="place-road-addr">${result[0].road_address.address_name}</article>
+                </section>`
+              : `<article class="place-addr">${result[0].address.address_name}</article>`
           }
         </section>
       `;
@@ -266,23 +291,29 @@ export const setKakaoMapWithLocation = (
   window.kakao.maps.event.addListener(map, "click", (mouseEvent) => {
     searchDetailAddrFromCoords(mouseEvent.latLng, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
-        let detailAddr = `
-          ${
-            result[0].road_address
-              ? `<section class="place-road-addr-name">도로명주소 : ${result[0].road_address.address_name}</section>
-                <section class="place-addr-name">지번&nbsp;&nbsp;&nbsp;주소 : ${result[0].address.address_name}</section>`
-              : `<section class="place-addr-name">지번&nbsp;&nbsp;&nbsp;주소 : ${result[0].address.address_name}</section>`
-          }
-        `;
         let content = `
-          <article class="place-addr" style="${
-            result[0].road_address
-              ? "margin-bottom: 12em;"
-              : "margin-bottom: 10.875em;"
+          <section class="place-tooltip" style="${
+            result[0].road_address?.building_name
+              ? "margin-bottom: 10.875em;"
+              : result[0].road_address
+              ? "margin-bottom: 8.875em;"
+              : "margin-bottom: 6.875em;"
           }">
-            <header class="place-title">법정동 주소정보</header>
-            ${detailAddr}
-          </article>
+            ${
+              result[0].road_address?.building_name
+                ? `<header class="place-title">${result[0].road_address.building_name}</header>
+                  <hr />`
+                : ``
+            }
+            ${
+              result[0].road_address
+                ? `<section class="place-content">
+                    <article class="place-addr">${result[0].address.address_name}</article>
+                    <article class="place-road-addr">${result[0].road_address.address_name}</article>
+                  </section>`
+                : `<article class="place-addr">${result[0].address.address_name}</article>`
+            }
+          </section>
         `;
 
         marker.setPosition(mouseEvent.latLng);
