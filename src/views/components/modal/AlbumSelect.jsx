@@ -7,7 +7,7 @@ import {
   setAlbumSelectModal,
 } from "redux/slice/statusSlice";
 
-import AlbumSelectInfo from "../notify/information/AlbumSelectInfo";
+import AlbumSelectMsg from "../notify/message/AlbumSelectMsg";
 
 import "./AlbumSelect.scss";
 function AlbumSelect(props) {
@@ -27,7 +27,7 @@ function AlbumSelect(props) {
       <article ref={compRef}>
         <section className="select-main">
           <header>
-            <AlbumSelectInfo />
+            <AlbumSelectMsg />
           </header>
           <footer className="select-buttons">
             <button

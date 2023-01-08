@@ -1,8 +1,8 @@
 import S3Image from "views/components/addition/S3Image";
 
-function AlbumSelectInfo() {
+function AlbumSelectMsg() {
   return (
-    <section className="notify-select-information">
+    <section className="notify-album-select-message">
       <main>
         <article>
           <span className="highlight">추억</span> 만들러 온거야?~!
@@ -13,4 +13,4 @@ function AlbumSelectInfo() {
   );
 }
 
-export default AlbumSelectInfo;
+export default AlbumSelectMsg;
