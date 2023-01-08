@@ -5,7 +5,7 @@ export const clearRef = (refList) => {
 
 export const clearPreview = ($preview) => {
   while ($preview.lastChild) {
-    if ($preview.lastChild.tagName === "ARTICLE") {
+    if ($preview.lastChild.tagName === "SECTION") {
       $preview.removeChild($preview.lastChild);
     } else {
       break;
