@@ -6,6 +6,7 @@
   @include dialogOutside();
   > article {
     @include dialogBorder(45%, 85%);
+    @include setMinSize(500px, 700px);
     color: white;
     .album-main {
       @include dialogInside(column, space-between, null);
