@@ -5,7 +5,8 @@ function PhotoDataEmpty() {
     <section className="photo-data-exception">
       <main>
         <article>
-          이런! 사진에 <span className="highlight">데이터</span>가 없어요...!
+          이런! <span className="highlight">사진</span>에&nbsp;
+          <span className="highlight">데이터</span>가 없어요...!
         </article>
       </main>
       <S3Image folder={"toshimee"} file={"empty.png"} />

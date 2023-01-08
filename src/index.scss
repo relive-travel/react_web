@@ -71,8 +71,11 @@ textarea {
 }
 
 /* component */
-.main-color {
-  color: $main-color;
+.highlight {
+  color: $highlight;
+}
+.highlight-point {
+  color: $point-color;
 }
 .highlight-behind {
   color: rgba($color: $highlight-behind, $alpha: 0.5);

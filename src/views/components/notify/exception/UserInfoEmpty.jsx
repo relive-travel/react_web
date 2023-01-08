@@ -5,8 +5,8 @@ function UserInfoEmpty() {
     <section className="user-info-empty-exception">
       <main>
         <article>
-          아이쿠...! <span className="highlight">사용자</span>
-          님의 <span className="highlight">정보</span>가 없어요..!
+          아이쿠...! 사용자님의 <span className="highlight">정보</span>가&nbsp;
+          없어요..!
         </article>
         <article>
           다시 <span className="highlight">로그인</span> 해주세요...!

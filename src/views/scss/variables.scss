@@ -4,17 +4,17 @@ $default-color: white;
 $main-color: #ff8822;
 $main-bright-color: #ffcc88;
 
-$sub-color: #008000;
-$sub-bright-color: #00aa00;
-
 $point-color: #eb898e;
 $point-bright-color: #ffc0cb;
+
+$sub-color: #008000;
+$sub-bright-color: #00aa00;
 
 $point-sub-color: skyblue;
 $point-sub-bright-color: #61ccfe;
 $point-sub-deep-color: #2499ff;
 
-$highlight: $main-color;
+$highlight: $main-color; // #ff8822
 $highlight-behind: rgba(
   $color: $default-color,
   $alpha: 0.5,
