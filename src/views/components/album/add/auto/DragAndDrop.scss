@@ -1,3 +1,4 @@
+@import "views/scss/mixins/addition";
 @import "views/scss/mixins/setAttribute";
 
 @mixin inputPicture {
@@ -20,6 +21,7 @@
   label {
     .drag-photo-preview {
       aspect-ratio: 1;
+      @include notify(15%, 75%);
       section {
         @include setFlex(null, center, center);
         @include setSize(100%, 100%);
@@ -34,6 +36,9 @@
     @include inputPicture;
     @include setGrid(columns, repeat(4, 1fr), 0.625em);
     @include setSize(100%, 100%);
+    > label {
+      @include notify(15%, 75%, 0.75em);
+    }
     > section {
       @include setFlex(null, center, center);
       @include setSize(100%, null, 1);

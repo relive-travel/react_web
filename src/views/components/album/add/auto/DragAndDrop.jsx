@@ -6,6 +6,8 @@ import { setPhotoData, setPhotoFile } from "redux/slice/photoSlice";
 import { preivewImage } from "lib/utils/component/image";
 import { getExifData, getExifDataList } from "lib/utils/data/exifData";
 
+import AlbumAddMsg from "views/components/notify/message/AlbumAddMsg";
+
 import "./DragAndDrop.scss";
 function DragAndDrop(props) {
   const dragRef = useRef(null);
@@ -95,10 +97,9 @@ function DragAndDrop(props) {
             ref={dragRef}
             htmlFor="photo"
           >
-            <section
-              className="drag-photo-preview"
-              ref={props.previewRef}
-            ></section>
+            <section className="drag-photo-preview" ref={props.previewRef}>
+              <AlbumAddMsg />
+            </section>
           </label>
         </section>
       ) : (
@@ -116,7 +117,9 @@ function DragAndDrop(props) {
               className={isDrag ? "dragging" : "drop"}
               ref={dragRef}
               htmlFor="photo"
-            ></label>
+            >
+              <AlbumAddMsg />
+            </label>
           </main>
         </section>
       )}
