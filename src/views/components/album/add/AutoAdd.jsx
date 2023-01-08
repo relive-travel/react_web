@@ -23,7 +23,6 @@ function AutoAdd(props) {
       longitude: photoData.exifdata.longitude,
     });
     const addr = await res;
-    console.log(addr);
     props.addrRef.current.value = addr.address.address_name;
     if (addr.road_address) {
       props.semiAddrRef.current.value = addr.road_address.building_name;

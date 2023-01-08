@@ -168,8 +168,6 @@ export const setKakaoMapWithKeyword = (
     let map = new window.kakao.maps.Map(mapContainer, mapOptions);
     let customOverlay = new window.kakao.maps.CustomOverlay();
 
-    console.log(place);
-
     let content = `
       <article class="place-tooltip" style="${
         place.road_address_name
