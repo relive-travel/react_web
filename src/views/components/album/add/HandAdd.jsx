@@ -67,7 +67,8 @@ function HandAdd(props) {
         <input
           id="date"
           type="datetime-local"
-          max="9999-12-31"
+          max="9999-12-31T23:59"
+          min="1948-08-15T00:00"
           ref={props.dateRef}
         ></input>
       </article>
