@@ -7,7 +7,7 @@ function SliderEmpty() {
   const dispatch = useDispatch();
 
   return (
-    <section className="slider-exception">
+    <section className="notify-slider-empty-exception">
       <main>
         <article>
           아직은 <span className="highlight">추억</span>이 없어요...!

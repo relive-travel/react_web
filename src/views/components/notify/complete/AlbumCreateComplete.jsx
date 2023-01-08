@@ -2,7 +2,7 @@ import S3Image from "views/components/addition/S3Image";
 
 function AlbumCreateComplete() {
   return (
-    <section className="album-create-complete">
+    <section className="notify-album-create-complete">
       <main>
         <article>
           예~!&nbsp;<span className="highlight">추억</span>이 만들어 졌어요!

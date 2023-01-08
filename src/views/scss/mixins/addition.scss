@@ -1,9 +1,9 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/setAttribute";
 
-@mixin notify($textHeight, $imgHeight) {
-  @include setFont(1.5em, white);
-  > section {
+@mixin notify($textHeight, $imgHeight, $fontSize: 1.5em) {
+  @include setFont($fontSize, white);
+  [class^="notify"] {
     @include setFlex(column, center, center);
     @include setSize(100%, 100%);
     > main {

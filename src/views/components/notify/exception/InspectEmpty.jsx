@@ -2,7 +2,7 @@ import S3Image from "views/components/addition/S3Image";
 
 function InspectEmpty() {
   return (
-    <section className="inspect-exception">
+    <section className="notify-inspect-empty-exception">
       <main>
         <article>
           이런...!&nbsp;

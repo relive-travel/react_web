@@ -2,7 +2,7 @@ import S3Image from "views/components/addition/S3Image";
 
 function PhotoDataEmpty() {
   return (
-    <section className="photo-data-exception">
+    <section className="notify-photo-data-empty-exception">
       <main>
         <article>
           이런! <span className="highlight">사진</span>에&nbsp;
