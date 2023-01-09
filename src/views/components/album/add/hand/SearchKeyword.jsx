@@ -6,6 +6,8 @@ import { setAlbumHandKeywordDialog } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithKeyword } from "lib/utils/map/kakaoMap";
 
+import SearchKeywordMsg from "views/components/notify/message/SearchKeywordMsg";
+
 import "./SearchKeyword.scss";
 function SearchKeyword(props) {
   const dispatch = useDispatch();
@@ -76,7 +78,9 @@ function SearchKeyword(props) {
             </aside>
           </header>
           <main className="keyword-preview">
-            <section className="kakao-map-info" ref={kakaoMapRef}></section>
+            <section className="kakao-map-info" ref={kakaoMapRef}>
+              <SearchKeywordMsg />
+            </section>
           </main>
           <footer>
             <button

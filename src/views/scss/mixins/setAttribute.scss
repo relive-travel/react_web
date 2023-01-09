@@ -67,7 +67,6 @@
     text-overflow: ellipsis;
     &:hover {
       white-space: normal;
-      word-break: break-word;
     }
   } @else {
     display: -webkit-box;

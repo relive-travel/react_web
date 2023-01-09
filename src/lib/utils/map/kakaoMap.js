@@ -50,6 +50,8 @@ export const setKakaoMapWithKeyword = (
   let message;
   let ps = new window.kakao.maps.services.Places();
 
+  const messageComponent = mapContainer.firstChild;
+
   const searchPlaces = () => {
     removeMapChild();
 
@@ -148,6 +150,7 @@ export const setKakaoMapWithKeyword = (
     while (mapContainer.firstChild) {
       mapContainer.removeChild(mapContainer.firstChild);
     }
+    mapContainer.appendChild(messageComponent);
   };
   const removeListChild = () => {
     while (listContainer.firstChild) {
