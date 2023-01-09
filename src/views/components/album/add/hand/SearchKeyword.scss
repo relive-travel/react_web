@@ -49,6 +49,7 @@
         @include setButtons(
           (
             "keyword-select": $main-color,
+            "keyword-cancel": $default-color,
           ),
           20%
         );

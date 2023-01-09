@@ -15,17 +15,9 @@ function SearchKeyword(props) {
   const inputRef = useRef(null);
   const listRef = useRef(null);
   const pageRef = useRef(null);
-  const compRef = useRef(null);
   const kakaoMapRef = useRef(null);
 
   const [keywordRes, setKeywordRes] = useState(null);
-
-  const handleOutsideClick = (e) => {
-    e.stopPropagation();
-    if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumHandKeywordDialog(false));
-    }
-  };
 
   const handleSetKakaoMap = () => {
     if (inputRef.current.value) {
@@ -57,8 +49,8 @@ function SearchKeyword(props) {
   };
 
   return (
-    <section className="search-keyword-component" onClick={handleOutsideClick}>
-      <article ref={compRef}>
+    <section className="search-keyword-component">
+      <article>
         <section className="search-keyword-main">
           <header className="keyword-input">
             <input
@@ -83,6 +75,14 @@ function SearchKeyword(props) {
             </section>
           </main>
           <footer>
+            <button
+              className="keyword-cancel-button"
+              onClick={() => {
+                dispatch(setAlbumHandKeywordDialog(false));
+              }}
+            >
+              취소
+            </button>
             <button
               className="keyword-select-button"
               onClick={handleSelectResult}
