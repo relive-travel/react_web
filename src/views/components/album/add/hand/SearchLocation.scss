@@ -12,6 +12,8 @@
       @include dialogInside(column, center, center);
       > main {
         @include setSize(100%, 90%);
+        @include setBlank(0, 0 0 0.625em 0);
+        box-sizing: border-box;
         .kakao-map-info {
           @include kakaoMap;
         }
@@ -24,7 +26,6 @@
           15%
         );
         @include setSize(100%, 10%);
-        @include setBlank(0.625em 0 0 0);
       }
     }
   }
