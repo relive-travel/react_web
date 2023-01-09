@@ -39,6 +39,8 @@ function HandAdd(props) {
       props.semiAddrRef.current.value = searchData.semiAddr
         ? searchData.semiAddr
         : "";
+
+      props.addrRef.current?.focus({ cursor: "end" });
     }
   }, [searchData]);
 
