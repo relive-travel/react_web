@@ -12,7 +12,7 @@
     @media (max-width: 749px) {
       @include dialogBorder(null, null, 1);
       @include setFlex(column);
-      @include setMinSize(350px, 350px);
+      @include setMinSize(450px, 450px);
     }
     .search-keyword-main {
       @include dialogInside(column, center, center);
@@ -36,6 +36,8 @@
       }
       > main {
         @include setSize(100%, 80%);
+        @include setBlank(null, 0.625em 0);
+        box-sizing: border-box;
         .kakao-map-info {
           @include kakaoMap;
         }
@@ -72,6 +74,7 @@
             @include setFlex(row, space-between, center);
             @include setSize(90%, null);
             @include setBlank(0.25em 0);
+            box-sizing: border-box;
             > header {
               @include setFlex(null, center, center);
               width: 5%;
@@ -81,7 +84,12 @@
               @include setFlex(column, center);
               width: 90%;
               > article {
-                @include setTextOverflow();
+                @media (min-width: 750px) {
+                  @include setTextOverflow(1, 225px);
+                }
+                @media (max-width: 749px) {
+                  @include setTextOverflow(1, 280px);
+                }
               }
               [class$="name"] {
                 color: black;
