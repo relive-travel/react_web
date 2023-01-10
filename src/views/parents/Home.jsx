@@ -78,7 +78,7 @@ function Home(props) {
     <section className="home-component">
       <header>
         <img
-          src={`${process.env.REACT_APP_S3_ADDRESS}/image/logo/Logo.png`}
+          src={`${process.env.REACT_APP_S3_ADDRESS}/image/assets/logo.png`}
           alt="relive travel, 여행을 기록하다"
         />
       </header>

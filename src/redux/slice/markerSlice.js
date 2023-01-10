@@ -7,7 +7,7 @@ const initialState = {
     height: 10,
   },
   option: {
-    url: `${process.env.REACT_APP_S3_ADDRESS}/image/rabbit/left_rabbit.png`,
+    url: `${process.env.REACT_APP_S3_ADDRESS}/image/assets/pin.png`,
     width: 15,
     height: 10,
   },
