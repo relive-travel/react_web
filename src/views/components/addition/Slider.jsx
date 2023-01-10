@@ -21,7 +21,6 @@ import SliderEmpty from "../notify/exception/SliderEmpty";
 
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 
-import "./Slider.scss";
 function Slider(props) {
   const dispatch = useDispatch();
 

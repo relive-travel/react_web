@@ -8,7 +8,6 @@ import Router from "./views/Router";
 import Scheduler from "./views/Scheduler";
 
 import "./index.scss";
-import "views/components/notify/notify.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

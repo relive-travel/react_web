@@ -1,7 +1,9 @@
 @import "views/scss/variables";
+@import "views/scss/mixins/album";
 @import "views/scss/mixins/dialog";
 @import "views/scss/mixins/setAttribute";
 
+/* modal album select */
 .album-select-component {
   @include dialogOutside();
   > article {
@@ -24,5 +26,19 @@
         );
       }
     }
+  }
+}
+
+/* album preview */
+.album-preview-component {
+  @include dialogOutside();
+  > article {
+    @include view(30%, null);
+    .album-preview-main {
+      @include viewMain();
+    }
+  }
+  aside {
+    @include albumAside;
   }
 }

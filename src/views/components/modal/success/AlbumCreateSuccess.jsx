@@ -10,7 +10,6 @@ import { getMarkerAll, getMarkerAllMatchRegion } from "redux/thunk/markerThunk";
 
 import AlbumCreateComplete from "views/components/notify/complete/AlbumCreateComplete";
 
-import "./AlbumCreateSuccess.scss";
 function AlbumCreateSuccess() {
   const dispatch = useDispatch();
 

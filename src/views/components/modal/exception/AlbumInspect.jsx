@@ -7,7 +7,6 @@ import { inspectRef, inspectRefFile } from "lib/utils/jsUtils";
 
 import InspectEmpty from "views/components/notify/exception/InspectEmpty";
 
-import "./AlbumInspect.scss";
 function AlbumInspect(props) {
   const dispatch = useDispatch();
 

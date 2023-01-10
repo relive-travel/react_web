@@ -27,7 +27,7 @@ import AlbumPreview from "../modal/AlbumPreview";
 
 import AlbumCreateSuccess from "../modal/success/AlbumCreateSuccess";
 
-import "./AlbumCreate.scss";
+import "./add/index.scss";
 function AlbumCreate(props) {
   const dispatch = useDispatch();
 

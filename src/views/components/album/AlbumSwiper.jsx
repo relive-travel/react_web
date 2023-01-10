@@ -14,7 +14,6 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "./AlbumSwiper.scss";
 function AlbumSwiper(props) {
   const dispatch = useDispatch();
 

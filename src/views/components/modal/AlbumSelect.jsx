@@ -9,7 +9,6 @@ import {
 
 import AlbumSelectMsg from "../notify/message/AlbumSelectMsg";
 
-import "./AlbumSelect.scss";
 function AlbumSelect(props) {
   const dispatch = useDispatch();
 

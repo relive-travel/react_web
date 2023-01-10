@@ -12,7 +12,6 @@ import SearchKeyword from "./hand/SearchKeyword";
 import SearchRoadAddr from "./hand/SearchRoadAddr";
 import SearchLocation from "./hand/SearchLocation";
 
-import "./HandAdd.scss";
 function HandAdd(props) {
   const dispatch = useDispatch();
 

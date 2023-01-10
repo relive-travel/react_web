@@ -12,7 +12,6 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "./AlbumPreview.scss";
 function AlbumPreview(props) {
   const dispatch = useDispatch();
 

@@ -23,6 +23,12 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 import "./Map.scss";
+import "../components/addition/index.scss";
+import "../components/album/index.scss";
+import "../components/modal/index.scss";
+import "../components/modal/exception/index.scss";
+import "../components/modal/success/index.scss";
+import "../components/photo/index.scss";
 import "views/animations/Dropdown.scss";
 function Map() {
   const dispatch = useDispatch();

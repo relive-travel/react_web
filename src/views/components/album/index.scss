@@ -1,7 +1,9 @@
 @import "views/scss/variables";
+@import "views/scss/mixins/album";
 @import "views/scss/mixins/dialog";
 @import "views/scss/mixins/setAttribute";
 
+/* album create */
 .album-create-component {
   @include dialogOutside();
   > article {
@@ -32,5 +34,28 @@
         );
       }
     }
+  }
+}
+
+/* album swiper */
+.album-swiper-component {
+  @include dialogOutside();
+  > .swiper {
+    @include setSize(30%, null);
+    @include setMinSize(300px, 450px);
+    @include setBlank(null, 5em);
+    .swiper-wrapper {
+      .swiper-slide {
+        > article {
+          @include view(100%, 100%);
+          .album-view-main {
+            @include viewMain();
+          }
+        }
+      }
+    }
+  }
+  aside {
+    @include albumAside;
   }
 }

@@ -2,6 +2,7 @@
 @import "views/scss/mixins/dialog";
 @import "views/scss/mixins/setAttribute";
 
+/* photo gather */
 .photo-gather-component {
   @include dialogOutside();
   .photo-gather-main {

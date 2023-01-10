@@ -5,7 +5,6 @@ import { setNotifyUserEmpty } from "redux/slice/statusSlice";
 
 import UserInfoEmpty from "views/components/notify/exception/UserInfoEmpty";
 
-import "./UserEmpty.scss";
 function UserEmpty() {
   const navigate = useNavigate();
 

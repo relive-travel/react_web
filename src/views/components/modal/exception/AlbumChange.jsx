@@ -7,7 +7,6 @@ import {
 
 import PhotoDataEmpty from "views/components/notify/exception/PhotoDataEmpty";
 
-import "./AlbumChange.scss";
 function AlbumChange(props) {
   const dispatch = useDispatch();
   return (

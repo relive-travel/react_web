@@ -12,7 +12,6 @@ import { groupSortType } from "lib/utils/jsUtils";
 
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 
-import "./PhotoGather.scss";
 function PhotoGather(props) {
   const dispatch = useDispatch();
 

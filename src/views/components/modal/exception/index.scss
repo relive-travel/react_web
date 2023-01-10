@@ -1,0 +1,89 @@
+@import "views/scss/variables";
+@import "views/scss/mixins/dialog";
+@import "views/scss/mixins/setAttribute";
+
+/* ----- exception ----- */
+/* album inspect */
+.alubm-inspect-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(null, null, 1.125/1);
+    @include setMinSize(400px, 400px);
+    .alubm-inspect-main {
+      @include dialogInside(column, space-around, center);
+      @include setSize(100%, 100%);
+      > header {
+        @include setSize(100%, 75%);
+        @include notify(15%, 85%);
+      }
+      > main {
+        @include setFlex(row, space-around, center);
+        @include setSize(50%, 12.5%);
+        @include setFont(1.25em, $point-bright-color);
+      }
+      > footer {
+        @include setSize(100%, 12.5%);
+        @include setButtons(
+          (
+            "inspect-write": $main-color,
+          ),
+          35%
+        );
+      }
+    }
+  }
+}
+
+/* album change */
+.album-change-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(null, null, 1.5/1);
+    @include setMinSize(500px, 500px);
+    .album-change-main {
+      @include dialogInside(column, space-around, center);
+      @include setSize(100%, 100%);
+      > header {
+        @include setSize(100%, 75%);
+        @include notify(15%, 85%);
+      }
+      > footer {
+        @include setSize(100%, 30%);
+        @include setButtons(
+          (
+            "change-restart": $default-color,
+            "change-picture": $main-bright-color,
+            "change-write": $main-color,
+          ),
+          30%,
+          2
+        );
+      }
+    }
+  }
+}
+
+/* user empty */
+.user-empty-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(null, null, 1.25/1);
+    @include setMinSize(450px, 400px);
+    .user-empty-main {
+      @include dialogInside(column, space-around, center);
+      > header {
+        @include setSize(100%, 87.5%);
+        @include notify(25%, 75%);
+      }
+      > footer {
+        @include setSize(100%, 12.5%);
+        @include setButtons(
+          (
+            "empty-ok": $main-color,
+          ),
+          35%
+        );
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@
 @import "views/scss/mixins/dialog";
 @import "views/scss/mixins/setAttribute";
 
+/* album create success*/
 .album-create-success-component {
   @include dialogOutside();
   > article {

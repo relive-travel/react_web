@@ -2,6 +2,41 @@
 @import "views/scss/mixins/addition";
 @import "views/scss/mixins/setAttribute";
 
+/* auto add */
+.album-auto-info {
+  @include setFlex(column);
+  @include setSize(100%, 100%);
+  > article {
+    @include setFlex(column);
+    @include setBlank(0.625em 0);
+  }
+  > section {
+    @include setFlex(row, space-between, center);
+    width: 100%;
+    > article {
+      @include setFlex(column);
+      width: 45%;
+    }
+  }
+  [class$="date"] {
+    input {
+      @include setSize(fit-content, null);
+      @include setBlank(auto);
+      text-align: center;
+    }
+  }
+  [class$="photo"] {
+    @include setSize(45%, null, 1);
+  }
+  [class$="location"] {
+    @include setSize(45%, null, 1);
+    .kakao-map-info {
+      @include kakaoMap;
+    }
+  }
+}
+
+/* hand add */
 .album-hand-info {
   @include setFlex(column);
   @include setSize(100%, 100%);

@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "./AlbumView.scss";
 function AlbumView(props) {
   return (
     <article className="album-view-outside">

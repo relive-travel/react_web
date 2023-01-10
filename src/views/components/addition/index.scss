@@ -1,6 +1,7 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/setAttribute";
 
+/* slider */
 @mixin sliderInfo {
   cursor: pointer;
   @include setFlex(column);
