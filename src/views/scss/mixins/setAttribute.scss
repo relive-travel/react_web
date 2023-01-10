@@ -44,7 +44,7 @@
   padding: $padding;
 }
 
-@mixin setBorder($width, $radius, $color: "", $type: null, $style: solid) {
+@mixin setBorder($width, $radius, $color: null, $type: null, $style: solid) {
   @if $type {
     @each $place in $type {
       border-#{$place}-left-radius: $radius;
@@ -54,7 +54,11 @@
     border-radius: $radius;
   }
   @if $width {
-    border: $width $style unquote($color);
+    @if $color {
+      border: $width $style $color;
+    } @else {
+      border: $width $style;
+    }
   }
 }
 
