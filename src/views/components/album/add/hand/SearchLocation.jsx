@@ -6,7 +6,6 @@ import { setAlbumHandLocationDialog } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithLocation } from "lib/utils/map/kakaoMap";
 
-import "./SearchLocation.scss";
 function SearchLocation(props) {
   const dispatch = useDispatch();
 

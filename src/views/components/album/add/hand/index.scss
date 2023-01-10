@@ -1,6 +1,9 @@
 @import "views/scss/variables";
+@import "views/scss/mixins/setAttribute";
 @import "views/scss/mixins/dialog";
+@import "views/scss/mixins/addition";
 
+/* search keyword */
 .search-keyword-component {
   @include dialogOutside();
   > article {
@@ -121,6 +124,73 @@
           border: none;
           background: none;
         }
+      }
+    }
+  }
+}
+
+/* search road addr */
+.search-road-addr-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(30%, null, 1);
+    @include setMinSize(450px);
+    .search-road-addr-main {
+      @include dialogInside();
+    }
+    .search-road-addr-result {
+      @include dialogInside(column, space-between, center);
+      > header {
+        @include setFlex(null, center, center);
+        @include setSize(100%, 10%);
+      }
+      > main {
+        @include setSize(100%, 80%);
+        @include setBlank(null, 0.625em 0);
+        box-sizing: border-box;
+        .kakao-map-info {
+          @include kakaoMap;
+        }
+      }
+      > footer {
+        @include setButtons(
+          (
+            "road-addr-re-search": $default-color,
+            "road-addr-select": $main-color,
+          ),
+          30%
+        );
+        @include setSize(100%, 10%);
+      }
+    }
+  }
+}
+
+/* search location */
+.search-location-component {
+  @include dialogOutside();
+  > article {
+    @include dialogBorder(60%, null, 2/1.25);
+    @include setFlex(column);
+    @include setMinSize(500px, 750px);
+    .search-location-main {
+      @include dialogInside(column, center, center);
+      > main {
+        @include setSize(100%, 90%);
+        @include setBlank(0, 0 0 0.625em 0);
+        box-sizing: border-box;
+        .kakao-map-info {
+          @include kakaoMap;
+        }
+      }
+      > footer {
+        @include setButtons(
+          (
+            "location-select": $main-color,
+          ),
+          15%
+        );
+        @include setSize(100%, 10%);
       }
     }
   }

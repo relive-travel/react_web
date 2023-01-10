@@ -6,7 +6,6 @@ import { setAlbumHandRoadAddrDialog } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithRoad } from "lib/utils/map/kakaoMap";
 
-import "./SearchRoadAddr.scss";
 function SearchRoadAddr(props) {
   const dispatch = useDispatch();
 

@@ -8,7 +8,6 @@ import { setKakaoMapWithKeyword } from "lib/utils/map/kakaoMap";
 
 import SearchKeywordMsg from "views/components/notify/message/SearchKeywordMsg";
 
-import "./SearchKeyword.scss";
 function SearchKeyword(props) {
   const dispatch = useDispatch();
 

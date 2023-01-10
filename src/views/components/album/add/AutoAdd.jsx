@@ -8,6 +8,7 @@ import { setKakaoMapWithGeoPoint } from "lib/utils/map/kakaoMap";
 
 import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
 
+import "./auto/index.scss";
 function AutoAdd(props) {
   const dispatch = useDispatch();
 

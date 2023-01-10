@@ -8,7 +8,6 @@ import { getExifData, getExifDataList } from "lib/utils/data/exifData";
 
 import AlbumAddMsg from "views/components/notify/message/AlbumAddMsg";
 
-import "./DragAndDrop.scss";
 function DragAndDrop(props) {
   const dragRef = useRef(null);
 

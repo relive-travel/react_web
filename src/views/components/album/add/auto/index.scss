@@ -1,6 +1,7 @@
 @import "views/scss/mixins/addition";
 @import "views/scss/mixins/setAttribute";
 
+/* drag and drop */
 @mixin inputPicture {
   input {
     display: none;
