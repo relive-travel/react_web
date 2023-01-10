@@ -1,15 +1,14 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import useLoginInterval from "hooks/useLoginInterval";
-
-import Home from "./parents/Home";
-import Login from "./components/home/Login";
-import LoginSuccess from "./components/home/LoginSuccess";
-import Regist from "./components/home/Regist";
 
 import OAuthKakao from "./components/home/oauth/OAuthKakao";
 
-import Map from "./parents/Map";
+const Home = lazy(() => import("./parents/Home"));
+const Login = lazy(() => import("./components/home/Login"));
+const LoginSuccess = lazy(() => import("./components/home/LoginSuccess"));
+const Regist = lazy(() => import("./components/home/Regist"));
+
+const Map = lazy(() => import("./parents/Map"));
 
 function Router() {
   const router = createBrowserRouter([
@@ -46,7 +45,11 @@ function Router() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<div>loading</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default Router;
