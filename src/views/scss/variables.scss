@@ -17,7 +17,7 @@ $point-sub-deep-color: #2499ff;
 
 $highlight: $main-color; // #ff8822
 $highlight-behind: rgba(
-  $color: $default-color,
-  $alpha: 0.5,
+  $color: black,
+  $alpha: 0.75,
 );
 $highlight-none: black;

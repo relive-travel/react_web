@@ -288,7 +288,7 @@ function Slider(props) {
                 <article className="time-title">{album.title}</article>
                 <article className="time-address">
                   {marker.region.semiAddr}{" "}
-                  <span className="text-highlight-behind">
+                  <span className="highlight-behind">
                     ({marker.region.addr})
                   </span>
                 </article>

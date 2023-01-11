@@ -117,7 +117,7 @@
       height: 15%;
     }
     > main {
-      @include setFlex(column, null, center);
+      @include setFlex(column, center, null);
       height: 60%;
       > article {
         @include setBlank(0.625em 0);
