@@ -1,5 +1,6 @@
 /* color */
 $default-color: white;
+$none-color: black;
 
 $main-color: #ff8822;
 $main-bright-color: #ffcc88;
@@ -16,7 +17,7 @@ $point-sub-deep-color: #2499ff;
 
 $highlight: $main-color; // #ff8822
 $highlight-behind: rgba(
-  $color: $default-color,
+  $color: $black,
   $alpha: 0.5,
 );
 $highlight-none: black;

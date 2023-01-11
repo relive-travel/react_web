@@ -117,7 +117,7 @@
       height: 15%;
     }
     > main {
-      @include setFlex(column, center, center);
+      @include setFlex(column, null, center);
       height: 60%;
       > article {
         @include setBlank(0.625em 0);
@@ -129,7 +129,7 @@
       @include setSize(100%, 15%);
       @include setButtons(
         (
-          "regist-rallback": $default-color,
+          "regist-rallback": $none-color,
           "regist-complete": $point-color,
         ),
         30%
