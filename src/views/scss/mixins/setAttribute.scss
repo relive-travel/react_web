@@ -123,7 +123,11 @@
       background-color: rgba($color: white, $alpha: 0.1);
 
       &:hover {
-        color: black;
+        @if ($color == black) {
+          color: white;
+        } @else {
+          color: black;
+        }
         background-color: rgba($color: $color, $alpha: 1);
       }
     }
