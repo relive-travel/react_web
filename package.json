@@ -35,6 +35,7 @@
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",
     "build": "cross-env NODE_PATH=src react-scripts build",
+    "deploy": "aws s3 sync ./build s3://relivetravel-dev --profile=relive-travel",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

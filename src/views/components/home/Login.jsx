@@ -5,7 +5,10 @@ function Login() {
   // login버튼을 통해 authorize실행, 토큰 발급진행
   const handleClickLogin = () => {
     window.Kakao.Auth.authorize({
-      redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
+      redirectUri:
+        process.env.REACT_APP_ENV == "product"
+          ? process.env.REACT_APP_KAKAO_REDIRECT_URI_PRODUCT
+          : process.env.REACT_APP_KAKAO_REDIRECT_URI_LOCAL,
     });
   };
 
