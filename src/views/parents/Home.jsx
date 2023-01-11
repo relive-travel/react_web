@@ -38,10 +38,7 @@ function Home(props) {
       const params = {
         grant_type: "authorization_code",
         client_id: process.env.REACT_APP_KAKAO_REST_API,
-        redirect_uri:
-          process.env.REACT_APP_ENV == "production"
-            ? process.env.REACT_APP_KAKAO_REDIRECT_URI_PRODUCT
-            : process.env.REACT_APP_KAKAO_REDIRECT_URI_LOCAL,
+        redirect_uri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
         code: location.state.code,
       };
       dispatch(getKakaoToken({ url, params })).then(() => {
