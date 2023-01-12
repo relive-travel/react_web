@@ -43,7 +43,10 @@ function useLoginInterval(delay) {
       let loginInterval = setInterval(() => {
         if (document.hasFocus()) handleGetKakaoToken();
       }, delay);
-      return () => clearInterval(loginInterval);
+      return () => {
+        clearInterval(loginInterval);
+        window.Kakao.Auth.setAccessToken(null);
+      };
     }
   }, []);
 }

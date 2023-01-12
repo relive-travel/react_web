@@ -56,7 +56,6 @@ function SideDial() {
         window.Kakao.API.request({ url: "/v1/user/unlink" })
           .then(() => {
             delCookie({ name: "authorize-access-token" });
-            window.Kakao.Auth.setAccessToken(null);
             navigate("/");
           })
           .catch((err) => {
