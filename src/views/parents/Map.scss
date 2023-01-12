@@ -39,28 +39,25 @@
     }
   }
   .slider-main {
+    position: relative;
     @include setFlex(column, flex-start, center);
     @include setSize(85%, 100%);
     @include setMinSize(300px);
     overflow: scroll;
     background-color: rgba($color: $default-color, $alpha: 0.3);
     .slider-exception {
-      @include setFlex(column, center, center);
-      @include setSize(100%, 100%);
-      > img {
-        @include setSize(90%, null, 1);
-      }
-      main {
-        @include setSize(null, 5%);
-      }
+      @include setAbsolute(50%, null, null, 0);
+      transform: translate(0, -50%);
+      @include setSize(100%, 30%);
+      @include notify(10%, 50%);
       footer {
         @include setFlex(row, space-around, center);
-        @include setSize(null, 5%);
+        @include setSize(100%, 10%);
         @include setButtons(
           (
             "make-memory": $sub-color,
           ),
-          30%
+          50%
         );
       }
     }

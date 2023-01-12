@@ -136,7 +136,9 @@
       background-color: rgba($color: white, $alpha: 0.1);
 
       &:hover {
-        @if ($color == black) {
+        @if $color == black {
+          color: white;
+        } @else if $color == $sub-color {
           color: white;
         } @else {
           color: black;
