@@ -62,6 +62,13 @@
   }
 }
 
+@mixin setShadow($type, $color: black) {
+  @if $type == "box" {
+    box-shadow: 1px 1px 8px $color;
+  } @else if $type == "text" {
+  }
+}
+
 /* text */
 @mixin setTextOverflow($line: 1, $width: 100%) {
   width: $width;
@@ -84,7 +91,13 @@
   }
 }
 
-@mixin setFont($fontSize, $fontColor: null, $fontWeight: null) {
+@mixin setFont(
+  $fontSize,
+  $fontColor: null,
+  $fontWeight: null,
+  $fontFamily: null
+) {
+  font-family: $fontFamily;
   font-size: $fontSize;
   font-weight: $fontWeight;
   color: $fontColor;

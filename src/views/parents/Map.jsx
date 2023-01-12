@@ -5,8 +5,6 @@ import { setMapOption, setMapRegion } from "redux/slice/mapSlice";
 
 import useKakaoLogin from "hooks/useKakaoLogin";
 
-import Logout from "views/components/home/Logout";
-
 import D3Map from "views/components/map/D3Map.jsx";
 import Slider from "views/components/addition/Slider.jsx";
 import SideDial from "views/components/addition/SideDial";
@@ -81,9 +79,9 @@ function Map() {
 
   return (
     <section className="map-component" onClick={handleSliderClick}>
-      <header>
-        <Logout />
-      </header>
+      <aside>
+        <SideDial />
+      </aside>
       <main>
         <nav className="slider-component" ref={sliderRef}>
           <section className="slider-main">
@@ -108,9 +106,7 @@ function Map() {
         {viewDialogStatus ? <AlbumView /> : null}
         {gatherOptionStatus ? <PhotoGather /> : null}
         {userEmptyNotifyStatus ? <UserEmpty /> : null}
-        <SideDial />
       </aside>
-      <footer></footer>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 @import "views/scss/variables";
+@import "views/scss/mixins/addition";
 @import "views/scss/mixins/setAttribute";
 
 /* slider */
@@ -105,5 +106,21 @@
   .city-name {
     border-bottom: 1px solid white;
     background-color: $point-sub-bright-color;
+  }
+}
+
+/* side dial*/
+.side-dial-user {
+  @include setAbsolute(8px, 8px, null, null);
+  .user-features {
+    @include speedDial(row, bottom, "user-home");
+  }
+}
+
+.side-dial-useful {
+  @include setAbsolute(null, 8px, 50%, null);
+  transform: translate(0, 50%);
+  .useful-features {
+    @include speedDial(column, left, "useful-album-edit");
   }
 }

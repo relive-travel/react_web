@@ -16,6 +16,83 @@
   }
 }
 
+@mixin tooltip($type) {
+  > article {
+    position: relative;
+    .tooltip {
+      visibility: hidden;
+      transition: 0.125s ease;
+
+      @if $type == top {
+        @include setAbsolute(0, null, null, null);
+        @include setBlank(-8px 0, 4px 8px);
+        transform: scale(0);
+      } @else if $type == right {
+        @include setAbsolute(null, 0, null, null);
+        @include setBlank(0 -8px, 4px 8px);
+      } @else if $type == bottom {
+        @include setAbsolute(null, null, 0, null);
+        @include setBlank(-8px 0, 4px 8px);
+        transform: scale(0) translate(0, 100%);
+      } @else if $type == left {
+        @include setAbsolute(null, null, null, 0);
+        @include setBlank(0 -8px, 4px 8px);
+        transform: scale(0) translate(-100%, 0);
+      }
+
+      @include setSize(max-content, null);
+      @include setFont(12px, white, null, "NanumBarunGothic");
+      text-align: center;
+      @include setBorder(null, 4px);
+      background-color: #666666;
+    }
+  }
+  &:hover .tooltip {
+    visibility: visible;
+    transition-delay: 0.5s;
+
+    @if $type == top {
+      transform: scale(1) translate(0, -100%);
+    } @else if $type == right {
+      transform: scale(1) translate(100%, 0);
+    } @else if $type == bottom {
+      transform: scale(1) translate(0, 100%);
+    } @else if $type == left {
+      transform: scale(1) translate(-100%, 0);
+    }
+  }
+}
+
+@mixin speedDial($flexDirection: column, $type: bottom, $pointClassName: "") {
+  @include setFlex($flexDirection, null, center);
+  > aside {
+    cursor: pointer;
+    @include setFont(36px);
+    @include tooltip($type);
+    > article {
+      @include setFlex(null, center, center);
+      @include setSize(40px, 40px);
+      @include setBlank(8px);
+      @include setBorder(null, 50%);
+      @include setShadow("box");
+      background-color: rgba($color: $default-color, $alpha: 1);
+      transition: 0.25s ease-in-out;
+      &:hover {
+        color: $default-color;
+        background-color: rgba($color: $main-color, $alpha: 1);
+      }
+    }
+    .#{$pointClassName} {
+      color: $default-color;
+      background-color: rgba($color: $sub-color, $alpha: 1);
+      &:hover {
+        color: $default-color;
+        background-color: rgba($color: $sub-bright-color, $alpha: 1);
+      }
+    }
+  }
+}
+
 @mixin kakaoMap {
   @include setSize(100%, 100%);
   @include setBorder(2px, 10px, white);
