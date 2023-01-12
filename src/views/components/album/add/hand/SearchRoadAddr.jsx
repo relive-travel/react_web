@@ -6,10 +6,11 @@ import { setAlbumHandRoadAddrDialog } from "redux/slice/statusSlice";
 
 import { setKakaoMapWithRoad } from "lib/utils/map/kakaoMap";
 
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 function SearchRoadAddr(props) {
   const dispatch = useDispatch();
 
-  const compRef = useRef(null);
   const roadAddrRef = useRef(null);
   const kakaoMapRef = useRef(null);
 
@@ -17,13 +18,6 @@ function SearchRoadAddr(props) {
   const [postCodeRes, setPostCodeRes] = useState(null);
 
   const [roadAddrResultOpen, setRoadAddrResultOpen] = useState(false);
-
-  const handleOutsideClick = (e) => {
-    e.stopPropagation();
-    if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumHandRoadAddrDialog(false));
-    }
-  };
 
   const handleSetPostcodeService = () => {
     new window.daum.Postcode({
@@ -42,7 +36,7 @@ function SearchRoadAddr(props) {
         }
       },
       width: "100%",
-      height: "100%",
+      height: "95%",
     }).embed(roadAddrRef.current, {});
   };
 
@@ -85,17 +79,13 @@ function SearchRoadAddr(props) {
   }, [roadAddrResultOpen]);
 
   return (
-    <section
-      className="search-road-addr-component"
-      onClick={handleOutsideClick}
-    >
-      <article ref={compRef}>
+    <section className="search-road-addr-component">
+      <article>
         {roadAddrResultOpen ? (
           <section className="search-road-addr-result">
             <header>
               <article>
-                추억의 <span className="text-highlight-main">장소</span>가
-                여기인가요?~!
+                추억의 <span className="highlight">장소</span>가 여기인가요?~!
               </article>
             </header>
             <main>
@@ -115,12 +105,26 @@ function SearchRoadAddr(props) {
                 맞아요!
               </button>
             </footer>
+            <aside
+              className="dialog-close-button"
+              onClick={() => {
+                dispatch(setAlbumHandRoadAddrDialog(false));
+              }}
+            >
+              <HighlightOffIcon />
+            </aside>
           </section>
         ) : (
-          <section
-            className="search-road-addr-main"
-            ref={roadAddrRef}
-          ></section>
+          <section className="search-road-addr-main" ref={roadAddrRef}>
+            <aside
+              className="dialog-close-button"
+              onClick={() => {
+                dispatch(setAlbumHandRoadAddrDialog(false));
+              }}
+            >
+              <HighlightOffIcon />
+            </aside>
+          </section>
         )}
       </article>
     </section>

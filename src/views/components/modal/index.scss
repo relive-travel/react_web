@@ -25,6 +25,7 @@
           45%
         );
       }
+      @include closeButton("dialog");
     }
   }
 }
@@ -37,8 +38,5 @@
     .album-preview-main {
       @include viewMain();
     }
-  }
-  aside {
-    @include albumAside;
   }
 }

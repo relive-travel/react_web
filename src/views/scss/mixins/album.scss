@@ -8,17 +8,18 @@
     @include setSize(100%, 100%);
     box-sizing: border-box;
 
-    [class$="info"] {
-      @include setFlex(column, center, center);
-      @include setSize(calc(95% - 0.75em), 100%);
-      > article {
-        @include setTextOverflow();
-      }
-    }
     [class$="icon"] {
       @include setSize(5%, 100%);
       @include setBlank(0 0.75em 0 0);
     }
+    [class$="info"] {
+      @include setFlex(column, center, center);
+      @include setSize(calc(85% - 1.5em), 100%);
+      > article {
+        @include setTextOverflow();
+      }
+    }
+    @include closeButton("album");
   }
   [class$="photos"] {
     @include setSize(100%, 100%);
@@ -61,18 +62,6 @@
       @include setBlank(0.375em 0);
       border: 1px solid #ff8822;
     }
-  }
-}
-
-@mixin albumAside {
-  @include setAbsolute(10%, null, null, 50%);
-  @include setFlex(null, center, center);
-  cursor: pointer;
-  color: white;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  > svg {
-    font-size: 2.5em;
   }
 }
 

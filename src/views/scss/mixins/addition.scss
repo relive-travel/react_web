@@ -1,6 +1,7 @@
 @import "views/scss/variables";
 @import "views/scss/mixins/setAttribute";
 
+/* notify */
 @mixin notify($textHeight, $imgHeight, $fontSize: 1.5em) {
   @include setFont($fontSize, white);
   [class^="notify"] {
@@ -16,6 +17,7 @@
   }
 }
 
+/* dial */
 @mixin tooltip($type) {
   > article {
     position: relative;
@@ -75,24 +77,37 @@
       @include setBlank(8px);
       @include setBorder(null, 50%);
       @include setShadow("box");
-      background-color: rgba($color: $default-color, $alpha: 1);
-      transition: 0.25s ease-in-out;
-      &:hover {
-        color: $default-color;
-        background-color: rgba($color: $main-color, $alpha: 1);
-      }
+      @include setButtonANI($default-color, $main-color);
     }
     .#{$pointClassName} {
       color: $default-color;
-      background-color: rgba($color: $sub-color, $alpha: 1);
-      &:hover {
-        color: $default-color;
-        background-color: rgba($color: $sub-bright-color, $alpha: 1);
-      }
+      @include setButtonANI($sub-color, $sub-bright-color);
     }
   }
 }
 
+/* button */
+@mixin closeButton($type) {
+  @if $type == "dialog" {
+    position: relative;
+  }
+  > [class$="close-button"] {
+    cursor: pointer;
+    @include setSize(32px, null, 1);
+    z-index: 1;
+    @if $type == "album" {
+      @include setFlex(null, flex-end, center);
+      @include setBlank(0 0 0 0.75em);
+    } @else if $type == "dialog" {
+      @include setAbsolute(8px, 8px, null, null);
+    }
+    > svg {
+      @include setFont(2em, $default-color);
+    }
+  }
+}
+
+/* kakao */
 @mixin kakaoMap {
   @include setSize(100%, 100%);
   @include setBorder(2px, 10px, white);

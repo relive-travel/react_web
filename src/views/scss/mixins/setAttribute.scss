@@ -146,3 +146,12 @@
     }
   }
 }
+
+@mixin setButtonANI($prevColor, $nextColor, $color: $default-color) {
+  background-color: rgba($color: $prevColor, $alpha: 1);
+  transition: 0.25s ease-in-out;
+  &:hover {
+    color: $color;
+    background-color: rgba($color: $nextColor, $alpha: 1);
+  }
+}

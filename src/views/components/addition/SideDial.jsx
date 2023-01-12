@@ -54,15 +54,14 @@ function SideDial() {
       onClick: (e) => {
         e.stopPropagation();
         window.Kakao.API.request({ url: "/v1/user/unlink" })
-          .then((response) => {
-            console.log(response);
+          .then(() => {
+            delCookie({ name: "authorize-access-token" });
+            window.Kakao.Auth.setAccessToken(null);
+            navigate("/");
           })
           .catch((err) => {
             console.log(err);
           });
-        delCookie({ name: "authorize-access-token" });
-        window.Kakao.Auth.setAccessToken(null);
-        navigate("/");
       },
     },
   });
@@ -87,10 +86,6 @@ function SideDial() {
       },
     },
   });
-
-  useEffect(() => {
-    console.log(usefulFeatures);
-  }, [usefulFeatures]);
 
   useEffect(() => {
     setUsefulFeatures({
@@ -118,7 +113,6 @@ function SideDial() {
         },
       },
     });
-    console.log("이거 호출됩니다");
   }, [viewOptionStatus, sortOptionStatus]);
 
   return (

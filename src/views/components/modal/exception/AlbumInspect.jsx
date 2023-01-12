@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAlbumInspectModal } from "redux/slice/statusSlice";
@@ -10,16 +10,7 @@ import InspectEmpty from "views/components/notify/exception/InspectEmpty";
 function AlbumInspect(props) {
   const dispatch = useDispatch();
 
-  const compRef = useRef(null);
-
   const [inspectList, setInspectList] = useState([]);
-
-  const handleOutsideClick = (e) => {
-    e.stopPropagation();
-    if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumInspectModal(false));
-    }
-  };
 
   useEffect(() => {
     if (!inspectRef(props.titleRef))
@@ -35,9 +26,9 @@ function AlbumInspect(props) {
   }, []);
 
   return (
-    <section className="alubm-inspect-component" onClick={handleOutsideClick}>
+    <section className="alubm-inspect-component">
       <article>
-        <section className="alubm-inspect-main" ref={compRef}>
+        <section className="alubm-inspect-main">
           <header>
             <InspectEmpty />
           </header>

@@ -15,16 +15,7 @@ import "swiper/css/pagination";
 function AlbumPreview(props) {
   const dispatch = useDispatch();
 
-  const compRef = useRef(null);
-
   const [childNodes, setChildNodes] = useState();
-
-  const handleOutsideClick = (e) => {
-    e.stopPropagation();
-    if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumPreviewModal(false));
-    }
-  };
 
   useEffect(() => {
     setChildNodes(
@@ -37,7 +28,7 @@ function AlbumPreview(props) {
 
   return (
     <section className="album-preview-component">
-      <article className="album-preview-outside" ref={compRef}>
+      <article className="album-preview-outside">
         <section className="album-preview-top">
           <article
             className="preview-addr"
@@ -48,6 +39,14 @@ function AlbumPreview(props) {
               <article>{props.addr}</article>
               <article>{props.semiAddr}</article>
             </section>
+            <aside
+              className="album-close-button"
+              onClick={() => {
+                dispatch(setAlbumPreviewModal(false));
+              }}
+            >
+              <HighlightOffIcon />
+            </aside>
           </article>
         </section>
         <section className="album-preview-bottom">
@@ -91,9 +90,6 @@ function AlbumPreview(props) {
           </article>
         </section>
       </article>
-      <aside onClick={handleOutsideClick}>
-        <HighlightOffIcon />
-      </aside>
     </section>
   );
 }

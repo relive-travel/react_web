@@ -1,9 +1,17 @@
+import { useDispatch } from "react-redux";
+
+import { setAlbumSwiperDialog } from "redux/slice/statusSlice";
+
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import "swiper/css";
 import "swiper/css/pagination";
 function AlbumView(props) {
+  const dispatch = useDispatch();
+
   return (
     <article className="album-view-outside">
       <section className="album-view-top">
@@ -16,6 +24,14 @@ function AlbumView(props) {
             <article>{props.marker.region.addr}</article>
             <article>{props.marker.region.semiAddr}</article>
           </section>
+          <aside
+            className="album-close-button"
+            onClick={() => {
+              dispatch(setAlbumSwiperDialog(false));
+            }}
+          >
+            <HighlightOffIcon />
+          </aside>
         </article>
       </section>
       <section className="album-view-bottom">

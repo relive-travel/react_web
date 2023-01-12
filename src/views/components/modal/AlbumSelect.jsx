@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -9,21 +8,14 @@ import {
 
 import AlbumSelectMsg from "../notify/message/AlbumSelectMsg";
 
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 function AlbumSelect(props) {
   const dispatch = useDispatch();
 
-  const compRef = useRef(null);
-
-  const handleOutsideClick = (e) => {
-    e.stopPropagation();
-    if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumSelectModal(false));
-    }
-  };
-
   return (
-    <section className="album-select-component" onClick={handleOutsideClick}>
-      <article ref={compRef}>
+    <section className="album-select-component">
+      <article>
         <section className="select-main">
           <header>
             <AlbumSelectMsg />
@@ -50,6 +42,14 @@ function AlbumSelect(props) {
               직접쓸래! 🥕
             </button>
           </footer>
+          <aside
+            className="dialog-close-button"
+            onClick={() => {
+              dispatch(setAlbumSelectModal(false));
+            }}
+          >
+            <HighlightOffIcon />
+          </aside>
         </section>
       </article>
     </section>

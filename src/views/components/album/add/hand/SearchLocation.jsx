@@ -9,17 +9,9 @@ import { setKakaoMapWithLocation } from "lib/utils/map/kakaoMap";
 function SearchLocation(props) {
   const dispatch = useDispatch();
 
-  const compRef = useRef(null);
   const kakaoMapRef = useRef(null);
 
   const [locationRes, setLocationRes] = useState();
-
-  const handleOutsideClick = (e) => {
-    e.stopPropagation();
-    if (!compRef.current?.contains(e.target)) {
-      dispatch(setAlbumHandLocationDialog(false));
-    }
-  };
 
   const handleSelectResult = () => {
     let res = {
@@ -54,13 +46,21 @@ function SearchLocation(props) {
   }, []);
 
   return (
-    <section className="search-location-component" onClick={handleOutsideClick}>
-      <article ref={compRef}>
+    <section className="search-location-component">
+      <article>
         <section className="search-location-main">
           <main>
             <section className="kakao-map-info" ref={kakaoMapRef}></section>
           </main>
           <footer>
+            <button
+              className="location-cancle-button"
+              onClick={() => {
+                dispatch(setAlbumHandLocationDialog(false));
+              }}
+            >
+              취소
+            </button>
             <button
               className="location-select-button"
               onClick={handleSelectResult}

@@ -8,25 +8,12 @@ import {
 } from "redux/slice/statusSlice";
 
 import DragAndDrop from "views/components/album/add/auto/DragAndDrop";
-import SearchKeyword from "./hand/SearchKeyword";
-import SearchRoadAddr from "./hand/SearchRoadAddr";
-import SearchLocation from "./hand/SearchLocation";
 
 import "./hand/index.scss";
 function HandAdd(props) {
   const dispatch = useDispatch();
 
   const searchData = useSelector((state) => state.album.search);
-
-  const keywordDialogStatus = useSelector(
-    (state) => state.status.dialog.keyword
-  );
-  const roadAddrDialogStatus = useSelector(
-    (state) => state.status.dialog.roadAddr
-  );
-  const locationDialogStatus = useSelector(
-    (state) => state.status.dialog.location
-  );
 
   const handleResizeHeight = (e) => {
     e.target.style.height = "auto";
@@ -127,11 +114,6 @@ function HandAdd(props) {
           </article>
         </section>
       ) : null}
-      <aside className="search-dialog-component">
-        {keywordDialogStatus ? <SearchKeyword /> : null}
-        {roadAddrDialogStatus ? <SearchRoadAddr /> : null}
-        {locationDialogStatus ? <SearchLocation /> : null}
-      </aside>
     </section>
   );
 }

@@ -136,13 +136,16 @@
     @include dialogBorder(30%, null, 1);
     @include setMinSize(450px);
     .search-road-addr-main {
-      @include dialogInside();
+      @include dialogInside(column, flex-end);
+      @include closeButton("dialog");
     }
     .search-road-addr-result {
       @include dialogInside(column, space-between, center);
+      @include closeButton("dialog");
       > header {
         @include setFlex(null, center, center);
         @include setSize(100%, 10%);
+        @include setFont(1.5em, $default-color);
       }
       > main {
         @include setSize(100%, 80%);
@@ -186,9 +189,10 @@
       > footer {
         @include setButtons(
           (
+            "location-cancle": $default-color,
             "location-select": $main-color,
           ),
-          15%
+          20%
         );
         @include setSize(100%, 10%);
       }

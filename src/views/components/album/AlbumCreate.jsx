@@ -10,7 +10,6 @@ import {
   setNotifyAlbumCreate,
 } from "redux/slice/statusSlice";
 
-// import { getUser } from "redux/thunk/userThunk";
 import { setMarker } from "redux/thunk/markerThunk";
 import { setAlbum } from "redux/thunk/albumThunk";
 import { setPhoto } from "redux/thunk/photoThunk";
@@ -24,14 +23,17 @@ import HandAdd from "./add/HandAdd";
 import AlbumChange from "../modal/exception/AlbumChange";
 import AlbumInspect from "../modal/exception/AlbumInspect";
 import AlbumPreview from "../modal/AlbumPreview";
-
+import SearchKeyword from "./add/hand/SearchKeyword";
+import SearchRoadAddr from "./add/hand/SearchRoadAddr";
+import SearchLocation from "./add/hand/SearchLocation";
 import AlbumCreateSuccess from "../modal/success/AlbumCreateSuccess";
+
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import "./add/index.scss";
 function AlbumCreate(props) {
   const dispatch = useDispatch();
 
-  const compRef = useRef(null);
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   const photoRef = useRef(null);
@@ -49,18 +51,18 @@ function AlbumCreate(props) {
   const changeModalStatus = useSelector((state) => state.status.modal.change);
   const inspectModalStatus = useSelector((state) => state.status.modal.inspect);
   const previewModalStatus = useSelector((state) => state.status.modal.preview);
-
+  const keywordDialogStatus = useSelector(
+    (state) => state.status.dialog.keyword
+  );
+  const roadAddrDialogStatus = useSelector(
+    (state) => state.status.dialog.roadAddr
+  );
+  const locationDialogStatus = useSelector(
+    (state) => state.status.dialog.location
+  );
   const albumCreateNotifyStatus = useSelector(
     (state) => state.status.notify.album.create
   );
-
-  const handleOutsideClick = (e) => {
-    if (!compRef.current?.contains(e.target)) {
-      e.stopPropagation();
-      handleClearAlbum();
-      dispatch(setAlbumCreateDialog(false));
-    }
-  };
 
   const handleClearPhoto = () => {
     photoRef.current.value = "";
@@ -151,9 +153,9 @@ function AlbumCreate(props) {
   };
 
   return (
-    <section className="album-create-component" onClick={handleOutsideClick}>
+    <section className="album-create-component">
       <article>
-        <section className="album-main" ref={compRef}>
+        <section className="album-main">
           <header className="album-title">오늘 나의 추억</header>
           <main>
             {autoDialogStatus ? (
@@ -197,35 +199,46 @@ function AlbumCreate(props) {
               추가 하기
             </button>
           </footer>
-          <aside>
-            {changeModalStatus ? (
-              <AlbumChange
-                handleClearPhoto={handleClearPhoto}
-                handleClearAlbum={handleClearAlbum}
-              />
-            ) : null}
-            {inspectModalStatus ? (
-              <AlbumInspect
-                titleRef={titleRef}
-                dateRef={dateRef}
-                photoRef={photoRef}
-                addrRef={addrRef}
-              />
-            ) : null}
-            {previewModalStatus ? (
-              <AlbumPreview
-                title={titleRef.current.value}
-                content={contentRef.current.value}
-                preview={previewRef.current.childNodes}
-                date={dateRef.current.value}
-                addr={addrRef.current.value}
-                semiAddr={semiAddrRef.current.value}
-              />
-            ) : null}
-            {albumCreateNotifyStatus ? <AlbumCreateSuccess /> : null}
+          <aside
+            className="dialog-close-button"
+            onClick={() => {
+              dispatch(setAlbumCreateDialog(false));
+            }}
+          >
+            <HighlightOffIcon />
           </aside>
         </section>
       </article>
+      <aside>
+        {changeModalStatus ? (
+          <AlbumChange
+            handleClearPhoto={handleClearPhoto}
+            handleClearAlbum={handleClearAlbum}
+          />
+        ) : null}
+        {inspectModalStatus ? (
+          <AlbumInspect
+            titleRef={titleRef}
+            dateRef={dateRef}
+            photoRef={photoRef}
+            addrRef={addrRef}
+          />
+        ) : null}
+        {previewModalStatus ? (
+          <AlbumPreview
+            title={titleRef.current.value}
+            content={contentRef.current.value}
+            preview={previewRef.current.childNodes}
+            date={dateRef.current.value}
+            addr={addrRef.current.value}
+            semiAddr={semiAddrRef.current.value}
+          />
+        ) : null}
+        {keywordDialogStatus ? <SearchKeyword /> : null}
+        {roadAddrDialogStatus ? <SearchRoadAddr /> : null}
+        {locationDialogStatus ? <SearchLocation /> : null}
+        {albumCreateNotifyStatus ? <AlbumCreateSuccess /> : null}
+      </aside>
     </section>
   );
 }

@@ -33,6 +33,7 @@
           20%
         );
       }
+      @include closeButton("dialog");
     }
   }
 }
@@ -54,8 +55,5 @@
         }
       }
     }
-  }
-  aside {
-    @include albumAside;
   }
 }
