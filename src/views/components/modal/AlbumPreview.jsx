@@ -30,7 +30,7 @@ function AlbumPreview(props) {
     setChildNodes(
       childNodesFilter({
         childNodes: props.preview,
-        keepType: "ARTICLE",
+        keepType: "SECTION",
       })
     );
   }, []);
