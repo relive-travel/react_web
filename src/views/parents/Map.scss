@@ -24,8 +24,19 @@
   transition: 1s ease-in-out;
 
   .slider-button {
+    cursor: pointer;
     @include setFlex(null, center, center);
-    @include setSize(10%, fit-content);
+    @include setSize(10%, null, 1);
+    @include setBorder(null, 50%);
+    @include setButtonANI(null, white, black);
+    &:hover {
+      @include setShadow("box");
+    }
+    > svg {
+      @include setSize(100%, 100%);
+      @include setBlank(null, 8px);
+      box-sizing: border-box;
+    }
   }
   .slider-main {
     @include setFlex(column, flex-start, center);

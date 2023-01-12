@@ -55,14 +55,6 @@ function Map() {
     setSliderOpen(false);
   };
 
-  const handleSliderClick = (e) => {
-    e.stopPropagation();
-    if (sliderRef.current && !sliderRef.current.contains(e.target)) {
-      sliderRef.current.classList.remove("slider-open");
-      setSliderOpen(false);
-    }
-  };
-
   useEffect(() => {
     dispatch(setMapRegion("korea"));
     dispatch(
@@ -78,7 +70,7 @@ function Map() {
   useKakaoLogin();
 
   return (
-    <section className="map-component" onClick={handleSliderClick}>
+    <section className="map-component">
       <aside>
         <SideDial />
       </aside>
