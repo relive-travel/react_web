@@ -121,6 +121,6 @@
   @include setAbsolute(null, 8px, 50%, null);
   transform: translate(0, 50%);
   .useful-features {
-    @include speedDial(column, left, "useful-album-edit");
+    @include speedDial(column, left, "useful-edit");
   }
 }

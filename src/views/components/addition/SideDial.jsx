@@ -1,29 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import {
+  setAlbumSelectModal,
+  setDialGatherOption,
+  setDialSortOption,
+  setDialViewOption,
+} from "redux/slice/statusSlice";
+import { setMapRegion } from "redux/slice/mapSlice";
+import { setMarkerData } from "redux/slice/markerSlice";
+
+import { delCookie } from "lib/utils/data/cookie";
 
 import HomeIcon from "@mui/icons-material/Home";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import EditIcon from "@mui/icons-material/Edit";
-
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PlaceIcon from "@mui/icons-material/Place";
-
 import ImageIcon from "@mui/icons-material/Image";
-
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useEffect } from "react";
 
 function SideDial() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const viewOptionStatus = useSelector((state) => state.status.option.view);
+  const sortOptionStatus = useSelector((state) => state.status.option.sort);
 
   const [userFeatures, setUserFeatures] = useState({
     home: {
       index: 1,
       component: <HomeIcon />,
       tooltip: "홈 지도 이동",
+      onClick: (e) => {
+        e.stopPropagation();
+        dispatch(setMarkerData(null));
+        dispatch(setMapRegion("korea"));
+      },
     },
     help: {
       index: 2,
@@ -34,42 +51,75 @@ function SideDial() {
       index: 3,
       component: <LogoutIcon />,
       tooltip: "로그아웃",
+      onClick: (e) => {
+        e.stopPropagation();
+        window.Kakao.API.request({ url: "/v1/user/unlink" })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        delCookie({ name: "authorize-access-token" });
+        window.Kakao.Auth.setAccessToken(null);
+        navigate("/");
+      },
     },
   });
 
   const [usefulFeatures, setUsefulFeatures] = useState({
-    home: {
-      component: <LogoutIcon />,
-      tooltip: "로그아웃",
+    edit: {
+      index: 1,
+      component: <EditIcon />,
+      tooltip: "추억 만들기",
+      onClick: (e) => {
+        e.stopPropagation();
+        dispatch(setAlbumSelectModal(true));
+      },
     },
-    home: {
-      component: <LogoutIcon />,
-      tooltip: "로그아웃",
+    gather: {
+      index: 2,
+      component: <ImageIcon />,
+      tooltip: "사진 모아보기",
+      onClick: (e) => {
+        e.stopPropagation();
+        dispatch(setDialGatherOption(true));
+      },
     },
   });
 
-  const viewOptionStatus = useSelector((state) => state.status.option.view);
-  const sortOptionStatus = useSelector((state) => state.status.option.sort);
+  useEffect(() => {
+    console.log(usefulFeatures);
+  }, [usefulFeatures]);
 
   useEffect(() => {
-    let features = usefulFeatures;
-    features.view = viewOptionStatus
-      ? {
-          index: 4,
-          component: <VisibilityOffIcon />,
-          tooltop: "지역이름 숨기기",
-        }
-      : { index: 4, component: <VisibilityIcon />, tooltop: "지역이름 보기" };
-    setUsefulFeatures(features);
-  }, [viewOptionStatus]);
-
-  useEffect(() => {
-    let features = usefulFeatures;
-    features.sort = sortOptionStatus
-      ? { index: 3, component: <PlaceIcon />, tooltop: "지역순 정렬" }
-      : { index: 3, component: <AccessTimeIcon />, tooltop: "시간순 정렬" };
-    setUsefulFeatures(features);
-  }, [sortOptionStatus]);
+    setUsefulFeatures({
+      ...usefulFeatures,
+      sort: {
+        index: 3,
+        component: sortOptionStatus ? <PlaceIcon /> : <AccessTimeIcon />,
+        tooltip: sortOptionStatus ? "지역순 정렬" : "시간순 정렬",
+        onClick: (e) => {
+          e.stopPropagation();
+          dispatch(setDialSortOption(!sortOptionStatus));
+        },
+      },
+      visibility: {
+        index: 4,
+        component: viewOptionStatus ? (
+          <VisibilityOffIcon />
+        ) : (
+          <VisibilityIcon />
+        ),
+        tooltip: viewOptionStatus ? "지역이름 숨기기" : "지역이름 보기",
+        onClick: (e) => {
+          e.stopPropagation();
+          dispatch(setDialViewOption(!viewOptionStatus));
+        },
+      },
+    });
+    console.log("이거 호출됩니다");
+  }, [viewOptionStatus, sortOptionStatus]);
 
   return (
     <>
@@ -79,7 +129,7 @@ function SideDial() {
             .sort((a, b) => a[1].index - b[1].index)
             .map(([key, value], idx) => {
               return (
-                <aside key={idx}>
+                <aside key={idx} onClick={value.onClick}>
                   <article className={`user-${key}`}>
                     {value.component}
                     <span className="tooltip">{value.tooltip}</span>
@@ -87,70 +137,22 @@ function SideDial() {
                 </aside>
               );
             })}
-          {/* <aside>
-            <article className="user-home">
-              <HomeIcon />
-              <span className="tooltip">홈 지도 이동</span>
-            </article>
-          </aside>
-          <aside>
-            <article className="user-help">
-              <HelpOutlineIcon />
-              <span className="tooltip">이용 안내</span>
-            </article>
-          </aside>
-          <aside>
-            <article className="user-logout">
-              <LogoutIcon />
-              <span className="tooltip">로그아웃</span>
-            </article>
-          </aside> */}
         </section>
       </article>
       <article className="side-dial-useful">
         <article className="useful-features">
-          <aside>
-            <article className="useful-visibility">
-              {viewOptionStatus ? (
-                <>
-                  <VisibilityOffIcon />
-                  <span className="tooltip">지역이름 숨기기</span>
-                </>
-              ) : (
-                <>
-                  <VisibilityIcon />
-                  <span className="tooltip">지역이름 보기</span>
-                </>
-              )}
-            </article>
-          </aside>
-          <aside>
-            <article className="useful-sort">
-              {sortOptionStatus ? (
-                <>
-                  <PlaceIcon />
-                  <span className="tooltip">지역 순 정렬</span>
-                </>
-              ) : (
-                <>
-                  <AccessTimeIcon />
-                  <span className="tooltip">시간 순 정렬</span>
-                </>
-              )}
-            </article>
-          </aside>
-          <aside>
-            <article className="useful-photo-gather">
-              <ImageIcon />
-              <span className="tooltip">사진 모아보기</span>
-            </article>
-          </aside>
-          <aside>
-            <article className="useful-album-edit">
-              <EditIcon />
-              <span className="tooltip">추억 작성</span>
-            </article>
-          </aside>
+          {Object.entries(usefulFeatures)
+            .sort((a, b) => b[1].index - a[1].index)
+            .map(([key, value], idx) => {
+              return (
+                <aside key={idx} onClick={value.onClick}>
+                  <article className={`useful-${key}`}>
+                    {value.component}
+                    <span className="tooltip">{value.tooltip}</span>
+                  </article>
+                </aside>
+              );
+            })}
         </article>
       </article>
     </>
