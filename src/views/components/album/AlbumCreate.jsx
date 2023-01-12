@@ -77,7 +77,7 @@ function AlbumCreate(props) {
 
   const handleInspectAlbum = () => {
     return (
-      inspectRefList([titleRef, contentRef, dateRef, addrRef, semiAddrRef]) &&
+      inspectRefList([titleRef, dateRef, addrRef]) &&
       photoFile !== null &&
       searchData !== null
     );

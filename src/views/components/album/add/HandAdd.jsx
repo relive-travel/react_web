@@ -118,9 +118,7 @@ function HandAdd(props) {
       {searchData ? (
         <section className="info-address">
           <article className="info-addr">
-            <label htmlFor="addr">
-              주소 확인<span>(*)</span>
-            </label>
+            <label htmlFor="addr">주소 확인</label>
             <input id="addr" type="text" readOnly ref={props.addrRef}></input>
           </article>
           <article className="info-semi-addr">
