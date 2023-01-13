@@ -12,7 +12,9 @@ function Login() {
   return (
     <section className="login-component">
       <header>
-        <Banner />
+        {/* <Banner /> */}
+        <p>어서와! </p>
+        <p>여기는 추억을 남기는 곳이야!</p>
       </header>
       <main>
         <img
