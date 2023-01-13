@@ -53,13 +53,14 @@ function SideDial() {
       tooltip: "로그아웃",
       onClick: (e) => {
         e.stopPropagation();
-        window.Kakao.Auth.logout()
-          .then(() => {
-            delCookie({ name: "authorize-access-token" });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        window.Kakao.Auth.logout().then(() => {
+          // delCookie와 navigate간 비동기로 처리되어
+          // "/"로 돌아갔을 때, accessCookie가 남아있는 것처럼 실행됨
+          // 단, 그 외 현상은 아직 발견하지 못함
+          delCookie({ name: "authorize-access-token" });
+          // 카카오 로그인 고급 설정에서 logout redirect url이 작동하지 않음
+          navigate("/");
+        });
       },
     },
   });

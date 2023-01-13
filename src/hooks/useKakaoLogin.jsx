@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -8,27 +7,30 @@ import {
   getUserMatchKakaoId,
 } from "redux/thunk/userThunk";
 
+import { setNotifyUserEmpty } from "redux/slice/statusSlice";
+
 import { getCookie } from "lib/utils/data/cookie";
 
 function useKakaoLogin() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userId = useSelector((state) => state.user.id);
 
   const handleGetKakaoUser = async () => {
-    if (!userId) {
-      const kakaoInfo = await dispatch(getKakaoInfo()).then((response) => {
-        return response.payload;
-      });
-      dispatch(getUserMatchKakaoId({ kakaoId: kakaoInfo.kakaoId }));
-    }
+    const kakaoInfo = await dispatch(getKakaoInfo()).then((response) => {
+      return response.payload;
+    });
+    dispatch(getUserMatchKakaoId({ kakaoId: kakaoInfo.kakaoId }));
   };
 
   useEffect(() => {
     if (!userId) {
       const refreshToken = getCookie({ name: "authorize-refresh-token" });
-      if (refreshToken && refreshToken !== "undefined") {
+      if (
+        refreshToken &&
+        refreshToken !== "undefined" &&
+        window.Kakao.Auth.getAccessToken()
+      ) {
         const url = process.env.REACT_APP_KAKAO_TOKEN_URL;
         const params = {
           grant_type: "refresh_token",
@@ -39,7 +41,7 @@ function useKakaoLogin() {
           handleGetKakaoUser();
         });
       } else {
-        navigate("/");
+        dispatch(setNotifyUserEmpty(true));
       }
     }
   }, [userId]);

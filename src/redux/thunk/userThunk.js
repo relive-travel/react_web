@@ -73,6 +73,26 @@ export const getKakaoToken = createAsyncThunk(
   }
 );
 
+export const getAccessTokenInfo = createAsyncThunk(
+  `user/getAccessTokenInfo`,
+  async ({ access_token }) => {
+    let fetchUrl = new URL(process.env.REACT_APP_KAKAO_TOKEN_VALID_URL);
+
+    let fetchParams = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    };
+    const accessTokenStatus = await fetch(fetchUrl, fetchParams).then(
+      (response) => {
+        return response.json();
+      }
+    );
+    return accessTokenStatus;
+  }
+);
+
 export const getKakaoInfo = createAsyncThunk(`user/getKakaoInfo`, async () => {
   const kakaoInfo = await window.Kakao.API.request({ url: "/v2/user/me" });
   // if (!kakaoInfo.is_email_valid || !kakaoInfo.is_email_verified) return
