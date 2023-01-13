@@ -55,22 +55,7 @@ function Home(props) {
       // access-token으로 사용자 정보를 가져온다.
       handleGetKakaoUser();
     } else {
-      // cookie에 access-token은 없으나
-      // refresh-token이 존재하는 경우 access-token 재 발급 후 사용자 정보 불러오기
-      const refreshToken = getCookie({ name: "authorize-refresh-token" });
-      if (refreshToken && refreshToken !== "undefined") {
-        const url = process.env.REACT_APP_KAKAO_TOKEN_URL;
-        const params = {
-          grant_type: "refresh_token",
-          client_id: process.env.REACT_APP_KAKAO_REST_API,
-          refresh_token: refreshToken,
-        };
-        dispatch(getKakaoToken({ url, params })).then(() => {
-          handleGetKakaoUser();
-        });
-      } else {
-        navigate("/login");
-      }
+      navigate("/login");
     }
   }, []);
 

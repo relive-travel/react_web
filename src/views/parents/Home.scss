@@ -36,29 +36,31 @@
   @include setFlex(column, space-between, center);
   width: 100%;
   > header {
+    @include setFlex(column, center, center);
     @include setSize(100%, 85%);
-    > .swiper {
-      height: 100%;
-      --swiper-theme-color: $point-color !important;
-      > .swiper-wrapper {
-        > .swiper-slide {
-          width: 100%;
-          > section {
-            @include setFlex(null, center, center);
-            @include setSize(90%, 100%);
-            @include setBlank(auto);
-            > img {
-              width: 100%;
-            }
-          }
-        }
-      }
-      > .swiper-pagination-horizontal {
-        left: auto;
-        top: auto;
-        bottom: 0;
-      }
-    }
+    @include setFont(2em);
+    //   > .swiper {
+    //     height: 100%;
+    //     --swiper-theme-color: $point-color !important;
+    //     > .swiper-wrapper {
+    //       > .swiper-slide {
+    //         width: 100%;
+    //         > section {
+    //           @include setFlex(null, center, center);
+    //           @include setSize(90%, 100%);
+    //           @include setBlank(auto);
+    //           > img {
+    //             width: 100%;
+    //           }
+    //         }
+    //       }
+    //     }
+    //     > .swiper-pagination-horizontal {
+    //       left: auto;
+    //       top: auto;
+    //       bottom: 0;
+    //     }
+    //   }
   }
   > main {
     @include setFlex(null, center, center);

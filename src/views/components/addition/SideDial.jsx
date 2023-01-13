@@ -53,13 +53,12 @@ function SideDial() {
       tooltip: "로그아웃",
       onClick: (e) => {
         e.stopPropagation();
-        window.Kakao.API.request({ url: "/v1/user/unlink" })
+        window.Kakao.Auth.logout()
           .then(() => {
             delCookie({ name: "authorize-access-token" });
-            navigate("/");
           })
-          .catch((err) => {
-            console.log(err);
+          .catch((error) => {
+            console.log(error);
           });
       },
     },
