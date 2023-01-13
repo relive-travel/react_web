@@ -14,7 +14,7 @@
     }
     [class$="info"] {
       @include setFlex(column, center, center);
-      @include setSize(calc(85% - 1.5em), 100%);
+      @include setSize(calc(85% - 0.75em), 100%);
       > article {
         @include setTextOverflow();
       }

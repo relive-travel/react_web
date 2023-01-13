@@ -96,6 +96,7 @@
     @include setSize(32px, null, 1);
     z-index: 1;
     @if $type == "album" {
+      @include setAbsolute(null, 0.75em, null, null);
       @include setFlex(null, flex-end, center);
       @include setBlank(0 0 0 0.75em);
     } @else if $type == "dialog" {
