@@ -45,7 +45,7 @@ function MarkerElements(props) {
               markerOption.width / 2
             }, ${
               projection([marker.point._long, marker.point._lat])[1] -
-              markerOption.height / 2
+              markerOption.height
             })`}
             width={markerOption.width}
             height={markerOption.height}
@@ -55,7 +55,7 @@ function MarkerElements(props) {
       });
       setDrawMarker(markerElements);
     }
-  }, [mapData, markerData, markerOption]);
+  }, [mapData, mapOption, markerData, markerOption]);
 
   return <>{drawMarker}</>;
 }

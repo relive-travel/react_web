@@ -3,13 +3,13 @@ import { getMarkerAll, getMarkerAllMatchRegion } from "redux/thunk/markerThunk";
 
 const initialState = {
   default: {
-    width: 15,
-    height: 10,
+    width: 27,
+    height: 33,
   },
   option: {
     url: `${process.env.REACT_APP_S3_ADDRESS}/image/assets/pin.png`,
-    width: 15,
-    height: 10,
+    width: 27,
+    height: 33,
   },
   data: null,
   slider: {
@@ -27,11 +27,15 @@ const markerSlice = createSlice({
     },
     setMarkerOption: (state, action) => {
       state.option.width =
-        state.default.width -
-        state.default.width * ((action.payload - 1) / 100);
+        action.payload == 1
+          ? 27
+          : state.default.width -
+            state.default.width * ((action.payload - 1) / 100);
       state.option.height =
-        state.default.height -
-        state.default.height * ((action.payload - 1) / 100);
+        action.payload == 1
+          ? 33
+          : state.default.height -
+            state.default.height * ((action.payload - 1) / 100);
     },
     setMarkerSlider: (state, action) => {
       state.slider[action.payload.type] = action.payload.data;

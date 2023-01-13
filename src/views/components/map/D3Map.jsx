@@ -1,9 +1,8 @@
 import * as d3 from "d3";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setMapScale } from "redux/slice/mapSlice.js";
 import { setMarkerOption } from "redux/slice/markerSlice.js";
 
 import { fetchTopoJson } from "redux/thunk/mapThunk.js";
@@ -12,7 +11,6 @@ import {
   setSvg,
   setZoomEvent,
   setSvgResetEvent,
-  setZoomOutEvent,
 } from "lib/utils/map/svgEvent.js";
 
 import PathElements from "./components/PathElements.jsx";
@@ -25,17 +23,18 @@ function D3Map(props) {
 
   const dispatch = useDispatch();
 
+  let mapScale = 1;
+
   const viewOptionStatus = useSelector((state) => state.status.option.view);
 
   const mapRegion = useSelector((state) => state.map.region);
   const mapOption = useSelector((state) => state.map.option);
-  const mapScale = useSelector((state) => state.map.scale);
 
   // svg zoom end event callback
   const handleScaleChange = (scale) => {
     if (1 > parseInt(scale) || parseInt(scale) >= 100) return;
     if (mapScale !== parseInt(scale)) {
-      dispatch(setMapScale(parseInt(scale)));
+      mapScale = parseInt(scale);
       dispatch(setMarkerOption(parseInt(scale)));
     }
   };
