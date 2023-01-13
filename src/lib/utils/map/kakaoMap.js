@@ -47,7 +47,7 @@ export const setKakaoMapWithKeyword = (
   { mapContainer, listContainer, pageContainer, keyword },
   callback
 ) => {
-  let message;
+  let msg;
   let ps = new window.kakao.maps.services.Places();
 
   const messageComponent = mapContainer.firstChild;
@@ -61,11 +61,24 @@ export const setKakaoMapWithKeyword = (
         displayPlaces(data);
         displayPagination(pagination);
       } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-        message = "검색 결과가 존재하지 않습니다.";
-        return;
+        removeListChild();
+        removePageChild();
+        callback({
+          status,
+          msg: (
+            <>
+              <span className="highlight">{keyword}</span> 검색 결과가&nbsp;
+              <span className="highlight">없어</span>!
+            </>
+          ),
+        });
       } else if (status === window.kakao.maps.services.Status.ERROR) {
-        message = "검색 결과 중 오류가 발생했습니다.";
-        return;
+        removeListChild();
+        removePageChild();
+        callback({
+          status,
+          msg: <>예기치 못한 오류가 발생했어!</>,
+        });
       }
     });
   };

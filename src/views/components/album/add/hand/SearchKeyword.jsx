@@ -17,9 +17,20 @@ function SearchKeyword(props) {
   const kakaoMapRef = useRef(null);
 
   const [keywordRes, setKeywordRes] = useState(null);
+  const [keywordMsg, setKeywordMsg] = useState(
+    <>
+      <span className="highlight">검색</span>해서&nbsp;
+      <span className="highlight">장소</span>를 골라줘!
+    </>
+  );
 
   const handleSetKakaoMap = () => {
     if (inputRef.current.value) {
+      setKeywordMsg(
+        <>
+          <span className="highlight">장소</span>를 골라줘!
+        </>
+      );
       setKakaoMapWithKeyword(
         {
           mapContainer: kakaoMapRef.current,
@@ -28,11 +39,22 @@ function SearchKeyword(props) {
           keyword: inputRef.current.value,
         },
         (keywordResult) => {
-          setKeywordRes(keywordResult);
+          // 검색 결과가 없는 경우
+          if (keywordResult.status) {
+            setKeywordMsg(keywordResult.msg);
+            setKeywordRes(null);
+          } else {
+            setKeywordRes(keywordResult);
+          }
         }
       );
     } else {
-      alert("입력해주세요!");
+      setKeywordMsg(
+        <>
+          <span className="highlight">검색어</span>를&nbsp;
+          <span className="highlight">꼭</span> 넣어줘!
+        </>
+      );
     }
   };
 
@@ -70,7 +92,7 @@ function SearchKeyword(props) {
           </header>
           <main className="keyword-preview">
             <section className="kakao-map-info" ref={kakaoMapRef}>
-              <SearchKeywordMsg />
+              <SearchKeywordMsg msg={keywordMsg} />
             </section>
           </main>
           <footer>
