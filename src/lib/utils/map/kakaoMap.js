@@ -16,7 +16,11 @@ export const setKakaoMapWithGeoPoint = ({
     geocoder.coord2Address(longitude, latitude, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
         let content = `
-          <section class="kakao-map-tooltip" style="margin-bottom: 9.625em;">
+          <section class="kakao-map-tooltip" style="${
+            result[0].road_address
+              ? "margin-bottom: 9.625em;"
+              : "margin-bottom: 7.625em;"
+          }">
             <article class="kakao-map-title">${
               result[0].address.address_name
             }</article>
@@ -179,7 +183,7 @@ export const setKakaoMapWithKeyword = (
     let position = new window.kakao.maps.LatLng(place.y, place.x);
     let mapOptions = {
       center: position,
-      level: 2,
+      level: 3,
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOptions);
     let customOverlay = new window.kakao.maps.CustomOverlay();
@@ -187,8 +191,8 @@ export const setKakaoMapWithKeyword = (
     let content = `
       <article class="place-tooltip" style="${
         place.road_address_name
-          ? "margin-bottom: 11.25em;"
-          : "margin-bottom: 9.25em;"
+          ? "margin-bottom: 9.875em;"
+          : "margin-bottom: 8.875em;"
       }">
         <header class="place-title">${place.place_name}</header>
         <hr />
@@ -253,7 +257,7 @@ export const setKakaoMapWithRoad = ({ mapContainer, addr }, callback) => {
             ? "margin-bottom: 10.875em;"
             : result[0].road_address
             ? "margin-bottom: 8.875em;"
-            : "margin-bottom: 6.875em;"
+            : "margin-bottom: 7.875em;"
         }">
           ${
             result[0].road_address?.building_name
@@ -311,7 +315,7 @@ export const setKakaoMapWithLocation = (
               ? "margin-bottom: 10.875em;"
               : result[0].road_address
               ? "margin-bottom: 8.875em;"
-              : "margin-bottom: 6.875em;"
+              : "margin-bottom: 7.875em;"
           }">
             ${
               result[0].road_address?.building_name

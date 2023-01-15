@@ -16,6 +16,20 @@
   }
 }
 
+.preview-img {
+  position: relative;
+  .preview-close {
+    visibility: hidden;
+    @include setAbsolute(0, null, null, 0);
+    @include setSize(100%, 100%);
+    background-color: $highlight-behind;
+  }
+  &:hover .preview-close {
+    cursor: pointer;
+    visibility: visible;
+  }
+}
+
 .auto-drag-component {
   @include setSize(100%, 100%);
   @include inputPicture;

@@ -5,7 +5,7 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 import axios from "axios";
 
-import { setCookie } from "lib/utils/data/cookie";
+import { setCookie } from "lib/utils/jsUtils";
 
 export const setUser = createAsyncThunk(
   `user/setUser`,

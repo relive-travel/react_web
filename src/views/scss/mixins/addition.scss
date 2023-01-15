@@ -154,8 +154,8 @@
 
   margin-left: -$margin;
   @if $type == "before" {
-    margin-bottom: calc(-#{$margin} - 1px);
+    margin-bottom: calc(-#{$margin} + 0.125em - 1px);
   } @else if $type == "after" {
-    margin-bottom: -$margin;
+    margin-bottom: calc(-#{$margin} + 0.125em);
   }
 }

@@ -1,3 +1,32 @@
+/** cookie */
+export const setCookie = ({ name, value, expires }) => {
+  let date = new Date();
+  date.setTime(date.getTime() + expires * 1000);
+  document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+};
+
+export const getCookie = ({ name }) => {
+  let value = document.cookie.match(`(^|;) ?${name}=([^;]*)(;|$)`);
+  return value ? value[2] : null;
+};
+
+export const delCookie = ({ name }) => {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+};
+
+/** localStorage */
+export const setLocalStorage = ({ key, value }) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+export const getLocalStorage = ({ key }) => {
+  return JSON.parse(localStorage.getItem(key));
+};
+
+export const delLocalStorage = ({ key }) => {
+  localStorage.removeItem(key);
+};
+
 /** clear */
 export const clearRef = (refList) => {
   refList.forEach((ref) => ref.current && (ref.current.value = ""));

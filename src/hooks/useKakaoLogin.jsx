@@ -9,7 +9,7 @@ import {
 
 import { setNotifyUserEmpty } from "redux/slice/statusSlice";
 
-import { getCookie } from "lib/utils/data/cookie";
+import { getCookie } from "lib/utils/jsUtils";
 
 function useKakaoLogin() {
   const dispatch = useDispatch();

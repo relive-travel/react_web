@@ -9,7 +9,7 @@ import {
   getUserMatchKakaoId,
 } from "redux/thunk/userThunk";
 
-import { delCookie, getCookie } from "lib/utils/data/cookie";
+import { delCookie, getCookie } from "lib/utils/jsUtils";
 
 import S3Image from "views/components/addition/S3Image";
 
@@ -88,6 +88,8 @@ function Home(props) {
               }
             }
           );
+        } else {
+          navigate("/login");
         }
       }
     }

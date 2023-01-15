@@ -6,7 +6,7 @@ import { setUser } from "redux/thunk/userThunk";
 import { delUser } from "redux/slice/userSlice";
 
 import { setUserObject } from "lib/utils/s3Utils";
-import { delCookie } from "lib/utils/data/cookie";
+import { delCookie } from "lib/utils/jsUtils";
 
 function Regist() {
   const dispatch = useDispatch();

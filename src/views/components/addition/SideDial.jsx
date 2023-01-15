@@ -11,7 +11,7 @@ import {
 import { setMapRegion } from "redux/slice/mapSlice";
 import { setMarkerData } from "redux/slice/markerSlice";
 
-import { delCookie } from "lib/utils/data/cookie";
+import { delCookie } from "lib/utils/jsUtils";
 
 import HomeIcon from "@mui/icons-material/Home";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";

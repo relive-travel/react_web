@@ -44,6 +44,7 @@ function AutoAdd(props) {
 
   useEffect(() => {
     if (photoData) {
+      console.log(photoData);
       if (photoData.exifdata !== null) {
         var [date, time] = photoData.exifdata.date.split(" ");
         time = time.slice(0, time.length - 3);
@@ -112,7 +113,7 @@ function AutoAdd(props) {
           <section className="info-address">
             <article className="info-addr">
               <label htmlFor="addr">
-                주소 확인<span>(*)</span>
+                주소<span>(*)</span>
               </label>
               <input id="addr" type="text" readOnly ref={props.addrRef}></input>
             </article>

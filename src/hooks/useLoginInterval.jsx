@@ -7,7 +7,7 @@ import {
   getUserMatchKakaoId,
 } from "redux/thunk/userThunk";
 
-import { getCookie } from "lib/utils/data/cookie";
+import { getCookie } from "lib/utils/jsUtils";
 
 function useLoginInterval(delay) {
   const dispatch = useDispatch();
