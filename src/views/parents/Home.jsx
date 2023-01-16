@@ -13,7 +13,6 @@ import { delCookie, getCookie } from "lib/utils/jsUtils";
 
 import S3Image from "views/components/addition/S3Image";
 
-import "./Home.scss";
 function Home(props) {
   const location = useLocation();
   const navigate = useNavigate();

@@ -20,7 +20,6 @@ import UserEmpty from "views/components/modal/exception/UserEmpty";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
-import "./Map.scss";
 import "../components/addition/index.scss";
 import "../components/album/index.scss";
 import "../components/modal/index.scss";

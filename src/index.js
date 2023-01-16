@@ -8,7 +8,7 @@ import Router from "./views/Router";
 import Scheduler from "./views/Scheduler";
 
 import "./index.scss";
-
+import "./views/parents/index.scss";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
