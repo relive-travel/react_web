@@ -13,7 +13,7 @@ const photoSlice = createSlice({
   initialState,
   reducers: {
     setPhotoFile: (state, action) => {
-      state.file = action.payload;
+      state.file = { ...action.payload };
     },
     setPhotoData: (state, action) => {
       state.data = action.payload;

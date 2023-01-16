@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setAlbumInspectModal } from "redux/slice/statusSlice";
 
-import { inspectRef, inspectRefFile } from "lib/utils/jsUtils";
+import { inspectRef, inspectFile } from "lib/utils/jsUtils";
 
 import InspectEmpty from "views/components/notify/exception/InspectEmpty";
 
@@ -12,12 +12,14 @@ function AlbumInspect(props) {
 
   const [inspectList, setInspectList] = useState([]);
 
+  const photoFile = useSelector((state) => state.photo.file);
+
   useEffect(() => {
     if (!inspectRef(props.titleRef))
       setInspectList((inspectList) => [...inspectList, "제목"]);
     if (!inspectRef(props.dateRef))
       setInspectList((inspectList) => [...inspectList, "날짜"]);
-    if (inspectRefFile(props.photoRef))
+    if (!inspectFile(photoFile))
       setInspectList((inspectList) => [...inspectList, "사진"]);
     if (!inspectRef(props.addrRef))
       setInspectList((inspectList) => [...inspectList, "주소"]);

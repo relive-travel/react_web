@@ -15,9 +15,9 @@ function DragAndDrop(props) {
   const dragRef = useRef(null);
 
   let photoFiles = null;
+  let photoList = null;
 
   const [isDrag, setIsDrag] = useState(false);
-  const [photoList, setPhotoList] = useState([]);
 
   const preivewImage = ($preview, fileObjects) => {
     clearPreview($preview);
@@ -62,15 +62,16 @@ function DragAndDrop(props) {
     const fileObject =
       e.type === "drop" ? e.dataTransfer.files : e.target.files;
     if (fileObject.length) {
-      fileObject.length === 1
-        ? dispatch(setPhotoData(await getExifData(fileObject)))
-        : setPhotoList(await getExifDataList(fileObject));
-      photoFiles = fileObject;
-      dispatch(setPhotoFile(photoFiles));
-      preivewImage(props.previewRef.current, fileObject);
-      if (props.dragType == "hand") {
-        e.target.value = null;
+      if (props.dragType === "auto") {
+        dispatch(setPhotoData(await getExifData(fileObject)));
+      } else {
+        photoList = await getExifDataList(fileObject);
+        dispatch(setPhotoData(photoList));
       }
+      dispatch(setPhotoFile(fileObject));
+      photoFiles = { ...fileObject };
+      preivewImage(props.previewRef.current, fileObject);
+      if (props.dragType === "hand") e.target.value = null;
     }
   }, []);
 
@@ -82,7 +83,8 @@ function DragAndDrop(props) {
       ...Object.values(photoFiles).filter((file) => file.name != name),
     };
     dispatch(setPhotoFile(photoFiles));
-    setPhotoList([...photoList.filter((_, idx) => idx != key)]);
+    photoList = [...photoList.filter((photo) => photo.name != name)];
+    dispatch(setPhotoData(photoList));
   });
 
   const handleDragEnter = useCallback((e) => {

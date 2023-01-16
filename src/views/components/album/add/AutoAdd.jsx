@@ -44,7 +44,6 @@ function AutoAdd(props) {
 
   useEffect(() => {
     if (photoData) {
-      console.log(photoData);
       if (photoData.exifdata !== null) {
         var [date, time] = photoData.exifdata.date.split(" ");
         time = time.slice(0, time.length - 3);
