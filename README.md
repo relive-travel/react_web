@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/relive-travel/react-web">
-    <img src="https://relivetravel.s3.ap-northeast-2.amazonaws.com/image/assets/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://relivetravel.s3.ap-northeast-2.amazonaws.com/image/assets/logo.png" alt="Logo" width="150" height="150">
   </a>
 
   <h3 align="center">Relive-Travel</h3>
@@ -12,9 +12,11 @@
     <br />
     우리가 기억하는 여행을 앨범으로 기록하여 추억을 회상해 보세요!
     <br />
+    <br />
     <a href="https://relive-travel.site">서비스 이용하기</a>
     <br />
-    ※ 이 프로젝트는 상업적으로 이용되지 않습니다.
+    <br />
+    <span style="font-size: 10px;">※ 이 프로젝트는 상업적으로 이용되지 않습니다.</span>
   </p>
 </div>
 
@@ -23,7 +25,7 @@
   <summary>목차</summary>
   <ol>
     <li>
-      <a href="#roadmap">프로젝트 정보</a>
+      <a href="#프로젝트 정보">프로젝트 정보</a>
       <ul>
         <li><a href="#배경">배경</a></li>
       </ul>
@@ -55,7 +57,9 @@ Relive-Travel. 여행을 기록하다.
 우리가 기억하는 여행을 잊어버리지 않게 앨범으로 기록하여 추억회상을 경험할 수 있는 서비스입니다.
 앨범은 간편하지만 자세하고 정확하게 기록할 수 있으며, 서비스 내 다양한 기능을 통해 앨범을 확인할 수 있습니다.
 
-##### 배경
+---
+
+#### 배경
 
 언젠가 핸드폰에 저장된 사진을 보며 언제, 어디서, 무엇을 했는지 회상하는 경우가 있습니다. 하지만 회상을 할 때, 사진의 표면적인 정보에만 의지하여 부정확한 기억으로 남아 아쉬움이 쌓이곤 했습니다. 이 때, 사진과 함께 다양한 정보가 제공된다면 우리는 정확한 회상을 할 수 있다 생각합니다.
 
@@ -63,9 +67,11 @@ Relive-Travel. 여행을 기록하다.
 
 ※ 고도화 : 핸드폰에서도 간단하게 작동하고, 내가 만든 앨범을 누군가와 공유하며 추억을 회상할 수 있는 기회가 될 수 있습니다.
 
+---
+
 ### 프로젝트 로드맵
 
-##### 컨벤션
+#### 컨벤션
 
 1. 컴포넌트 : PascalCase
 2. 클래스 : kebab-case
@@ -75,43 +81,49 @@ Relive-Travel. 여행을 기록하다.
 
 ※ 파일구조 : 각 파일의 기능에 맞게 상하관계로 분리
 
-##### [디자인][wireframe-url]
+#### [디자인][wireframe-url]
 
 프로젝트 초기 기초 가이드라인 형식으로 제작되었습니다.
 모든 디자인은 사용자에 맞추어 개별적으로 개편되었으나, 반응형 웹 사이트로서는 부족합니다.
 
 ※ 고도화 : 반응형 웹 사이트, 모바일 최적화
 
-##### 간트차트
+#### 간트차트
 
 📅 [개발 진행 현황][gantchart-url]
 
 <!-- ROADMAP -->
 
+---
+
 ### 기술 스택
 
 ※ 프로젝트를 통해 경험하지 못했던 기술, 새로 경험할 수 있는 기술을 다양한 범주에 활용하였습니다.
 
-##### 프레임워크
+#### 프레임워크 및 언어
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/></a>
 
-##### 라이브러리
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=Sass&logoColor=white"/></a>
+
+#### 라이브러리
 
 <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/></a>
+
 <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React Router&logoColor=white"/></a>
 
-<img src="https://img.shields.io/badge/D3.js-F9A03C?style=flat-square&logo=D3.js&logoColor=white"/></a>, [topojson] :
+<img src="https://img.shields.io/badge/D3.js-F9A03C?style=flat-square&logo=D3.js&logoColor=white"/></a> [topojson]
 
-[exif-js], [blueimp-load-image] :
+[exif-js] [blueimp-load-image]
 
-<img src="https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=MUI&logoColor=white"/></a>, <img src="https://img.shields.io/badge/Swiper-6332F6?style=flat-square&logo=Swiper&logoColor=white"/></a> :
+<img src="https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=MUI&logoColor=white"/></a> <img src="https://img.shields.io/badge/Swiper-6332F6?style=flat-square&logo=Swiper&logoColor=white"/></a>
 
-##### 데이터베이스
+#### 데이터베이스
 
 [Firebase Cloud Firestore]
 
-##### 배포
+#### 배포
 
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=flat-square&logo=Amazon S3&logoColor=white"/></a>
 [Amazon CloudFront]
