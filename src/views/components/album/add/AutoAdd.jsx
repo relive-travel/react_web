@@ -52,6 +52,7 @@ function AutoAdd(props) {
 
         handleSetKakaoMap();
       } else {
+        props.handleClearPhoto();
         dispatch(setAlbumChangeModal(true));
       }
     }
