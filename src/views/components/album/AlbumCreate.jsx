@@ -202,6 +202,7 @@ function AlbumCreate(props) {
           <aside
             className="dialog-close-button"
             onClick={() => {
+              handleClearAlbum();
               dispatch(setAlbumCreateDialog(false));
             }}
           >
