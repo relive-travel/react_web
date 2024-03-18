@@ -16,6 +16,8 @@
     <br />
     <a href="https://relive-travel.site">🐇 서비스 이용하기 🥕</a>
     <br />
+    ※ 현재는 서비스 이용이 불가능합니다
+    <br />
     <br />
     <span style="font-size: 10px;">※ <a href="https://www.instagram.com/toshimee">@toshimee</a>님의 프로필을 사용하고 있습니다! ※</span>
     <br />
